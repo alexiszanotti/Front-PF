@@ -1,13 +1,13 @@
 import "./detail.css"
 import React, { useEffect } from 'react';
 // import { detailProducts }  from "../../Redux/Actions/index.js";
-// import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 // import { useDispatch, useSelector } from 'react-redux';
 
 
 export default function Detail(){
     // const dispatch = useDispatch();
-    // const history = useHistory();
+    const history = useHistory();
     // const { id } = useParams();
 
     // const detail = 
@@ -47,6 +47,7 @@ export default function Detail(){
                    return (
                        <div>
                             <h1>{products.ProductName}</h1>
+                            <img src="https://media.revistagq.com/photos/601133ab9976390c571e2531/16:9/w_2560%2Cc_limit/GettyImages-631497628.jpg" alt="" height="800" width="1150"/>
                             <h3>{products.ListingPrice}</h3>
                             <h3>{products.SalePrice}</h3>
                             <h3>{products.Brand}</h3>

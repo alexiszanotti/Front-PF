@@ -3,6 +3,7 @@ import Navbar from './components/navBar/navBar';
 import Home from './components/home/home';
 import Container from '@mui/material/Container';
 import Landing from './components/landing/landing';
+import Detail from './components/detail/detail';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
             </Route>
             <Route path="/home">
               <Home />
+            </Route>
+            <Route path="/detail">
+              <Detail />
             </Route>
           </Switch>
         </Container>
