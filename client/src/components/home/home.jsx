@@ -126,7 +126,7 @@ export default function Home() {
                         title={products.ProductName}
                         image={"https://media.revistagq.com/photos/5ce269279d80fc260ce332f7/master/w_1600%2Cc_limit/EG5293-adidas-yeezy-glow-release-date.jpg"}
                         price={products.ListingPrice + "$"}
-                       
+                        id= {products.ProductID}
                         />
                     )
                 })
