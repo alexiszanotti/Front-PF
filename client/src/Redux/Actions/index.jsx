@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_PRODUCTS, FILTER_PRODUCTS } from "./actionTypes";
+import { GET_ALL_PRODUCTS, FILTER_PRODUCTS, SEARCH_PRODUCTS, DETAIL_PRODUCTS} from "./actionTypes";
 
 export function getAllProducts() {
   return {
@@ -13,4 +13,15 @@ export function filterProducts(){
   }
 }
 
+export function searchProducts(){
+  return {
+    type: SEARCH_PRODUCTS,
+  }
+}
+
+export function detailProducts(){
+  return {
+    type: DETAIL_PRODUCTS,
+  }
+}
 
