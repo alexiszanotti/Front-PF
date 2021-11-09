@@ -49,15 +49,15 @@ export default function ProminentAppBar() {
               </Select>
             </FormControl>
             <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel id="demo-simple-select-label">SEXO</InputLabel>
+              <InputLabel id="demo-simple-select-label">DESCUENTO</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 label="Age"
               >
-                <MenuItem value={10}>Masculino</MenuItem>
-                <MenuItem value={20}>Femenino</MenuItem>
-                <MenuItem value={30}>Unisex</MenuItem>
+                <MenuItem value={10}>50%</MenuItem>
+                <MenuItem value={20}>20%</MenuItem>
+                <MenuItem value={30}>10%</MenuItem>
               </Select>
             </FormControl>
             <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
@@ -70,6 +70,17 @@ export default function ProminentAppBar() {
                 <MenuItem value={10}>Original</MenuItem>
                 <MenuItem value={20}>Futbol</MenuItem>
                 <MenuItem value={30}>Skate</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="demo-simple-select-label">PRECIO</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                label="Age"
+              >
+                <MenuItem value={10}>Mayor a Menor</MenuItem>
+                <MenuItem value={20}>Menor a mayor</MenuItem>
               </Select>
             </FormControl>
           </Typography>
