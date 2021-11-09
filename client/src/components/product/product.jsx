@@ -19,14 +19,14 @@ export default function Products(props) {
         title={props.title}
         subheader={props.price}
       />
-      {/* <Link to= {`/detail ${props.id}`}> */}
+      <Link to= {`/detail/${props.id}`}>
       <CardMedia
         component="img"
         height="194"
         image={props.image}
         alt="Imagen no disponible"
       />
-      {/* </Link> */}
+      </Link>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <ShoppingCartIcon />
