@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 export default function Landing() {
   return (
     <div>
-        <h1>Landing</h1>
+        <h1>INICIO</h1>
         <Link to="/home">
         <Button>INICIO</Button>
         </Link>

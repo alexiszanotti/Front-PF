@@ -9,12 +9,12 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Container fixed>
+        <Navbar />
           <Switch>
             <Route exact path="/">
               <Landing />
             </Route>
             <Route path="/home">
-              <Navbar />
               <Home />
             </Route>
           </Switch>
