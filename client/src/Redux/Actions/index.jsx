@@ -19,10 +19,15 @@ export function filterProducts() {
   };
 }
 
-export function searchProducts() {
-  return {
-    type: SEARCH_PRODUCTS,
-  };
+export function searchProducts(name) {
+  try {
+    return async function (dispatch) {
+      let res = await axios(`http://localhost:3001/products/?name=${name}`);
+      return dispatch({ type: SEARCH_PRODUCTS, payload: res.data });
+    };
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export function detailProducts() {
