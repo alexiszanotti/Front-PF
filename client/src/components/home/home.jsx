@@ -1,5 +1,6 @@
 import "./home.css";
-import React from "react";
+import React, {useState} from "react";
+import Paginado from "../paged/paged";
 import Products from "../product/product";
 import {useSelector} from "react-redux"
 import Box from '@mui/material/Box';
@@ -12,12 +13,30 @@ import { filterPrecio} from "../../Redux/Actions/index"
 import { useDispatch} from "react-redux";
 export default function Home() {
     const shoes =  useSelector((state) => state.products)
+    const[orden, setOrden]=useState("")
     const dispatch = useDispatch()
+
+
+      // Pagina actual
+    const[currentPage, setCurrentPage] = useState(1);
+    // cantidad de paises que tengo por pagina
+    const[shoesPorPaginaPorPagina, setShoesPorPaginaPorPagina]= useState(8);
+    // seteo el index del ultimo pais
+    const indeceDelUltimoShoes = currentPage * shoesPorPaginaPorPagina // 10
+    const indiceDelPrimerShoes= indeceDelUltimoShoes - shoesPorPaginaPorPagina // 0
+    const currentShoes = shoes.slice(indiceDelPrimerShoes, indeceDelUltimoShoes)
+    // slice muestra un nuevo array empezando del principio al final
+    const paginado = (pageNumber) =>{
+        setCurrentPage(pageNumber)
+    }
+
+
 
     function handelFilterPrecio(e){
         e.preventDefault();
         dispatch(filterPrecio(e.target.value))
-        
+        setCurrentPage(1);
+        setOrden(e.target.value)
     }
     
     return (
@@ -96,8 +115,8 @@ export default function Home() {
             <div className="contenedor">
                 
                 {
-                    shoes.length &&
-                    shoes.map((products) =>{
+                    currentShoes.length &&
+                    currentShoes.map((products) =>{
                         return(
                             <Products 
                             key={products.id}
@@ -109,6 +128,13 @@ export default function Home() {
                         )
                     })
                 }
+            </div>
+            <div>
+                <Paginado 
+                shoesPorPaginaPorPagina= {shoesPorPaginaPorPagina}
+                shoes= {shoes.length}
+                paginado={paginado}
+                />
             </div>
     </div>
     )
