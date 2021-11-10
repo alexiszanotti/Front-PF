@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_PRODUCTS, FILTER_PRODUCTS, SEARCH_PRODUCTS, DETAIL_PRODUCTS } from "./actionTypes";
+import { GET_ALL_PRODUCTS, FILTER_PRECIO , SEARCH_PRODUCTS, DETAIL_PRODUCTS } from "./actionTypes";
 
 export function getAllProducts() {
   return async function (dispatch) {
@@ -13,9 +13,10 @@ export function getAllProducts() {
   };
 }
 
-export function filterProducts() {
+export function filterPrecio(payload) {
   return {
-    type: FILTER_PRODUCTS,
+    type: FILTER_PRECIO ,
+    payload
   };
 }
 
