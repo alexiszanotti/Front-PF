@@ -17,10 +17,10 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Navbar />
-          <Switch>
             <Route exact path="/">
               <Landing />
             </Route>
+          <Switch>
             <Route path="/home">
               <Home />
             </Route>
