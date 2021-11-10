@@ -3,7 +3,6 @@
     flex-direction: column;
     align-items: center;
     background-image: url('http://www.portaldapropaganda.com.br/noticias/wp-content/uploads/2017/02/adidas_Sport17_Womens_PR_Still_00086669_JAN3.jpg');
-    /* background-color: black; */
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -38,6 +37,7 @@
         text-align: justify;
 }
 
+
 .img{
     width:350px;
     height:310px;
@@ -50,16 +50,10 @@
     color: rgb(236, 230, 230);
     border-radius: 5px;
     cursor: pointer;
-    /* padding:10px; */
     font-size: 20px;
-    /* margin-left: 210px; */
     border: none;
     display: flex;
     float: left;
-    /* align-items: flex-end; */
-    
-    /* float: right */
-    
 }
 
 .btn1:hover {
@@ -72,16 +66,10 @@
     color: rgb(236, 230, 230);
     border-radius: 5px;
     cursor: pointer;
-    /* padding:10px; */
     font-size: 20px;
-    /* margin-left: 210px; */
     border: none;
     display: flex;
-    float: right;
-    /* align-items: flex-end; */
-    
-    /* float: right */
-    
+    float: right;   
 }
 
 .btn1:hover {
@@ -94,9 +82,7 @@
     color: rgb(236, 230, 230);
     border-radius: 5px;
     cursor: pointer;
-    /* padding:10px; */
     font-size: 20px;
-    /* margin-left: 210px; */
     border: none;
     
 }
@@ -110,3 +96,17 @@
     background-color: white; 
     color: rgba(74, 59, 207, 0.644);
 } 
+
+
+table {
+    table-layout: fixed;
+    width: 100%;
+  }
+    
+  th, td {
+    padding: 20px;
+  }
+
+  .styleTd{
+      color: black;
+  }

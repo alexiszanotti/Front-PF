@@ -1,6 +1,6 @@
 // import Styles from "./detail.css";
 import React, { useEffect } from "react";
-import { detailProducts }  from "../../Redux/Actions/index.jsx";
+import { detailProducts } from "../../Redux/Actions/index.jsx";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -11,17 +11,12 @@ export default function Detail(props) {
   const dispatch = useDispatch();
   const history = useHistory();
   // const { id } = useParams();
-
-  // console.log(props, "asdasd")
-
   const detail = useSelector((state) => state.detail);
 
   console.log(detail, "<sasd")
 
-  // console.log(detail, "holahola")
-
   useEffect(() => {
-      dispatch(detailProducts(props.match.params.id))
+    dispatch(detailProducts(props.match.params.id))
   }, [dispatch]);
 
   function handleButtonHome(e) {
@@ -39,32 +34,83 @@ export default function Detail(props) {
     history.push("/home");
   }
 
+
+  const review = [
+    {
+      Nombre: "Teo",
+      Puntuacion: "1",
+      DetalleDeLaCompra: "Muy malo el producto"
+    },
+    {
+      Nombre: "Enzo",
+      Puntuacion: "4",
+      DetalleDeLaCompra: "Muy bueno"
+    },
+    {
+      Nombre: "Ale",
+      Puntuacion: "5",
+      DetalleDeLaCompra: "Excelentes"
+    }
+  ]
+
   return (
     <div className="container">
-             
-                  
-                    {detail.map((products)=>{
-                        return (
-                          <div className="detailContainer"> 
-                            <h1>{products.productName}</h1>
-                            <ul className="detailUl">
-                          <br></br>
-                          <img className="img" src= {products.images[0]}/> 
-                          <br></br>
-                          <br></br>
-                          <br></br>
-                          <li className="detailSummary">{products.description}</li>
-                          <br></br>
-                          <li>{products.salePrice + "$"}</li>
-                          </ul>
-                          <li><button onClick={handleButtonFavorite} className="btn1"><FavoriteIcon /></button> <button onClick={handleButtonShop} className="btn2"><ShoppingCartIcon /></button></li>
-                          </div>
-                        )
-                    })
-                  }
 
-      {/* <button onClick={handleButtonFavorite} className="btn"><FavoriteIcon /></button>  */}
-      {/* <button onClick={handleButtonShop} className="btn"><ShoppingCartIcon /></button> */}
+
+      {detail.map((products) => {
+        return (
+          <div className="detailContainer">
+            <h1>{products.productName}</h1>
+            <ul className="detailUl">
+              <br></br>
+              <img className="img" src={products.images[0]} />
+              <br></br>
+              <br></br>
+              <br></br>
+              <li className="detailSummary">{products.description}</li>
+              <br></br>
+              <li >{products.salePrice + "$"}</li>
+            </ul>
+            <li><button onClick={handleButtonFavorite} className="btn1"><FavoriteIcon /></button> <button onClick={handleButtonShop} className="btn2"><ShoppingCartIcon /></button></li>
+          </div>
+        )
+      })
+      }
+
+      <div className="detailContainer">
+        <h1>Valoraciones y reseñas</h1>
+        <table>
+          <th scope="col">Nombre</th>
+          {
+            review.map((product) => {
+              return (
+                <th>{product.Nombre}</th>
+              )
+            })
+          }
+        </table>
+        <table>
+          <th scope="col">Detalle de la compra</th>
+          {
+            review.map((product) => {
+              return (
+                <th >{product.DetalleDeLaCompra}</th>
+              )
+            })
+          }
+        </table>
+        <table>
+          <th scope="col">Puntuación</th>
+          {
+            review.map((product) => {
+              return (
+                <th>{product.Puntuacion}</th>
+              )
+            })
+          }
+        </table>
+      </div>
+
       <button onClick={handleButtonHome} className="btn">Home</button>
       <br></br>
     </div>
