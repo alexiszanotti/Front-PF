@@ -8,8 +8,17 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { filterPrecio} from "../../Redux/Actions/index"
+import { useDispatch} from "react-redux";
 export default function Home() {
     const shoes =  useSelector((state) => state.products)
+    const dispatch = useDispatch()
+
+    function handelFilterPrecio(e){
+        e.preventDefault();
+        dispatch(filterPrecio(e.target.value))
+        
+    }
     
     return (
         <div>
@@ -56,9 +65,10 @@ export default function Home() {
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             label="Age"
+                            onChange={handelFilterPrecio}
                             >
-                            <MenuItem value={10}>MAYOR A MENOR</MenuItem>
-                            <MenuItem value={20}>MENOR A MAYOR</MenuItem>
+                            <MenuItem value={"ASC"}>MAYOR A MENOR</MenuItem>
+                            <MenuItem value={"DES"}>MENOR A MAYOR</MenuItem>
                             
                             </Select>
                         </FormControl>
