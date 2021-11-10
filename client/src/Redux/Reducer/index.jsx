@@ -2,6 +2,7 @@ import { GET_ALL_PRODUCTS, FILTER_PRODUCTS, SEARCH_PRODUCTS, DETAIL_PRODUCTS } f
 
 const initialState = {
   products: [],
+  detail: [],
 
 };
 
@@ -25,7 +26,7 @@ export default function rootReducer(state = initialState, action) {
       case DETAIL_PRODUCTS:
         return{
           ...state,
-          products: action.payload,
+          detail: action.payload,
         }
     default:
       return state;

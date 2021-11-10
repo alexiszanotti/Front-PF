@@ -30,8 +30,28 @@ export function searchProducts(name) {
   }
 }
 
-export function detailProducts() {
-  return {
-    type: DETAIL_PRODUCTS,
-  };
+export const detailProducts = (id) => {
+  // return async (dispatch) => {
+  //     try{
+  //         const {data} = await axios.get(`http://localhost:3001/products/${id}`);
+  //         return dispatch ({
+  //             type: DETAIL_PRODUCTS,
+  //             payload: data
+  //         })
+  //     } catch (err) {
+  //         alert('The ID you are looking for was not found');
+  //     }
+  // }
+  try{
+    return async (dispatch) => {
+      let res = await axios(`http://localhost:3001/products/${id}`);
+      return dispatch({
+        type: DETAIL_PRODUCTS,
+        payload: res.data
+      })
+    }
+  }catch(error) {
+    console.error(error)
+
+  }
 }

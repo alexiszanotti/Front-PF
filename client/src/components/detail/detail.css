@@ -1,0 +1,112 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('http://www.portaldapropaganda.com.br/noticias/wp-content/uploads/2017/02/adidas_Sport17_Womens_PR_Still_00086669_JAN3.jpg');
+    /* background-color: black; */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+}
+
+.detailContainer{
+   display: flex;
+   flex-direction: column;
+   /* align-items: center; */
+   background-color: rgba(233, 233, 223, 0.644);
+   color: rgb(56, 54, 54);
+   width:80%;
+   padding: 10px;
+   margin-top: 20px;
+   margin-bottom: 30px;
+   list-style: none;
+   border-radius: 8px;
+}
+
+.detailContainer.btnUl{
+    display: flex;
+    justify-content: space-between;
+}
+
+.detailUl{
+    text-decoration: none;
+    list-style: none;
+}
+
+.detailSummary{
+        text-align: justify;
+}
+
+.img{
+    width:350px;
+    height:310px;
+    border-radius: 8px;
+
+}
+
+.btn1{
+    background-color: rgba(8, 38, 46, 0.644);
+    color: rgb(236, 230, 230);
+    border-radius: 5px;
+    cursor: pointer;
+    /* padding:10px; */
+    font-size: 20px;
+    /* margin-left: 210px; */
+    border: none;
+    display: flex;
+    float: left;
+    /* align-items: flex-end; */
+    
+    /* float: right */
+    
+}
+
+.btn1:hover {
+    background-color: white; 
+    color: rgba(74, 59, 207, 0.644);
+} 
+
+.btn2{
+    background-color: rgba(8, 38, 46, 0.644);
+    color: rgb(236, 230, 230);
+    border-radius: 5px;
+    cursor: pointer;
+    /* padding:10px; */
+    font-size: 20px;
+    /* margin-left: 210px; */
+    border: none;
+    display: flex;
+    float: right;
+    /* align-items: flex-end; */
+    
+    /* float: right */
+    
+}
+
+.btn1:hover {
+    background-color: white; 
+    color: rgba(74, 59, 207, 0.644);
+} 
+
+.btn{
+    background-color: rgba(8, 38, 46, 0.644);
+    color: rgb(236, 230, 230);
+    border-radius: 5px;
+    cursor: pointer;
+    /* padding:10px; */
+    font-size: 20px;
+    /* margin-left: 210px; */
+    border: none;
+    
+}
+
+.btn1{
+    
+}
+
+
+.btn:hover {
+    background-color: white; 
+    color: rgba(74, 59, 207, 0.644);
+} 
