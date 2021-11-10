@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_PRODUCTS, FILTER_PRECIO , SEARCH_PRODUCTS, DETAIL_PRODUCTS } from "./actionTypes";
+import { GET_ALL_PRODUCTS, FILTER_PRICE, FILTER_DISCOUNT , FILTER_MODEL, SEARCH_PRODUCTS, DETAIL_PRODUCTS } from "./actionTypes";
 
 export function getAllProducts() {
   return async function (dispatch) {
@@ -13,12 +13,27 @@ export function getAllProducts() {
   };
 }
 
-export function filterPrecio(payload) {
+export function filterPrice(payload) {
   return {
-    type: FILTER_PRECIO ,
+    type: FILTER_PRICE ,
     payload
   };
 }
+
+export function filterDiscount(payload){
+  return{
+    type: FILTER_DISCOUNT,
+    payload
+  }
+}
+
+export function filterModel(payload){
+  return{
+    type: FILTER_MODEL,
+    payload
+  }
+}
+
 
 export function searchProducts(name) {
   try {
