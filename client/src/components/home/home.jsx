@@ -65,6 +65,7 @@ export default function Home() {
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label">MODELO</InputLabel>
                             <Select
+                            sx={{ bgcolor: "white" }}
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             label="Age"
@@ -82,6 +83,7 @@ export default function Home() {
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label">TALLE</InputLabel>
                             <Select
+                            sx={{ bgcolor: "white" }}
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             label="Age"
@@ -98,6 +100,7 @@ export default function Home() {
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label">PRECIO</InputLabel>
                             <Select
+                            sx={{ bgcolor: "white" }}
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             label="Age"
@@ -115,6 +118,7 @@ export default function Home() {
                         <FormControl fullWidth>
                             <InputLabel value={"ALL"}id="demo-simple-select-label">DESCUENTO</InputLabel>
                             <Select
+                            sx={{ bgcolor: "white" }}
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             label="Age"
