@@ -24,9 +24,8 @@ function App() {
             <Route path="/home">
               <Home />
             </Route>
-            <Route path="/detail">
-              <Detail />
-            </Route>
+            <Route exact path="/detail/:id" component={Detail}>
+        </Route>
           </Switch>
       </div>
     </BrowserRouter>
