@@ -1,7 +1,8 @@
-import { GET_ALL_PRODUCTS, FILTER_PRECIO , SEARCH_PRODUCTS, DETAIL_PRODUCTS } from "../Actions/actionTypes";
+import { GET_ALL_PRODUCTS, FILTER_PRICE , SEARCH_PRODUCTS, DETAIL_PRODUCTS, FILTER_DISCOUNT, FILTER_MODEL } from "../Actions/actionTypes";
 
 const initialState = {
   products: [],
+  productsFilter: [],
   detail: [],
 
 };
@@ -12,30 +13,35 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         products: action.payload,
+        productsFilter: action.payload,
       };
-      case FILTER_PRECIO :
+      case FILTER_PRICE :
         let sortedArr = action.payload === "ASC"?
         state.products.sort(function(a,b){
-          if(a.name > b.name){
-            return 1;
-          }
-          if(b.name > a.name){
-            return -1;
-          }
-          return 0;
+          return a.salePrice - b.salePrice
         }) :
         state.products.sort(function(a,b){
-          if(a.name > b.name){
-            return -1;
-          }
-          if(b.name > a.name){
-            return 1;
-          }
-          return 0;
+          return b.salePrice - a.salePrice
         });
         return{
           ...state,
           products: sortedArr,
+        }
+      case FILTER_DISCOUNT:
+        const products = state.productsFilter;
+        const statusFilter = action.payload === "All" ? products: products.filter(el => el.discount === action.payload)
+        return{
+          ...state,
+          products: statusFilter
+    
+        }
+      case FILTER_MODEL:
+        const product = state.productsFilter;
+        const statuFilter = action.payload === "All" ? product: product.filter(el => el.brand.name === action.payload)
+        return{
+          ...state,
+          products: statuFilter
+    
         }
       case SEARCH_PRODUCTS:
         return{

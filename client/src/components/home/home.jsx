@@ -9,7 +9,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { filterPrecio} from "../../Redux/Actions/index"
+import { filterPrice, filterDiscount, filterModel} from "../../Redux/Actions/index"
 import { useDispatch} from "react-redux";
 export default function Home() {
     const shoes =  useSelector((state) => state.products)
@@ -32,12 +32,28 @@ export default function Home() {
 
 
 
-    function handelFilterPrecio(e){
+    function handelFilterPrice(e){
         e.preventDefault();
-        dispatch(filterPrecio(e.target.value))
+        dispatch(filterPrice(e.target.value))
+        setCurrentPage(1);
+        setOrden(e.target.value)
+
+    }
+    
+    function handelFilterDiscount(e){
+        e.preventDefault();
+        dispatch(filterDiscount(e.target.value))
+        setCurrentPage(1);
+        setOrden(e.target.value)
+
+    }
+    function handelFilterModel(e){
+        e.preventDefault();
+        dispatch(filterModel(e.target.value))
         setCurrentPage(1);
         setOrden(e.target.value)
     }
+
     
     return (
         <div>
@@ -52,8 +68,9 @@ export default function Home() {
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             label="Age"
+                            onChange={handelFilterModel}
                             >
-                            <MenuItem value={"CORE/NEO"}>CORE/NEO</MenuItem>
+                            <MenuItem value={"CORE / NEO"}>CORE/NEO</MenuItem>
                             <MenuItem value={"SPORT PERFORMANCE"}>SPORT PERFORMANCE</MenuItem>
                             <MenuItem value={"ORIGINALS"}>ORIGINALS</MenuItem>
                             </Select>
@@ -84,10 +101,10 @@ export default function Home() {
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             label="Age"
-                            onChange={handelFilterPrecio}
+                            onChange={handelFilterPrice}
                             >
-                            <MenuItem value={"ASC"}>MAYOR A MENOR</MenuItem>
-                            <MenuItem value={"DES"}>MENOR A MAYOR</MenuItem>
+                            <MenuItem value={"ASC"}>MENOR A MAYOR</MenuItem>
+                            <MenuItem value={"DES"}>MAYOR A MENOR</MenuItem>
                             
                             </Select>
                         </FormControl>
@@ -96,11 +113,12 @@ export default function Home() {
                     <Grid item xs={4}>
                     <Box sx={{ minWidth: 120 }}>
                         <FormControl fullWidth>
-                            <InputLabel id="demo-simple-select-label">DESCUENTO</InputLabel>
+                            <InputLabel value={"ALL"}id="demo-simple-select-label">DESCUENTO</InputLabel>
                             <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             label="Age"
+                            onChange={handelFilterDiscount}
                             >
                             <MenuItem value={"0.00"}>Sin descuento</MenuItem>
                             <MenuItem value={"40.00"}>40%</MenuItem>
