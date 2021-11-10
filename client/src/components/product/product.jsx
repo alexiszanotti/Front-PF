@@ -7,6 +7,7 @@ import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import {Link} from "react-router-dom"
 const defaultIMG = [
   "https://essential.vteximg.com.br/arquivos/ids/435382-454-423/261-2401_1.jpg?v=637582266896100000",
@@ -51,6 +52,9 @@ export default function Products(props) {
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <ShoppingCartIcon />
+        </IconButton>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
         </IconButton>
       </CardActions>
     </Card>
