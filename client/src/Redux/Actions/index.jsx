@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_PRODUCTS, FILTER_PRICE, FILTER_DISCOUNT , FILTER_MODEL, SEARCH_PRODUCTS, DETAIL_PRODUCTS, SHOPPING_CART, REMOVE_CARD} from "./actionTypes";
+import { GET_ALL_PRODUCTS, FILTER_PRICE, FILTER_DISCOUNT , FILTER_MODEL, FILTER_SEXO, SEARCH_PRODUCTS, DETAIL_PRODUCTS, SHOPPING_CART, REMOVE_CARD} from "./actionTypes";
 
 export function getAllProducts() {
   return async function (dispatch) {
@@ -27,11 +27,28 @@ export function filterDiscount(payload){
   }
 }
 
-export function filterModel(payload){
-  return{
-    type: FILTER_MODEL,
-    payload
-  }
+export function filterModel(brand){
+  return async function (dispatch) {
+    try {
+      let res = await axios(`http://localhost:3001/categories/brand/?brand=${brand}`);
+
+      return dispatch({ type: FILTER_MODEL, payload: res.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function filterSexo(gender){
+  return async function (dispatch) {
+    try {
+      let res = await axios(`http://localhost:3001/categories/gender/?gender=${gender}`);
+
+      return dispatch({ type: FILTER_SEXO, payload: res.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 
 

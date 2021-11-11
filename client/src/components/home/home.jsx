@@ -9,7 +9,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { filterPrice, filterDiscount, filterModel} from "../../Redux/Actions/index"
+import { filterPrice, filterDiscount, filterModel, filterSexo} from "../../Redux/Actions/index"
 import { useDispatch} from "react-redux";
 export default function Home() {
     const shoes =  useSelector((state) => state.products)
@@ -53,6 +53,12 @@ export default function Home() {
         setCurrentPage(1);
         setOrden(e.target.value)
     }
+    function handelFilterSexo(e){
+        e.preventDefault();
+        dispatch(filterSexo(e.target.value))
+        setCurrentPage(1);
+        setOrden(e.target.value)
+    }
 
     
     return (
@@ -68,9 +74,10 @@ export default function Home() {
                             sx={{ bgcolor: "white" }}
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            label="Age"
+                            label="MODELO"
                             onChange={handelFilterModel}
                             >
+                            <MenuItem value="All">TODOS</MenuItem>
                             <MenuItem value={"CORE / NEO"}>CORE/NEO</MenuItem>
                             <MenuItem value={"SPORT PERFORMANCE"}>SPORT PERFORMANCE</MenuItem>
                             <MenuItem value={"ORIGINALS"}>ORIGINALS</MenuItem>
@@ -81,16 +88,18 @@ export default function Home() {
                     <Grid item xs={4}>
                     <Box sx={{ minWidth: 120 }}>
                         <FormControl fullWidth>
-                            <InputLabel id="demo-simple-select-label">TALLE</InputLabel>
+                            <InputLabel id="demo-simple-select-label">SEXO</InputLabel>
                             <Select
                             sx={{ bgcolor: "white" }}
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            label="Age"
+                            label="TALLE"
+                            onChange={handelFilterSexo}
                             >
-                            <MenuItem value={10}>40</MenuItem>
-                            <MenuItem value={20}>41</MenuItem>
-                            <MenuItem value={30}>42</MenuItem>
+                            <MenuItem value={"All"}>TODOS</MenuItem>
+                            <MenuItem value={"Men's"}>MASCULINO</MenuItem>
+                            <MenuItem value={"Women's"}>FEMENINO</MenuItem>
+                            <MenuItem value={"Unisex"}>UNISEX</MenuItem>
                             </Select>
                         </FormControl>
                         </Box>
@@ -103,7 +112,7 @@ export default function Home() {
                             sx={{ bgcolor: "white" }}
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            label="Age"
+                            label="PRECIO"
                             onChange={handelFilterPrice}
                             >
                             <MenuItem value={"ASC"}>MENOR A MAYOR</MenuItem>
@@ -121,10 +130,11 @@ export default function Home() {
                             sx={{ bgcolor: "white" }}
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            label="Age"
+                            label="DESCUENTO"
                             onChange={handelFilterDiscount}
                             >
-                            <MenuItem value={"0.00"}>Sin descuento</MenuItem>
+                            <MenuItem value="All">TODOS</MenuItem>
+                            <MenuItem value={"0.00"}>SIN DESCUENTO</MenuItem>
                             <MenuItem value={"40.00"}>40%</MenuItem>
                             <MenuItem value={"50.00"}>50%</MenuItem>
                             </Select>
