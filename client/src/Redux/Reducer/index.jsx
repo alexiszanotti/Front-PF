@@ -1,10 +1,11 @@
-import { GET_ALL_PRODUCTS, FILTER_PRICE , SEARCH_PRODUCTS, DETAIL_PRODUCTS, FILTER_DISCOUNT, FILTER_MODEL,FILTER_SEXO, SHOPPING_CART, REMOVE_CARD } from "../Actions/actionTypes";
+import { GET_ALL_PRODUCTS, FILTER_PRICE , SEARCH_PRODUCTS, DETAIL_PRODUCTS, FILTER_DISCOUNT, FILTER_MODEL,FILTER_SEXO, SHOPPING_CART, REMOVE_CARD, FAVORITE, REMOVE_FAVORITE } from "../Actions/actionTypes";
 
 const initialState = {
   products: [],
   productsFilter: [],
   detail: [],
   shoppingCart: [],
+  favorite: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -65,6 +66,18 @@ export default function rootReducer(state = initialState, action) {
           ...state,
           shoppingCart: state.shoppingCart.filter(el => el.id !== action.payload),
         }
+      case FAVORITE:
+        return{
+          ...state,
+          favorite: state.favorite.concat(action.payload),
+        }
+        case REMOVE_FAVORITE:
+        return{
+          ...state,
+          favorite: state.favorite.filter(el => el.id !== action.payload),
+
+        }
+
     default:
       return state;
   }
