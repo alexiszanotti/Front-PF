@@ -38,7 +38,7 @@ export default function Register() {
 
     const validarPass = (p1, p2) => {
 
-        if(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(p1)) {
+        if(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(p1)) { // ----- La contraseña debe tener entre 8 y 16 caracteres, al menos un número, una minúscula y al menos una mayúscula.
 
             if(p1 !== p2) {
 
@@ -89,7 +89,7 @@ export default function Register() {
 
     const emailHandleChange = (e) => {
 
-        if(!/\S+@\S+\.\S+/.test(e.target.value)) {
+        if(!/\S+@\S+\.\S+/.test(e.target.value)) { // ---- el correo debe ser "texto@texto.texto"
             setError('Debe ser un email valido');
         } else {
             setError('');

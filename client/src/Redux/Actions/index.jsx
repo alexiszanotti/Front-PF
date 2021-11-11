@@ -77,7 +77,7 @@ export const shoppingCart = (id) => {
 }
 
 export const postCreateUser = (payload) => {
-  console.log(payload)
+  
   try {
 
     return async (dispatch) => {
