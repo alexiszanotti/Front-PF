@@ -1,0 +1,33 @@
+.contLogin {
+
+    width: 50%;
+    margin: 3% auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+
+}
+
+.inputLogin {
+
+    width: 500px;
+    margin: auto;
+
+}
+
+.h5Login {
+
+    margin: auto;
+
+}
+
+.buttomLogin {
+
+    width: 80%;
+    height: 50px;
+    margin: 10px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+
+}

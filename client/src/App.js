@@ -4,6 +4,7 @@ import Navbar from './components/navBar/navBar';
 import Home from './components/home/home';
 import Landing from './components/landing/landing';
 import Detail from './components/detail/detail';
+import Login from './components/login/login';
 import ShopingCart from './components/shopingCar/shopingCart';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import { useDispatch} from "react-redux";
@@ -25,10 +26,14 @@ function App() {
             <Route path="/home">
               <Home />
             </Route>
-            <Route exact path="/detail/:id" component={Detail}>
+            <Route path="/login" >
+              <Login />
             </Route>
-            <Route path="/carrito/:id" component={ShopingCart}>
+            <Route path="/detail">
+              <Detail />
             </Route>
+            <Route exact path="/detail/:id" component={Detail}/>
+            <Route path="/carrito/:id" component={ShopingCart}/>
           </Switch>
       </div>
     </BrowserRouter>
