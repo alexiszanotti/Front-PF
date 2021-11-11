@@ -116,7 +116,7 @@ export default function NavBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position='static' className='navBar'>
+      <AppBar position='static' className='navBar' sx={{ bgcolor: "white" }}>
         <Toolbar>
           <Typography
             variant='h6'
@@ -142,7 +142,7 @@ export default function NavBar() {
               onClick={handleProfileMenuOpen}
               color='inherit'
             >
-              <AccountCircle />
+              <AccountCircle  color="action"/>
             </IconButton>
             <IconButton
               size='large'
@@ -152,7 +152,7 @@ export default function NavBar() {
               aria-haspopup='true'
               color='inherit'
             >
-              <FavoriteIcon />
+              <FavoriteIcon color="action" />
             </IconButton>
             <IconButton
               size='large'
@@ -162,7 +162,9 @@ export default function NavBar() {
               aria-haspopup='true'
               color='inherit'
             >
-              <ShoppingCartIcon />
+            <Link to='/carrito/:'>
+              <ShoppingCartIcon  color="action" />
+            </Link>
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>

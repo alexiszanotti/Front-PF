@@ -1,63 +1,116 @@
-import Styles from "./detail.css";
+// import Styles from "./detail.css";
 import React, { useEffect } from "react";
-// import { detailProducts }  from "../../Redux/Actions/index.js";
-import { useHistory, useParams } from "react-router-dom";
-// import { useDispatch, useSelector } from 'react-redux';
+import { detailProducts } from "../../Redux/Actions/index.jsx";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import "./detail.css"
 
-export default function Detail() {
-  // const dispatch = useDispatch();
+export default function Detail(props) {
+  const dispatch = useDispatch();
   const history = useHistory();
   // const { id } = useParams();
-
-  // const detail =
-
-  // useEffect(() => {
-  //     dispatch(detailProducts(id))
-  // }, [dispatch, id]);
+  const detail = useSelector((state) => state.detail);
+  
+  useEffect(() => {
+    dispatch(detailProducts(props.match.params.id))
+  }, [dispatch]);
 
   function handleButtonHome(e) {
     e.preventDefault();
     history.push("/home");
   }
 
-  const adidas = [
-    {
-      ProductName: " Originals Sleek Shoes",
-      ProductID: "G27341",
-      ListingPrice: "7599",
-      SalePrice: "3799",
-      Discount: "50",
-      Brand: "ORIGINALS",
-      Description:
-        "A modern take on adidas sport heritage, tailored just for women. Perforated 3-Stripes on the leather upper of these shoes offer a sleek look that mirrors iconic tennis styles.",
-      Rating: "0",
-      Reviews: "0",
+  function handleButtonShop(e) {
+    e.preventDefault();
+    history.push("/home");
+  }
 
-      "Last Visited": "2020-04-13T15:06:15",
+  function handleButtonFavorite(e) {
+    e.preventDefault();
+    history.push("/home");
+  }
+
+
+  const review = [
+    {
+      Nombre: "Teo",
+      Puntuacion: "1",
+      DetalleDeLaCompra: "Muy malo el producto"
     },
-  ];
+    {
+      Nombre: "Enzo",
+      Puntuacion: "4",
+      DetalleDeLaCompra: "Muy bueno"
+    },
+    {
+      Nombre: "Ale",
+      Puntuacion: "5",
+      DetalleDeLaCompra: "Excelentes"
+    }
+  ]
 
   return (
-    <div>
-      {adidas.map(products => {
-        return (
-          <div>
-            <h1>{products.ProductName}</h1>
-            <img
-              src='https://media.revistagq.com/photos/601133ab9976390c571e2531/16:9/w_2560%2Cc_limit/GettyImages-631497628.jpg'
-              alt=''
-              height='800'
-              width='1150'
-            />
-            <h3>{products.ListingPrice}</h3>
-            <h3>{products.SalePrice}</h3>
-            <h3>{products.Brand}</h3>
-            <h3>{products.Description}</h3>
-          </div>
-        );
-      })}
+    <div className="container">
 
-      <button onClick={handleButtonHome}>Home</button>
+
+      {detail.map((products) => {
+        return (
+          <div className="detailContainer">
+            <h1>{products.productName}</h1>
+            <ul className="detailUl">
+              <br></br>
+              <img className="img" src={products.images[0]} />
+              <br></br>
+              <br></br>
+              <br></br>
+              <li className="detailSummary">{products.description}</li>
+              <br></br>
+              <li >{products.salePrice + "$"}</li>
+            </ul>
+            <li><button onClick={handleButtonFavorite} className="btn1"><FavoriteIcon /></button> <button onClick={handleButtonShop} className="btn2"><ShoppingCartIcon /></button></li>
+          </div>
+        )
+      })
+      }
+
+      <div className="detailContainer">
+        <h1>Valoraciones y reseñas</h1>
+        <table>
+          <th scope="col">Nombre</th>
+          {
+            review.map((product) => {
+              return (
+                <th>{product.Nombre}</th>
+              )
+            })
+          }
+        </table>
+        <table>
+          <th scope="col">Detalle de la compra</th>
+          {
+            review.map((product) => {
+              return (
+                <th >{product.DetalleDeLaCompra}</th>
+              )
+            })
+          }
+        </table>
+        <table>
+          <th scope="col">Puntuación</th>
+          {
+            review.map((product) => {
+              return (
+                <th>{product.Puntuacion}</th>
+              )
+            })
+          }
+        </table>
+      </div>
+
+      <button onClick={handleButtonHome} className="btn">Home</button>
+      <br></br>
     </div>
   );
 }

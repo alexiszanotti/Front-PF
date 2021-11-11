@@ -1,8 +1,10 @@
-import { GET_ALL_PRODUCTS, FILTER_PRODUCTS, SEARCH_PRODUCTS, DETAIL_PRODUCTS } from "../Actions/actionTypes";
+import { GET_ALL_PRODUCTS, FILTER_PRICE , SEARCH_PRODUCTS, DETAIL_PRODUCTS, FILTER_DISCOUNT, FILTER_MODEL, SHOPPING_CART } from "../Actions/actionTypes";
 
 const initialState = {
   products: [],
-
+  productsFilter: [],
+  detail: [],
+  shoppingCart: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -11,11 +13,35 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         products: action.payload,
+        productsFilter: action.payload,
       };
-      case FILTER_PRODUCTS:
+      case FILTER_PRICE :
+        let sortedArr = action.payload === "ASC"?
+        state.products.sort(function(a,b){
+          return a.salePrice - b.salePrice
+        }) :
+        state.products.sort(function(a,b){
+          return b.salePrice - a.salePrice
+        });
         return{
           ...state,
-          products: action.payload,
+          products: sortedArr,
+        }
+      case FILTER_DISCOUNT:
+        const products = state.productsFilter;
+        const statusFilter = action.payload === "All" ? products: products.filter(el => el.discount === action.payload)
+        return{
+          ...state,
+          products: statusFilter
+    
+        }
+      case FILTER_MODEL:
+        const product = state.productsFilter;
+        const statuFilter = action.payload === "All" ? product: product.filter(el => el.brand.name === action.payload)
+        return{
+          ...state,
+          products: statuFilter
+    
         }
       case SEARCH_PRODUCTS:
         return{
@@ -25,7 +51,12 @@ export default function rootReducer(state = initialState, action) {
       case DETAIL_PRODUCTS:
         return{
           ...state,
-          products: action.payload,
+          detail: action.payload,
+        }
+      case SHOPPING_CART:
+        return{
+          ...state,
+          shoppingCart: state.shoppingCart.concat(action.payload),
         }
     default:
       return state;
