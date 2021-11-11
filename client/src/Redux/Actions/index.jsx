@@ -27,10 +27,10 @@ export function filterDiscount(payload){
   }
 }
 
-export function filterModel(brand){
+export function filterModel(collection){
   return async function (dispatch) {
     try {
-      let res = await axios(`http://localhost:3001/categories/brand/?brand=${brand}`);
+      let res = await axios(`http://localhost:3001/categories/collection/?collection=${collection}`);
 
       return dispatch({ type: FILTER_MODEL, payload: res.data });
     } catch (error) {
