@@ -28,7 +28,7 @@ const defaultIMG = [
 export default function Products(props) {
 
   let random = defaultIMG[Math.floor(Math.random()*defaultIMG.length)]
-  console.log(random)
+
 
 
   const onMediaFallback = event => event.target.src = random;

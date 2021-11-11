@@ -14,7 +14,8 @@ function App() {
 
   useEffect(() => {
     dispatch(getAllProducts())
-  }, []);
+  }, [dispatch]);
+  
   return (
     <BrowserRouter>
       <div className="App">
@@ -24,7 +25,7 @@ function App() {
             <Route path="/home" component={Home} />
             <Route path="/login" component={Login} />
             <Route exact path="/detail/:id" component={Detail} /> 
-            <Route path="/carrito/:id" component={ShopingCart} />
+            <Route path="/carrito/:id" component={ShopingCart}  />
           </Switch>
       </div>
     </BrowserRouter>
