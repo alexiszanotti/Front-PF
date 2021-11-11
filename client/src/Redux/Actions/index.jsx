@@ -1,5 +1,6 @@
 import axios from "axios";
-import { GET_ALL_PRODUCTS, FILTER_PRICE, FILTER_DISCOUNT , FILTER_MODEL, FILTER_SEXO, SEARCH_PRODUCTS, DETAIL_PRODUCTS, SHOPPING_CART, REMOVE_CARD, FAVORITE, REMOVE_FAVORITE } from "./actionTypes";
+import { GET_ALL_PRODUCTS, FILTER_PRICE, FILTER_DISCOUNT , FILTER_MODEL, FILTER_SEXO, SEARCH_PRODUCTS, DETAIL_PRODUCTS, SHOPPING_CART, REMOVE_CARD, FAVORITE, REMOVE_FAVORITE,POST_REG_USER } from "./actionTypes";
+
 
 export function getAllProducts() {
   return async function (dispatch) {
@@ -120,4 +121,21 @@ export const removeFavorite = (id) => {
     type: REMOVE_FAVORITE,
     payload: id
   }
+
 }
+
+export const postCreateUser = (payload) => {
+  
+  try {
+
+    return async (dispatch) => {
+
+      return await axios.post(`http://localhost:3001/createUser`,payload)
+
+    }
+    
+  } catch (error) {
+
+    console.error(error)
+    
+  }

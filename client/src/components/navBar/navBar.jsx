@@ -77,7 +77,7 @@ export default function NavBar() {
       onClose={handleMenuClose}
     >
       <Link to='/login' > <MenuItem onClick={handleMenuClose}>Login</MenuItem> </Link>
-      <MenuItem onClick={handleMenuClose}>Register</MenuItem>
+      <Link to='/register' > <MenuItem onClick={handleMenuClose}>Register</MenuItem> </Link>
     </Menu>
   );
 

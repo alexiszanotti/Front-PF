@@ -1,0 +1,51 @@
+.contReg {
+
+    width: 50%;
+    margin: 3% auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+
+}
+
+.inputReg {
+
+    width: 500px;
+    margin: auto;
+
+}
+
+.h5Reg {
+
+    margin: auto;
+
+}
+
+.buttomReg {
+
+    width: 80%;
+    height: 50px;
+    margin: 10px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+
+}
+
+.selectReg {
+
+    width: 70%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+
+}
+
+.pRegister {
+
+    width: 70%;
+    margin: auto;
+    font-size: 14px;
+
+}
