@@ -7,6 +7,7 @@ import Detail from './components/detail/detail';
 import Login from './components/login/login';
 import Register from './components/register/register';
 import ShopingCart from './components/shopingCar/shopingCart';
+import Favorite from './components/favorite/favorite';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import { useDispatch} from "react-redux";
 import {getAllProducts} from "./Redux/Actions/index"
@@ -15,7 +16,8 @@ function App() {
 
   useEffect(() => {
     dispatch(getAllProducts())
-  }, []);
+  }, [dispatch]);
+  
   return (
     <BrowserRouter>
       <div className="App">
@@ -27,6 +29,7 @@ function App() {
             <Route path="/register" component={Register} />
             <Route exact path="/detail/:id" component={Detail} /> 
             <Route path="/carrito/:id" component={ShopingCart} />
+            <Route path="/favorites/:id" component={Favorite} />
           </Switch>
       </div>
     </BrowserRouter>

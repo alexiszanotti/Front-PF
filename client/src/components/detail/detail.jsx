@@ -5,6 +5,11 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import Rating from '@mui/material/Rating';
+import Box from '@mui/material/Box';
+import StarIcon from '@mui/icons-material/Star';
+import TextField from '@mui/material/TextField';
+import {Link} from "react-router-dom";
 import "./detail.css"
 
 export default function Detail(props) {
@@ -12,7 +17,9 @@ export default function Detail(props) {
   const history = useHistory();
   // const { id } = useParams();
   const detail = useSelector((state) => state.detail);
+
   
+
 
   useEffect(() => {
     dispatch(detailProducts(props.match.params.id))
@@ -52,6 +59,7 @@ export default function Detail(props) {
     }
   ]
 
+  
   return (
     <div className="container">
 
@@ -61,6 +69,7 @@ export default function Detail(props) {
           <div className="detailContainer">
             <h1>{products.productName}</h1>
             <ul className="detailUl">
+              {/* <li>{products.coleccion}</li> */}
               <br></br>
               <img className="img" src={products.images[0]} />
               <br></br>
@@ -70,13 +79,21 @@ export default function Detail(props) {
               <br></br>
               <li >{products.salePrice + "$"}</li>
             </ul>
-            <li><button onClick={handleButtonFavorite} className="btn1"><FavoriteIcon /></button> <button onClick={handleButtonShop} className="btn2"><ShoppingCartIcon /></button></li>
+            <li>
+            <Link to={`/carrito/${props.id}`}>
+              <button onClick={handleButtonFavorite} className="btn1"><FavoriteIcon />
+              </button> 
+            </Link>
+            <Link to={`/carrito/${detail.map((el) =>el.id) }`}>
+              <button className="btn2"><ShoppingCartIcon /></button>
+            </Link>
+              </li>
           </div>
         )
       })
       }
 
-      <div className="detailContainer">
+       <div className="detailContainer">
         <h1>Valoraciones y reseñas</h1>
         <table>
           <th scope="col">Nombre</th>
@@ -108,7 +125,13 @@ export default function Detail(props) {
             })
           }
         </table>
-      </div>
+        <div>
+          <button type='submit' className="btn3">Escribir una reseña</button>
+            </div>
+      </div> 
+      
+
+
 
       <button onClick={handleButtonHome} className="btn">Home</button>
       <br></br>

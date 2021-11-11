@@ -28,7 +28,7 @@ const defaultIMG = [
 export default function Products(props) {
 
   let random = defaultIMG[Math.floor(Math.random()*defaultIMG.length)]
-  console.log(random)
+
 
 
   const onMediaFallback = event => event.target.src = random;
@@ -56,8 +56,10 @@ export default function Products(props) {
           </Link>
         </IconButton>
         <IconButton aria-label="add to favorites">
-         
+        <Link to={`/favorites/${props.id}`}>
           <FavoriteIcon />
+        </Link>
+         
           
         </IconButton>
       </CardActions>
