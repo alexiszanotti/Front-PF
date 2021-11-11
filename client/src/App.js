@@ -19,21 +19,12 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Navbar />
-            <Route exact path="/">
-              <Landing />
-            </Route>
+            <Route exact path="/" component={Landing} />
           <Switch>
-            <Route path="/home">
-              <Home />
-            </Route>
-            <Route path="/login" >
-              <Login />
-            </Route>
-            <Route path="/detail">
-              <Detail />
-            </Route>
-            <Route exact path="/detail/:id" component={Detail}/>
-            <Route path="/carrito/:id" component={ShopingCart}/>
+            <Route path="/home" component={Home} />
+            <Route path="/login" component={Login} />
+            <Route exact path="/detail/:id" component={Detail} /> 
+            <Route path="/carrito/:id" component={ShopingCart} />
           </Switch>
       </div>
     </BrowserRouter>
@@ -41,3 +32,4 @@ function App() {
 }
 
 export default App;
+

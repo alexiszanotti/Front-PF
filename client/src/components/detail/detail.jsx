@@ -13,6 +13,7 @@ export default function Detail(props) {
   // const { id } = useParams();
   const detail = useSelector((state) => state.detail);
   
+
   useEffect(() => {
     dispatch(detailProducts(props.match.params.id))
   }, [dispatch]);
