@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_PRODUCTS, FILTER_PRICE, FILTER_DISCOUNT , FILTER_MODEL, SEARCH_PRODUCTS, DETAIL_PRODUCTS } from "./actionTypes";
+import { GET_ALL_PRODUCTS, FILTER_PRICE, FILTER_DISCOUNT , FILTER_MODEL, SEARCH_PRODUCTS, DETAIL_PRODUCTS, SHOPPING_CART} from "./actionTypes";
 
 export function getAllProducts() {
   return async function (dispatch) {
@@ -63,6 +63,21 @@ export const detailProducts = (id) => {
       let res = await axios(`http://localhost:3001/products/${id}`);
       return dispatch({
         type: DETAIL_PRODUCTS,
+        payload: res.data
+      })
+    }
+  }catch(error) {
+    console.error(error)
+
+  }
+}
+
+export const shoppingCart = (id) => {
+  try{
+    return async (dispatch) => {
+      let res = await axios(`http://localhost:3001/products/${id}`);
+      return dispatch({
+        type: SHOPPING_CART,
         payload: res.data
       })
     }

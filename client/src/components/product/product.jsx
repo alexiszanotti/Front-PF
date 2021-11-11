@@ -51,10 +51,14 @@ export default function Products(props) {
       </Link>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
+        <Link to={`/carrito/${props.id}`}>
           <ShoppingCartIcon />
+          </Link>
         </IconButton>
         <IconButton aria-label="add to favorites">
+         
           <FavoriteIcon />
+          
         </IconButton>
       </CardActions>
     </Card>

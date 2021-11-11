@@ -12,13 +12,12 @@ export default function Detail(props) {
   const history = useHistory();
   // const { id } = useParams();
 
-  // console.log(props, "asdasd")
+  console.log(props)
 
   const detail = useSelector((state) => state.detail);
 
-  console.log(detail, "<sasd")
 
-  // console.log(detail, "holahola")
+  console.log(detail, "holahola")
 
   useEffect(() => {
       dispatch(detailProducts(props.match.params.id))
