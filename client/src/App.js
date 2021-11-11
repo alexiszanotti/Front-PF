@@ -4,6 +4,7 @@ import Navbar from './components/navBar/navBar';
 import Home from './components/home/home';
 import Landing from './components/landing/landing';
 import Detail from './components/detail/detail';
+import ShopingCart from './components/shopingCar/shopingCart';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import { useDispatch} from "react-redux";
 import {getAllProducts} from "./Redux/Actions/index"
@@ -25,7 +26,9 @@ function App() {
               <Home />
             </Route>
             <Route exact path="/detail/:id" component={Detail}>
-        </Route>
+            </Route>
+            <Route path="/carrito/:id" component={ShopingCart}>
+            </Route>
           </Switch>
       </div>
     </BrowserRouter>

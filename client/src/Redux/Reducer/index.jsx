@@ -1,10 +1,10 @@
-import { GET_ALL_PRODUCTS, FILTER_PRICE , SEARCH_PRODUCTS, DETAIL_PRODUCTS, FILTER_DISCOUNT, FILTER_MODEL } from "../Actions/actionTypes";
+import { GET_ALL_PRODUCTS, FILTER_PRICE , SEARCH_PRODUCTS, DETAIL_PRODUCTS, FILTER_DISCOUNT, FILTER_MODEL, SHOPPING_CART } from "../Actions/actionTypes";
 
 const initialState = {
   products: [],
   productsFilter: [],
   detail: [],
-
+  shoppingCart: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -52,6 +52,11 @@ export default function rootReducer(state = initialState, action) {
         return{
           ...state,
           detail: action.payload,
+        }
+      case SHOPPING_CART:
+        return{
+          ...state,
+          shoppingCart: state.shoppingCart.concat(action.payload),
         }
     default:
       return state;

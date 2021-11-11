@@ -162,7 +162,9 @@ export default function NavBar() {
               aria-haspopup='true'
               color='inherit'
             >
+            <Link to='/carrito/:'>
               <ShoppingCartIcon  color="action" />
+            </Link>
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
