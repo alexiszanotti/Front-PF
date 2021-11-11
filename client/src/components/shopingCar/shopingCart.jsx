@@ -63,7 +63,7 @@ export default function ShopingCart(props) {
                                     id={products.id}
                                     title={products.productName}
                                     price={products.salePrice}
-                                    brand={products.brand.name}
+                                    brand={products.collection.name}
                                     images={products.images[0]}
                              
                                     />
