@@ -77,7 +77,7 @@ export default function Home() {
                             label="MODELO"
                             onChange={handelFilterModel}
                             >
-                            <MenuItem value="All">TODOS</MenuItem>
+                            <MenuItem value="ALL">TODOS</MenuItem>
                             <MenuItem value={"CORE / NEO"}>CORE/NEO</MenuItem>
                             <MenuItem value={"SPORT PERFORMANCE"}>SPORT PERFORMANCE</MenuItem>
                             <MenuItem value={"ORIGINALS"}>ORIGINALS</MenuItem>
