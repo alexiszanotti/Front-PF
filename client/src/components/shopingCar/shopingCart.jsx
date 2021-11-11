@@ -10,7 +10,6 @@ import {Link} from "react-router-dom";
 import { Box } from "@mui/system";
 export default function ShopingCart(props) {
     const dispatch = useDispatch();
-    console.log(props)
 
     const cart = useSelector((state) => state.shoppingCart);
 
@@ -22,6 +21,7 @@ export default function ShopingCart(props) {
     let suma = cart.map((el) => Number(el.salePrice));
     for(let i of suma) total+=i;
     
+
     return(
             <div>
                 <div>
@@ -63,7 +63,7 @@ export default function ShopingCart(props) {
                                     id={products.id}
                                     title={products.productName}
                                     price={products.salePrice}
-                                    brand={products.brand.name}
+                                    brand={products.collection.name}
                                     images={products.images[0]}
                              
                                     />

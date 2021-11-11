@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -16,9 +16,19 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import Logo from "../../images/adidasLogo.png";
 import { Link } from "react-router-dom";
 import SearchBar from "../searchBar/searchBar";
+import { useSelector, useDispatch } from "react-redux";
+import { shoppingCart}  from "../../Redux/Actions/index.jsx";
 
 
 export default function NavBar() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(shoppingCart());
+  }, [dispatch]);
+
+  const aux = useSelector((state) => state.shoppingCart);
+
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
@@ -168,6 +178,20 @@ export default function NavBar() {
               <ShoppingCartIcon  color="action" />
             </Link>
             </IconButton>
+            <Badge badgeContent={aux.length} color='error'>
+              <IconButton
+                size='large'
+                edge='end'
+                aria-label='account of current user'
+                aria-controls={menuId}
+                aria-haspopup='true'
+                color='inherit'
+              >
+              <Link to='/carrito/:'>
+                <ShoppingCartIcon  color="action" />
+              </Link>
+              </IconButton>
+            </Badge>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton

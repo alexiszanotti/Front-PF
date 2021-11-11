@@ -15,7 +15,8 @@ function App() {
 
   useEffect(() => {
     dispatch(getAllProducts())
-  }, []);
+  }, [dispatch]);
+  
   return (
     <BrowserRouter>
       <div className="App">
