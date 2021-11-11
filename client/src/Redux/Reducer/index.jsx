@@ -1,4 +1,4 @@
-import { GET_ALL_PRODUCTS, FILTER_PRICE , SEARCH_PRODUCTS, DETAIL_PRODUCTS, FILTER_DISCOUNT, FILTER_MODEL, SHOPPING_CART, REMOVE_CARD } from "../Actions/actionTypes";
+import { GET_ALL_PRODUCTS, FILTER_PRICE , SEARCH_PRODUCTS, DETAIL_PRODUCTS, FILTER_DISCOUNT, FILTER_MODEL,FILTER_SEXO, SHOPPING_CART, REMOVE_CARD } from "../Actions/actionTypes";
 
 const initialState = {
   products: [],
@@ -36,12 +36,14 @@ export default function rootReducer(state = initialState, action) {
     
         }
       case FILTER_MODEL:
-        const product = state.productsFilter;
-        const statuFilter = action.payload === "All" ? product: product.filter(el => el.brand.name === action.payload)
-        return{
+        return {
           ...state,
-          products: statuFilter
-    
+          products: action.payload 
+        }
+      case FILTER_SEXO: 
+        return {
+          ...state,
+          products: action.payload 
         }
       case SEARCH_PRODUCTS:
         return{
