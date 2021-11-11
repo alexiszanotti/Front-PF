@@ -152,7 +152,9 @@ export default function NavBar() {
               aria-haspopup='true'
               color='inherit'
             >
+            <Link to='/favorites/:'>
               <FavoriteIcon color="action" />
+            </Link>
             </IconButton>
             <IconButton
               size='large'

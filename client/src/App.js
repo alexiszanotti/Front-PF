@@ -6,6 +6,7 @@ import Landing from './components/landing/landing';
 import Detail from './components/detail/detail';
 import Login from './components/login/login';
 import ShopingCart from './components/shopingCar/shopingCart';
+import Favorite from './components/favorite/favorite';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import { useDispatch} from "react-redux";
 import {getAllProducts} from "./Redux/Actions/index"
@@ -25,6 +26,7 @@ function App() {
             <Route path="/login" component={Login} />
             <Route exact path="/detail/:id" component={Detail} /> 
             <Route path="/carrito/:id" component={ShopingCart} />
+            <Route path="/favorites/:id" component={Favorite} />
           </Switch>
       </div>
     </BrowserRouter>

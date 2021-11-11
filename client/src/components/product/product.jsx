@@ -56,8 +56,10 @@ export default function Products(props) {
           </Link>
         </IconButton>
         <IconButton aria-label="add to favorites">
-         
+        <Link to={`/favorites/${props.id}`}>
           <FavoriteIcon />
+        </Link>
+         
           
         </IconButton>
       </CardActions>
