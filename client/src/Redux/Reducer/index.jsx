@@ -1,4 +1,4 @@
-import { GET_ALL_PRODUCTS, FILTER_PRICE , SEARCH_PRODUCTS, DETAIL_PRODUCTS, FILTER_DISCOUNT, FILTER_MODEL, SHOPPING_CART } from "../Actions/actionTypes";
+import { GET_ALL_PRODUCTS, FILTER_PRICE , SEARCH_PRODUCTS, DETAIL_PRODUCTS, FILTER_DISCOUNT, FILTER_MODEL, SHOPPING_CART, REMOVE_CARD } from "../Actions/actionTypes";
 
 const initialState = {
   products: [],
@@ -57,6 +57,11 @@ export default function rootReducer(state = initialState, action) {
         return{
           ...state,
           shoppingCart: state.shoppingCart.concat(action.payload),
+        }
+      case REMOVE_CARD:
+        return{
+          ...state,
+          shoppingCart: state.shoppingCart.filter(el => el.id !== action.payload),
         }
     default:
       return state;

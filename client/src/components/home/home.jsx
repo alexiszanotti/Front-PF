@@ -20,7 +20,7 @@ export default function Home() {
       // Pagina actual
     const[currentPage, setCurrentPage] = useState(1);
     // cantidad de paises que tengo por pagina
-    const[shoesPorPaginaPorPagina, setShoesPorPaginaPorPagina]= useState(8);
+    const[shoesPorPaginaPorPagina, setShoesPorPaginaPorPagina]= useState(20);
     // seteo el index del ultimo pais
     const indeceDelUltimoShoes = currentPage * shoesPorPaginaPorPagina // 10
     const indiceDelPrimerShoes= indeceDelUltimoShoes - shoesPorPaginaPorPagina // 0
@@ -134,7 +134,7 @@ export default function Home() {
                 </Grid>
                 </Box>
             </div>
-            <div className="contenedor">
+            <div className="contenedorHome">
                 
                 {
                     currentShoes.length &&
