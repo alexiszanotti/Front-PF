@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_PRODUCTS, FILTER_PRICE, FILTER_DISCOUNT , FILTER_MODEL, SEARCH_PRODUCTS, DETAIL_PRODUCTS, SHOPPING_CART} from "./actionTypes";
+import { GET_ALL_PRODUCTS, FILTER_PRICE, FILTER_DISCOUNT , FILTER_MODEL, SEARCH_PRODUCTS, DETAIL_PRODUCTS, SHOPPING_CART, POST_REG_USER} from "./actionTypes";
 
 export function getAllProducts() {
   return async function (dispatch) {
@@ -74,4 +74,22 @@ export const shoppingCart = (id) => {
     console.error(error)
 
   }
+}
+
+export const postCreateUser = (payload) => {
+  console.log(payload)
+  try {
+
+    return async (dispatch) => {
+
+      return await axios.post(`http://localhost:3001/createUser`,payload)
+
+    }
+    
+  } catch (error) {
+
+    console.error(error)
+    
+  }
+
 }

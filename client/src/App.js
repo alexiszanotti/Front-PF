@@ -5,6 +5,7 @@ import Home from './components/home/home';
 import Landing from './components/landing/landing';
 import Detail from './components/detail/detail';
 import Login from './components/login/login';
+import Register from './components/register/register';
 import ShopingCart from './components/shopingCar/shopingCart';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import { useDispatch} from "react-redux";
@@ -23,6 +24,7 @@ function App() {
           <Switch>
             <Route path="/home" component={Home} />
             <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
             <Route exact path="/detail/:id" component={Detail} /> 
             <Route path="/carrito/:id" component={ShopingCart} />
           </Switch>
