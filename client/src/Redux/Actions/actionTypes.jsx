@@ -12,3 +12,5 @@ export const FAVORITE = "FAVORITE";
 export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
 export const CREATE_PRODUCT = "CREATE_PRODUCT";
 export const GET_COLLECTIONS = "GET_COLLECTIONS";
+export const GET_ALL_USERS = "GET_ALL_USERS";
+export const MODIFY_USER = "MODIFY_USER";
