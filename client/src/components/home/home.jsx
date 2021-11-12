@@ -60,7 +60,6 @@ export default function Home() {
         setOrden(e.target.value)
     }
 
-    
     return (
         <div>
             <div className="boxCategories">
@@ -76,6 +75,7 @@ export default function Home() {
                             id="demo-simple-select"
                             label="MODELO"
                             onChange={handelFilterModel}
+                            value=""
                             >
                             <MenuItem value="ALL">TODOS</MenuItem>
                             <MenuItem value={"CORE / NEO"}>CORE/NEO</MenuItem>
@@ -144,6 +144,13 @@ export default function Home() {
                 </Grid>
                 </Box>
             </div>
+            <div>
+                <Paginado 
+                shoesPorPaginaPorPagina= {shoesPorPaginaPorPagina}
+                shoes= {shoes.length}
+                paginado={paginado}
+                />
+            </div>
             <div className="contenedorHome">
                 
                 {
@@ -160,13 +167,6 @@ export default function Home() {
                         )
                     })
                 }
-            </div>
-            <div>
-                <Paginado 
-                shoesPorPaginaPorPagina= {shoesPorPaginaPorPagina}
-                shoes= {shoes.length}
-                paginado={paginado}
-                />
             </div>
     </div>
     )

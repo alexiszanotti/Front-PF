@@ -30,7 +30,7 @@ function App() {
           <Route path='/register' component={Register} />
           <Route exact path='/detail/:id' component={Detail} />
           <Route path='/carrito/:id' component={ShopingCart} />
-          <Route path='/favorites/:id' component={Favorite} />
+          <Route path='/favorites' component={Favorite} />
           <Route path='/createProduct' component={createProduct} />
         </Switch>
       </div>
