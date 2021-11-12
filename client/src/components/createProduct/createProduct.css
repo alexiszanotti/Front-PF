@@ -1,0 +1,50 @@
+.formulario-creacion {
+  border: 2px solid #ccc;
+  width: 40%;
+  height: 90vh;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+.form-inputs {
+  display: flex;
+  flex-direction: column;
+  align-content: space-evenly;
+}
+
+.form-inputs input {
+  width: 90%;
+  height: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+.form-inputs textarea {
+  width: 90%;
+  height: 40px;
+  border: 1px solid rgb(248, 237, 237);
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+  resize: none;
+}
+
+.crear-categoria {
+  width: 30%;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: transparent;
+  color: #111;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.error {
+  color: red;
+}
