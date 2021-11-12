@@ -9,6 +9,7 @@ import Register from "./components/register/register";
 import ShopingCart from "./components/shopingCar/shopingCart";
 import Favorite from "./components/favorite/favorite";
 import createProduct from "./components/createProduct/createProduct";
+import GoShopping from "./components/goShopping/goShopping";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getAllProducts } from "./Redux/Actions/index";
@@ -32,6 +33,7 @@ function App() {
           <Route path='/carrito/:id' component={ShopingCart} />
           <Route path='/favorites' component={Favorite} />
           <Route path='/createProduct' component={createProduct} />
+          <Route path='/pago' component={GoShopping} />
         </Switch>
       </div>
     </BrowserRouter>
