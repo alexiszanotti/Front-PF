@@ -18,9 +18,6 @@ export default function CardFavorite(props) {
     const dispatch = useDispatch();
     return (
         <Card sx={{ maxWidth: 345 }} className="contenedorCardFavorite">
-            <CardActions>
-                <Button onClick={() => dispatch(removeFavorite(props.id))}>ELIMINAR</Button>
-            </CardActions>
             <CardActionArea>
                 <CardMedia
                 component="img"
@@ -37,6 +34,9 @@ export default function CardFavorite(props) {
                 </Typography>
                 </CardContent>
             </CardActionArea>
+            <CardActions>
+                <Button onClick={() => dispatch(removeFavorite(props.id))}>ELIMINAR</Button>
+            </CardActions>
                 {/* <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">talle</InputLabel>
                     <Select

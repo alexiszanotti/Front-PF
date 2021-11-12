@@ -9,6 +9,10 @@ import Rating from '@mui/material/Rating';
 import Box from '@mui/material/Box';
 import StarIcon from '@mui/icons-material/Star';
 import TextField from '@mui/material/TextField';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select'
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
 import {Link} from "react-router-dom";
 import "./detail.css"
 
@@ -59,6 +63,21 @@ export default function Detail(props) {
     }
   ]
 
+  const labels = {
+    0.5: 'Useless',
+    1: 'Useless+',
+    1.5: 'Poor',
+    2: 'Poor+',
+    2.5: 'Ok',
+    3: 'Ok+',
+    3.5: 'Good',
+    4: 'Good+',
+    4.5: 'Excellent',
+    5: 'Excellent+',
+};
+
+const [value, setValue] = React.useState(2);
+const [hover, setHover] = React.useState(-1);
   
   return (
     <div className="container">
@@ -69,7 +88,7 @@ export default function Detail(props) {
           <div className="detailContainer">
             <h1>{products.productName}</h1>
             <ul className="detailUl">
-              {/* <li>{products.coleccion}</li> */}
+              <li>{products.collection.name}</li>
               <br></br>
               <img className="img" src={products.images[0]} />
               <br></br>
@@ -79,12 +98,25 @@ export default function Detail(props) {
               <br></br>
               <li >{products.salePrice + "$"}</li>
             </ul>
+            <FormControl sx={{ m: 1, minWidth: 80 }} className="detailS">
+                    <InputLabel id="demo-simple-select-label">talle</InputLabel>
+                    <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    label="talle"
+                    >
+                    <MenuItem value={10}>40</MenuItem>
+                    <MenuItem value={20}>41</MenuItem>
+                    <MenuItem value={30}>45</MenuItem>
+                    </Select>
+                </FormControl>
+                <br></br>
+                <br></br>
             <li>
-            <Link to={`/carrito/${props.id}`}>
-              <button onClick={handleButtonFavorite} className="btn1"><FavoriteIcon />
-              </button> 
+            <Link to={`/favorites/${detail.map((el) =>el.id)}`}>
+              <button  className="btn1"><FavoriteIcon /></button> 
             </Link>
-            <Link to={`/carrito/${detail.map((el) =>el.id) }`}>
+            <Link to={`/carrito/${detail.map((el) =>el.id)}`}>
               <button className="btn2"><ShoppingCartIcon /></button>
             </Link>
               </li>
@@ -129,7 +161,61 @@ export default function Detail(props) {
           <button type='submit' className="btn3">Escribir una reseña</button>
             </div>
       </div> 
-      
+      <Box
+        component="form"
+        sx={{
+            '& .MuiTextField-root': { m: 1, width: '25ch' },
+        }}
+        noValidate
+        autoComplete="off"
+        className = "detailContainer"
+        >
+
+        <div className="detailBox">
+          <h1>Reseñas y validaciones</h1>
+          <TextField
+            required
+            id="outlined-required"
+            label="Nombre de usuario"
+            // placeholder="Nombre de usuario"
+            />
+          <TextField
+            required
+            id="outlined-required"
+            label="Detalle de la compra"
+            // placeholder="Detalle de la compra"
+            />
+
+          <Box
+            sx={{
+                width: 200,
+                display: 'flex',
+                alignItems: 'center',
+            }}
+            >
+            <Rating
+              name="hover-feedback"
+              value={value}
+              precision={0.5}
+              onChange={(event, newValue) => {
+                  setValue(newValue);
+                }}
+                onChangeActive={(event, newHover) => {
+                    setHover(newHover);
+                }}
+                emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                />
+            {value !== null && (
+                <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
+                )}
+
+          </Box>
+          <br></br>
+          <div>
+          <button type='submit' className="btn">Publicar</button>
+            </div>
+        </div>
+      </Box>      
 
 
 
