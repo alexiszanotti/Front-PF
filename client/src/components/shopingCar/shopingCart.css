@@ -23,3 +23,38 @@
     border-radius:50px;
     background-color:#bf97ff;
 }
+.tucarrito{
+    font-size: 40px;
+    text-align: left;
+    margin-left: 40px;
+    
+    
+}
+.total{
+    text-align: left;
+    margin-left: 40px;
+    color: rgb(82, 82, 82);
+}
+.comprarAhora{
+    text-align: left;
+    margin-left: 40px;
+    background-color: rgb(255, 255, 255);
+    width: 900px;
+    height: 100px;
+    margin-bottom: 30px;
+}
+.ahora{
+    font-size: 30px;
+    text-align: center;
+}
+.tene{
+    text-align: center;
+}
+.imagenTarjeta{
+    width: 500px;
+    height: 100px;
+}
+.metodoTarjeta{
+    margin-top: 100px;
+    
+}

@@ -16,14 +16,14 @@ import { Grid } from '@mui/material';
 export default function CardShopingCart(props) {
     const dispatch = useDispatch();
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 350 }}>
             <CardActions>
                 <Button onClick={() => dispatch(removeCard(props.id))}>ELIMINAR</Button>
             </CardActions>
             <CardActionArea>
                 <CardMedia
                 component="img"
-                height="180"
+                height="200"
                 image={props.images}
                 alt="green iguana"
                 />
