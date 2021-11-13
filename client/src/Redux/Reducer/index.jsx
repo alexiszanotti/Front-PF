@@ -12,6 +12,8 @@ import {
   REMOVE_FAVORITE,
   CREATE_PRODUCT,
   GET_COLLECTIONS,
+  POST_REVIEW,
+  GET_REVIEW,
   GET_ALL_USERS
 } from "../Actions/actionTypes";
 
@@ -22,6 +24,7 @@ const initialState = {
   shoppingCart: [],
   favorite: [],
   collections: [],
+  review: [],
   users: []
 };
 
@@ -103,6 +106,16 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         collections: action.payload,
       };
+      case POST_REVIEW:
+        return{
+          ...state,
+          // review: action.payload,
+        }
+      case GET_REVIEW:
+        return{
+          ...state,
+          review: action.payload,
+        }
     case GET_ALL_USERS:
       return{
         ...state,

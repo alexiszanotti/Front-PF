@@ -13,6 +13,8 @@ import {
   REMOVE_FAVORITE,
   POST_REG_USER,
   GET_COLLECTIONS,
+  POST_REVIEW,
+  GET_REVIEW,
   GET_ALL_USERS,
 } from "./actionTypes";
 
@@ -171,19 +173,37 @@ export const getCollection = payload => {
   }
 };
 
+export const postReview = payload => {
+  try {
+    return async (dispatch) => {
+      let res = await axios.post(`http://localhost:3001/reviews`, payload);
+      return dispatch({ type: POST_REVIEW, payload: res.data });
+    };
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getReview = id => {
+  try {
+    return async dispatch => {
+      let res = await axios(`http://localhost:3001/reviews?id=${id}`);
+      return dispatch({
+        type: GET_REVIEW,
+
 export const getAllUsers = payload => {
   try {
     return async dispatch => {
       let res = await axios(`http://localhost:3001/getAllUsers`);
       return dispatch({
         type: GET_ALL_USERS,
+        
         payload: res.data,
       });
     };
   } catch (error) {
     console.error(error);
   }
-}
 
 export const modifyUser = payload => {
   try {

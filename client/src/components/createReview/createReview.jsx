@@ -34,18 +34,7 @@ const [hover, setHover] = React.useState(-1);
 
         <div className="detailBox">
           <h1>Reseñas y validaciones</h1>
-          <TextField
-            required
-            id="outlined-required"
-            label="Nombre de usuario"
-            // placeholder="Nombre de usuario"
-            />
-          <TextField
-            required
-            id="outlined-required"
-            label="Detalle de la compra"
-            // placeholder="Detalle de la compra"
-            />
+          
 
           <Box
             sx={{
