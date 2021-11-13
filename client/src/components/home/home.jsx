@@ -11,7 +11,21 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { filterPrice, filterDiscount, filterModel, filterSexo} from "../../Redux/Actions/index"
 import { useDispatch} from "react-redux";
+
 export default function Home() {
+
+    const userLogeado = useSelector(state => state.userLogin);
+
+    const setLocalStorage = () => {
+
+        const localSotage = window.localStorage;
+
+        localStorage.setItem('user', JSON.stringify(userLogeado))
+
+    }
+
+    setLocalStorage()
+
     const shoes =  useSelector((state) => state.products)
     const[orden, setOrden]=useState("")
     const dispatch = useDispatch()

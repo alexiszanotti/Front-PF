@@ -13,6 +13,7 @@ import {
   REMOVE_FAVORITE,
   POST_REG_USER,
   GET_COLLECTIONS,
+  GET_USER_LOGIN,
 } from "./actionTypes";
 
 export function getAllProducts() {
@@ -170,4 +171,26 @@ export const getCollection = payload => {
   }
 };
 
+export const postUserLogin = payload => {
 
+  try {
+    
+    return async dispatch => {
+      
+      return await axios.post(`http://localhost:3001/loginUser`, payload)
+                      .then(user => dispatch({
+
+                        type: GET_USER_LOGIN,
+                        payload: user.data
+
+                      }))
+
+    }
+
+  } catch (error) {
+
+    console.log(error)
+    
+  }
+
+}

@@ -1,5 +1,10 @@
 import * as React from 'react';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom";
+
+import { postUserLogin } from '../../Redux/Actions/index';
+
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
@@ -18,7 +23,9 @@ import Button from '@mui/material/Button';
 
 import './login.css';
 
-export default function Login(params) {
+export default function Login() {
+
+    const history = useHistory();
 
     const [values, setValues] = useState({
         amount: '',
@@ -45,8 +52,9 @@ export default function Login(params) {
 
     //----------------- lo de arriba es del MATERIAL UI -------------
 
-    const [email, setEmail] = useState('');
-    const [pass, setPass] = useState('');
+    const dispatch = useDispatch();
+
+    const [userName, setUserName] = useState('');
     const [error, setError] = useState('');
 
     const inputHandleChange = (e) => {
@@ -56,7 +64,17 @@ export default function Login(params) {
         } else {
             setError('');
         }
-        setEmail(e);
+        setUserName(e);
+
+    }
+
+    const handleSubmit = async () => {
+        
+        let password = values.password;
+
+        dispatch(postUserLogin({userName, password}));
+
+        history.push('/home');
 
     }
 
@@ -76,14 +94,14 @@ export default function Login(params) {
                 className='inputLogin'
             >
                 
-                <TextField name='email' id="email" value={email} label={!error ? "E-mail" : error } variant="outlined" onChange={e => inputHandleChange(e.target.value) } />
+                <TextField name='userName' id="userName" value={userName} label={!error ? "E-mail" : error } variant="outlined" onChange={e => inputHandleChange(e.target.value) } />
                 
             </Box>
 
             <div className='inputLogin' >
 
                     <FormControl sx={{ m: 1, width: '50ch' }} variant="outlined">
-                    <InputLabel name="pass" value={pass} onChange={(e) => setPass(e.target.value)} htmlFor="outlined-adornment-password">Password</InputLabel>
+                    <InputLabel name="pass" htmlFor="outlined-adornment-password">Password</InputLabel>
                     <OutlinedInput
                         id="outlined-adornment-password"
                         type={values.showPassword ? 'text' : 'password'}
@@ -115,7 +133,7 @@ export default function Login(params) {
 
                 <div>
 
-                    <Button variant="contained">Ingresar</Button>
+                    <Button onClick={handleSubmit} variant="contained">Ingresar</Button>
 
                 </div>
 
