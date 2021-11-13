@@ -46,7 +46,9 @@ export default function ShopingCart(props) {
                                 <h2>TOTAL: $ {total}</h2>
                             <TextField label="Codigo de descuento" color="secondary" focused />
                             <Box>
+                                <Link to="/pago">
                                 <Button>IR A COMPRAR</Button>
+                                </Link>
                             </Box>
                             <h1 className="metodoTarjeta">OPCIONES DE PAGO</h1>
                             <img className="imagenTarjeta" src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/esAR/Images/Logos_Argentina-sinMP_tcm216-730132.png" />
@@ -67,7 +69,7 @@ export default function ShopingCart(props) {
                                     key={products.id}
                                     id={products.id}
                                     title={products.productName}
-                                    price={products.salePrice}
+                                    price={Number(products.salePrice)}
                                     brand={products.collection.name}
                                     images={products.images[0]}
                              

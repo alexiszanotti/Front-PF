@@ -14,6 +14,7 @@ import {
   GET_COLLECTIONS,
   POST_REVIEW,
   GET_REVIEW,
+  GET_ALL_USERS
 } from "../Actions/actionTypes";
 
 const initialState = {
@@ -24,6 +25,7 @@ const initialState = {
   favorite: [],
   collections: [],
   review: [],
+  users: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -114,6 +116,11 @@ export default function rootReducer(state = initialState, action) {
           ...state,
           review: action.payload,
         }
+    case GET_ALL_USERS:
+      return{
+        ...state,
+        users: action.payload
+      }
     default:
       return state;
   }

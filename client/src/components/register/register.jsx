@@ -192,8 +192,9 @@ export default function Register() {
                     label="sexo"
                     onChange={e => handleSelectChange(e)}
                 >
-                    <MenuItem value='Masculino'>Masculino</MenuItem>
-                    <MenuItem value='Femenino'>Femenino</MenuItem>
+                    <MenuItem value='Male'>Masculino</MenuItem>
+                    <MenuItem value='Female'>Femenino</MenuItem>
+                    <MenuItem value='Other'>Prefiero no Decirlo</MenuItem>
                 </Select>
                 </FormControl>
 
