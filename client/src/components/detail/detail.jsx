@@ -96,7 +96,7 @@ const [hover, setHover] = React.useState(-1);
               <br></br>
               <li className="detailSummary">{products.description}</li>
               <br></br>
-              <li >{products.salePrice + "$"}</li>
+              <li >{Number(products.salePrice) + "$"}</li>
             </ul>
             <FormControl sx={{ m: 1, minWidth: 80 }} className="detailS">
                     <InputLabel id="demo-simple-select-label">talle</InputLabel>

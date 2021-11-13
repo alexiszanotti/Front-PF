@@ -12,6 +12,7 @@ import {
   REMOVE_FAVORITE,
   CREATE_PRODUCT,
   GET_COLLECTIONS,
+  GET_ALL_USERS,
   GET_USER_LOGIN,
 } from "../Actions/actionTypes";
 
@@ -22,6 +23,7 @@ const initialState = {
   shoppingCart: [],
   favorite: [],
   collections: [],
+  users: [],
   userLogin: [],
 };
 
@@ -103,13 +105,18 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         collections: action.payload,
       };
+    case GET_ALL_USERS:
+      return{
+        ...state,
+        users: action.payload
+      };
     case GET_USER_LOGIN:
       return {
 
         ...state,
         userLogin: action.payload,
-
-      }
+        
+      };
     default:
       return state;
   }

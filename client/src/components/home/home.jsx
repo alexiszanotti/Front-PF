@@ -89,7 +89,7 @@ export default function Home() {
                             id="demo-simple-select"
                             label="MODELO"
                             onChange={handelFilterModel}
-                            value=""
+                            
                             >
                             <MenuItem value="ALL">TODOS</MenuItem>
                             <MenuItem value={"CORE / NEO"}>CORE/NEO</MenuItem>
@@ -102,12 +102,12 @@ export default function Home() {
                     <Grid item xs={4}>
                     <Box sx={{ minWidth: 120 }}>
                         <FormControl fullWidth>
-                            <InputLabel id="demo-simple-select-label">SEXO</InputLabel>
+                            <InputLabel id="demo-simple-select-label">GENERO</InputLabel>
                             <Select
                             sx={{ bgcolor: "white" }}
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            label="TALLE"
+                            label="GENERO"
                             onChange={handelFilterSexo}
                             >
                             <MenuItem value={"All"}>TODOS</MenuItem>
@@ -175,7 +175,7 @@ export default function Home() {
                             key={products.id}
                             title={products.productName}
                             image={products.images[0]}
-                            price={products.salePrice + "$"}
+                            price={Number(products.salePrice) + "$"}
                             id= {products.id}
                             />
                         )

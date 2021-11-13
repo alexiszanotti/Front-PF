@@ -13,6 +13,7 @@ import {
   REMOVE_FAVORITE,
   POST_REG_USER,
   GET_COLLECTIONS,
+  GET_ALL_USERS,
   GET_USER_LOGIN,
 } from "./actionTypes";
 
@@ -165,6 +166,31 @@ export const getCollection = payload => {
         type: GET_COLLECTIONS,
         payload: res.data,
       });
+    };
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getAllUsers = payload => {
+  try {
+    return async dispatch => {
+      let res = await axios(`http://localhost:3001/getAllUsers`);
+      return dispatch({
+        type: GET_ALL_USERS,
+        payload: res.data,
+      });
+    };
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export const modifyUser = payload => {
+  try {
+    return async () => {
+      let res = await axios.post(`http://localhost:3001/updateUser`, payload);
+      return res;
     };
   } catch (error) {
     console.error(error);
