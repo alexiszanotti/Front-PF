@@ -1,7 +1,7 @@
 .formulario-creacion {
   border: 2px solid #ccc;
   width: 40%;
-  height: 90vh;
+  height: 115vh;
   text-align: center;
   margin: 0 auto;
   margin-bottom: 15px;
@@ -47,4 +47,13 @@
 
 .error {
   color: red;
+}
+
+.container-img {
+  display: flex;
+  margin: 10px;
+}
+
+.container-img img {
+  margin-left: 10px;
 }
