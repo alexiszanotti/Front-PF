@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import SearchIcon from "@mui/icons-material/Search";
 import { searchProducts } from "../../Redux/Actions";
@@ -13,6 +13,10 @@ export default function SearchBar() {
     setName(e.target.value);
     dispatch(searchProducts(name));
   };
+
+  useEffect(() => {
+    dispatch(searchProducts());
+  }, [dispatch, name]);
 
   return (
     <div>

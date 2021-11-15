@@ -141,7 +141,7 @@ export const postCreateUser = payload => {
   try {
     return async () => {
       let res = await axios.post(`http://localhost:3001/createUser`, payload);
-      return res;
+      return res.data;
     };
   } catch (error) {
     console.error(error);

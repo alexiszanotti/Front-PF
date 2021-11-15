@@ -191,7 +191,7 @@ export default function Home() {
                 key={products.id}
                 title={products.productName}
                 image={products.images[0]}
-                price={Number(products.salePrice) + "$"}
+                price={"$ " + Number(products.salePrice)}
                 id={products.id}
               />
             );

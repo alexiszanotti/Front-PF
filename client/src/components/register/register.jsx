@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postCreateUser } from "../../Redux/Actions/index";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -14,10 +14,11 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import "./register.css";
+import { useHistory } from "react-router-dom";
 
 export default function Register() {
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const [values, setValues] = useState({
     password: "",
     userName: "",
@@ -120,7 +121,7 @@ export default function Register() {
       dispatch(postCreateUser(values));
 
       alert("Usuario registrado");
-
+      history.push("/home");
       setValues({
         password: "",
         userName: "",
@@ -181,8 +182,9 @@ export default function Register() {
             label='sexo'
             onChange={e => handleSelectChange(e)}
           >
-            <MenuItem value='Masculino'>Masculino</MenuItem>
-            <MenuItem value='Femenino'>Femenino</MenuItem>
+            <MenuItem value='Male'>Masculino</MenuItem>
+            <MenuItem value='Female'>Femenino</MenuItem>
+            <MenuItem value='Other'>Prefiero no Decirlo</MenuItem>
           </Select>
         </FormControl>
 

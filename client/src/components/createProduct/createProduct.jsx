@@ -11,7 +11,7 @@ const validateForm = input => {
   else if (!input.listingPrice) error.listingPrice = "El precio de lista es requerido";
   else if (!input.salePrice) error.salePrice = "El precio de venta es requerido";
   else if (!input.discount) error.discount = "El descuento es requerido";
-  else if (!input.images) error.images = "Al menos una imagen es requerida";
+  // else if (input.images.length < 1) error.images = "Al menos una imagen es requerida";
   else if (!input.description) error.description = "La descripción es requerida";
 
   return error;
@@ -116,7 +116,7 @@ export default function CreateProduct() {
           {error.description && <p className='error'>{error.description} </p>}
           <label>Imagen: </label>
           <input type='file' multiple='true' name='images' onChange={handleFiles} />
-          {error.images && <p className='error'>{error.images} </p>}
+          {/* {error.images && <p className='error'>{error.images} </p>} */}
           <div className='container-img'>
             <img
               src={input.images[0] ? input.images[0] : zapa}

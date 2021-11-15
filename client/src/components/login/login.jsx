@@ -1,6 +1,5 @@
-import * as React from "react";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { postUserLogin } from "../../Redux/Actions/index";
 import Box from "@mui/material/Box";
@@ -12,16 +11,21 @@ import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
-
 import Button from "@mui/material/Button";
-
 import "./login.css";
+import { getAllUsers } from "../../Redux/Actions/index";
 
 export default function Login() {
   const history = useHistory();
+  const usuarios = useSelector(state => state.users);
+  console.log(usuarios);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllUsers());
+  }, [dispatch]);
 
   const [values, setValues] = useState({
     amount: "",
@@ -47,8 +51,6 @@ export default function Login() {
   };
 
   //----------------- lo de arriba es del MATERIAL UI -------------
-
-  const dispatch = useDispatch();
 
   const [userName, setUserName] = useState("");
   const [error, setError] = useState("");
