@@ -55,111 +55,143 @@ export default function Home() {
     setOrden(e.target.value);
   }
 
-  return (
-    <div>
-      <div className='boxCategories'>
-        <Box sx={{ flexGrow: 1 }}>
-          <Grid container spacing={2} columns={16}>
-            <Grid item xs={4}>
-              <Box sx={{ minWidth: 120 }}>
-                <FormControl fullWidth>
-                  <InputLabel id='demo-simple-select-label'>MODELO</InputLabel>
-                  <Select
-                    sx={{ bgcolor: "white" }}
-                    labelId='demo-simple-select-label'
-                    id='demo-simple-select'
-                    label='MODELO'
-                    onChange={handelFilterModel}
-                  >
-                    <MenuItem value='ALL'>TODOS</MenuItem>
-                    <MenuItem value={"CORE / NEO"}>CORE/NEO</MenuItem>
-                    <MenuItem value={"SPORT PERFORMANCE"}>SPORT PERFORMANCE</MenuItem>
-                    <MenuItem value={"ORIGINALS"}>ORIGINALS</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-            </Grid>
-            <Grid item xs={4}>
-              <Box sx={{ minWidth: 120 }}>
-                <FormControl fullWidth>
-                  <InputLabel id='demo-simple-select-label'>SEXO</InputLabel>
-                  <Select
-                    sx={{ bgcolor: "white" }}
-                    labelId='demo-simple-select-label'
-                    id='demo-simple-select'
-                    label='TALLE'
-                    onChange={handelFilterSexo}
-                  >
-                    <MenuItem value={"All"}>TODOS</MenuItem>
-                    <MenuItem value={"Men's"}>MASCULINO</MenuItem>
-                    <MenuItem value={"Women's"}>FEMENINO</MenuItem>
-                    <MenuItem value={"Unisex"}>UNISEX</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-            </Grid>
-            <Grid item xs={4}>
-              <Box sx={{ minWidth: 120 }}>
-                <FormControl fullWidth>
-                  <InputLabel id='demo-simple-select-label'>PRECIO</InputLabel>
-                  <Select
-                    sx={{ bgcolor: "white" }}
-                    labelId='demo-simple-select-label'
-                    id='demo-simple-select'
-                    label='PRECIO'
-                    onChange={handelFilterPrice}
-                  >
-                    <MenuItem value={"ASC"}>MENOR A MAYOR</MenuItem>
-                    <MenuItem value={"DES"}>MAYOR A MENOR</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-            </Grid>
-            <Grid item xs={4}>
-              <Box sx={{ minWidth: 120 }}>
-                <FormControl fullWidth>
-                  <InputLabel value={"ALL"} id='demo-simple-select-label'>
-                    DESCUENTO
-                  </InputLabel>
-                  <Select
-                    sx={{ bgcolor: "white" }}
-                    labelId='demo-simple-select-label'
-                    id='demo-simple-select'
-                    label='DESCUENTO'
-                    onChange={handelFilterDiscount}
-                  >
-                    <MenuItem value='All'>TODOS</MenuItem>
-                    <MenuItem value={"0.00"}>SIN DESCUENTO</MenuItem>
-                    <MenuItem value={"40.00"}>40%</MenuItem>
-                    <MenuItem value={"50.00"}>50%</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-            </Grid>
-          </Grid>
-        </Box>
-      </div>
-      <div>
-        <Paginado
-          shoesPorPaginaPorPagina={shoesPorPaginaPorPagina}
-          shoes={shoes.length}
-          paginado={paginado}
-        />
-      </div>
-      <div className='contenedorHome'>
-        {currentShoes.length &&
-          currentShoes.map(products => {
-            return (
-              <Products
-                key={products.id}
-                title={products.productName}
-                image={products.images[0]}
-                price={products.salePrice + "$"}
-                id={products.id}
-              />
-            );
-          })}
-      </div>
+
+    function handelFilterPrice(e){
+        e.preventDefault();
+        dispatch(filterPrice(e.target.value))
+        setCurrentPage(1);
+        setOrden(e.target.value)
+
+    }
+    
+    function handelFilterDiscount(e){
+        e.preventDefault();
+        dispatch(filterDiscount(e.target.value))
+        setCurrentPage(1);
+        setOrden(e.target.value)
+
+    }
+    function handelFilterModel(e){
+        e.preventDefault();
+        dispatch(filterModel(e.target.value))
+        setCurrentPage(1);
+        setOrden(e.target.value)
+    }
+    function handelFilterSexo(e){
+        e.preventDefault();
+        dispatch(filterSexo(e.target.value))
+        setCurrentPage(1);
+        setOrden(e.target.value)
+    }
+
+    return (
+        <div>
+            <div className="boxCategories">
+                <Box sx={{ flexGrow: 1 }}>
+                <Grid container spacing={2} columns={16}>
+                    <Grid item xs={4}>
+                    <Box sx={{ minWidth: 120 }}>
+                        <FormControl fullWidth>
+                            <InputLabel id="demo-simple-select-label">MODELO</InputLabel>
+                            <Select
+                            sx={{ bgcolor: "white" }}
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            label="MODELO"
+                            onChange={handelFilterModel}
+                            
+                            >
+                            <MenuItem value="ALL">TODOS</MenuItem>
+                            <MenuItem value={"CORE / NEO"}>CORE/NEO</MenuItem>
+                            <MenuItem value={"SPORT PERFORMANCE"}>SPORT PERFORMANCE</MenuItem>
+                            <MenuItem value={"ORIGINALS"}>ORIGINALS</MenuItem>
+                            </Select>
+                        </FormControl>
+                        </Box>
+                    </Grid>
+                    <Grid item xs={4}>
+                    <Box sx={{ minWidth: 120 }}>
+                        <FormControl fullWidth>
+                            <InputLabel id="demo-simple-select-label">GENERO</InputLabel>
+                            <Select
+                            sx={{ bgcolor: "white" }}
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            label="GENERO"
+                            onChange={handelFilterSexo}
+                            >
+                            <MenuItem value={"All"}>TODOS</MenuItem>
+                            <MenuItem value={"Men's"}>MASCULINO</MenuItem>
+                            <MenuItem value={"Women's"}>FEMENINO</MenuItem>
+                            <MenuItem value={"Unisex"}>UNISEX</MenuItem>
+                            </Select>
+                        </FormControl>
+                        </Box>
+                    </Grid>
+                    <Grid item xs={4}>
+                    <Box sx={{ minWidth: 120 }}>
+                        <FormControl fullWidth>
+                            <InputLabel id="demo-simple-select-label">PRECIO</InputLabel>
+                            <Select
+                            sx={{ bgcolor: "white" }}
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            label="PRECIO"
+                            onChange={handelFilterPrice}
+                            >
+                            <MenuItem value={"ASC"}>MENOR A MAYOR</MenuItem>
+                            <MenuItem value={"DES"}>MAYOR A MENOR</MenuItem>
+                            
+                            </Select>
+                        </FormControl>
+                        </Box>
+                    </Grid>
+                    <Grid item xs={4}>
+                    <Box sx={{ minWidth: 120 }}>
+                        <FormControl fullWidth>
+                            <InputLabel value={"ALL"}id="demo-simple-select-label">DESCUENTO</InputLabel>
+                            <Select
+                            sx={{ bgcolor: "white" }}
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            label="DESCUENTO"
+                            onChange={handelFilterDiscount}
+                            >
+                            <MenuItem value="All">TODOS</MenuItem>
+                            <MenuItem value={"0.00"}>SIN DESCUENTO</MenuItem>
+                            <MenuItem value={"40.00"}>40%</MenuItem>
+                            <MenuItem value={"50.00"}>50%</MenuItem>
+                            </Select>
+                        </FormControl>
+                        </Box>
+                    </Grid>
+                </Grid>
+                </Box>
+            </div>
+            <div>
+                <Paginado 
+                shoesPorPaginaPorPagina= {shoesPorPaginaPorPagina}
+                shoes= {shoes.length}
+                paginado={paginado}
+                />
+            </div>
+            <div className="contenedorHome">
+                
+                {
+                    currentShoes.length &&
+                    currentShoes.map((products) =>{
+                        return(
+                            <Products 
+                            key={products.id}
+                            title={products.productName}
+                            image={products.images[0]}
+                            price={Number(products.salePrice) + "$"}
+                            id= {products.id}
+                            />
+                        )
+                    })
+                }
+            </div>
     </div>
   );
 }

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 import "./favorite.css"
 
-export default function Favorite(props) {
+export default function Favorite() {
     const dispatch = useDispatch();
 
     const favoritos = useSelector((state) => state.favorite);
@@ -16,7 +16,7 @@ export default function Favorite(props) {
 
 
     useEffect(() => {
-        dispatch(favorite(props.match.params.id));
+        dispatch(favorite());
     }, [dispatch])
 
     

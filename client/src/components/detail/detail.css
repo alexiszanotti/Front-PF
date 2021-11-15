@@ -14,13 +14,31 @@
    flex-direction: column;
    /* align-items: center; */
    background-color: rgba(233, 233, 223, 0.644);
-   color: rgb(56, 54, 54);
+   color: rgb(0, 0, 0);
    width:80%;
    padding: 10px;
    margin-top: 20px;
    margin-bottom: 30px;
    list-style: none;
    border-radius: 8px;
+}
+
+.detailContainer1{
+    display: flex;
+   flex-direction: column;
+   /* align-items: center; */
+   background-color: rgba(0, 0, 0, 0.548);
+   color: white;
+   width:80%;
+   padding: 10px;
+   margin-top: 20px;
+   margin-bottom: 30px;
+   list-style: none;
+   border-radius: 8px;
+}
+
+.detailS{
+    size: 20px;
 }
 
 .detailContainer.btnUl{
@@ -126,3 +144,18 @@ table {
     background-color: white; 
     color: rgba(74, 59, 207, 0.644);
 } 
+
+.btnSucces{
+    color: green;
+}
+
+.btnClose{
+    color:red;
+    float: right;
+}
+
+.reviewContainer{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}

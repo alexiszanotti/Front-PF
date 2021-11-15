@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
-import { useDispatch } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import {removeFavorite} from "../../Redux/Actions/index"
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select'
@@ -12,22 +12,23 @@ import MenuItem from '@mui/material/MenuItem';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import { Grid } from '@mui/material';
+import {Link} from "react-router-dom";
+import { detailProducts } from "../../Redux/Actions/index.jsx";
 import "./cardFavorite.css"
 
 export default function CardFavorite(props) {
     const dispatch = useDispatch();
     return (
         <Card sx={{ maxWidth: 345 }} className="contenedorCardFavorite">
-            <CardActions>
-                <Button onClick={() => dispatch(removeFavorite(props.id))}>ELIMINAR</Button>
-            </CardActions>
             <CardActionArea>
+            <Link to={`/detail/${props.id}`}>
                 <CardMedia
                 component="img"
                 height="180"
                 image={props.images}
                 alt="green iguana"
                 />
+            </Link>
                 <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                 {props.title}
@@ -37,6 +38,9 @@ export default function CardFavorite(props) {
                 </Typography>
                 </CardContent>
             </CardActionArea>
+            <CardActions>
+                <Button onClick={() => dispatch(removeFavorite(props.id))}>ELIMINAR</Button>
+            </CardActions>
                 {/* <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">talle</InputLabel>
                     <Select

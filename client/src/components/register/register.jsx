@@ -237,6 +237,7 @@ export default function Register() {
                   onMouseDown={handleMouseDownPassword}
                   edge='end'
                 >
+
                   {values.showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
@@ -295,4 +296,103 @@ export default function Register() {
       </div>
     </div>
   );
+}
+                   <MenuItem value='Male'>Masculino</MenuItem>
+                    <MenuItem value='Female'>Femenino</MenuItem>
+                    <MenuItem value='Other'>Prefiero no Decirlo</MenuItem>
+                </Select>
+                </FormControl>
+
+                <TextField id='date' type='date' onChange={e => compDate(e.target.value) } />
+
+            </div>
+
+            <Box
+                component="form"
+                sx={{
+                    '& > :not(style)': { m: 1, width: '50ch' },
+                }}
+                noValidate
+                autoComplete="off"
+                className='inputReg'
+            >
+                
+                <TextField name='userName' id="email" value={values.userName} label={!error ? "E-mail" : error } variant="outlined" onChange={e => emailHandleChange(e) } />
+                
+            </Box>
+
+            <p className='pRegister'>La contraseña debe tener entre 8 y 16 caracteres, al menos un número, una minúscula y al menos una mayúscula.</p>
+
+            <div className='inputReg' >
+
+                <FormControl sx={{ m: 1, width: '50ch' }} variant="outlined">
+                <InputLabel id='password' name="password" value={values.password} onChange={(e) => inputHandleChange(e)} htmlFor="outlined-adornment-password">Password</InputLabel>
+                <OutlinedInput
+                    id="outlined-adornment-password"
+                    type={values.showPassword ? 'text' : 'password'}
+                    value={values.password}
+                    onChange={handleChange('password')}
+                    endAdornment={
+                    <InputAdornment position="end">
+                        <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            edge="end"
+                        >
+                            {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                    </InputAdornment>
+                    }
+                    label="Password"
+                />
+                </FormControl>
+
+            </div>
+
+            <div className='inputReg' >
+
+                <FormControl sx={{ m: 1, width: '50ch' }} variant="outlined">
+                <InputLabel id='repeatPassword' name="repeatPassword" value={repeatPassword} htmlFor="outlined-adornment-password">Repeat Password</InputLabel>
+                <OutlinedInput
+                    id="outlined-adornment-password"
+                    type={values.showPassword ? 'text' : 'password'}
+                    value={repeatPassword}
+                    onChange={e => handleRPChange(e)}
+                    endAdornment={
+                    <InputAdornment position="end">
+                        <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            edge="end"
+                        >
+                            {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                    </InputAdornment>
+                    }
+                    label="Repeat Password"
+                />
+                </FormControl>
+
+            </div>
+
+            <div>
+
+                <Button onClick={handleSubmitCreate} variant="contained">Registrarse</Button>
+
+            </div>
+
+            <div className='buttomReg' >
+                
+                <Button variant="outlined" size='large' >Google</Button>
+
+                <Button variant="outlined" size='large' >Github</Button>
+
+            </div>
+
+        </div>
+
+    )
+    
 }

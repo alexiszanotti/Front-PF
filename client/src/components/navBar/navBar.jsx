@@ -71,14 +71,17 @@ export default function NavBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
+
       <Link to='/login'>
-        {" "}
         <MenuItem onClick={handleMenuClose}>Login</MenuItem>{" "}
       </Link>
-      <Link to='/register'>
-        {" "}
+      <Link to='/register'
         <MenuItem onClick={handleMenuClose}>Register</MenuItem>{" "}
       </Link>
+      <Link to='/login' > <MenuItem onClick={handleMenuClose}>Login</MenuItem> </Link>
+      <Link to='/register' > <MenuItem onClick={handleMenuClose}>Register</MenuItem> </Link>
+      <Link to='/upDateUser' > <MenuItem onClick={handleMenuClose}>Modificar Usuario</MenuItem> </Link>
+
     </Menu>
   );
 
@@ -172,6 +175,11 @@ export default function NavBar() {
               color='inherit'
             >
               <AccountCircle color='action' />
+
+            <Link to='/favorites'>
+              <FavoriteIcon color="action" />
+            </Link>
+
             </IconButton>
 
             <Badge badgeContent={fav.length} color='error'>
