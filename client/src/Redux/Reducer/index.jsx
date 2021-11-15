@@ -12,9 +12,11 @@ import {
   REMOVE_FAVORITE,
   CREATE_PRODUCT,
   GET_COLLECTIONS,
+  GET_USER_LOGIN,
   POST_REVIEW,
   GET_REVIEW,
   GET_ALL_USERS
+
 } from "../Actions/actionTypes";
 
 const initialState = {
@@ -24,8 +26,9 @@ const initialState = {
   shoppingCart: [],
   favorite: [],
   collections: [],
+  users: [],
+  userLogin: [],
   review: [],
-  users: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -120,7 +123,14 @@ export default function rootReducer(state = initialState, action) {
       return{
         ...state,
         users: action.payload
-      }
+      };
+    case GET_USER_LOGIN:
+      return {
+
+        ...state,
+        userLogin: action.payload,
+        
+      };
     default:
       return state;
   }

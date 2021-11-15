@@ -2,19 +2,33 @@ import "./home.css";
 import React, { useState } from "react";
 import Paginado from "../paged/paged";
 import Products from "../product/product";
-import { useSelector } from "react-redux";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import { filterPrice, filterDiscount, filterModel, filterSexo } from "../../Redux/Actions/index";
-import { useDispatch } from "react-redux";
+import {useSelector} from "react-redux"
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { filterPrice, filterDiscount, filterModel, filterSexo} from "../../Redux/Actions/index"
+import { useDispatch} from "react-redux";
+
 export default function Home() {
-  const shoes = useSelector(state => state.products);
-  const [orden, setOrden] = useState("");
-  const dispatch = useDispatch();
+
+    const userLogeado = useSelector(state => state.userLogin);
+
+    const setLocalStorage = () => {
+
+        const localSotage = window.localStorage;
+
+        localStorage.setItem('user', JSON.stringify(userLogeado))
+
+    }
+
+    setLocalStorage()
+
+    const shoes =  useSelector((state) => state.products)
+    const[orden, setOrden]=useState("")
+    const dispatch = useDispatch()
 
   // Pagina actual
   const [currentPage, setCurrentPage] = useState(1);

@@ -15,6 +15,7 @@ import {
   POST_REVIEW,
   GET_REVIEW,
   GET_ALL_USERS,
+  GET_USER_LOGIN,
 } from "./actionTypes";
 
 export function getAllProducts() {
@@ -214,3 +215,27 @@ export const modifyUser = payload => {
     console.error(error);
   }
 };
+
+export const postUserLogin = payload => {
+
+  try {
+    
+    return async dispatch => {
+      
+      return await axios.post(`http://localhost:3001/loginUser`, payload)
+                      .then(user => dispatch({
+
+                        type: GET_USER_LOGIN,
+                        payload: user.data
+
+                      }))
+
+    }
+
+  } catch (error) {
+
+    console.log(error)
+    
+  }
+
+}
