@@ -16,9 +16,11 @@ export default function Home() {
   const userLogeado = useSelector(state => state.userLogin);
 
   const setLocalStorage = () => {
-    const localSotage = window.localStorage;
 
-    localStorage.setItem("user", JSON.stringify(userLogeado));
+    const localStorage = window.localStorage;
+
+    if(userLogeado.userName !== undefined) localStorage.setItem("user", JSON.stringify(userLogeado));
+    
   };
 
   setLocalStorage();
