@@ -20,7 +20,6 @@ import { getAllUsers } from "../../Redux/Actions/index";
 export default function Login() {
   const history = useHistory();
   const usuarios = useSelector(state => state.users);
-  console.log(usuarios);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -64,12 +63,22 @@ export default function Login() {
     setUserName(e);
   };
 
+
   const handleSubmit = async () => {
     let password = values.password;
+    let user = usuarios.find((usr) => usr.userName === userName);
+    let pass = usuarios.find((usr) => usr.password === password);
+    if(!user || !pass){
+     alert("Usuario o contraseña incorrecta ");
 
-    dispatch(postUserLogin({ userName, password }));
+    }else{
+      dispatch(postUserLogin({ userName, password }));
+      history.push("/home");
 
-    history.push("/home");
+    }
+
+
+
   };
 
   return (

@@ -234,5 +234,6 @@ export const postUserLogin = payload => {
     };
   } catch (error) {
     console.log(error);
+    alert("Usuario o contraseña incorrectos");
   }
 };

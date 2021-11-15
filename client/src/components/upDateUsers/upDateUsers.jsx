@@ -58,7 +58,7 @@ export default function UpDataUsers(){
             type:""
         });
       }
-      console.log(usersData)
+   
 
     return(
         <div>
@@ -79,30 +79,30 @@ export default function UpDataUsers(){
                 <Box sx={{ minWidth: 120 }}>
                 <h1>MODIFICAR USUARIO</h1>
                 <form onSubmit={(e) => handleSubmit(e)} className="CreacionUsuario">
-                    <label>USERNAME</label>
-                    <input type="text" name="userName" type="text" onChange={handleInputChange} />
-                    <label>NAME</label>
+                    <label>NOMBRE DE USUARIO</label>
+                    <input type="text" name="userName" type="text" onChange={handleInputChange}/>
+                    <label>NOMBRE</label>
                     <input type="text" name="name" type="text" onChange={handleInputChange}/>
-                    <label>LASTNAME</label>
+                    <label>APELLIDO</label>
                     <input type="text" name="lastName" type="text" onChange={handleInputChange}/>
-                    <label>BIRTDAY</label>
+                    <label>FECHA</label>
                     <input type="text" name="birthDay" type="text" onChange={handleInputChange}/>
-                    <label>PASSWORD</label>
+                    <label>CONTRASEÑA</label>
                     <input type="text" name="password" type="text" onChange={handleInputChange}/>
-                    <label>GENDER</label>
-                    <select onChange={(e) => handleSelect(e)} name="gender" required="required">
+                    <label>GENERO</label>
+                    <select onChange={(e) => handleSelect(e)} name="gender" >
                         <option value=""></option>
                         <option value="Male" name="gender">Male</option>
                         <option value="Female" name="gender">Female</option>
                         <option value="Other" name="gender">Other</option>
                     </select>
-                    <label>TYPE</label>
-                    <select onChange={(e) => handleSelect(e)} name="type" required="required">
+                    <label>TIPO</label>
+                    <select onChange={(e) => handleSelect(e)} name="type" >
                         <option value="" ></option>
                         <option value="Admin" name="type">Admin</option>
                         <option value="User" name="type">User</option>
                     </select>
-                    <button>UPDATE</button>
+                    <button>CARGAR DATOS</button>
 
                 </form>
                 </Box>
