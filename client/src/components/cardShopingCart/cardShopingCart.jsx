@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import {removeCard} from "../../Redux/Actions/index"
+import {Link} from "react-router-dom";
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem';
@@ -21,12 +22,14 @@ export default function CardShopingCart(props) {
                 <Button onClick={() => dispatch(removeCard(props.id))}>ELIMINAR</Button>
             </CardActions>
             <CardActionArea>
+            <Link to={`/detail/${props.id}`}>
                 <CardMedia
                 component="img"
                 height="200"
                 image={props.images}
                 alt="green iguana"
                 />
+            </Link>
                 <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                 {props.title}

@@ -17,22 +17,14 @@ import Logo from "../../images/adidasLogo.png";
 import { Link } from "react-router-dom";
 import SearchBar from "../searchBar/searchBar";
 import { useSelector, useDispatch } from "react-redux";
-import { shoppingCart, favorite}  from "../../Redux/Actions/index.jsx";
-
+import { shoppingCart, favorite } from "../../Redux/Actions/index.jsx";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 export default function NavBar() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(shoppingCart())
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(favorite())
-  }, [dispatch]);
-
-  const aux = useSelector((state) => state.shoppingCart);
-  const fav = useSelector((state) => state.favorite);
+  const aux = useSelector(state => state.shoppingCart);
+  const fav = useSelector(state => state.favorite);
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -57,7 +49,10 @@ export default function NavBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-
+  useEffect(() => {
+    dispatch(shoppingCart());
+    dispatch(favorite());
+  }, [dispatch]);
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -76,9 +71,17 @@ export default function NavBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
+
+      <Link to='/login'>
+        <MenuItem onClick={handleMenuClose}>Login</MenuItem>{" "}
+      </Link>
+      <Link to='/register'
+        <MenuItem onClick={handleMenuClose}>Register</MenuItem>{" "}
+      </Link>
       <Link to='/login' > <MenuItem onClick={handleMenuClose}>Login</MenuItem> </Link>
       <Link to='/register' > <MenuItem onClick={handleMenuClose}>Register</MenuItem> </Link>
       <Link to='/upDateUser' > <MenuItem onClick={handleMenuClose}>Modificar Usuario</MenuItem> </Link>
+
     </Menu>
   );
 
@@ -141,7 +144,7 @@ export default function NavBar() {
             sx={{ display: { xs: "none", sm: "block" } }}
           >
             <Link to='/'>
-              <img src={Logo} width='75' height='60' />
+              <img src={Logo} width='50' height='40' />
             </Link>
           </Typography>
 
@@ -155,25 +158,43 @@ export default function NavBar() {
               aria-label='account of current user'
               aria-controls={menuId}
               aria-haspopup='true'
-              onClick={handleProfileMenuOpen}
               color='inherit'
             >
-              <AccountCircle  color="action"/>
+              <Link to='/createProduct'>
+                <AddCircleIcon color='action' />
+              </Link>
             </IconButton>
 
-            <Badge badgeContent={fav.length} color='error'>
             <IconButton
               size='large'
               edge='end'
               aria-label='account of current user'
               aria-controls={menuId}
               aria-haspopup='true'
+              onClick={handleProfileMenuOpen}
               color='inherit'
             >
+              <AccountCircle color='action' />
+
             <Link to='/favorites'>
               <FavoriteIcon color="action" />
             </Link>
+
             </IconButton>
+
+            <Badge badgeContent={fav.length} color='error'>
+              <IconButton
+                size='large'
+                edge='end'
+                aria-label='account of current user'
+                aria-controls={menuId}
+                aria-haspopup='true'
+                color='inherit'
+              >
+                <Link to='/favorites/:'>
+                  <FavoriteIcon color='action' />
+                </Link>
+              </IconButton>
             </Badge>
             <Badge badgeContent={aux.length} color='error'>
               <IconButton
@@ -184,9 +205,9 @@ export default function NavBar() {
                 aria-haspopup='true'
                 color='inherit'
               >
-              <Link to='/carrito/:'>
-                <ShoppingCartIcon  color="action" />
-              </Link>
+                <Link to='/carrito/:'>
+                  <ShoppingCartIcon color='action' />
+                </Link>
               </IconButton>
             </Badge>
           </Box>
