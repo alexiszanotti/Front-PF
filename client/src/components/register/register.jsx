@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { postCreateUser } from "../../Redux/Actions/index";
+import { postCreateUser, postUserLogin, getAllUsers } from "../../Redux/Actions/index";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
@@ -19,6 +19,15 @@ import { useHistory } from "react-router-dom";
 export default function Register() {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const usuarios = useSelector(state => state.users);
+
+  useEffect(() => {
+
+    dispatch(getAllUsers());
+
+  }, [dispatch]);
+
   const [values, setValues] = useState({
     password: "",
     userName: "",
@@ -32,10 +41,13 @@ export default function Register() {
   const [repeatPassword, setRepeatPassword] = useState("");
 
   const validarPass = (p1, p2) => {
-    if (/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(p1)) {
-      // ----- La contraseña debe tener entre 8 y 16 caracteres, al menos un número, una minúscula y al menos una mayúscula.
+    console.log('gola')
 
+    if(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(p1)) {
+      // ----- La contraseña debe tener entre 8 y 16 caracteres, al menos un número, una minúscula y al menos una mayúscula.
+      
       if (p1 !== p2) {
+
         alert("Las contraseña no coinciden");
 
         setValues({ ...values, password: "" });
@@ -43,11 +55,30 @@ export default function Register() {
         setRepeatPassword("");
 
         return false;
+
       } else {
+
         return true;
+
       }
+
+    } else {
+
+      alert("La contraseña debe tener entre 8 y 16 caracteres, al menos un número, una minúscula y al menos una mayúscula.");
     }
   };
+
+  const logearUser = () => {
+    
+    dispatch(getAllUsers());
+    
+    console.log(usuarios)
+
+    let userName = values.userName;
+    let password = values.password;
+    console.log({userName, password})
+    dispatch(postUserLogin({userName, password}))
+  }
 
   const handleRPChange = e => {
     setRepeatPassword(e.target.value);
@@ -107,6 +138,7 @@ export default function Register() {
   };
 
   const handleSubmitCreate = () => {
+
     if (
       values.name === "" ||
       values.lastName === "" ||
@@ -114,31 +146,25 @@ export default function Register() {
       values.birthDay === "" ||
       values.userName === "" ||
       values.password === ""
-    )
+    ) {
+
       return alert("Hay campos vacios");
 
+    }
+
     if (validarPass(values.password, repeatPassword)) {
+
       dispatch(postCreateUser(values));
 
       alert("Usuario registrado");
+
+      logearUser();
+
       history.push("/home");
-      setValues({
-        password: "",
-        userName: "",
-        name: "",
-        lastName: "",
-        birthDay: "",
-        gender: "",
-      });
 
-      setRepeatPassword("");
-
-      document.getElementById("date").value = "";
-
-      document.getElementById("name").value = "";
-
-      document.getElementById("lastName").value = "";
     }
+
+
   };
 
   return (
