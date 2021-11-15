@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./createProduct.css";
 import { createProduct, getCollection } from "../../Redux/Actions/index";
 import { Link, useHistory } from "react-router-dom";
+import zapa from "../../images/ImgaProduct.png";
 
 const validateForm = input => {
   let error = {};
@@ -16,16 +17,16 @@ const validateForm = input => {
   return error;
 };
 export default function CreateProduct() {
-  const collections = useSelector(state => state.collections);
   const dispatch = useDispatch();
-  const [error, setError] = useState({});
+  const collections = useSelector(state => state.collections);
   const history = useHistory();
+  const [error, setError] = useState({});
   const [input, setInput] = useState({
     productName: "",
     listingPrice: "",
     salePrice: "",
     discount: "",
-    images: [],
+    images: "",
     collection: "",
     description: "",
   });
@@ -45,7 +46,19 @@ export default function CreateProduct() {
       alert("Por favor, complete todos los campos requeridos");
     }
   };
+  const handleFiles = async e => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "Product_photo ");
+    const res = await fetch("https://api.cloudinary.com/v1_1/djtkn6o7r/image/upload", {
+      method: "POST",
+      body: data,
+    });
 
+    const file = await res.json();
+    setInput({ ...input, images: [...input.images, file.secure_url] });
+  };
   const handleSelectChange = e => {
     setInput({ ...input, collection: e.target.value });
   };
@@ -55,11 +68,11 @@ export default function CreateProduct() {
 
   return (
     <div>
+      <Link to='/home'>
+        <button className='crear-categoria'>Volver</button>
+      </Link>
       <h1>Crear producto</h1>
       <div className='formulario-creacion'>
-        <Link to='/home'>
-          <button className='crear-categoria'>Volver</button>
-        </Link>
         <form className='form-inputs' onSubmit={e => handleSubmit(e)}>
           <input
             onChange={handleInputChange}
@@ -102,8 +115,28 @@ export default function CreateProduct() {
           />
           {error.description && <p className='error'>{error.description} </p>}
           <label>Imagen: </label>
-          <input type='file' name='images' />
+          <input type='file' multiple='true' name='images' onChange={handleFiles} />
           {error.images && <p className='error'>{error.images} </p>}
+          <div className='container-img'>
+            <img
+              src={input.images[0] ? input.images[0] : zapa}
+              border='1px solid gray'
+              width='100px'
+              height='100px'
+            />
+            <img
+              src={input.images[1] ? input.images[1] : zapa}
+              border='1px solid gray'
+              width='100px'
+              height='100px'
+            />
+            <img
+              src={input.images[2] ? input.images[2] : zapa}
+              border='1px solid gray'
+              width='100px'
+              height='100px'
+            />
+          </div>
           <select value={input.collection} onChange={e => handleSelectChange(e)}>
             <option>Seleccione una categoria...</option>
 
@@ -118,6 +151,7 @@ export default function CreateProduct() {
             })}
           </select>
           <button className='crear-categoria'>Crear categoria</button>
+          <button type='submit'>Crear Producto</button>
         </form>
       </div>
     </div>

@@ -1,35 +1,59 @@
 import "./home.css";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Paginado from "../paged/paged";
 import Products from "../product/product";
-import {useSelector} from "react-redux"
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import { filterPrice, filterDiscount, filterModel, filterSexo} from "../../Redux/Actions/index"
-import { useDispatch} from "react-redux";
+import { useSelector } from "react-redux";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import { filterPrice, filterDiscount, filterModel, filterSexo } from "../../Redux/Actions/index";
+import { useDispatch } from "react-redux";
 export default function Home() {
-    const shoes =  useSelector((state) => state.products)
-    const[orden, setOrden]=useState("")
-    const dispatch = useDispatch()
+  const shoes = useSelector(state => state.products);
+  const [orden, setOrden] = useState("");
+  const dispatch = useDispatch();
 
+  // Pagina actual
+  const [currentPage, setCurrentPage] = useState(1);
+  // cantidad de paises que tengo por pagina
+  const [shoesPorPaginaPorPagina, setShoesPorPaginaPorPagina] = useState(20);
+  // seteo el index del ultimo pais
+  const indeceDelUltimoShoes = currentPage * shoesPorPaginaPorPagina; // 10
+  const indiceDelPrimerShoes = indeceDelUltimoShoes - shoesPorPaginaPorPagina; // 0
+  const currentShoes = shoes.slice(indiceDelPrimerShoes, indeceDelUltimoShoes);
+  // slice muestra un nuevo array empezando del principio al final
+  const paginado = pageNumber => {
+    setCurrentPage(pageNumber);
+  };
 
-      // Pagina actual
-    const[currentPage, setCurrentPage] = useState(1);
-    // cantidad de paises que tengo por pagina
-    const[shoesPorPaginaPorPagina, setShoesPorPaginaPorPagina]= useState(20);
-    // seteo el index del ultimo pais
-    const indeceDelUltimoShoes = currentPage * shoesPorPaginaPorPagina // 10
-    const indiceDelPrimerShoes= indeceDelUltimoShoes - shoesPorPaginaPorPagina // 0
-    const currentShoes = shoes.slice(indiceDelPrimerShoes, indeceDelUltimoShoes)
-    // slice muestra un nuevo array empezando del principio al final
-    const paginado = (pageNumber) =>{
-        setCurrentPage(pageNumber)
-    }
+  function handelFilterPrice(e) {
+    e.preventDefault();
+    dispatch(filterPrice(e.target.value));
+    setCurrentPage(1);
+    setOrden(e.target.value);
+  }
 
+  function handelFilterDiscount(e) {
+    e.preventDefault();
+    dispatch(filterDiscount(e.target.value));
+    setCurrentPage(1);
+    setOrden(e.target.value);
+  }
+  function handelFilterModel(e) {
+    e.preventDefault();
+    dispatch(filterModel(e.target.value));
+    setCurrentPage(1);
+    setOrden(e.target.value);
+  }
+  function handelFilterSexo(e) {
+    e.preventDefault();
+    dispatch(filterSexo(e.target.value));
+    setCurrentPage(1);
+    setOrden(e.target.value);
+  }
 
 
     function handelFilterPrice(e){
@@ -169,6 +193,5 @@ export default function Home() {
                 }
             </div>
     </div>
-    )
-
+  );
 }
