@@ -11,9 +11,7 @@ export default function Favorite() {
     const dispatch = useDispatch();
 
     const favoritos = useSelector((state) => state.favorite);
-
-    // console.log(favoritos);
-
+       
 
     useEffect(() => {
         dispatch(favorite());
@@ -26,7 +24,7 @@ export default function Favorite() {
       return exists;
     });
 
-    console.log(hola);
+
 
     return (
         <div>
@@ -38,7 +36,7 @@ export default function Favorite() {
             <div className="termo">
             {
                 hola === undefined || hola.length === 0 ? <h1></h1> :
-                    hola.map((products) => {
+                hola.map((products) => {
                         return (
                             
                                 <CardFavorite

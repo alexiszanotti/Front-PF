@@ -88,10 +88,10 @@ export default function NavBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  useEffect(() => {
-    dispatch(shoppingCart());
-    dispatch(favorite());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(shoppingCart());
+  //   dispatch(favorite());
+  // }, [dispatch]);
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (

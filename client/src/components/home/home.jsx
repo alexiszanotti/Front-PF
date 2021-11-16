@@ -13,17 +13,7 @@ import { filterPrice, filterDiscount, filterModel, filterSexo } from "../../Redu
 import { useDispatch } from "react-redux";
 
 export default function Home() {
-  const userLogeado = useSelector(state => state.userLogin);
 
-  const setLocalStorage = () => {
-
-    const localStorage = window.localStorage;
-
-    if(userLogeado.userName !== undefined) localStorage.setItem("user", JSON.stringify(userLogeado));
-    
-  };
-
-  setLocalStorage();
 
   const shoes = useSelector(state => state.products);
   const [orden, setOrden] = useState("");

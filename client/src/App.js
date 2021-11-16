@@ -14,12 +14,29 @@ import UpDataUsers from "./components/upDateUsers/upDateUsers";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getAllProducts } from "./Redux/Actions/index";
+import { useSelector } from "react-redux";
+
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllProducts());
   }, [dispatch]);
+
+
+  const userLogeado = useSelector(state => state.userLogin);
+
+  const setLocalStorage = () => {
+
+    const localStorage = window.localStorage;
+
+    if(userLogeado.userName !== undefined) localStorage.setItem("user", JSON.stringify(userLogeado));
+  };
+
+
+  setLocalStorage();
+
+  
 
   return (
     <BrowserRouter>
