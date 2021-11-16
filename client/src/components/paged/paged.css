@@ -4,13 +4,15 @@
     align-items: center;
     background-color: #ffffff;
     width: 98%;
-    justify-content: center;
+    /* justify-content: center; */
 
 }
 
 .pag{
     margin-right: 25px;
-    margin-left: 25px;
+    margin-left: 32px;
+    display: flex;
+    justify-content: space-around;
 }
 .pag:hover{
     cursor: pointer;

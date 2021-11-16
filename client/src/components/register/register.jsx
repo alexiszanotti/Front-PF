@@ -15,6 +15,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import "./register.css";
 import { useHistory } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 export default function Register() {
   const dispatch = useDispatch();
@@ -321,6 +322,11 @@ export default function Register() {
           Github
         </Button>
       </div>
+      <div>
+                <Link to="/home">
+                    <button className="botonCart1">volver</button>
+                </Link>
+            </div>
     </div>
   );
 }
