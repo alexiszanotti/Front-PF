@@ -40,7 +40,7 @@ function App() {
 
   const logIn = JSON.parse(localStorage.getItem('user'));
   
-  if (logIn.userName === "admin"){
+  if (logIn.type === "Admin"){
     return(
       <BrowserRouter>
       <div className='App'>
@@ -49,7 +49,6 @@ function App() {
           <Route exact path="/" component={EstadisticasA}/>
           <Route path='/createProduct' component={createProduct} />
           <Route path='/userUpdata' component={UpDataUsers} />
-          <Route path='/login' component={Login} />
 
         </Switch>
       </div>
