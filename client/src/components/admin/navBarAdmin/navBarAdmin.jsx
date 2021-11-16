@@ -10,21 +10,29 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const drawerWidth = 240;
 
-export default function NavBarA() {
+export default function NavBarAdmin() {
+  const History = useHistory()
+  const localStorage = window.localStorage;
+
+  const logOut = () => {
+
+    localStorage.setItem("user", JSON.stringify({
+
+      id: null,
+      type: 'Other',
+      userName: '',
+
+    }));
+    History.push("/")
+    window.location.replace('');
+
+  }
   return (
     <Box sx={{ display: 'flex' }}>
-      <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 , bgcolor: "white"}}>
-        <Toolbar>
-          <Typography variant="h6" noWrap component="div" sx={{color: "black"}}>
-            <Link to='/admin'>
-            ADMIN
-            </Link>
-          </Typography>
-        </Toolbar>
-      </AppBar>
       <Drawer
         variant="permanent"
         sx={{
@@ -33,16 +41,19 @@ export default function NavBarA() {
           [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
         }}
       >
+        <Link to="/" >
+        <Button>ADMIN</Button> 
+        </Link>
         <Toolbar />
         <Box sx={{ overflow: 'auto' }}>
           <List>
               <ListItem button >
-                  <Link to='/admin/userUpdata'>
+                  <Link to='/userUpdata'>
                     <Button>MODIFICAR USUARIOS</Button> 
                     </Link>
               </ListItem>
               <ListItem button >
-                  <Link to="/admin/createProduct">
+                  <Link to="/createProduct">
                     <Button>CREAR PRODUCTOS</Button> 
                     </Link>
               </ListItem>
@@ -56,7 +67,11 @@ export default function NavBarA() {
                     <Button>ESTADOS DE ORDEN</Button> 
               </ListItem>
 
+
           </List>
+          <ListItem button >
+                    <Button onClick={logOut}>SALIR</Button> 
+              </ListItem>
           <Divider />
         </Box>
       </Drawer>

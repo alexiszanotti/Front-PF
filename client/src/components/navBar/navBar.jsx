@@ -27,6 +27,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { shoppingCart, favorite } from "../../Redux/Actions/index.jsx";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
+
 export default function NavBar() {
 
 

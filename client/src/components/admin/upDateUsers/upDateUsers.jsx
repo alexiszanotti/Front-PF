@@ -57,6 +57,7 @@ export default function UpDataUsers(){
             gender:"",
             type:""
         });
+        window.location.replace('');
       }
    
 
