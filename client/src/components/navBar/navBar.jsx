@@ -29,6 +29,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 export default function NavBar() {
 
+
   // ----- esto pertenece al local storage donde guardamos el usuario --------
   const localStorage = window.localStorage;
 
@@ -56,7 +57,14 @@ export default function NavBar() {
 
   const aux = useSelector(state => state.shoppingCart);
   const fav = useSelector(state => state.favorite);
-
+// --------------- por ahora no tocar esto-------------------
+  var hash = {};
+  let favo = fav.filter(function(current) {
+   var exists = !hash[current.id];
+   hash[current.id] = true;
+   return exists;
+ });
+// -----------------------------------------------------------
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
@@ -315,7 +323,7 @@ export default function NavBar() {
 
             {renderAvatar()}
 
-            <Badge badgeContent={fav.length} color='error'>
+            <Badge badgeContent={favo.length} color='error'>
               <IconButton
                 size='large'
                 edge='end'
