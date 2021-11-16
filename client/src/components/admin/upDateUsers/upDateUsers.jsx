@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {getAllUsers, modifyUser} from "../../Redux/Actions/index"
+import {getAllUsers, modifyUser} from "../../../Redux/Actions/index"
 import { useDispatch, useSelector } from "react-redux";
 import Box from '@mui/material/Box';
 import "./upDateUsers.css"
@@ -57,6 +57,7 @@ export default function UpDataUsers(){
             gender:"",
             type:""
         });
+        window.location.replace('');
       }
    
 

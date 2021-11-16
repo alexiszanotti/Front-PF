@@ -27,6 +27,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { shoppingCart, favorite } from "../../Redux/Actions/index.jsx";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
+
 export default function NavBar() {
 
 
@@ -88,10 +89,10 @@ export default function NavBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  useEffect(() => {
-    dispatch(shoppingCart());
-    dispatch(favorite());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(shoppingCart());
+  //   dispatch(favorite());
+  // }, [dispatch]);
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -113,9 +114,6 @@ export default function NavBar() {
       <Link to='/login'>
         <MenuItem onClick={handleMenuClose}>Login</MenuItem>
       </Link>
-      {/* <Link to='/register'>
-        <MenuItem onClick={handleMenuClose}>Register</MenuItem>
-      </Link> */}
       <Link to='/upDateUser'>
         <MenuItem onClick={handleMenuClose}>Modificar Usuario</MenuItem>
       </Link>
