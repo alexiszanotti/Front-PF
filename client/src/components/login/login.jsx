@@ -74,7 +74,7 @@ export default function Login() {
 
     } else {
       dispatch(postUserLogin({ userName, password }));
-      history.push("/home");
+      history.push("/");
 
     }
 
