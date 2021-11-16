@@ -111,9 +111,6 @@ export default function NavBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <Link to='/login'>
-        <MenuItem onClick={handleMenuClose}>Login</MenuItem>
-      </Link>
     </Menu>
   );
 
@@ -270,10 +267,11 @@ export default function NavBar() {
             aria-label='account of current user'
             aria-controls={menuId}
             aria-haspopup='true'
-            onClick={handleProfileMenuOpen}
             color='inherit'
           >
+          <Link to="/login">
           <AccountCircle color='action' />
+          </Link>
           </IconButton>
 
         </>
@@ -303,19 +301,6 @@ export default function NavBar() {
 
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton
-              size='large'
-              edge='end'
-              aria-label='account of current user'
-              aria-controls={menuId}
-              aria-haspopup='true'
-              color='inherit'
-            >
-              <Link to='/createProduct'>
-                <AddCircleIcon color='action' />
-              </Link>
-            </IconButton>
-
             {renderAvatar()}
 
             <Badge badgeContent={favo.length} color='error'>

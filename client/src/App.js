@@ -8,7 +8,7 @@ import Login from "./components/login/login";
 import Register from "./components/register/register";
 import ShopingCart from "./components/shopingCar/shopingCart";
 import Favorite from "./components/favorite/favorite";
-import createProduct from "./components/createProduct/createProduct";
+import createProduct from "./components/admin/createProduct/createProduct";
 import UpDataUsers from "./components/admin/upDateUsers/upDateUsers";
 import GoShopping from "./components/goShopping/goShopping";
 import NavBarAdmin from "./components/admin/navBarAdmin/navBarAdmin";
@@ -67,8 +67,6 @@ function App() {
           <Route exact path='/detail/:id' component={Detail} />
           <Route path='/carrito/:id' component={ShopingCart} />
           <Route path='/favorites' component={Favorite} />
-          <Route path='/admin/createProduct' component={createProduct} />
-          <Route path='/admin/userUpdata' component={UpDataUsers} />
           <Route path='/pago' component={GoShopping} />
           <Route path="/admin/" component={NavBarAdmin}/>
         </Switch>

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./createProduct.css";
-import { createProduct, getCollection } from "../../Redux/Actions/index";
+import { createProduct, getCollection } from "../../../Redux/Actions/index";
 import { Link, useHistory } from "react-router-dom";
-import zapa from "../../images/ImgaProduct.png";
+import zapa from "../../../images/ImgaProduct.png";
 
 const validateForm = input => {
   let error = {};
@@ -68,9 +68,6 @@ export default function CreateProduct() {
 
   return (
     <div>
-      <Link to='/home'>
-        <button className='crear-categoria'>Volver</button>
-      </Link>
       <h1>Crear producto</h1>
       <div className='formulario-creacion'>
         <form className='form-inputs' onSubmit={e => handleSubmit(e)}>
