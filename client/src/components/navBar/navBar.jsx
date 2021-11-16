@@ -77,9 +77,6 @@ export default function NavBar() {
       <Link to='/register'>
         <MenuItem onClick={handleMenuClose}>Register</MenuItem>
       </Link>
-      <Link to='/upDateUser'>
-        <MenuItem onClick={handleMenuClose}>Modificar Usuario</MenuItem>
-      </Link>
     </Menu>
   );
 
