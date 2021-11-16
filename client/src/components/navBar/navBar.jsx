@@ -114,8 +114,8 @@ export default function NavBar() {
       <Link to='/login'>
         <MenuItem onClick={handleMenuClose}>Login</MenuItem>
       </Link>
-      <Link to='/register'>
-        <MenuItem onClick={handleMenuClose}>Register</MenuItem>
+      <Link to='/upDateUser'>
+        <MenuItem onClick={handleMenuClose}>Modificar Usuario</MenuItem>
       </Link>
     </Menu>
   );
