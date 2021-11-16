@@ -91,6 +91,27 @@ export default function Home() {
     setCurrentPage(1);
     setOrden(e.target.value);
   }
+  const pageNumbers = [];
+
+  for (let i = 1; i <= Math.ceil(shoes.length / shoesPorPaginaPorPagina); i++) {
+    pageNumbers.push(i);
+  }
+  function nextPage() {
+    if (currentPage === pageNumbers.length) {
+      setCurrentPage(1)
+      console.log("entro al console")
+    } else {
+      setCurrentPage(currentPage + 1)
+    }
+  }
+  function previousPage() {
+    if (currentPage === 1) {
+      setCurrentPage(pageNumbers.length)
+      console.log("entro al console")
+    } else {
+      setCurrentPage(currentPage - 1)
+    }
+  }
 
   return (
     <div>
@@ -181,6 +202,8 @@ export default function Home() {
           shoesPorPaginaPorPagina={shoesPorPaginaPorPagina}
           shoes={shoes.length}
           paginado={paginado}
+          previousPage={previousPage}
+          nextPage={nextPage}
         />
       </div>
       <div className='contenedorHome'>
