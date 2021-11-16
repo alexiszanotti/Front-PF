@@ -8,9 +8,13 @@ import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import Checkbox from '@mui/material/Checkbox';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
 import {Link} from "react-router-dom"
 import { useDispatch} from "react-redux";
-import {favorite} from "../../Redux/Actions/index"
+import { favorite, removeFavorite, shoppingCart } from "../../Redux/Actions/index";
+
 const defaultIMG = [
   "https://essential.vteximg.com.br/arquivos/ids/435382-454-423/261-2401_1.jpg?v=637582266896100000",
   "https://media.revistagq.com/photos/5f3a392d64de88802df64e59/master/w_1024,h_683,c_limit/20200609-adidas-11.jpg",
@@ -33,6 +37,18 @@ export default function Products(props) {
   let random = defaultIMG[Math.floor(Math.random()*defaultIMG.length)]
 
   const onMediaFallback = event => event.target.src = random;
+
+  const [checked, setChecked] = React.useState(false);
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+    if (checked === false){
+      dispatch(favorite(props.id))
+    }else{
+      dispatch(removeFavorite(props.id))
+    }
+  };
+
+  
   return (
     <div>
       
@@ -52,16 +68,7 @@ export default function Products(props) {
       </Link>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
-        <Link to={`/carrito/${props.id}`}>
-          <ShoppingCartIcon />
-          </Link>
-        </IconButton>
-        <IconButton aria-label="add to favorites">
-        {/* <Link to={`/favorites/${props.id}`}>
-          <FavoriteIcon />
-        </Link> */}
-         <FavoriteIcon onClick={() => dispatch(favorite(props.id))} />
-         
+         <Checkbox checked={checked}  onChange={handleChange} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
           
         </IconButton>
       </CardActions>

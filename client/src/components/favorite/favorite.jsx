@@ -19,19 +19,26 @@ export default function Favorite() {
         dispatch(favorite());
     }, [dispatch])
 
-    
+    var hash = {};
+     let hola = favoritos.filter(function(current) {
+      var exists = !hash[current.id];
+      hash[current.id] = true;
+      return exists;
+    });
+
+    console.log(hola);
 
     return (
         <div>
             <h1>Mi lista de deseos</h1>
-            <h2>{favoritos.length} {favoritos.length === 1 ? "Artículo" : "Artículos"}       </h2>
+            <h2>{hola.length} {hola.length === 1 ? "Artículo" : "Artículos"}       </h2>
 
             <br></br>
             <br></br>
             <div className="termo">
             {
-                favoritos === undefined || favoritos.length === 0 ? <h1></h1> :
-                    favoritos.map((products) => {
+                hola === undefined || hola.length === 0 ? <h1></h1> :
+                    hola.map((products) => {
                         return (
                             
                                 <CardFavorite
