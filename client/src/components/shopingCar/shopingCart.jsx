@@ -12,9 +12,9 @@ export default function ShopingCart(props) {
 
     const cart = useSelector((state) => state.shoppingCart);
 
-    useEffect(() =>{
-        dispatch(shoppingCart(props.match.params.id));
-    },[dispatch])
+    // useEffect(() =>{
+    //     dispatch(shoppingCart(props.match.params.id));
+    // },[dispatch])
 
     let total = 0;
     let suma = cart.map((el) => Number(el.salePrice));

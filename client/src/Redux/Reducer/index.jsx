@@ -78,7 +78,7 @@ export default function rootReducer(state = initialState, action) {
     case DETAIL_PRODUCTS:
       return {
         ...state,
-        detail: action.payload,
+        detail: [action.payload],
       };
     case SHOPPING_CART:
       return {

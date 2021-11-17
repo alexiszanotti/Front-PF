@@ -34,7 +34,7 @@ function App() {
 
     const localStorage = window.localStorage;
 
-    if(userLogeado.userName !== undefined) localStorage.setItem("user", JSON.stringify(userLogeado));
+    if(userLogeado.email !== undefined) localStorage.setItem("user", JSON.stringify(userLogeado));
   };
 
 
@@ -42,7 +42,25 @@ function App() {
 
   const logIn = JSON.parse(localStorage.getItem('user'));
 
-  return(
+  
+  if (logIn.type === "Admin"){
+    return(
+      <BrowserRouter>
+      <div className='App'>
+        <NavBarAdmin />
+        <Switch>
+          <Route exact path="/" component={NavBarAdmin}/>
+          <Route exact path="/" component={EstadisticasA}/>
+          <Route path='/createProduct' component={createProduct} />
+          <Route path='/userUpdata' component={UpDataUsers} />
+      
+        </Switch>
+      </div>
+    </BrowserRouter>
+    )
+  }else{
+  return (
+
     <BrowserRouter>
       <div className='App'>
         <Navbar />
@@ -55,12 +73,8 @@ function App() {
           <Route path='/carrito/:id' component={ShopingCart} />
           <Route path='/favorites' component={Favorite} />
           <Route path='/pago' component={GoShopping} />
-          {
-            // ------------- Rutas del Admin --------------
-          }
-          <AdminRoute exact path="/admin/" component={ NavBarAdmin }/>
-          <AdminRoute path='/createProduct' component={createProduct} />
-          <AdminRoute path='/userUpdata' component={UpDataUsers} />
+
+          
 
         </Switch>
       </div>

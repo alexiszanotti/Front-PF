@@ -13,9 +13,9 @@ export default function Favorite() {
     const favoritos = useSelector((state) => state.favorite);
        
 
-    useEffect(() => {
-        dispatch(favorite());
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(favorite());
+    // }, [dispatch])
 
     var hash = {};
      let hola = favoritos.filter(function(current) {
