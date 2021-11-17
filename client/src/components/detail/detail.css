@@ -159,3 +159,27 @@ table {
     align-items: center;
     flex-direction: column;
 }
+
+.carritoTitle{
+    background-color: rgba(8, 38, 46, 0.644);
+    color: rgb(236, 230, 230);
+    border-radius: 5px;
+    display: flex;
+    justify-content:center
+}
+
+.carritoDiv{
+    background-color: rgba(8, 38, 46, 0.644);
+    color: rgb(236, 230, 230);
+    border-radius: 5px;
+    text-align: center;
+    
+}
+
+.carritoTotal{
+    border-radius: 5px;
+    border: 3px solid rgba(0, 0, 0, 0.507);
+    width: 60%;
+    margin: auto;
+}
+

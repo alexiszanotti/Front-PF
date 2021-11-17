@@ -8,24 +8,45 @@ import Login from "./components/login/login";
 import Register from "./components/register/register";
 import ShopingCart from "./components/shopingCar/shopingCart";
 import Favorite from "./components/favorite/favorite";
-import createProduct from "./components/createProduct/createProduct";
+import createProduct from "./components/admin/createProduct/createProduct";
+import UpDataUsers from "./components/admin/upDateUsers/upDateUsers";
 import GoShopping from "./components/goShopping/goShopping";
-import UpDataUsers from "./components/upDateUsers/upDateUsers";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import NavBarAdmin from "./components/admin/navBarAdmin/navBarAdmin";
+import EstadisticasA from "./components/admin/estadisticasA/estadisticasA";
+import AdminRoute from "./components/routes/adminRoute/adminRoute";
+import { BrowserRouter, Route, Switch, useHistory, Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getAllProducts } from "./Redux/Actions/index";
+import { useSelector } from "react-redux";
+
 function App() {
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     dispatch(getAllProducts());
   }, [dispatch]);
 
-  return (
+  const history = useHistory()
+
+  const userLogeado = useSelector(state => state.userLogin);
+
+  const setLocalStorage = () => {
+
+    const localStorage = window.localStorage;
+
+    if(userLogeado.userName !== undefined) localStorage.setItem("user", JSON.stringify(userLogeado));
+  };
+
+
+  setLocalStorage();
+
+  const logIn = JSON.parse(localStorage.getItem('user'));
+
+  return(
     <BrowserRouter>
       <div className='App'>
         <Navbar />
-        <Route exact path='/' component={Landing} />
+          {(logIn.type === 'Admin') ? <AdminRoute exact path="/" component={ EstadisticasA }/> : <Route exact path='/' component={Landing} />}
         <Switch>
           <Route path='/home' component={Home} />
           <Route path='/login' component={Login} />
@@ -33,13 +54,19 @@ function App() {
           <Route exact path='/detail/:id' component={Detail} />
           <Route path='/carrito/:id' component={ShopingCart} />
           <Route path='/favorites' component={Favorite} />
-          <Route path='/createProduct' component={createProduct} />
           <Route path='/pago' component={GoShopping} />
-          <Route path='/upDateUser' component={UpDataUsers} />
+          {
+            // ------------- Rutas del Admin --------------
+          }
+          <AdminRoute exact path="/admin/" component={ NavBarAdmin }/>
+          <AdminRoute path='/createProduct' component={createProduct} />
+          <AdminRoute path='/userUpdata' component={UpDataUsers} />
+
         </Switch>
       </div>
     </BrowserRouter>
-  );
+  )
+  
 }
 
 export default App;

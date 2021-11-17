@@ -13,17 +13,6 @@ import { filterPrice, filterDiscount, filterModel, filterSexo } from "../../Redu
 import { useDispatch } from "react-redux";
 
 export default function Home() {
-  const userLogeado = useSelector(state => state.userLogin);
-
-  const setLocalStorage = () => {
-    const localStorage = window.localStorage;
-
-    if (userLogeado.userName !== undefined)
-      localStorage.setItem("user", JSON.stringify(userLogeado));
-  };
-
-  setLocalStorage();
-
   const shoes = useSelector(state => state.products);
   const [orden, setOrden] = useState("");
   const dispatch = useDispatch();
@@ -91,6 +80,27 @@ export default function Home() {
     dispatch(filterSexo(e.target.value));
     setCurrentPage(1);
     setOrden(e.target.value);
+  }
+  const pageNumbers = [];
+
+  for (let i = 1; i <= Math.ceil(shoes.length / shoesPorPaginaPorPagina); i++) {
+    pageNumbers.push(i);
+  }
+  function nextPage() {
+    if (currentPage === pageNumbers.length) {
+      setCurrentPage(1);
+      console.log("entro al console");
+    } else {
+      setCurrentPage(currentPage + 1);
+    }
+  }
+  function previousPage() {
+    if (currentPage === 1) {
+      setCurrentPage(pageNumbers.length);
+      console.log("entro al console");
+    } else {
+      setCurrentPage(currentPage - 1);
+    }
   }
 
   return (
@@ -182,6 +192,8 @@ export default function Home() {
           shoesPorPaginaPorPagina={shoesPorPaginaPorPagina}
           shoes={shoes.length}
           paginado={paginado}
+          previousPage={previousPage}
+          nextPage={nextPage}
         />
       </div>
       <div className='contenedorHome'>

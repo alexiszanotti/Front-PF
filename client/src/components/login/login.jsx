@@ -14,6 +14,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
 import "./login.css";
 import { getAllUsers } from "../../Redux/Actions/index";
 
@@ -68,12 +69,12 @@ export default function Login() {
     let password = values.password;
     let user = usuarios.find((usr) => usr.userName === userName);
     let pass = usuarios.find((usr) => usr.password === password);
-    if(!user || !pass){
-     alert("Usuario o contraseña incorrecta ");
+    if (!user || !pass) {
+      alert("Usuario o contraseña incorrecta ");
 
-    }else{
+    } else {
       dispatch(postUserLogin({ userName, password }));
-      history.push("/home");
+      history.push("/");
 
     }
 
@@ -150,8 +151,19 @@ export default function Login() {
           Github
         </Button>
       </div>
-
-      <p>Registrate</p>
+      <div>
+        <h3>Unite al club y obetené los beneficios</h3>
+        <Link to="/register">
+          <Button variant='outlined' size='large' >
+            Registrarse
+          </Button>
+        </Link>
+      </div>
+      <div>
+        <Link to="/home">
+          <button className="botonCart1">volver</button>
+        </Link>
+      </div>
     </div>
   );
 }

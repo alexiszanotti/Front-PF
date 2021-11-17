@@ -27,7 +27,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { shoppingCart, favorite } from "../../Redux/Actions/index.jsx";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
+
 export default function NavBar() {
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 2134c93f3affc45f0870cb69e7fd5b53084323ff
   // ----- esto pertenece al local storage donde guardamos el usuario --------
   const localStorage = window.localStorage;
 
@@ -52,7 +58,14 @@ export default function NavBar() {
 
   const aux = useSelector(state => state.shoppingCart);
   const fav = useSelector(state => state.favorite);
-
+// --------------- por ahora no tocar esto-------------------
+  var hash = {};
+  let favo = fav.filter(function(current) {
+   var exists = !hash[current.id];
+   hash[current.id] = true;
+   return exists;
+ });
+// -----------------------------------------------------------
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
@@ -76,10 +89,10 @@ export default function NavBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  useEffect(() => {
-    dispatch(shoppingCart());
-    dispatch(favorite());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(shoppingCart());
+  //   dispatch(favorite());
+  // }, [dispatch]);
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -98,15 +111,6 @@ export default function NavBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <Link to='/login'>
-        <MenuItem onClick={handleMenuClose}>Login</MenuItem>
-      </Link>
-      <Link to='/register'>
-        <MenuItem onClick={handleMenuClose}>Register</MenuItem>
-      </Link>
-      <Link to='/upDateUser'>
-        <MenuItem onClick={handleMenuClose}>Modificar Usuario</MenuItem>
-      </Link>
     </Menu>
   );
 
@@ -252,10 +256,15 @@ export default function NavBar() {
             aria-label='account of current user'
             aria-controls={menuId}
             aria-haspopup='true'
-            onClick={handleProfileMenuOpen}
             color='inherit'
           >
+<<<<<<< HEAD
             <AccountCircle color='action' />
+=======
+          <Link to="/login">
+          <AccountCircle color='action' />
+          </Link>
+>>>>>>> 2134c93f3affc45f0870cb69e7fd5b53084323ff
           </IconButton>
         </>
       );
@@ -281,22 +290,9 @@ export default function NavBar() {
 
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton
-              size='large'
-              edge='end'
-              aria-label='account of current user'
-              aria-controls={menuId}
-              aria-haspopup='true'
-              color='inherit'
-            >
-              <Link to='/createProduct'>
-                <AddCircleIcon color='action' />
-              </Link>
-            </IconButton>
-
             {renderAvatar()}
 
-            <Badge badgeContent={fav.length} color='error'>
+            <Badge badgeContent={favo.length} color='error'>
               <IconButton
                 size='large'
                 edge='end'
