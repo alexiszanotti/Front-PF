@@ -4,6 +4,8 @@ import "./createProduct.css";
 import { createProduct, getCollection } from "../../../Redux/Actions/index";
 import { useHistory } from "react-router-dom";
 import zapa from "../../../images/ImgaProduct.png";
+import { Modal } from "@material-ui/core";
+import Box from "@mui/material/Box";
 
 const validateForm = input => {
   let error = {};
@@ -55,7 +57,7 @@ export default function CreateProduct() {
     if (Object.keys(error).length === 0) {
       dispatch(createProduct(input));
       alert("Producto creado con éxito");
-      history.push("/home");
+      history.push("/");
     } else {
       alert("Por favor, complete todos los campos requeridos");
     }
@@ -80,10 +82,53 @@ export default function CreateProduct() {
     dispatch(getCollection());
   }, [dispatch]);
 
-  return (
+  const [modal, setModal] = useState(false);
+  const openCloseModal = () => {
+    setModal(!modal);
+  };
+  const style1 = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    height: 200,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
+  const categories = (
     <div>
+      <Box sx={style1}>
+        <form onSubmit={e => e}>
+          <div className="detailCategories">
+            <h2 className="titleCategories">Crear categoría</h2>
+            <input
+              onChange={handleInputChange}
+              value={input.collection}
+              type='text'
+              name='collection'
+              placeholder='Categoría nueva'
+            />
+            <div>
+              <button type='submit' onClick={handleSubmit} className='btn1'>
+                Crear
+              </button>
+              <button type='submit' onClick={() => openCloseModal()} className='btn2'>
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </form>
+      </Box>
+    </div>
+  );
+
+  return (
+    <div className="formulario-creacion">
       <h1>Crear producto</h1>
-      <div className='formulario-creacion'>
+      <div >
         <form className='form-inputs' onSubmit={e => handleSubmit(e)}>
           <input
             onChange={handleInputChange}
@@ -164,7 +209,16 @@ export default function CreateProduct() {
               );
             })}
           </select>
-          <button className='crear-categoria'>Crear categoria</button>
+          <div>
+          <button type='button' onClick={openCloseModal} className='btn'>
+            Crear categoría
+          </button>
+          </div>
+          <div>
+        <Modal open={modal} onClose={openCloseModal}>
+          {categories}
+        </Modal>
+      </div>
           <button type='submit'>Crear Producto</button>
         </form>
       </div>

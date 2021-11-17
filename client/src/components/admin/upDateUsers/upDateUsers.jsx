@@ -80,7 +80,7 @@ export default function UpDataUsers(){
       let aux = usersData.filter((el) => el.id === input.id)
       console.log(input)
     return(
-        <div>
+        <div className="editProductContainer">
             <h1>ELIJA EL USUARIO A MODIFICAR</h1>
 
                 <Box sx={{ minWidth: 120 }}>

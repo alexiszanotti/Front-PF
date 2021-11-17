@@ -124,7 +124,7 @@ export default function Login() {
         <FormControlLabel control={<Checkbox defaultChecked />} label='Mantener sesion abierta.' />
       </div>
 
-      <div>
+      <div className="botonEnter">
         <Button onClick={handleSubmit} variant='contained'>
           Ingresar
         </Button>
@@ -139,8 +139,8 @@ export default function Login() {
           Github
         </Button>
       </div>
-      <div>
-        <h3>Unite al club y obetené los beneficios</h3>
+      <div className='titleRegister'>
+        <h3 >Unite al club y obetené los beneficios</h3>
         <Link to='/register'>
           <Button variant='outlined' size='large'>
             Registrarse
