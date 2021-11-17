@@ -5,13 +5,15 @@
   "dependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
-    "@material-ui/core": "^4.12.3",
+    "@material-ui/core": "^5.0.0-beta.5",
+    "@mui/core": "^5.0.0-alpha.54",
     "@mui/icons-material": "^5.1.0",
     "@mui/material": "^5.1.0",
     "@mui/styled-engine-sc": "^5.1.0",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.1",
     "@testing-library/user-event": "^12.2.2",
+    "add": "^2.0.6",
     "axios": "^0.24.0",
     "cloudinary-react": "^1.7.0",
     "react": "^17.0.1",
@@ -26,7 +28,8 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.0",
     "styled-components": "^5.3.3",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^0.2.4",
+    "yarn": "^1.22.17"
   },
   "scripts": {
     "start": "react-scripts start",

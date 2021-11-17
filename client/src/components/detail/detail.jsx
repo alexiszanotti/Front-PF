@@ -21,7 +21,7 @@ import { Modal } from "@material-ui/core";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import ModalUnstyled from "@mui/core/ModalUnstyled";
+import {ModalUnstyled} from "@mui/core/";
 import Rating from "@mui/material/Rating";
 import StarIcon from "@mui/icons-material/Star";
 import "./detail.css";
