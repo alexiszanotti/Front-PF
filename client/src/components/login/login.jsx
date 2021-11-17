@@ -66,17 +66,17 @@ export default function Login() {
 
 
   const handleSubmit = async () => {
-    let password = values.password;
-    let user = usuarios.find((usr) => usr.userName === userName);
-    let pass = usuarios.find((usr) => usr.password === password);
-    if (!user || !pass) {
-      alert("Usuario o contraseña incorrecta ");
+     let password = values.password;
+    // let user = usuarios.find((usr) => usr.userName === userName);
+    // let pass = usuarios.find((usr) => usr.password === password);
+    // if (!user || !pass) {
+    //   alert("Usuario o contraseña incorrecta ");
 
-    } else {
+    // } else {
       dispatch(postUserLogin({ userName, password }));
       history.push("/");
 
-    }
+    //}
 
 
 

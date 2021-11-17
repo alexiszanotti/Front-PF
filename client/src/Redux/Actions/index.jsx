@@ -230,7 +230,13 @@ export const postUserLogin = payload => {
           type: GET_USER_LOGIN,
           payload: user.data,
         })
-      );
+      ).catch(error => {
+
+        
+        return dispatch({
+          type: GET_USER_LOGIN,
+          payload: {error}},
+        )});
     };
   } catch (error) {
     console.log(error);
