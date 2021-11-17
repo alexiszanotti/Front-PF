@@ -13,8 +13,6 @@ import { filterPrice, filterDiscount, filterModel, filterSexo } from "../../Redu
 import { useDispatch } from "react-redux";
 
 export default function Home() {
-
-
   const shoes = useSelector(state => state.products);
   const [orden, setOrden] = useState("");
   const dispatch = useDispatch();
@@ -90,18 +88,18 @@ export default function Home() {
   }
   function nextPage() {
     if (currentPage === pageNumbers.length) {
-      setCurrentPage(1)
-      console.log("entro al console")
+      setCurrentPage(1);
+      console.log("entro al console");
     } else {
-      setCurrentPage(currentPage + 1)
+      setCurrentPage(currentPage + 1);
     }
   }
   function previousPage() {
     if (currentPage === 1) {
-      setCurrentPage(pageNumbers.length)
-      console.log("entro al console")
+      setCurrentPage(pageNumbers.length);
+      console.log("entro al console");
     } else {
-      setCurrentPage(currentPage - 1)
+      setCurrentPage(currentPage - 1);
     }
   }
 
@@ -121,7 +119,7 @@ export default function Home() {
                     label='MODELO'
                     onChange={handelFilterModel}
                   >
-                    <MenuItem value='ALL'>TODOS</MenuItem>
+                    <MenuItem value='All'>TODOS</MenuItem>
                     <MenuItem value={"CORE / NEO"}>CORE/NEO</MenuItem>
                     <MenuItem value={"SPORT PERFORMANCE"}>SPORT PERFORMANCE</MenuItem>
                     <MenuItem value={"ORIGINALS"}>ORIGINALS</MenuItem>
@@ -160,7 +158,7 @@ export default function Home() {
                     onChange={handelFilterPrice}
                   >
                     <MenuItem value={"ASC"}>MENOR A MAYOR</MenuItem>
-                    <MenuItem value={"DES"}>MAYOR A MENOR</MenuItem>
+                    <MenuItem value={"DESC"}>MAYOR A MENOR</MenuItem>
                   </Select>
                 </FormControl>
               </Box>

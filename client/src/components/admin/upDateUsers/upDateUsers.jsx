@@ -1,10 +1,26 @@
 import React, {useState, useEffect} from "react";
 import {getAllUsers, modifyUser} from "../../../Redux/Actions/index"
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import "./upDateUsers.css"
 
 export default function UpDataUsers(){
+
+  const History = useHistory()
+
+  const localStorage = window.localStorage;
+
+  const userLogin = JSON.parse(localStorage.getItem('user'));
+  console.log(userLogin, 'uoUser')
+  if(userLogin.type !== 'Admin') {
+    console.log('no es admin')
+    History.push("/home");
+    
+    window.location.replace('');
+    
+  }
+
     const dispatch = useDispatch();
     const usersData = useSelector(state => state.users);
 

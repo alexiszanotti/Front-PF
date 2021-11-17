@@ -17,9 +17,23 @@ const validateForm = input => {
   return error;
 };
 export default function CreateProduct() {
+
+  const history = useHistory()
+
+  const localStorage = window.localStorage;
+
+  const userLogin = JSON.parse(localStorage.getItem('user'));
+  console.log(userLogin, 'createProducto')
+  if(userLogin.type !== 'Admin') {
+    console.log('no es admin')
+    History.push("/home");
+    
+    window.location.replace('');
+    
+  }
+
   const dispatch = useDispatch();
   const collections = useSelector(state => state.collections);
-  const history = useHistory();
   const [error, setError] = useState({});
   const [input, setInput] = useState({
     productName: "",

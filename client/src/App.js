@@ -13,7 +13,8 @@ import UpDataUsers from "./components/admin/upDateUsers/upDateUsers";
 import GoShopping from "./components/goShopping/goShopping";
 import NavBarAdmin from "./components/admin/navBarAdmin/navBarAdmin";
 import EstadisticasA from "./components/admin/estadisticasA/estadisticasA";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import AdminRoute from "./components/routes/adminRoute/adminRoute";
+import { BrowserRouter, Route, Switch, useHistory, Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getAllProducts } from "./Redux/Actions/index";
 import { useSelector } from "react-redux";
@@ -25,6 +26,7 @@ function App() {
     dispatch(getAllProducts());
   }, [dispatch]);
 
+  const history = useHistory()
 
   const userLogeado = useSelector(state => state.userLogin);
 
@@ -39,6 +41,7 @@ function App() {
   setLocalStorage();
 
   const logIn = JSON.parse(localStorage.getItem('user'));
+
   
   if (logIn.type === "Admin"){
     return(
@@ -57,10 +60,11 @@ function App() {
     )
   }else{
   return (
+
     <BrowserRouter>
       <div className='App'>
         <Navbar />
-        <Route exact path='/' component={Landing} />
+          {(logIn.type === 'Admin') ? <AdminRoute exact path="/" component={ EstadisticasA }/> : <Route exact path='/' component={Landing} />}
         <Switch>
           <Route path='/home' component={Home} />
           <Route path='/login' component={Login} />
@@ -69,14 +73,14 @@ function App() {
           <Route path='/carrito/:id' component={ShopingCart} />
           <Route path='/favorites' component={Favorite} />
           <Route path='/pago' component={GoShopping} />
+
           
+
         </Switch>
       </div>
     </BrowserRouter>
-
-  );
-
-  }
+  )
+  
 }
 
 export default App;
