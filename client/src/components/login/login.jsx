@@ -52,11 +52,7 @@ export default function Login() {
 
   //----------------- lo de arriba es del MATERIAL UI -------------
 
-<<<<<<< HEAD
   const [email, setEmail] = useState("");
-=======
-  const [email, setemail] = useState("");
->>>>>>> 126a40140cd482918c8c493667691c58ef59f7d0
   const [error, setError] = useState("");
 
   const inputHandleChange = e => {
@@ -65,41 +61,14 @@ export default function Login() {
     } else {
       setError("");
     }
-<<<<<<< HEAD
     setEmail(e);
-=======
-    setemail(e);
->>>>>>> 126a40140cd482918c8c493667691c58ef59f7d0
   };
 
   const handleSubmit = async () => {
-<<<<<<< HEAD
     let password = values.password;
-    let user = await usuarios.find(usr => usr.email === email);
-    let pass = await usuarios.find(usr => usr.password === password);
 
-    if (!user || !pass) {
-      alert("Usuario o contraseña incorrectos ");
-    } else {
-      dispatch(postUserLogin({ email, password }));
-      history.push("/");
-    }
-=======
-     let password = values.password;
-    // let user = usuarios.find((usr) => usr.email === email);
-    // let pass = usuarios.find((usr) => usr.password === password);
-    // if (!user || !pass) {
-    //   alert("Usuario o contraseña incorrecta ");
-
-    // } else {
-      dispatch(postUserLogin({ email, password }));
-      history.push("/");
-
-    //}
-
-
-
->>>>>>> 126a40140cd482918c8c493667691c58ef59f7d0
+    dispatch(postUserLogin({ email, password }));
+    history.push("/");
   };
   return (
     <div className='contLogin'>
