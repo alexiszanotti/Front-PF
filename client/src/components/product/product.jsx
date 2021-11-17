@@ -10,7 +10,7 @@ import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 import {Link} from "react-router-dom"
 import { useDispatch} from "react-redux";
-import { favorite, removeFavorite, shoppingCart } from "../../Redux/Actions/index";
+import { favorite, removeFavorite } from "../../Redux/Actions/index";
 
 const defaultIMG = [
   "https://essential.vteximg.com.br/arquivos/ids/435382-454-423/261-2401_1.jpg?v=637582266896100000",
