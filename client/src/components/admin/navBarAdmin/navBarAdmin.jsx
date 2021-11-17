@@ -16,7 +16,18 @@ const drawerWidth = 240;
 
 export default function NavBarAdmin() {
   const History = useHistory()
+
   const localStorage = window.localStorage;
+
+  const userLogin = JSON.parse(localStorage.getItem('user'));
+  // console.log(userLogin, 'navAdmin')
+  // if(userLogin.type !== 'Admin') {
+  //   console.log('no es admin')
+  //   History.push("/home");
+    
+  //   window.location.replace('');
+    
+  // }
 
   const logOut = () => {
 
