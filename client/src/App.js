@@ -14,7 +14,7 @@ import GoShopping from "./components/goShopping/goShopping";
 import NavBarAdmin from "./components/admin/navBarAdmin/navBarAdmin";
 import EstadisticasA from "./components/admin/estadisticasA/estadisticasA";
 import AdminRoute from "./components/routes/adminRoute/adminRoute";
-import { BrowserRouter, Route, Switch, useHistory, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getAllProducts } from "./Redux/Actions/index";
 import { useSelector } from "react-redux";
@@ -26,7 +26,7 @@ function App() {
     dispatch(getAllProducts());
   }, [dispatch]);
 
-  const history = useHistory()
+
 
   const userLogeado = useSelector(state => state.userLogin);
 

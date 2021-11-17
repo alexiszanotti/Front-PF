@@ -73,18 +73,13 @@ export function filterSexo(gender) {
 }
 
 export function searchProducts(name) {
-  try {
     return async function (dispatch) {
       let res = await axios(`http://localhost:3001/products/?name=${name}`);
       return dispatch({ type: SEARCH_PRODUCTS, payload: res.data });
     };
-  } catch (error) {
-    console.log(error);
-  }
 }
 
 export const detailProducts = id => {
-  try {
     return async dispatch => {
       let res = await axios(`http://localhost:3001/products/${id}`);
       return dispatch({
@@ -92,13 +87,9 @@ export const detailProducts = id => {
         payload: res.data,
       });
     };
-  } catch (error) {
-    console.error(error);
-  }
 };
 
 export const shoppingCart = id => {
-  try {
     return async dispatch => {
       let res = await axios(`http://localhost:3001/products/${id}`);
       return dispatch({
@@ -106,9 +97,6 @@ export const shoppingCart = id => {
         payload: res.data,
       });
     };
-  } catch (error) {
-    console.error(error);
-  }
 };
 
 export const removeCard = id => {
