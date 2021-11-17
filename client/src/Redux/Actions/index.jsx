@@ -16,6 +16,7 @@ import {
   GET_REVIEW,
   GET_ALL_USERS,
   GET_USER_LOGIN,
+  FILTER_BY_PARAMS,
 } from "./actionTypes";
 
 
@@ -245,3 +246,9 @@ export const postUserLogin = payload => {
     alert("Usuario o contraseña incorrectos");
   }
 };
+
+export const filterByParams = payload => {dispatch({
+  type: FILTER_BY_PARAMS,
+  payload: payload
+}
+)}

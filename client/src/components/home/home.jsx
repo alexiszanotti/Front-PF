@@ -1,5 +1,5 @@
 import "./home.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Paginado from "../paged/paged";
 import Products from "../product/product";
 import { useSelector } from "react-redux";
@@ -10,13 +10,24 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { filterPrice, filterDiscount, filterModel, filterSexo } from "../../Redux/Actions/index";
-import { useDispatch } from "react-redux";
+import { useDispatch, } from "react-redux";
 
 export default function Home() {
-  const shoes = useSelector(state => state.products);
-  const [orden, setOrden] = useState("");
+  const shoes = useSelector(state => state.productsFilter);
+  const [orden, setOrden] = useState({
+    collection: "All",
+    gender: "All",
+    price: "default",
+    discount: "All"
+  });
   const dispatch = useDispatch();
-
+  useEffect(() => {
+    
+    return () => {
+     
+    }
+  }, [orden])
+  console.log(orden);
   // Pagina actual
   const [currentPage, setCurrentPage] = useState(1);
   // cantidad de paises que tengo por pagina
@@ -34,53 +45,38 @@ export default function Home() {
     e.preventDefault();
     dispatch(filterPrice(e.target.value));
     setCurrentPage(1);
-    setOrden(e.target.value);
+    //setOrden(e.target.value);
   }
 
   function handelFilterDiscount(e) {
     e.preventDefault();
     dispatch(filterDiscount(e.target.value));
     setCurrentPage(1);
-    setOrden(e.target.value);
+    //setOrden(e.target.value);
   }
   function handelFilterModel(e) {
     e.preventDefault();
+    
     dispatch(filterModel(e.target.value));
     setCurrentPage(1);
-    setOrden(e.target.value);
+    setOrden({...orden,[e.target.name]: e.target.value});
+  }
+
+  function handleChange (e){
+    e.preventDefault();
+    setCurrentPage(1);
+    setOrden({...orden,[e.target.name]: e.target.value});
   }
   function handelFilterSexo(e) {
     e.preventDefault();
     dispatch(filterSexo(e.target.value));
     setCurrentPage(1);
-    setOrden(e.target.value);
+    console.log(e.target.name)
+    console.log(e.target.value);
+    setOrden(orden[e.target.name]= e.target.value);
   }
 
-  function handelFilterPrice(e) {
-    e.preventDefault();
-    dispatch(filterPrice(e.target.value));
-    setCurrentPage(1);
-    setOrden(e.target.value);
-  }
-
-  function handelFilterDiscount(e) {
-    e.preventDefault();
-    dispatch(filterDiscount(e.target.value));
-    setCurrentPage(1);
-    setOrden(e.target.value);
-  }
-  function handelFilterModel(e) {
-    e.preventDefault();
-    dispatch(filterModel(e.target.value));
-    setCurrentPage(1);
-    setOrden(e.target.value);
-  }
-  function handelFilterSexo(e) {
-    e.preventDefault();
-    dispatch(filterSexo(e.target.value));
-    setCurrentPage(1);
-    setOrden(e.target.value);
-  }
+  
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(shoes.length / shoesPorPaginaPorPagina); i++) {
@@ -117,7 +113,8 @@ export default function Home() {
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
                     label='MODELO'
-                    onChange={handelFilterModel}
+                    name="collection"
+                    onChange={handleChange}
                   >
                     <MenuItem value='All'>TODOS</MenuItem>
                     <MenuItem value={"CORE / NEO"}>CORE/NEO</MenuItem>
@@ -136,7 +133,8 @@ export default function Home() {
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
                     label='GENERO'
-                    onChange={handelFilterSexo}
+                    name="gender"
+                    onChange={handleChange}
                   >
                     <MenuItem value={"All"}>TODOS</MenuItem>
                     <MenuItem value={"Men's"}>MASCULINO</MenuItem>
@@ -155,7 +153,8 @@ export default function Home() {
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
                     label='PRECIO'
-                    onChange={handelFilterPrice}
+                    name="price"
+                    onChange={handleChange}
                   >
                     <MenuItem value={"ASC"}>MENOR A MAYOR</MenuItem>
                     <MenuItem value={"DESC"}>MAYOR A MENOR</MenuItem>
@@ -174,7 +173,8 @@ export default function Home() {
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
                     label='DESCUENTO'
-                    onChange={handelFilterDiscount}
+                    name="discount"
+                    onChange={handleChange}
                   >
                     <MenuItem value='All'>TODOS</MenuItem>
                     <MenuItem value={"0.00"}>SIN DESCUENTO</MenuItem>

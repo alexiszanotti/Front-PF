@@ -15,8 +15,8 @@ import {
   GET_USER_LOGIN,
   POST_REVIEW,
   GET_REVIEW,
-  GET_ALL_USERS
-
+  GET_ALL_USERS,
+  FILTER_BY_PARAMS
 } from "../Actions/actionTypes";
 
 const initialState = {
@@ -131,6 +131,15 @@ export default function rootReducer(state = initialState, action) {
         userLogin: action.payload,
         
       };
+    // case FILTER_BY_PARAMS:
+    //   const {collection, gender, price, discount}
+    //   let filtered = state.products 
+
+    //   return {
+    //     ...state,
+    //     productsFilter: action.payload,
+      
+    //   }
     default:
       return state;
   }
