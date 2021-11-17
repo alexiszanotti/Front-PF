@@ -32,7 +32,7 @@ function App() {
 
     const localStorage = window.localStorage;
 
-    if(userLogeado.userName !== undefined) localStorage.setItem("user", JSON.stringify(userLogeado));
+    if(userLogeado.email !== undefined) localStorage.setItem("user", JSON.stringify(userLogeado));
   };
 
 

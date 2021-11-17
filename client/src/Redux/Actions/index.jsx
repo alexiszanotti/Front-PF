@@ -18,6 +18,8 @@ import {
   GET_USER_LOGIN,
 } from "./actionTypes";
 
+
+
 export function getAllProducts() {
   return async function (dispatch) {
     try {
@@ -140,7 +142,7 @@ export const removeFavorite = id => {
 export const postCreateUser = payload => {
   try {
     return async () => {
-      let res = await axios.post(`http://localhost:3001/createUser`, payload);
+      let res = await axios.post(`http://localhost:3001/users/createUser`, payload);
       return res.data;
     };
   } catch (error) {
@@ -200,7 +202,7 @@ export const getReview = id => {
 export const getAllUsers = payload => {
   try {
     return async dispatch => {
-      let res = await axios(`http://localhost:3001/getAllUsers`);
+      let res = await axios(`http://localhost:3001/users`);
       return dispatch({
         type: GET_ALL_USERS,
 
@@ -225,7 +227,7 @@ export const modifyUser = payload => {
 export const postUserLogin = payload => {
   try {
     return async dispatch => {
-      return await axios.post(`http://localhost:3001/loginUser`, payload).then(user =>
+      return await axios.post(`http://localhost:3001/users/loginUser`, payload).then(user =>
         dispatch({
           type: GET_USER_LOGIN,
           payload: user.data,

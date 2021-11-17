@@ -52,7 +52,7 @@ export default function Login() {
 
   //----------------- lo de arriba es del MATERIAL UI -------------
 
-  const [userName, setUserName] = useState("");
+  const [email, setemail] = useState("");
   const [error, setError] = useState("");
 
   const inputHandleChange = e => {
@@ -61,19 +61,19 @@ export default function Login() {
     } else {
       setError("");
     }
-    setUserName(e);
+    setemail(e);
   };
 
 
   const handleSubmit = async () => {
      let password = values.password;
-    // let user = usuarios.find((usr) => usr.userName === userName);
+    // let user = usuarios.find((usr) => usr.email === email);
     // let pass = usuarios.find((usr) => usr.password === password);
     // if (!user || !pass) {
     //   alert("Usuario o contraseña incorrecta ");
 
     // } else {
-      dispatch(postUserLogin({ userName, password }));
+      dispatch(postUserLogin({ email, password }));
       history.push("/");
 
     //}
@@ -96,9 +96,9 @@ export default function Login() {
         className='inputLogin'
       >
         <TextField
-          name='userName'
-          id='userName'
-          value={userName}
+          name='email'
+          id='email'
+          value={email}
           label={!error ? "E-mail" : error}
           variant='outlined'
           onChange={e => inputHandleChange(e.target.value)}

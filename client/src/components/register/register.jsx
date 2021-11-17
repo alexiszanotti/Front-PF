@@ -31,7 +31,7 @@ export default function Register() {
 
   const [values, setValues] = useState({
     password: "",
-    userName: "",
+    email: "",
     name: "",
     lastName: "",
     birthDay: "",
@@ -75,10 +75,10 @@ export default function Register() {
     
     console.log(usuarios)
 
-    let userName = values.userName;
+    let email = values.email;
     let password = values.password;
-    console.log({userName, password})
-    dispatch(postUserLogin({userName, password}))
+    console.log({email, password})
+    dispatch(postUserLogin({email, password}))
   }
 
   const handleRPChange = e => {
@@ -145,7 +145,7 @@ export default function Register() {
       values.lastName === "" ||
       values.gender === "" ||
       values.birthDay === "" ||
-      values.userName === "" ||
+      values.email === "" ||
       values.password === ""
     ) {
 
@@ -228,9 +228,9 @@ export default function Register() {
         className='inputReg'
       >
         <TextField
-          name='userName'
+          name='email'
           id='email'
-          value={values.userName}
+          value={values.email}
           label={!error ? "E-mail" : error}
           variant='outlined'
           onChange={e => emailHandleChange(e)}

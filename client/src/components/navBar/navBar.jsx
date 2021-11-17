@@ -36,7 +36,7 @@ export default function NavBar() {
 
   const logIn = JSON.parse(localStorage.getItem('user'));
 
-  const avatar = logIn.userName?.slice(0,1).toUpperCase();
+  const avatar = logIn.email?.slice(0,1).toUpperCase();
 
   //console.log(logIn)
 
@@ -46,7 +46,7 @@ export default function NavBar() {
 
       id: null,
       type: 'Other',
-      userName: '',
+      email: '',
 
     }));
 
