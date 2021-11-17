@@ -46,10 +46,11 @@ function App() {
       <div className='App'>
         <NavBarAdmin />
         <Switch>
+          <Route exact path="/" component={NavBarAdmin}/>
           <Route exact path="/" component={EstadisticasA}/>
           <Route path='/createProduct' component={createProduct} />
           <Route path='/userUpdata' component={UpDataUsers} />
-
+      
         </Switch>
       </div>
     </BrowserRouter>
@@ -68,7 +69,7 @@ function App() {
           <Route path='/carrito/:id' component={ShopingCart} />
           <Route path='/favorites' component={Favorite} />
           <Route path='/pago' component={GoShopping} />
-          <Route path="/admin/" component={NavBarAdmin}/>
+          
         </Switch>
       </div>
     </BrowserRouter>

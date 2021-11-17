@@ -13,16 +13,17 @@ export default function UpDataUsers(){
     }, [dispatch]);
 
     const [input, setInput] = useState({
-        id: "",
-        userName: "",
-        name: "",
-        lastName: "",
-        birthDay: "",
-        password: "",
-        gender:"",
-        type:""
+      id: "",
+      userName: "",
+      name: "",
+      lastName: "",
+      birthDay: "",
+      password: "",
+      gender:"",
+      type:""
+      
+    });
 
-      });
 
 
       const handleSelectChange = function (e) {
@@ -59,8 +60,9 @@ export default function UpDataUsers(){
         });
         window.location.replace('');
       }
-   
-
+  
+      let aux = usersData.filter((el) => el.id === input.id)
+      console.log(input)
     return(
         <div>
             <h1>ELIJA EL USUARIO A MODIFICAR</h1>
@@ -77,19 +79,20 @@ export default function UpDataUsers(){
                         })}
                     </select> 
                 </Box>
+                
                 <Box sx={{ minWidth: 120 }}>
                 <h1>MODIFICAR USUARIO</h1>
                 <form onSubmit={(e) => handleSubmit(e)} className="CreacionUsuario">
                     <label>NOMBRE DE USUARIO</label>
-                    <input type="text" name="userName" type="text" onChange={handleInputChange}/>
+                    <input type="text" name="userName" onChange={handleInputChange} placeholder={aux?.map((el) => el.userName)} value=""/>
                     <label>NOMBRE</label>
-                    <input type="text" name="name" type="text" onChange={handleInputChange}/>
-                    <label>APELLIDO</label>
-                    <input type="text" name="lastName" type="text" onChange={handleInputChange}/>
+                    <input type="text" name="name" onChange={handleInputChange} placeholder={aux?.map((el) => el.name)}/>
+                    <label>APELLIDO</label> 
+                    <input type="text" name="lastName" onChange={handleInputChange} placeholder={aux?.map((el) => el.lastName)}/>
                     <label>FECHA</label>
-                    <input type="text" name="birthDay" type="text" onChange={handleInputChange}/>
+                    <input type="text" name="birthDay" onChange={handleInputChange} placeholder={aux?.map((el) => el.birthDay)}/>
                     <label>CONTRASEÑA</label>
-                    <input type="text" name="password" type="text" onChange={handleInputChange}/>
+                    <input type="text" name="password" onChange={handleInputChange} placeholder={aux?.map((el) => el.password)}/>
                     <label>GENERO</label>
                     <select onChange={(e) => handleSelect(e)} name="gender" >
                         <option value=""></option>
