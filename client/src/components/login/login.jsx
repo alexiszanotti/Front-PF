@@ -52,7 +52,7 @@ export default function Login() {
 
   //----------------- lo de arriba es del MATERIAL UI -------------
 
-  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
   const [error, setError] = useState("");
 
   const inputHandleChange = e => {
@@ -61,27 +61,21 @@ export default function Login() {
     } else {
       setError("");
     }
-    setUserName(e);
+    setEmail(e);
   };
-
 
   const handleSubmit = async () => {
     let password = values.password;
-    let user = usuarios.find((usr) => usr.userName === userName);
-    let pass = usuarios.find((usr) => usr.password === password);
+    let user = await usuarios.find(usr => usr.email === email);
+    let pass = await usuarios.find(usr => usr.password === password);
+
     if (!user || !pass) {
-      alert("Usuario o contraseña incorrecta ");
-
+      alert("Usuario o contraseña incorrectos ");
     } else {
-      dispatch(postUserLogin({ userName, password }));
+      dispatch(postUserLogin({ email, password }));
       history.push("/");
-
     }
-
-
-
   };
-
   return (
     <div className='contLogin'>
       <h1 className='h5Login'>Iniciar Sesion</h1>
@@ -96,9 +90,9 @@ export default function Login() {
         className='inputLogin'
       >
         <TextField
-          name='userName'
-          id='userName'
-          value={userName}
+          name='email'
+          id='email'
+          value={email}
           label={!error ? "E-mail" : error}
           variant='outlined'
           onChange={e => inputHandleChange(e.target.value)}
@@ -153,15 +147,15 @@ export default function Login() {
       </div>
       <div>
         <h3>Unite al club y obetené los beneficios</h3>
-        <Link to="/register">
-          <Button variant='outlined' size='large' >
+        <Link to='/register'>
+          <Button variant='outlined' size='large'>
             Registrarse
           </Button>
         </Link>
       </div>
       <div>
-        <Link to="/home">
-          <button className="botonCart1">volver</button>
+        <Link to='/home'>
+          <button className='botonCart1'>volver</button>
         </Link>
       </div>
     </div>
