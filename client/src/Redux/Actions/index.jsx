@@ -18,8 +18,6 @@ import {
   GET_USER_LOGIN,
 } from "./actionTypes";
 
-
-
 export function getAllProducts() {
   return async function (dispatch) {
     try {
@@ -73,30 +71,30 @@ export function filterSexo(gender) {
 }
 
 export function searchProducts(name) {
-    return async function (dispatch) {
-      let res = await axios(`http://localhost:3001/products/?name=${name}`);
-      return dispatch({ type: SEARCH_PRODUCTS, payload: res.data });
-    };
+  return async function (dispatch) {
+    let res = await axios(`http://localhost:3001/products/?name=${name}`);
+    return dispatch({ type: SEARCH_PRODUCTS, payload: res.data });
+  };
 }
 
 export const detailProducts = id => {
-    return async dispatch => {
-      let res = await axios(`http://localhost:3001/products/${id}`);
-      return dispatch({
-        type: DETAIL_PRODUCTS,
-        payload: res.data,
-      });
-    };
+  return async dispatch => {
+    let res = await axios(`http://localhost:3001/products/${id}`);
+    return dispatch({
+      type: DETAIL_PRODUCTS,
+      payload: res.data,
+    });
+  };
 };
 
 export const shoppingCart = id => {
-    return async dispatch => {
-      let res = await axios(`http://localhost:3001/products/${id}`);
-      return dispatch({
-        type: SHOPPING_CART,
-        payload: res.data,
-      });
-    };
+  return async dispatch => {
+    let res = await axios(`http://localhost:3001/products/${id}`);
+    return dispatch({
+      type: SHOPPING_CART,
+      payload: res.data,
+    });
+  };
 };
 
 export const removeCard = id => {
@@ -130,7 +128,7 @@ export const removeFavorite = id => {
 export const postCreateUser = payload => {
   try {
     return async () => {
-      let res = await axios.post(`http://localhost:3001/users/createUser`, payload);
+      let res = await axios.post(`http://localhost:3001/users`, payload);
       return res.data;
     };
   } catch (error) {
@@ -141,7 +139,7 @@ export const postCreateUser = payload => {
 export const createProduct = payload => {
   try {
     return async () => {
-      let res = await axios.post(`http://localhost:3001/products/createProduct`, payload);
+      let res = await axios.post(`http://localhost:3001/products`, payload);
       return res;
     };
   } catch (error) {
@@ -204,7 +202,7 @@ export const getAllUsers = payload => {
 export const modifyUser = payload => {
   try {
     return async () => {
-      let res = await axios.post(`http://localhost:3001/users/updateUser`, payload);
+      let res = await axios.patch(`http://localhost:3001/users`, payload);
       return res;
     };
   } catch (error) {
@@ -215,18 +213,20 @@ export const modifyUser = payload => {
 export const postUserLogin = payload => {
   try {
     return async dispatch => {
-      return await axios.post(`http://localhost:3001/users/loginUser`, payload).then(user =>
-        dispatch({
-          type: GET_USER_LOGIN,
-          payload: user.data,
-        })
-      ).catch(error => {
-
-        
-        return dispatch({
-          type: GET_USER_LOGIN,
-          payload: {error}},
-        )});
+      return await axios
+        .post(`http://localhost:3001/users/loginUser`, payload)
+        .then(user =>
+          dispatch({
+            type: GET_USER_LOGIN,
+            payload: user.data,
+          })
+        )
+        .catch(error => {
+          return dispatch({
+            type: GET_USER_LOGIN,
+            payload: { error },
+          });
+        });
     };
   } catch (error) {
     console.log(error);
