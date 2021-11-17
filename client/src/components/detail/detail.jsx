@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { detailProducts, favorite, postReview, getReview, shoppingCart } from "../../Redux/Actions/index.jsx";
+import {
+  detailProducts,
+  favorite,
+  postReview,
+  getReview,
+  shoppingCart,
+} from "../../Redux/Actions/index.jsx";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -12,12 +18,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import { styled } from "@mui/system";
 import { Modal } from "@material-ui/core";
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import ModalUnstyled from "@mui/core/ModalUnstyled";
-import Rating from '@mui/material/Rating';
-import StarIcon from '@mui/icons-material/Star';
+import Rating from "@mui/material/Rating";
+import StarIcon from "@mui/icons-material/Star";
 import "./detail.css";
 
 const validateForm = input => {
@@ -86,9 +92,9 @@ export default function Detail(props) {
     }
   };
 
-  const cart = useSelector(state => state.shoppingCart)
+  const cart = useSelector(state => state.shoppingCart);
   let total = 0;
-  let suma = cart.map((el) => Number(el.salePrice));
+  let suma = cart.map(el => Number(el.salePrice));
   for (let i of suma) total += i;
 
   function handleButtonHome(e) {
@@ -118,10 +124,10 @@ export default function Detail(props) {
   };
   const openCloseModal1 = () => {
     setModal1(!modal1);
-  }
+  };
   const dispatchCart = () => {
-    dispatch(shoppingCart(props.match.params.id))
-  }
+    dispatch(shoppingCart(props.match.params.id));
+  };
 
   function handleButtonCart(e) {
     e.preventDefault();
@@ -138,24 +144,24 @@ export default function Detail(props) {
   // };
 
   const style1 = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
     width: 1000,
     height: 350,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
+    bgcolor: "background.paper",
+    border: "2px solid #000",
     boxShadow: 24,
     p: 4,
   };
 
   const labels = {
-    1: 'Useless',
-    2: 'Poor',
-    3: 'Ok',
-    4: 'Good',
-    5: 'Excellent',
+    1: "Useless",
+    2: "Poor",
+    3: "Ok",
+    4: "Good",
+    5: "Excellent",
   };
 
   const [value, setValue] = React.useState(2);
@@ -182,16 +188,11 @@ export default function Detail(props) {
             <Box
               sx={{
                 width: 200,
-                display: 'flex',
-                alignItems: 'center',
+                display: "flex",
+                alignItems: "center",
               }}
             >
-              <Rating
-                name="score"
-                value={input.score}
-                precision={1}
-                onChange={handleInputChange}
-              />
+              <Rating name='score' value={input.score} precision={1} onChange={handleInputChange} />
               {input.score !== null && (
                 <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : input.score]}</Box>
               )}
@@ -209,8 +210,6 @@ export default function Detail(props) {
       </Box>
     </div>
   );
-
-
 
   const StyledModal = styled(ModalUnstyled)`
     position: fixed;
@@ -236,14 +235,14 @@ export default function Detail(props) {
   `;
 
   const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
     width: 800,
     height: 700,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
+    bgcolor: "background.paper",
+    border: "2px solid #000",
     boxShadow: 24,
     p: 4,
   };
@@ -253,13 +252,14 @@ export default function Detail(props) {
   const handleClose = () => setOpen(false);
 
   const carrito = (
-    <div className="detailContainer">
+    <div className='detailContainer'>
       <Box sx={style}>
-        <Typography id="modal-modal-title" variant="h6" component="h2">
-          <h3 className="carritoTitle">Añadido al carrito correctamente</h3>
+        <Typography id='modal-modal-title' variant='h6' component='h2'>
+          <h3 className='carritoTitle'>Añadido al carrito correctamente</h3>
         </Typography>
-        <div className="carritoDiv">
-          {detail.map(products => {
+        <div className='carritoDiv'>
+          {detail?.map(products => {
+            console.log(detail);
             return (
               <div>
                 <h4>{products.productName}</h4>
@@ -269,27 +269,24 @@ export default function Detail(props) {
                   <img className='img' src={products.images[0]} />
                   <br></br>
                   <br></br>
-                  <li>{Number(products.salePrice) + "$"}</li>
+                  <li>{"$ " + Number(products.salePrice)}</li>
                 </ul>
               </div>
-            )
-          })
-          }
-          <div className="carritoTotal">
+            );
+          })}
+          <div className='carritoTotal'>
             <h4>TU CARRITO</h4>
-            <h4>TOTAL ({cart.length} {cart.length === 1 ? "PRODUCTO" : "PRODUCTOS"}  ): $ {total}</h4>
+            <h4>
+              TOTAL ({cart.length} {cart.length === 1 ? "PRODUCTO" : "PRODUCTOS"} ): $ {total}
+            </h4>
           </div>
-
         </div>
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+        <Typography id='modal-modal-description' sx={{ mt: 2 }}>
           <Link to={"/home"}>
-            <button className='btn1'>
-              Seguir comprando
-            </button>
-
+            <button className='btn1'>Seguir comprando</button>
           </Link>
         </Typography>
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+        <Typography id='modal-modal-description' sx={{ mt: 2 }}>
           {/* <Link to={`/carrito/${detail.map(el => el.id)}`}> */}
           <button className='btn2' onClick={handleButtonCart}>
             Ver carrito
@@ -298,7 +295,7 @@ export default function Detail(props) {
         </Typography>
       </Box>
     </div>
-  )
+  );
 
   return (
     <div className='container'>
@@ -338,7 +335,6 @@ export default function Detail(props) {
               </div>
             </div>
           </div>
-
         );
       })}
       <div className='detailContainer'>
@@ -350,7 +346,7 @@ export default function Detail(props) {
             return (
               <div>
                 <h4>Reseña: {product.review}</h4>
-                <Rating name="score" defaultValue={product.score} precision={1} readOnly />
+                <Rating name='score' defaultValue={product.score} precision={1} readOnly />
                 {/* <h5>Puntuación: {product.score}</h5> */}
               </div>
             );

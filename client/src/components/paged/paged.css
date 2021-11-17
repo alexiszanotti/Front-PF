@@ -1,53 +1,48 @@
-.paginado{
-    display: flex;
-    /* justify-content: space-around; */
-    align-items: center;
-    background-color: #ffffff;
-    width: 98%;
-    /* justify-content: center; */
-
+.paginado {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  width: 98%;
 }
 
-.pag{
-    margin-right: 25px;
-    margin-left: 32px;
-    display: flex;
-    justify-content: space-around;
+.pag {
+  margin-right: 27px;
+  margin-left: 20px;
+  display: flex;
+  justify-content: space-around;
 }
-.pag:hover{
-    cursor: pointer;
-
-
+.pag:hover {
+  cursor: pointer;
 }
 
-.btn1{
-    background-color: rgba(8, 38, 46, 0.644);
-    color: rgb(236, 230, 230);
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 20px;
-    border: none;
-    display: flex;
-    float: left;
+.btn1 {
+  background-color: rgba(8, 38, 46, 0.644);
+  color: rgb(236, 230, 230);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  border: none;
+  display: flex;
+  float: left;
 }
 
 .btn1:hover {
-    background-color: white; 
-    color: rgba(74, 59, 207, 0.644);
-} 
+  background-color: white;
+  color: rgba(74, 59, 207, 0.644);
+}
 
-.btn2{
-    background-color: rgba(8, 38, 46, 0.644);
-    color: rgb(236, 230, 230);
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 20px;
-    border: none;
-    display: flex;
-    float: right;   
+.btn2 {
+  background-color: rgba(8, 38, 46, 0.644);
+  color: rgb(236, 230, 230);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  border: none;
+  display: flex;
+  float: right;
 }
 
 .btn2:hover {
-    background-color: white; 
-    color: rgba(74, 59, 207, 0.644);
+  background-color: white;
+  color: rgba(74, 59, 207, 0.644);
 }
