@@ -11,11 +11,10 @@ export default function SearchBar() {
   const handleInputChange = e => {
     e.preventDefault(e);
     setName(e.target.value);
-    dispatch(searchProducts(name));
   };
 
   useEffect(() => {
-    dispatch(searchProducts());
+    dispatch(searchProducts(name));
   }, [dispatch, name]);
 
   return (

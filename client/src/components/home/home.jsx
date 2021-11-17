@@ -16,11 +16,10 @@ export default function Home() {
   const userLogeado = useSelector(state => state.userLogin);
 
   const setLocalStorage = () => {
-
     const localStorage = window.localStorage;
 
-    if(userLogeado.userName !== undefined) localStorage.setItem("user", JSON.stringify(userLogeado));
-    
+    if (userLogeado.userName !== undefined)
+      localStorage.setItem("user", JSON.stringify(userLogeado));
   };
 
   setLocalStorage();
@@ -110,7 +109,7 @@ export default function Home() {
                     label='MODELO'
                     onChange={handelFilterModel}
                   >
-                    <MenuItem value='ALL'>TODOS</MenuItem>
+                    <MenuItem value='All'>TODOS</MenuItem>
                     <MenuItem value={"CORE / NEO"}>CORE/NEO</MenuItem>
                     <MenuItem value={"SPORT PERFORMANCE"}>SPORT PERFORMANCE</MenuItem>
                     <MenuItem value={"ORIGINALS"}>ORIGINALS</MenuItem>
@@ -149,7 +148,7 @@ export default function Home() {
                     onChange={handelFilterPrice}
                   >
                     <MenuItem value={"ASC"}>MENOR A MAYOR</MenuItem>
-                    <MenuItem value={"DES"}>MAYOR A MENOR</MenuItem>
+                    <MenuItem value={"DESC"}>MAYOR A MENOR</MenuItem>
                   </Select>
                 </FormControl>
               </Box>
