@@ -134,18 +134,21 @@ export default function CreateProduct() {
               border='1px solid gray'
               width='100px'
               height='100px'
+              alt='l'
             />
             <img
               src={input.images[1] ? input.images[1] : zapa}
               border='1px solid gray'
               width='100px'
               height='100px'
+              alt='l'
             />
             <img
               src={input.images[2] ? input.images[2] : zapa}
               border='1px solid gray'
               width='100px'
               height='100px'
+              alt='l'
             />
           </div>
           <select value={input.collection} onChange={e => handleSelectChange(e)}>

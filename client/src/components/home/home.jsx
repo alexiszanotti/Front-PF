@@ -14,47 +14,18 @@ import { useDispatch } from "react-redux";
 
 export default function Home() {
   const shoes = useSelector(state => state.products);
-  const [orden, setOrden] = useState("");
+  const [ orden, setOrden] = useState("All");
   const dispatch = useDispatch();
 
-  // Pagina actual
+
   const [currentPage, setCurrentPage] = useState(1);
-  // cantidad de paises que tengo por pagina
-  const [shoesPorPaginaPorPagina, setShoesPorPaginaPorPagina] = useState(20);
-  // seteo el index del ultimo pais
-  const indeceDelUltimoShoes = currentPage * shoesPorPaginaPorPagina; // 10
-  const indiceDelPrimerShoes = indeceDelUltimoShoes - shoesPorPaginaPorPagina; // 0
+  const [shoesPorPaginaPorPagina] = useState(20);
+  const indeceDelUltimoShoes = currentPage * shoesPorPaginaPorPagina; 
+  const indiceDelPrimerShoes = indeceDelUltimoShoes - shoesPorPaginaPorPagina; 
   const currentShoes = shoes.slice(indiceDelPrimerShoes, indeceDelUltimoShoes);
-  // slice muestra un nuevo array empezando del principio al final
   const paginado = pageNumber => {
     setCurrentPage(pageNumber);
   };
-
-  function handelFilterPrice(e) {
-    e.preventDefault();
-    dispatch(filterPrice(e.target.value));
-    setCurrentPage(1);
-    setOrden(e.target.value);
-  }
-
-  function handelFilterDiscount(e) {
-    e.preventDefault();
-    dispatch(filterDiscount(e.target.value));
-    setCurrentPage(1);
-    setOrden(e.target.value);
-  }
-  function handelFilterModel(e) {
-    e.preventDefault();
-    dispatch(filterModel(e.target.value));
-    setCurrentPage(1);
-    setOrden(e.target.value);
-  }
-  function handelFilterSexo(e) {
-    e.preventDefault();
-    dispatch(filterSexo(e.target.value));
-    setCurrentPage(1);
-    setOrden(e.target.value);
-  }
 
   function handelFilterPrice(e) {
     e.preventDefault();
@@ -117,6 +88,7 @@ export default function Home() {
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
                     label='MODELO'
+                    value={orden}
                     onChange={handelFilterModel}
                   >
                     <MenuItem value='All'>TODOS</MenuItem>
@@ -136,6 +108,7 @@ export default function Home() {
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
                     label='GENERO'
+                    value={orden}
                     onChange={handelFilterSexo}
                   >
                     <MenuItem value={"All"}>TODOS</MenuItem>
@@ -155,6 +128,7 @@ export default function Home() {
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
                     label='PRECIO'
+                    value=""
                     onChange={handelFilterPrice}
                   >
                     <MenuItem value={"ASC"}>MENOR A MAYOR</MenuItem>
@@ -174,6 +148,7 @@ export default function Home() {
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
                     label='DESCUENTO'
+                    value={orden}
                     onChange={handelFilterDiscount}
                   >
                     <MenuItem value='All'>TODOS</MenuItem>
