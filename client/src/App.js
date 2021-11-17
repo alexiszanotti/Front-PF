@@ -2,7 +2,6 @@ import "./App.css";
 import React, { useEffect } from "react";
 import Navbar from "./components/navBar/navBar";
 import Home from "./components/home/home";
-import Landing from "./components/landing/landing";
 import Detail from "./components/detail/detail";
 import Login from "./components/login/login";
 import Register from "./components/register/register";
@@ -13,7 +12,7 @@ import UpDataUsers from "./components/admin/upDateUsers/upDateUsers";
 import GoShopping from "./components/goShopping/goShopping";
 import NavBarAdmin from "./components/admin/navBarAdmin/navBarAdmin";
 import EstadisticasA from "./components/admin/estadisticasA/estadisticasA";
-import AdminRoute from "./components/routes/adminRoute/adminRoute";
+import Landing from "./components/landing/landing";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getAllProducts } from "./Redux/Actions/index";
@@ -49,11 +48,9 @@ function App() {
       <div className='App'>
         <NavBarAdmin />
         <Switch>
-          <Route exact path="/" component={NavBarAdmin}/>
           <Route exact path="/" component={EstadisticasA}/>
           <Route path='/createProduct' component={createProduct} />
           <Route path='/userUpdata' component={UpDataUsers} />
-      
         </Switch>
       </div>
     </BrowserRouter>
@@ -64,8 +61,8 @@ function App() {
     <BrowserRouter>
       <div className='App'>
         <Navbar />
-          {(logIn.type === 'Admin') ? <AdminRoute exact path="/" component={ EstadisticasA }/> : <Route exact path='/' component={Landing} />}
         <Switch>
+          <Route exact path="/" component={Landing} />
           <Route path='/home' component={Home} />
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />

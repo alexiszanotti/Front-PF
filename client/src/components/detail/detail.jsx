@@ -1,29 +1,21 @@
 import React, { useEffect, useState } from "react";
 import {
   detailProducts,
-  favorite,
   postReview,
   getReview,
   shoppingCart,
 } from "../../Redux/Actions/index.jsx";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
-import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
-import { styled } from "@mui/system";
 import { Modal } from "@material-ui/core";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import ModalUnstyled from "@mui/core/ModalUnstyled";
 import Rating from "@mui/material/Rating";
-import StarIcon from "@mui/icons-material/Star";
 import "./detail.css";
 
 const validateForm = input => {
@@ -45,7 +37,7 @@ export default function Detail(props) {
   const dispatch = useDispatch();
   const history = useHistory();
   const detail = useSelector(state => state.detail);
-  const fav = useSelector(state => state.favorite);
+  // const fav = useSelector(state => state.favorite);
   const reseña = useSelector(state => state.review);
   const [error, setError] = useState({});
   const [input, setInput] = useState({
@@ -54,13 +46,14 @@ export default function Detail(props) {
     productId: props.match.params.id,
   });
 
+  const id = props.match.params.id
   useEffect(() => {
-    dispatch(detailProducts(props.match.params.id));
-  }, [dispatch]);
+    dispatch(detailProducts(id));
+  }, [dispatch, id]);
 
   useEffect(() => {
-    dispatch(getReview(props.match.params.id));
-  }, [dispatch]);
+    dispatch(getReview(id));
+  }, [dispatch, id]);
 
   // useEffect(() => {
   //   dispatch(favorite());
@@ -102,21 +95,7 @@ export default function Detail(props) {
     history.push("/home");
   }
 
-  const useStyles = makeStyles(theme => ({
-    modal: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-    },
-    paper: {
-      backgroundColor: theme.palette.background.paper,
-      border: "2px solid #000",
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
-    },
-  }));
 
-  const classes = useStyles();
   const [modal, setModal] = useState(false);
   const [modal1, setModal1] = useState(false);
   const openCloseModal = () => {
@@ -164,15 +143,12 @@ export default function Detail(props) {
     5: "Excellent",
   };
 
-  const [value, setValue] = React.useState(2);
-  const [hover, setHover] = React.useState(-1);
+  const [hover] = React.useState(-1);
 
   const reseñas = (
     <div>
       <Box sx={style1}>
-        {/* <Typography id="modal-modal-title" variant="h6" component="h2">
-        <h1>Probando</h1>
-      </Typography> */}
+
         <form onSubmit={e => e}>
           <div className='detailContainer1'>
             <h3>Escriba su reseña</h3>
@@ -211,28 +187,6 @@ export default function Detail(props) {
     </div>
   );
 
-  const StyledModal = styled(ModalUnstyled)`
-    position: fixed;
-    z-index: 1300;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  `;
-
-  const Backdrop = styled("div")`
-    z-index: -1;
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    -webkit-tap-highlight-color: transparent;
-  `;
 
   const style = {
     position: "absolute",
@@ -246,10 +200,6 @@ export default function Detail(props) {
     boxShadow: 24,
     p: 4,
   };
-
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
   const carrito = (
     <div className='detailContainer'>
@@ -266,7 +216,7 @@ export default function Detail(props) {
                 <ul className='detailUl'>
                   <li>{products.collection.name}</li>
                   <br></br>
-                  <img className='img' src={products.images[0]} />
+                  <img className='img' src={products.images[0]} alt="j" />
                   <br></br>
                   <br></br>
                   <li>{"$ " + Number(products.salePrice)}</li>
@@ -287,11 +237,9 @@ export default function Detail(props) {
           </Link>
         </Typography>
         <Typography id='modal-modal-description' sx={{ mt: 2 }}>
-          {/* <Link to={`/carrito/${detail.map(el => el.id)}`}> */}
           <button className='btn2' onClick={handleButtonCart}>
             Ver carrito
           </button>
-          {/* </Link> */}
         </Typography>
       </Box>
     </div>
@@ -306,7 +254,7 @@ export default function Detail(props) {
             <ul className='detailUl'>
               <li>{products.collection.name}</li>
               <br></br>
-              <img className='img' src={products.images[0]} />
+              <img className='img' src={products.images[0]} alt="k"/>
               <br></br>
               <br></br>
               <br></br>

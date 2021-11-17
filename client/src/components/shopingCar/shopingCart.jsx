@@ -1,20 +1,16 @@
 import "./shopingCart.css"
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { shoppingCart}  from "../../Redux/Actions/index.jsx";
+import React from "react";
+import { useSelector } from 'react-redux';
 import CardShopingCart from "../cardShopingCart/cardShopingCart";
 import TextField from '@mui/material/TextField';
 import { Button} from "@mui/material";
 import {Link} from "react-router-dom";
 import { Box } from "@mui/system";
-export default function ShopingCart(props) {
-    const dispatch = useDispatch();
+export default function ShopingCart() {
+
 
     const cart = useSelector((state) => state.shoppingCart);
 
-    // useEffect(() =>{
-    //     dispatch(shoppingCart(props.match.params.id));
-    // },[dispatch])
 
     let total = 0;
     let suma = cart.map((el) => Number(el.salePrice));
@@ -51,7 +47,7 @@ export default function ShopingCart(props) {
                                 </Link>
                             </Box>
                             <h1 className="metodoTarjeta">OPCIONES DE PAGO</h1>
-                            <img className="imagenTarjeta" src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/esAR/Images/Logos_Argentina-sinMP_tcm216-730132.png" />
+                            <img alt="k" className="imagenTarjeta" src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/esAR/Images/Logos_Argentina-sinMP_tcm216-730132.png" />
                             </div>
                             <Link to="/home">
                                 <button className="botonCart1">volver</button>
@@ -61,7 +57,7 @@ export default function ShopingCart(props) {
     
                 </div>
                 {
-                    cart === undefined || cart.length === 0 ? <h1></h1> :
+                    cart === undefined || cart.length === 0 ? <h1>no hay nada</h1> :
                     cart.map((products) => {
                         return(
                             <div className="contenedorCart">
