@@ -19,10 +19,10 @@ export default function ShopingCart() {
 
     return(
             <div>
-                <div>
+                <div >
                     {
                         cart.length === 0 ? 
-                        <div>
+                        <div className="carritoVacio">
                             <h1>EL CARRITO ESTÁ VACÍO</h1>
                             <p>Una vez que añadas algo a tu carrito, aparecerá acá. ¿Listo para empezar?</p>
                             <Link to="/home">
@@ -57,7 +57,7 @@ export default function ShopingCart() {
     
                 </div>
                 {
-                    cart === undefined || cart.length === 0 ? <h1>no hay nada</h1> :
+                    cart === undefined || cart.length === 0 ? <h1>"</h1> :
                     cart.map((products) => {
                         return(
                             <div className="contenedorCart">

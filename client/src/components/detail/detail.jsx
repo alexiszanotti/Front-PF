@@ -148,7 +148,6 @@ export default function Detail(props) {
   const reseñas = (
     <div>
       <Box sx={style1}>
-
         <form onSubmit={e => e}>
           <div className='detailContainer1'>
             <h3>Escriba su reseña</h3>
@@ -173,6 +172,8 @@ export default function Detail(props) {
                 <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : input.score]}</Box>
               )}
             </Box>
+            <br></br>
+            <br></br>
             <div>
               <button type='submit' onClick={handleSubmit} className='btn1'>
                 Publicar
@@ -249,7 +250,8 @@ export default function Detail(props) {
     <div className='container'>
       {detail.map(products => {
         return (
-          <div className='detailContainer'>
+          <div className='valoracionesContainer'>
+            <div className='containerDetail'>
             <h1>{products.productName}</h1>
             <ul className='detailUl'>
               <li>{products.collection.name}</li>
@@ -270,6 +272,7 @@ export default function Detail(props) {
                 <MenuItem value={30}>45</MenuItem>
               </Select>
             </FormControl>
+            </div>
             <br></br>
             <br></br>
             <div>
@@ -285,7 +288,7 @@ export default function Detail(props) {
           </div>
         );
       })}
-      <div className='detailContainer'>
+      <div className='valoracionesContainer'>
         <h1>Valoraciones y reseñas</h1>
         {reseña === undefined || reseña.length === 0 ? (
           <h4>No hay reseñas</h4>

@@ -208,3 +208,11 @@ export const postUserLogin = payload => {
     };
 
 };
+
+export const modifyProduct = payload => {
+  return async () => {
+    let res = await axios.post(`http://localhost:3001/users/updateProduct`, payload);
+    return res;
+  };
+
+};

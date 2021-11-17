@@ -8,12 +8,13 @@ function Paginado({ shoesPorPaginaPorPagina, shoes, paginado, previousPage, next
   }
   return (
     <>
-      <footer>
+      <footer >
         <nav>
-          <ul className='paginado'>
+          <ul className='paginationContainer'>
             <button onClick={previousPage} className='btn1'>
               Anterior
             </button>
+            <div className='paginationNumber'>
             {pageNumber &&
               pageNumber.map(number => {
                 return (
@@ -22,6 +23,7 @@ function Paginado({ shoesPorPaginaPorPagina, shoes, paginado, previousPage, next
                   </p>
                 );
               })}
+              </div>
             <button onClick={nextPage} className='btn2'>
               Siguiente
             </button>

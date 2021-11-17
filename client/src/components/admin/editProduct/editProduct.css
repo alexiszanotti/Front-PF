@@ -1,0 +1,10 @@
+.editProductContainer{
+    display: flex;
+    flex-direction: column;
+    border: 5px solid rgb(0, 0, 0);
+  width: 40%;
+  height: 98vh;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 15px;
+}

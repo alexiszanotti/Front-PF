@@ -18,9 +18,10 @@ export default function Favorite() {
 
     return (
         <div>
+            <div className="carritoVacio">
             <h1>Mi lista de deseos</h1>
             <h2>{hola.length} {hola.length === 1 ? "Artículo" : "Artículos"}       </h2>
-
+            </div>
             <br></br>
             <br></br>
             <div className="termo">

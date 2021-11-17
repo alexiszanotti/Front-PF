@@ -1,5 +1,12 @@
+.landingContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+
 .btn{
-    background-color: rgba(195, 213, 218, 0.644);
+    background-color: rgba(4, 5, 5, 0.644);
     color: rgb(236, 230, 230);
     border-radius: 5px;
     cursor: pointer;
@@ -16,7 +23,8 @@
     background-color: white; 
     color: rgba(74, 59, 207, 0.644);
 } 
-
+/* 
 .containerTitle{
     font-family: 'Roboto' thin  italic;
-}
+    text-align: center;
+} */
