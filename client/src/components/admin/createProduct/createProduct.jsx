@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./createProduct.css";
 import { createProduct, getCollection } from "../../../Redux/Actions/index";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import zapa from "../../../images/ImgaProduct.png";
 
 const validateForm = input => {
@@ -78,7 +78,7 @@ export default function CreateProduct() {
   };
   useEffect(() => {
     dispatch(getCollection());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
