@@ -62,9 +62,9 @@ export default function Detail(props) {
     dispatch(getReview(props.match.params.id));
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(favorite());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(favorite());
+  // }, [dispatch]);
 
   const handleInputChange = e => {
     e.preventDefault();
@@ -131,7 +131,7 @@ export default function Detail(props) {
 
   function handleButtonCart(e) {
     e.preventDefault();
-    history.push(`/carrito/props.match.params.id`);
+    history.push(`/carrito/`+props.match.params.id);
   }
 
   // const style1 = {

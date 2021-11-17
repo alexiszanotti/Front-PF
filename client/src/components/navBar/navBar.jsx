@@ -31,20 +31,24 @@ export default function NavBar() {
   // ----- esto pertenece al local storage donde guardamos el usuario --------
   const localStorage = window.localStorage;
 
-  const logIn = JSON.parse(localStorage.getItem("user"));
 
-  const avatar = logIn.userName?.slice(0, 1).toUpperCase();
+  const logIn = JSON.parse(localStorage.getItem('user'));
+
+  const avatar = logIn.email?.slice(0,1).toUpperCase();
+
 
   const logOut = () => {
-    localStorage.setItem(
-      "user",
-      JSON.stringify({
-        id: null,
-        type: "Other",
-        userName: "",
-      })
-    );
-  };
+
+
+    localStorage.setItem("user", JSON.stringify({
+
+      id: null,
+      type: 'Other',
+      email: '',
+
+    }));
+
+  }
 
   // ----- esto pertenece al local storage donde guardamos el usuario --------
 
