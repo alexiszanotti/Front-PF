@@ -15,7 +15,6 @@ export default function NavBarAdmin() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  
 
 
   const logOut = () => {
@@ -46,13 +45,18 @@ export default function NavBarAdmin() {
                     </Link>
               </ListItem>
               <ListItem button >
+                    <Link to="/updateProduct">
+                    <Button>MODIFICAR PRODUCTOS</Button> 
+                    </Link>
+              </ListItem>
+              <ListItem button >
                   <Link to="/createProduct">
                     <Button>CREAR PRODUCTOS</Button> 
                     </Link>
               </ListItem>
               <ListItem button >
-                    <Link to="/updateProduct">
-                    <Button>EDITAR PRODUCTOS</Button> 
+                  <Link to="/createCollection">
+                    <Button>CREAR CATEGORIAS</Button> 
                     </Link>
               </ListItem>
               <ListItem button >

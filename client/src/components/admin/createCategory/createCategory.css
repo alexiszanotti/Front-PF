@@ -1,0 +1,10 @@
+.createCategory {
+    border: 2px solid #ccc;
+    width: 40%;
+    height: 25vh;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    align-items: center;
+  }
+
