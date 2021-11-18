@@ -228,8 +228,9 @@ export const resetFilter = () => {
 }
 
 export const modifyProduct = payload => {
+  console.log(payload, "asdasd");
     return async () => {
-      let res = await axios.post(`http://localhost:3001/users/`, payload);
+      let res = await axios.patch(`http://localhost:3001/products`, payload);
       return res;
     };
 
@@ -240,4 +241,15 @@ export const userLogout = () => {
     type: USER_LOGOUT,
     payload: {}
   };
-}
+};
+
+export const createCollection = payload => {
+  try {
+    return async () => {
+      let res = await axios.post(`http://localhost:3001/categories`, payload);
+      return res;
+    };
+  } catch (error) {
+    console.error(error);
+  }
+};

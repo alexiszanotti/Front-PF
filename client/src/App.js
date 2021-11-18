@@ -15,6 +15,7 @@ import NavBarAdmin from "./components/admin/navBarAdmin/navBarAdmin";
 import EstadisticasA from "./components/admin/estadisticasA/estadisticasA";
 import AdminRoute from "./components/routes/adminRoute/adminRoute";
 import EditProduct from "./components/admin/editProduct/editProduct";
+import CreateCollection from "./components/admin/createCategory/createCategory"
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getAllProducts } from "./Redux/Actions/index";
@@ -45,6 +46,7 @@ function App() {
           <Route path='/createProduct' component={createProduct} />
           <Route path='/userUpdata' component={UpDataUsers} />
           <Route path='/updateProduct' component={EditProduct} />
+          <Route path='/createCollection' component={CreateCollection} />
         </Switch>
       </div>
     </BrowserRouter>

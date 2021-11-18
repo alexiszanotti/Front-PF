@@ -104,7 +104,7 @@ export default function Detail(props) {
 
   function handleButtonCart(e) {
     e.preventDefault();
-    history.push(`/carrito/`+props.match.params.id);
+    history.push(`/carrito/` + props.match.params.id);
   }
 
   // const style1 = {
@@ -169,6 +169,7 @@ export default function Detail(props) {
                 <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : input.score]}</Box>
               )}
             </Box>
+            <br></br>
             <div>
               <button type='submit' onClick={handleSubmit} className='btn1'>
                 Publicar
@@ -231,6 +232,11 @@ export default function Detail(props) {
             <button className='btn1'>Seguir comprando</button>
           </Link>
         </Typography>
+        {/* <Typography id='modal-modal-description' sx={{ mt: 2 }}>
+          <button type='submit' onClick={() => openCloseModal1()} className='btn4'>
+            Cerrar
+          </button>
+        </Typography> */}
         <Typography id='modal-modal-description' sx={{ mt: 2 }}>
           {/* <Link to={`/carrito/${detail.map(el => el.id)}`}> */}
           <button className='btn2' onClick={handleButtonCart}>
