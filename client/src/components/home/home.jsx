@@ -9,8 +9,9 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { filterPrice, filterDiscount, filterModel, filterSexo } from "../../Redux/Actions/index";
+import { filterByParams } from "../../Redux/Actions/index";
 import { useDispatch, } from "react-redux";
+import { Typography } from "@mui/material";
 
 export default function Home() {
   const shoes = useSelector(state => state.productsFilter);
@@ -22,59 +23,31 @@ export default function Home() {
   });
   const dispatch = useDispatch();
   useEffect(() => {
-    
+    dispatch(filterByParams(orden));
     return () => {
      
     }
   }, [orden])
   console.log(orden);
-  // Pagina actual
   const [currentPage, setCurrentPage] = useState(1);
-  // cantidad de paises que tengo por pagina
   const [shoesPorPaginaPorPagina, setShoesPorPaginaPorPagina] = useState(20);
-  // seteo el index del ultimo pais
   const indeceDelUltimoShoes = currentPage * shoesPorPaginaPorPagina; // 10
   const indiceDelPrimerShoes = indeceDelUltimoShoes - shoesPorPaginaPorPagina; // 0
   const currentShoes = shoes.slice(indiceDelPrimerShoes, indeceDelUltimoShoes);
-  // slice muestra un nuevo array empezando del principio al final
   const paginado = pageNumber => {
     setCurrentPage(pageNumber);
   };
 
-  function handelFilterPrice(e) {
-    e.preventDefault();
-    dispatch(filterPrice(e.target.value));
-    setCurrentPage(1);
-    //setOrden(e.target.value);
-  }
 
-  function handelFilterDiscount(e) {
-    e.preventDefault();
-    dispatch(filterDiscount(e.target.value));
-    setCurrentPage(1);
-    //setOrden(e.target.value);
-  }
-  function handelFilterModel(e) {
-    e.preventDefault();
-    
-    dispatch(filterModel(e.target.value));
-    setCurrentPage(1);
-    setOrden({...orden,[e.target.name]: e.target.value});
-  }
+
+
 
   function handleChange (e){
-    e.preventDefault();
+    
     setCurrentPage(1);
     setOrden({...orden,[e.target.name]: e.target.value});
   }
-  function handelFilterSexo(e) {
-    e.preventDefault();
-    dispatch(filterSexo(e.target.value));
-    setCurrentPage(1);
-    console.log(e.target.name)
-    console.log(e.target.value);
-    setOrden(orden[e.target.name]= e.target.value);
-  }
+ 
 
   
   const pageNumbers = [];
@@ -197,7 +170,8 @@ export default function Home() {
         />
       </div>
       <div className='contenedorHome'>
-        {currentShoes.length &&
+        {currentShoes.length ? 
+        
           currentShoes.map(products => {
             return (
               <Products
@@ -208,7 +182,9 @@ export default function Home() {
                 id={products.id}
               />
             );
-          })}
+          }):
+          <Typography>No hay productos con esos parametros</Typography> 
+        }
       </div>
     </div>
   );

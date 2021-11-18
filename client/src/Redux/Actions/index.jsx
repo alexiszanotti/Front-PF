@@ -247,8 +247,11 @@ export const postUserLogin = payload => {
   }
 };
 
-export const filterByParams = payload => {dispatch({
+export const filterByParams = payload => {
+  return dispatch => 
+  dispatch({
   type: FILTER_BY_PARAMS,
   payload: payload
-}
-)}
+
+  });
+};
