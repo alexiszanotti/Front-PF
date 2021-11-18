@@ -17,7 +17,7 @@ import {
   GET_REVIEW,
   GET_ALL_USERS,
   FILTER_BY_PARAMS,
-  RESET_FILTER
+  RESET_FILTER,
 } from "../Actions/actionTypes";
 
 const initialState = {
@@ -34,8 +34,8 @@ const initialState = {
     collection: "All",
     gender: "All",
     price: "default",
-    discount: "All"
-  }
+    discount: "All",
+  },
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -116,70 +116,73 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         collections: action.payload,
       };
-      case POST_REVIEW:
-        return{
-          ...state,
-          // review: action.payload,
-        }
-      case GET_REVIEW:
-        return{
-          ...state,
-          review: action.payload,
-        }
-    case GET_ALL_USERS:
-      return{
+    case POST_REVIEW:
+      return {
         ...state,
-        users: action.payload
+        // review: action.payload,
+      };
+    case GET_REVIEW:
+      return {
+        ...state,
+        review: action.payload,
+      };
+    case GET_ALL_USERS:
+      return {
+        ...state,
+        users: action.payload,
       };
     case GET_USER_LOGIN:
       return {
-
         ...state,
         userLogin: action.payload,
-        
       };
     case FILTER_BY_PARAMS:
-      const {collection, gender, price, discount} = action.payload
-      console.log(action.payload)
-      let filtered = [...state.products]
-    
+      const { collection, gender, price, discount } = action.payload;
+      console.log(action.payload);
+      let filtered = [...state.products];
+
       /////filter by collection
-      filtered = collection === "All" ? filtered : [...filtered].filter(el => el.collection.name === collection);
-     
+      filtered =
+        collection === "All"
+          ? filtered
+          : [...filtered].filter(el => el.collection.name === collection);
+
       //filter by gender
-      filtered = gender === "All" ? filtered : filtered.filter(el => 
-        el.productName.toLowerCase().charAt(0) === gender.toLowerCase().charAt(0));
+      filtered =
+        gender === "All"
+          ? filtered
+          : filtered.filter(
+              el => el.productName.toLowerCase().charAt(0) === gender.toLowerCase().charAt(0)
+            );
       ///Order by price
       filtered =
-      price === "ASC"
-      ? filtered.sort(function (a, b) {
-        return a.salePrice - b.salePrice;
-      })
-      : filtered.sort(function (a, b) {
-        return b.salePrice - a.salePrice;
-      });
+        price === "ASC"
+          ? filtered.sort(function (a, b) {
+              return a.salePrice - b.salePrice;
+            })
+          : filtered.sort(function (a, b) {
+              return b.salePrice - a.salePrice;
+            });
       ////filter by discount
       filtered = discount === "All" ? filtered : filtered.filter(el => el.discount === discount);
-      
 
       return {
         ...state,
         productsFilter: filtered,
-        orden: action.payload
-      
-      }
+        orden: action.payload,
+      };
 
-      case RESET_FILTER:
-        return{
-          ...state,
-          productsFilter: state.products,
-          orden: {
-            collection: "All",
-            gender: "All",
-            price: "default",
-            discount: "All"
-          }
-        }
+    case RESET_FILTER:
+      return {
+        ...state,
+        productsFilter: state.products,
+        orden: {
+          collection: "All",
+          gender: "All",
+          price: "default",
+          discount: "All",
+        },
+      };
 
     default:
       return state;
