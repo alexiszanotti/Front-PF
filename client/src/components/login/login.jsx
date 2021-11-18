@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch,  } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { postUserLogin } from "../../Redux/Actions/index";
 import Box from "@mui/material/Box";
@@ -20,7 +20,7 @@ import { getAllUsers } from "../../Redux/Actions/index";
 
 export default function Login() {
   const history = useHistory();
-  const usuarios = useSelector(state => state.users);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function Login() {
 
   //----------------- lo de arriba es del MATERIAL UI -------------
 
-  const [email, setemail] = useState("");
+  const [email, setEmail] = useState("");
   const [error, setError] = useState("");
 
   const inputHandleChange = e => {
@@ -61,27 +61,15 @@ export default function Login() {
     } else {
       setError("");
     }
-    setemail(e);
+    setEmail(e);
   };
-
 
   const handleSubmit = async () => {
-     let password = values.password;
-    // let user = usuarios.find((usr) => usr.email === email);
-    // let pass = usuarios.find((usr) => usr.password === password);
-    // if (!user || !pass) {
-    //   alert("Usuario o contraseña incorrecta ");
+    let password = values.password;
 
-    // } else {
-      dispatch(postUserLogin({ email, password }));
-      history.push("/");
-
-    //}
-
-
-
+    dispatch(postUserLogin({ email, password }));
+    history.push("/");
   };
-
   return (
     <div className='contLogin'>
       <h1 className='h5Login'>Iniciar Sesion</h1>
@@ -136,7 +124,7 @@ export default function Login() {
         <FormControlLabel control={<Checkbox defaultChecked />} label='Mantener sesion abierta.' />
       </div>
 
-      <div>
+      <div className="botonEnter">
         <Button onClick={handleSubmit} variant='contained'>
           Ingresar
         </Button>
@@ -151,17 +139,17 @@ export default function Login() {
           Github
         </Button>
       </div>
-      <div>
-        <h3>Unite al club y obetené los beneficios</h3>
-        <Link to="/register">
-          <Button variant='outlined' size='large' >
+      <div className='titleRegister'>
+        <h3 >Unite al club y obetené los beneficios</h3>
+        <Link to='/register'>
+          <Button variant='outlined' size='large'>
             Registrarse
           </Button>
         </Link>
       </div>
       <div>
-        <Link to="/home">
-          <button className="botonCart1">volver</button>
+        <Link to='/home'>
+          <button className='botonCart1'>volver</button>
         </Link>
       </div>
     </div>

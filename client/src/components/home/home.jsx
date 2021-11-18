@@ -14,6 +14,7 @@ import { useDispatch, } from "react-redux";
 import { Typography } from "@mui/material";
 
 export default function Home() {
+
   const shoes = useSelector(state => state.productsFilter);
   const [orden, setOrden] = useState({
     collection: "All",
@@ -34,9 +35,11 @@ export default function Home() {
   const indeceDelUltimoShoes = currentPage * shoesPorPaginaPorPagina; // 10
   const indiceDelPrimerShoes = indeceDelUltimoShoes - shoesPorPaginaPorPagina; // 0
   const currentShoes = shoes.slice(indiceDelPrimerShoes, indeceDelUltimoShoes);
+
   const paginado = pageNumber => {
     setCurrentPage(pageNumber);
   };
+
 
 
 
@@ -50,6 +53,7 @@ export default function Home() {
  
 
   
+
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(shoes.length / shoesPorPaginaPorPagina); i++) {
@@ -86,6 +90,7 @@ export default function Home() {
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
                     label='MODELO'
+
                     name="collection"
                     onChange={handleChange}
                   >
@@ -108,6 +113,7 @@ export default function Home() {
                     label='GENERO'
                     name="gender"
                     onChange={handleChange}
+
                   >
                     <MenuItem value={"All"}>TODOS</MenuItem>
                     <MenuItem value={"Men's"}>MASCULINO</MenuItem>
@@ -126,6 +132,7 @@ export default function Home() {
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
                     label='PRECIO'
+
                     name="price"
                     onChange={handleChange}
                   >

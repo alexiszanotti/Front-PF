@@ -1,9 +1,4 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import "./paged.css";
 function Paginado({ shoesPorPaginaPorPagina, shoes, paginado, previousPage, nextPage }) {
   const pageNumber = [];
@@ -13,12 +8,13 @@ function Paginado({ shoesPorPaginaPorPagina, shoes, paginado, previousPage, next
   }
   return (
     <>
-      <footer>
+      <footer >
         <nav>
-          <ul className='paginado'>
+          <ul className='paginationContainer'>
             <button onClick={previousPage} className='btn1'>
               Anterior
             </button>
+            <div className='paginationNumber'>
             {pageNumber &&
               pageNumber.map(number => {
                 return (
@@ -27,6 +23,7 @@ function Paginado({ shoesPorPaginaPorPagina, shoes, paginado, previousPage, next
                   </p>
                 );
               })}
+              </div>
             <button onClick={nextPage} className='btn2'>
               Siguiente
             </button>

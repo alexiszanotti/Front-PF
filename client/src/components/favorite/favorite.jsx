@@ -1,41 +1,30 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { favorite } from "../../Redux/Actions/index.jsx";
-// import CardShopingCart from "../cardShopingCart/cardShopingCart";
+import React from "react";
+import { useSelector } from 'react-redux';
 import CardFavorite from "../cardFavorite/cardFavorite";
 import { Link } from "react-router-dom";
-
 import "./favorite.css"
 
 export default function Favorite() {
-    const dispatch = useDispatch();
-
     const favoritos = useSelector((state) => state.favorite);
-       
 
-    // useEffect(() => {
-    //     dispatch(favorite());
-    // }, [dispatch])
-
-    var hash = {};
-     let hola = favoritos.filter(function(current) {
-      var exists = !hash[current.id];
-      hash[current.id] = true;
-      return exists;
-    });
-
-
+      var hash = {};
+      let hola = favoritos.filter(function(current) {
+       var exists = !hash[current.id];
+       hash[current.id] = true;
+       return exists;
+     });
 
     return (
         <div>
+            <div className="carritoVacio">
             <h1>Mi lista de deseos</h1>
             <h2>{hola.length} {hola.length === 1 ? "Artículo" : "Artículos"}       </h2>
-
+            </div>
             <br></br>
             <br></br>
             <div className="termo">
             {
-                hola === undefined || hola.length === 0 ? <h1></h1> :
+                hola === undefined || hola.length === 0 ? <h1>no hay nada</h1> :
                 hola.map((products) => {
                         return (
                             

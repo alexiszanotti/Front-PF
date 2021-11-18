@@ -21,7 +21,7 @@ import {
 
 const initialState = {
   products: [],
-  productsFilter: [],
+  productsFilter: this?.products,
   detail: [],
   shoppingCart: [],
   favorite: [],
@@ -54,21 +54,30 @@ export default function rootReducer(state = initialState, action) {
       };
     case FILTER_DISCOUNT:
       const products = state.productsFilter;
-      const statusFilter =
+      const statusDiscount =
         action.payload === "All" ? products : products.filter(el => el.discount === action.payload);
       return {
         ...state,
-        products: statusFilter,
+        products: statusDiscount,
+        
       };
     case FILTER_MODEL:
+      const producto = state.productsFilter;
+      const statusFilters =
+        action.payload === "All" ? producto : producto.filter(el => el.collection.name === action.payload);
       return {
         ...state,
-        products: action.payload,
+        products: statusFilters,
+        
       };
     case FILTER_SEXO:
+      const product = state.productsFilter;
+      const statusSexo =
+        action.payload === "All" ? product : product.filter(e => {
+          return e.productName.toLowerCase().charAt(0) === action.payload.toLowerCase().charAt(0);});
       return {
         ...state,
-        products: action.payload,
+        products: statusSexo,
       };
     case SEARCH_PRODUCTS:
       return {
