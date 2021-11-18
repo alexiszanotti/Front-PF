@@ -6,14 +6,7 @@ import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import { useDispatch} from 'react-redux';
 import {removeFavorite} from "../../Redux/Actions/index"
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select'
-import MenuItem from '@mui/material/MenuItem';
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import { Grid } from '@mui/material';
 import {Link} from "react-router-dom";
-import { detailProducts } from "../../Redux/Actions/index.jsx";
 import "./cardFavorite.css"
 
 export default function CardFavorite(props) {

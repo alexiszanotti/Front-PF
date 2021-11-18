@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./createProduct.css";
 import { createProduct, getCollection } from "../../../Redux/Actions/index";
-import { Link, useHistory } from "react-router-dom";
+
 import zapa from "../../../images/ImgaProduct.png";
 
 const validateForm = input => {
@@ -17,20 +17,6 @@ const validateForm = input => {
   return error;
 };
 export default function CreateProduct() {
-
-  const history = useHistory()
-
-  const localStorage = window.localStorage;
-
-  const userLogin = JSON.parse(localStorage.getItem('user'));
-  console.log(userLogin, 'createProducto')
-  if(userLogin.type !== 'Admin') {
-    console.log('no es admin')
-    History.push("/home");
-    
-    window.location.replace('');
-    
-  }
 
   const dispatch = useDispatch();
   const collections = useSelector(state => state.collections);
@@ -55,7 +41,7 @@ export default function CreateProduct() {
     if (Object.keys(error).length === 0) {
       dispatch(createProduct(input));
       alert("Producto creado con éxito");
-      history.push("/home");
+      
     } else {
       alert("Por favor, complete todos los campos requeridos");
     }
@@ -78,7 +64,7 @@ export default function CreateProduct() {
   };
   useEffect(() => {
     dispatch(getCollection());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
@@ -134,18 +120,21 @@ export default function CreateProduct() {
               border='1px solid gray'
               width='100px'
               height='100px'
+              alt="k"
             />
             <img
               src={input.images[1] ? input.images[1] : zapa}
               border='1px solid gray'
               width='100px'
               height='100px'
+              alt="k"
             />
             <img
               src={input.images[2] ? input.images[2] : zapa}
               border='1px solid gray'
               width='100px'
               height='100px'
+              alt="k"
             />
           </div>
           <select value={input.collection} onChange={e => handleSelectChange(e)}>

@@ -15,7 +15,7 @@ import NavBarAdmin from "./components/admin/navBarAdmin/navBarAdmin";
 import EstadisticasA from "./components/admin/estadisticasA/estadisticasA";
 import AdminRoute from "./components/routes/adminRoute/adminRoute";
 import EditProduct from "./components/admin/editProduct/editProduct";
-import { BrowserRouter, Route, Switch, useHistory, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getAllProducts } from "./Redux/Actions/index";
 import { useSelector } from "react-redux";
@@ -27,21 +27,12 @@ function App() {
     dispatch(getAllProducts());
   }, [dispatch]);
 
-  const history = useHistory()
 
-  const userLogeado = useSelector(state => state.userLogin);
-
-  const setLocalStorage = () => {
-
-    const localStorage = window.localStorage;
-
-    if(userLogeado.email !== undefined) localStorage.setItem("user", JSON.stringify(userLogeado));
-  };
+  const logIn = useSelector(state => state.userLogin);
 
 
-  setLocalStorage();
+  console.log(logIn);
 
-  const logIn = JSON.parse(localStorage.getItem('user'));
 
   
   if (logIn.type === "Admin"){

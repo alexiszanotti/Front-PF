@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -24,35 +24,26 @@ import Logout from "@mui/icons-material/Logout";
 import { Link } from "react-router-dom";
 import SearchBar from "../searchBar/searchBar";
 import { useSelector, useDispatch } from "react-redux";
-import { shoppingCart, favorite } from "../../Redux/Actions/index.jsx";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { userLogout } from "../../Redux/Actions";
+
 
 export default function NavBar() {
   // ----- esto pertenece al local storage donde guardamos el usuario --------
-  const localStorage = window.localStorage;
+  const dispatch = useDispatch();
 
 
-  const logIn = JSON.parse(localStorage.getItem('user'));
+  const logIn = useSelector(state => state.userLogin);
 
   const avatar = logIn.email?.slice(0,1).toUpperCase();
 
 
   const logOut = () => {
 
-
-    localStorage.setItem("user", JSON.stringify({
-
-      id: null,
-      type: 'Other',
-      email: '',
-
-    }));
+    dispatch(userLogout())
 
   }
 
   // ----- esto pertenece al local storage donde guardamos el usuario --------
-
-  const dispatch = useDispatch();
 
   const aux = useSelector(state => state.shoppingCart);
   const fav = useSelector(state => state.favorite);
@@ -275,7 +266,7 @@ export default function NavBar() {
             sx={{ display: { xs: "none", sm: "block" } }}
           >
             <Link to='/'>
-              <img src={Logo} width='50' height='40' />
+              <img src={Logo} width='50' height='40' alt="k" />
             </Link>
           </Typography>
 

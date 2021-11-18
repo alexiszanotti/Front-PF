@@ -1,16 +1,16 @@
-import "./product.css"
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
-import CardActions from '@mui/material/CardActions';
-import IconButton from '@mui/material/IconButton';
-import Checkbox from '@mui/material/Checkbox';
-import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
-import Favorite from '@mui/icons-material/Favorite';
-import {Link} from "react-router-dom"
-import { useDispatch} from "react-redux";
-import { favorite, removeFavorite, shoppingCart } from "../../Redux/Actions/index";
+import "./product.css";
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardMedia from "@mui/material/CardMedia";
+import CardActions from "@mui/material/CardActions";
+import IconButton from "@mui/material/IconButton";
+import Checkbox from "@mui/material/Checkbox";
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import Favorite from "@mui/icons-material/Favorite";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { favorite, removeFavorite } from "../../Redux/Actions/index";
 
 const defaultIMG = [
   "https://essential.vteximg.com.br/arquivos/ids/435382-454-423/261-2401_1.jpg?v=637582266896100000",
@@ -25,51 +25,48 @@ const defaultIMG = [
   "https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy,c_fill,g_auto/b19f906a930a48da810bad1801602f3b_9366/Zapatillas_Racer_TR21_Granate_GZ8183_01_standard.jpg",
   "https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy,c_fill,g_auto/8951a65dbcf9491f92c8ac9900f45c2d_9366/Zapatillas_Ultraboost_21_Naranja_FZ1924_01_standard.jpg",
   "https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy,c_fill,g_auto/e565b750023e409d9658ad5600e489ff_9366/Zapatillas_X9000L3_COLD.RDY_Gris_FZ4088_01_standard.jpg",
-  "https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy,c_fill,g_auto/16216c130f5846ed8c9eabc600b3ea6f_9366/Zapatillas_ZX_2K_Boost_Blanco_FX8835_01_standard.jpg"
-
-]
+  "https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy,c_fill,g_auto/16216c130f5846ed8c9eabc600b3ea6f_9366/Zapatillas_ZX_2K_Boost_Blanco_FX8835_01_standard.jpg",
+];
 export default function Products(props) {
-
   const dispatch = useDispatch();
-  let random = defaultIMG[Math.floor(Math.random()*defaultIMG.length)]
+  let random = defaultIMG[Math.floor(Math.random() * defaultIMG.length)];
 
-  const onMediaFallback = event => event.target.src = random;
+  const onMediaFallback = (event) => (event.target.src = random);
 
   const [checked, setChecked] = React.useState(false);
   const handleChange = (event) => {
     setChecked(event.target.checked);
-    if (checked === false){
-      dispatch(favorite(props.id))
-    }else{
-      dispatch(removeFavorite(props.id))
+    if (checked === false) {
+      dispatch(favorite(props.id));
+    } else {
+      dispatch(removeFavorite(props.id));
     }
   };
 
-  
   return (
     <div>
-      
-    <Card className="contenedorProduct" sx={{ maxWidth: 345 }} >
-      <CardHeader
-        title={props.title}
-        subheader={props.price}
-      />
-      <Link to= {`/detail/${props.id}`}>
-      <CardMedia
-          component="img"
-          height="200"
-          image={props.image}
-          title="adidas sneaker"
-          onError={onMediaFallback}
-        />
-      </Link>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-         <Checkbox checked={checked}  onChange={handleChange} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
-          
-        </IconButton>
-      </CardActions>
-    </Card>
+      <Card className="contenedorProduct" sx={{ maxWidth: 345 }}>
+        <CardHeader title={props.title} subheader={props.price} />
+        <Link to={`/detail/${props.id}`}>
+          <CardMedia
+            component="img"
+            height="200"
+            image={props.image}
+            title="adidas sneaker"
+            onError={onMediaFallback}
+          />
+        </Link>
+        <CardActions disableSpacing>
+          <IconButton aria-label="add to favorites">
+            <Checkbox
+              checked={checked}
+              onChange={handleChange}
+              icon={<FavoriteBorder />}
+              checkedIcon={<Favorite />}
+            />
+          </IconButton>
+        </CardActions>
+      </Card>
     </div>
   );
 }

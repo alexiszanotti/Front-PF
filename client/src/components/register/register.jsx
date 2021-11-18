@@ -38,6 +38,7 @@ export default function Register() {
     gender: "",
   });
 
+  console.log(values)
   const [error, setError] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
 

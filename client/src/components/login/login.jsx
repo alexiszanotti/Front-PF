@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { postUserLogin } from "../../Redux/Actions/index";
 import Box from "@mui/material/Box";
@@ -20,7 +20,6 @@ import { getAllUsers } from "../../Redux/Actions/index";
 
 export default function Login() {
   const history = useHistory();
-  const usuarios = useSelector(state => state.users);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -67,12 +66,6 @@ export default function Login() {
 
   const handleSubmit = async () => {
      let password = values.password;
-    // let user = usuarios.find((usr) => usr.email === email);
-    // let pass = usuarios.find((usr) => usr.password === password);
-    // if (!user || !pass) {
-    //   alert("Usuario o contraseña incorrecta ");
-
-    // } else {
       dispatch(postUserLogin({ email, password }));
       history.push("/");
 

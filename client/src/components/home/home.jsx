@@ -24,10 +24,10 @@ export default function Home() {
     return () => {
      
     }
-  }, [orden])
-  console.log(orden);
+  }, [dispatch, orden])
+
   const [currentPage, setCurrentPage] = useState(1);
-  const [shoesPorPaginaPorPagina, setShoesPorPaginaPorPagina] = useState(20);
+  const [shoesPorPaginaPorPagina] = useState(20);
   const indeceDelUltimoShoes = currentPage * shoesPorPaginaPorPagina; // 10
   const indiceDelPrimerShoes = indeceDelUltimoShoes - shoesPorPaginaPorPagina; // 0
   const currentShoes = shoes.slice(indiceDelPrimerShoes, indeceDelUltimoShoes);
