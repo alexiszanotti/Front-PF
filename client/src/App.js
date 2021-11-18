@@ -63,7 +63,8 @@ function App() {
       </div>
     </BrowserRouter>
     )
-  }else if(logIn.type === "Other" || logIn.type === "User"){
+  }else //if(logIn.type === "Other" || logIn.type === "User")
+  {
   return (
 
     <BrowserRouter>

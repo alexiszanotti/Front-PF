@@ -235,23 +235,23 @@ export default function NavBar() {
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           >
             <MenuItem>
-              <Avatar /> Profile
+              <Avatar /> Perfil
             </MenuItem>
             <MenuItem>
-              <Avatar /> My account
+              <Avatar /> Mi cuenta
             </MenuItem>
             <Divider />
             <MenuItem>
               <ListItemIcon>
                 <PersonAdd fontSize='small' />
               </ListItemIcon>
-              Add another account
+              Agregar otra cuenta
             </MenuItem>
             <MenuItem>
               <ListItemIcon>
                 <Settings fontSize='small' />
               </ListItemIcon>
-              Settings
+              Configuración
             </MenuItem>
             <MenuItem onClick={logOut}>
               <ListItemIcon>
