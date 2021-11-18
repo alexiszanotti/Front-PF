@@ -262,3 +262,14 @@ export const resetFilter = () => {
   type: RESET_FILTER,
   });
 }
+
+export const modifyProduct = payload => {
+  try {
+    return async () => {
+      let res = await axios.post(`http://localhost:3001/users/updateProduct`, payload);
+      return res;
+    };
+  } catch (error) {
+    console.error(error);
+  }
+};
