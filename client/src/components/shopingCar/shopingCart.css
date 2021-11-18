@@ -4,7 +4,6 @@
     width: 600px;
     height: 300px;
     margin-right: 10px;
-    text-align:center;
 }
 .contenedorCart{
     margin-bottom: 20px;
@@ -58,11 +57,4 @@
 .metodoTarjeta{
     margin-top: 100px;
     
-}
-
-.carritoVacio{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
 }

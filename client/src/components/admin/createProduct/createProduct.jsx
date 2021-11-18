@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./createProduct.css";
 import { createProduct, getCollection } from "../../../Redux/Actions/index";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import zapa from "../../../images/ImgaProduct.png";
-import { Modal } from "@material-ui/core";
-import Box from "@mui/material/Box";
 
 const validateForm = input => {
   let error = {};
@@ -57,7 +55,7 @@ export default function CreateProduct() {
     if (Object.keys(error).length === 0) {
       dispatch(createProduct(input));
       alert("Producto creado con éxito");
-      history.push("/");
+      history.push("/home");
     } else {
       alert("Por favor, complete todos los campos requeridos");
     }
@@ -80,55 +78,12 @@ export default function CreateProduct() {
   };
   useEffect(() => {
     dispatch(getCollection());
-  }, [dispatch]);
-
-  const [modal, setModal] = useState(false);
-  const openCloseModal = () => {
-    setModal(!modal);
-  };
-  const style1 = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    height: 200,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
-  };
-  const categories = (
-    <div>
-      <Box sx={style1}>
-        <form onSubmit={e => e}>
-          <div className="detailCategories">
-            <h2 className="titleCategories">Crear categoría</h2>
-            <input
-              onChange={handleInputChange}
-              value={input.collection}
-              type='text'
-              name='collection'
-              placeholder='Categoría nueva'
-            />
-            <div>
-              <button type='submit' onClick={handleSubmit} className='btn1'>
-                Crear
-              </button>
-              <button type='submit' onClick={() => openCloseModal()} className='btn2'>
-                Cerrar
-              </button>
-            </div>
-          </div>
-        </form>
-      </Box>
-    </div>
-  );
+  }, []);
 
   return (
-    <div className="formulario-creacion">
+    <div>
       <h1>Crear producto</h1>
-      <div >
+      <div className='formulario-creacion'>
         <form className='form-inputs' onSubmit={e => handleSubmit(e)}>
           <input
             onChange={handleInputChange}
@@ -179,21 +134,18 @@ export default function CreateProduct() {
               border='1px solid gray'
               width='100px'
               height='100px'
-              alt='l'
             />
             <img
               src={input.images[1] ? input.images[1] : zapa}
               border='1px solid gray'
               width='100px'
               height='100px'
-              alt='l'
             />
             <img
               src={input.images[2] ? input.images[2] : zapa}
               border='1px solid gray'
               width='100px'
               height='100px'
-              alt='l'
             />
           </div>
           <select value={input.collection} onChange={e => handleSelectChange(e)}>
@@ -209,16 +161,7 @@ export default function CreateProduct() {
               );
             })}
           </select>
-          <div>
-          <button type='button' onClick={openCloseModal} className='btn'>
-            Crear categoría
-          </button>
-          </div>
-          <div>
-        <Modal open={modal} onClose={openCloseModal}>
-          {categories}
-        </Modal>
-      </div>
+          <button className='crear-categoria'>Crear categoria</button>
           <button type='submit'>Crear Producto</button>
         </form>
       </div>

@@ -9,19 +9,15 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { filterByParams } from "../../Redux/Actions/index";
+import { filterByParams, resetFilter } from "../../Redux/Actions/index";
 import { useDispatch, } from "react-redux";
 import { Typography } from "@mui/material";
+import {Button} from "@mui/material/";
 
 export default function Home() {
-
   const shoes = useSelector(state => state.productsFilter);
-  const [orden, setOrden] = useState({
-    collection: "All",
-    gender: "All",
-    price: "default",
-    discount: "All"
-  });
+  const orderState = useSelector(state => state.orden);
+  const [orden, setOrden] = useState(orderState);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(filterByParams(orden));
@@ -35,25 +31,24 @@ export default function Home() {
   const indeceDelUltimoShoes = currentPage * shoesPorPaginaPorPagina; // 10
   const indiceDelPrimerShoes = indeceDelUltimoShoes - shoesPorPaginaPorPagina; // 0
   const currentShoes = shoes.slice(indiceDelPrimerShoes, indeceDelUltimoShoes);
-
   const paginado = pageNumber => {
     setCurrentPage(pageNumber);
   };
 
 
-
-
+  function handleClick(e) {
+   dispatch(resetFilter());
+  }
 
 
   function handleChange (e){
-    
+
     setCurrentPage(1);
     setOrden({...orden,[e.target.name]: e.target.value});
   }
  
 
   
-
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(shoes.length / shoesPorPaginaPorPagina); i++) {
@@ -90,7 +85,6 @@ export default function Home() {
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
                     label='MODELO'
-
                     name="collection"
                     onChange={handleChange}
                   >
@@ -113,7 +107,6 @@ export default function Home() {
                     label='GENERO'
                     name="gender"
                     onChange={handleChange}
-
                   >
                     <MenuItem value={"All"}>TODOS</MenuItem>
                     <MenuItem value={"Men's"}>MASCULINO</MenuItem>
@@ -132,7 +125,6 @@ export default function Home() {
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
                     label='PRECIO'
-
                     name="price"
                     onChange={handleChange}
                   >
@@ -161,6 +153,7 @@ export default function Home() {
                     <MenuItem value={"40.00"}>40%</MenuItem>
                     <MenuItem value={"50.00"}>50%</MenuItem>
                   </Select>
+                  <Button onClick ={handleClick}>Resetear</Button>
                 </FormControl>
               </Box>
             </Grid>

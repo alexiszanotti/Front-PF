@@ -18,3 +18,4 @@ export const GET_ALL_USERS = "GET_ALL_USERS";
 export const MODIFY_USER = "MODIFY_USER";
 export const GET_USER_LOGIN = "GET_USER_LOGIN";
 export const FILTER_BY_PARAMS = "FILTER_BY_PARAMS"
+export const RESET_FILTER = "RESET_FILTER"
