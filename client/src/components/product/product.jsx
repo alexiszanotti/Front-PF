@@ -14,8 +14,6 @@ import { favorite, removeFavorite } from "../../Redux/Actions/index";
 
 const defaultIMG = [
   "https://essential.vteximg.com.br/arquivos/ids/435382-454-423/261-2401_1.jpg?v=637582266896100000",
-  "https://media.revistagq.com/photos/5f3a392d64de88802df64e59/master/w_1024,h_683,c_limit/20200609-adidas-11.jpg",
-  "https://cdn.shopify.com/s/files/1/0024/0992/2620/products/Zapatillas_Superstar_Bold_Mujer_Blanco_FV3334_01_standard_480x480.jpg?v=1596721771",
   "https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy,c_fill,g_auto/56f72915b0de4d0ca8adacd100e41c77_9366/Zapatillas_adidas_Grand_Court_Verde_GV7149_01_standard.jpg",
   "https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy,c_fill,g_auto/6650f81809b7414abffbacd100e4bc50_9366/Zapatillas_Grand_Court_SE_Blanco_H02029_01_standard.jpg",
   "https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy,c_fill,g_auto/c7227d99699243099c24ac5e00406c2c_9366/Zapatillas_Forum_Mid_Blanco_FY4976_01_standard.jpg",
@@ -26,7 +24,6 @@ const defaultIMG = [
   "https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy,c_fill,g_auto/8951a65dbcf9491f92c8ac9900f45c2d_9366/Zapatillas_Ultraboost_21_Naranja_FZ1924_01_standard.jpg",
   "https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy,c_fill,g_auto/e565b750023e409d9658ad5600e489ff_9366/Zapatillas_X9000L3_COLD.RDY_Gris_FZ4088_01_standard.jpg",
   "https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy,c_fill,g_auto/16216c130f5846ed8c9eabc600b3ea6f_9366/Zapatillas_ZX_2K_Boost_Blanco_FX8835_01_standard.jpg"
-
 ]
 export default function Products(props) {
 
@@ -60,7 +57,7 @@ export default function Products(props) {
           height="200"
           image={props.image}
           title="adidas sneaker"
-          onError={onMediaFallback}
+          onError={onMediaFallback} 
         />
       </Link>
       <CardActions disableSpacing>

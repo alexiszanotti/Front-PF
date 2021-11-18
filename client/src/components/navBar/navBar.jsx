@@ -30,7 +30,18 @@ import { useSelector } from "react-redux";
 
 export default function NavBar() {
   // ----- esto pertenece al local storage donde guardamos el usuario --------
-  const localStorage = window.localStorage;
+
+  function guardar_localStorage() {
+    const persona = {
+      nombre:"enzo",
+      apellido: "vazquez"
+    }
+
+    localStorage.setItem("persona", persona) 
+ 
+  }
+ 
+  /* const localStorage = window.localStorage;  */
 
 
   const logIn = JSON.parse(localStorage.getItem('user'));
@@ -55,20 +66,20 @@ export default function NavBar() {
 
 
   const favoritos = useSelector((state) => state.favorite);
-  const hola = JSON.parse(localStorage.getItem('favoritos'));
-  console.log(hola);
+  console.log(favoritos, "favoritos navbar")
+  
+  
   function handleClicka() {
-    if(favoritos.length === 0 && hola ){
-      localStorage.setItem("favoritos", JSON.stringify(hola));
-    }
-      // }else{
-      //   let aux = favoritos.filter((el) => el.id); // id productos fav
-      //   let aux2 = hola.filter((el) => el.id); // id productos local
-      //   let aux3 = [] // recorra elementos 1 y 2 y los pushee al aux3
-        
-      // }
-
-    }
+    const aux = localStorage.getItem("favoritos") 
+  if(aux) {
+    localStorage.setItem("favoritos", JSON.stringify(favoritos.concat(aux)))
+    console.log("entro al if del nav ")
+  }  else {
+    localStorage.setItem("favoritos", JSON.stringify(favoritos))
+    console.log("entro al else del nav ")
+  } 
+      
+}
     
 
 

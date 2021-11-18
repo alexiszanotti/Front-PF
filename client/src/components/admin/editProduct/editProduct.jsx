@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getAllProducts, modifyProduct, getCollection } from "../../../Redux/Actions/index"
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from 'react-router-dom';
+
 import Box from '@mui/material/Box';
 import zapa from "../../../images/ImgaProduct.png";
 import { Input } from "@mui/material";

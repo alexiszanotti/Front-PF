@@ -1,18 +1,64 @@
-import React from "react";
-import { useSelector } from 'react-redux';
+import {React, useEffect} from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import CardFavorite from "../cardFavorite/cardFavorite";
 import { Link } from "react-router-dom";
 import "./favorite.css"
 
 export default function Favorite() {
-    const favoritos = useSelector((state) => state.favorite);
+    const dispatch = useDispatch();
+    var favoritos = useSelector((state) => state.favorite);
+    function recuperoValores() {
+        return  localStorage.getItem("favoritos")
+        
+        
+      
+      }
+      console.log(favoritos, "favoritos estado")
+      let aux = recuperoValores()
+      aux = JSON.parse(aux)
+    /*   aux = aux.filter(e=> ) */
 
-      var hash = {};
+ 
+    
+     
+          if(favoritos.length === 0 && aux.length > 0 ){
+            favoritos = aux
+            console.log(favoritos, "entro primer if")
+        } 
+        if(favoritos.length > 0 && aux.length > 0 ){
+             favoritos.concat(aux)
+             console.log("entro segundo if")
+          }
+        if(favoritos.length > 0 && aux.length ===  0) {
+            favoritos=favoritos
+            console.log("entro tercero if")
+        }   
+     
+    
+
+     
+
+      
+/*     useEffect(() => {
+        let aux = recuperoValores()
+        favoritos.push(aux)
+        console.log(favoritos, "favoritos")
+      }, [favoritos, ]) */
+
+   /*    var hash = {};
       let hola = favoritos.filter(function(current) {
        var exists = !hash[current.id];
        hash[current.id] = true;
        return exists;
-     });
+     }); */
+
+     
+     
+     let hola = favoritos
+  
+     console.log(hola, "hola") 
+
+     
 
     return (
         <div>
