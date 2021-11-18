@@ -1,25 +1,10 @@
 import React, {useState, useEffect} from "react";
 import {getAllUsers, modifyUser} from "../../../Redux/Actions/index"
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import "./upDateUsers.css"
 
 export default function UpDataUsers(){
-
-  const History = useHistory()
-
-  const localStorage = window.localStorage;
-
-  const userLogin = JSON.parse(localStorage.getItem('user'));
-  console.log(userLogin, 'uoUser')
-  if(userLogin.type !== 'Admin') {
-    console.log('no es admin')
-    History.push("/home");
-    
-    window.location.replace('');
-    
-  }
 
     const dispatch = useDispatch();
     const usersData = useSelector(state => state.users);
@@ -30,13 +15,6 @@ export default function UpDataUsers(){
 
     const [input, setInput] = useState({
       id: "",
-      userName: "",
-      name: "",
-      lastName: "",
-      birthDay: "",
-      password: "",
-      gender:"",
-      type:""
       
     });
 
@@ -61,20 +39,12 @@ export default function UpDataUsers(){
       };
 
       function handleSubmit(e) {
-        e.preventDefault();
         dispatch(modifyUser(input));
-        alert("USUARIO CREADO");
+        alert("USUARIO RECARGADO");
         setInput({
             id: "",
-            userName: "",
-            name: "",
-            lastName: "",
-            birthDay: "",
-            password: "",
-            gender:"",
-            type:""
         });
-        window.location.replace('');
+        
       }
   
       let aux = usersData.filter((el) => el.id === input.id)
@@ -89,7 +59,7 @@ export default function UpDataUsers(){
                         {usersData.map((el) => {
                             return (
                                 <option key={el.id} name="id" value={el.id}>
-                                {el.userName}
+                                {el.email}
                                 </option>
                             );
                         })}
@@ -100,7 +70,7 @@ export default function UpDataUsers(){
                 <h1>MODIFICAR USUARIO</h1>
                 <form onSubmit={(e) => handleSubmit(e)} className="CreacionUsuario">
                     <label>NOMBRE DE USUARIO</label>
-                    <input type="text" name="userName" onChange={handleInputChange} placeholder={aux?.map((el) => el.userName)} value=""/>
+                    <input type="text" name="email" onChange={handleInputChange} placeholder={aux?.map((el) => el.email)} />
                     <label>NOMBRE</label>
                     <input type="text" name="name" onChange={handleInputChange} placeholder={aux?.map((el) => el.name)}/>
                     <label>APELLIDO</label> 

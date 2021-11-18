@@ -1,22 +1,13 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { favorite } from "../../Redux/Actions/index.jsx";
-// import CardShopingCart from "../cardShopingCart/cardShopingCart";
+import React from "react";
+import { useSelector } from 'react-redux';
 import CardFavorite from "../cardFavorite/cardFavorite";
 import { Link } from "react-router-dom";
 
 import "./favorite.css"
 
 export default function Favorite() {
-    const dispatch = useDispatch();
-
     const favoritos = useSelector((state) => state.favorite);
        
-
-    // useEffect(() => {
-    //     dispatch(favorite());
-    // }, [dispatch])
-
     var hash = {};
      let hola = favoritos.filter(function(current) {
       var exists = !hash[current.id];
@@ -35,7 +26,7 @@ export default function Favorite() {
             <br></br>
             <div className="termo">
             {
-                hola === undefined || hola.length === 0 ? <h1></h1> :
+                hola === undefined || hola.length === 0 ? <h1>nose</h1> :
                 hola.map((products) => {
                         return (
                             
