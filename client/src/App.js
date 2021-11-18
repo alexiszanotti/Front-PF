@@ -21,7 +21,8 @@ import { useSelector } from "react-redux";
 
 function App() {
   const dispatch = useDispatch();
-  
+
+
   useEffect(() => {
     dispatch(getAllProducts());
   }, [dispatch]);
@@ -29,19 +30,24 @@ function App() {
 
 
   const userLogeado = useSelector(state => state.userLogin);
-
+  const logIn = JSON.parse(localStorage.getItem('user'));
+  if(logIn === null) localStorage.setItem("user", JSON.stringify({"id":null,"type":"Other","email":""}));
   const setLocalStorage = () => {
 
     const localStorage = window.localStorage;
 
     if(userLogeado.email !== undefined) localStorage.setItem("user", JSON.stringify(userLogeado));
+  
   };
 
 
   setLocalStorage();
 
-  const logIn = JSON.parse(localStorage.getItem('user'));
+  
 
+
+
+  
   
   if (logIn.type === "Admin"){
     return(
@@ -57,7 +63,7 @@ function App() {
       </div>
     </BrowserRouter>
     )
-  }else{
+  }else if(logIn.type === "Other" || logIn.type === "User"){
   return (
 
     <BrowserRouter>

@@ -46,29 +46,17 @@ export function filterDiscount(payload) {
   };
 }
 
-export function filterModel(collection) {
-  return async function (dispatch) {
-    try {
-      let res = await axios(
-        `http://localhost:3001/categories/collections/?collection=${collection}`
-      );
-
-      return dispatch({ type: FILTER_MODEL, payload: res.data });
-    } catch (error) {
-      console.log(error);
-    }
+export function filterModel(payload) {
+  return {
+    type: FILTER_MODEL,
+    payload,
   };
 }
 
-export function filterSexo(gender) {
-  return async function (dispatch) {
-    try {
-      let res = await axios(`http://localhost:3001/categories/gender/?gender=${gender}`);
-
-      return dispatch({ type: FILTER_SEXO, payload: res.data });
-    } catch (error) {
-      console.log(error);
-    }
+export function filterSexo(payload) {
+  return {
+    type: FILTER_SEXO,
+    payload,
   };
 }
 
