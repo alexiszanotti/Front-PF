@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import zapa from "../../../images/ImgaProduct.png";
 import { Input } from "@mui/material";
-import "./editProduct.css"
+// import "./editProduct.css"
 
 const validateForm = input => {
     let error = {};

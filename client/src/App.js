@@ -14,6 +14,7 @@ import GoShopping from "./components/goShopping/goShopping";
 import NavBarAdmin from "./components/admin/navBarAdmin/navBarAdmin";
 import EstadisticasA from "./components/admin/estadisticasA/estadisticasA";
 import AdminRoute from "./components/routes/adminRoute/adminRoute";
+import EditProduct from "./components/admin/editProduct/editProduct";
 import { BrowserRouter, Route, Switch, useHistory, Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getAllProducts } from "./Redux/Actions/index";
@@ -49,11 +50,10 @@ function App() {
       <div className='App'>
         <NavBarAdmin />
         <Switch>
-          <Route exact path="/" component={NavBarAdmin}/>
           <Route exact path="/" component={EstadisticasA}/>
           <Route path='/createProduct' component={createProduct} />
           <Route path='/userUpdata' component={UpDataUsers} />
-      
+          <Route path='/updateProduct' component={EditProduct} />
         </Switch>
       </div>
     </BrowserRouter>
