@@ -90,7 +90,7 @@ export default function EditProduct() {
 
         
     };
-    const average = (((input.listingPrice * input.discount) / 100) - input.listingPrice) * (-1)
+    const porcentage = (((input.listingPrice * input.discount) / 100) - input.listingPrice) * (-1)
     
     return (
         <div className='editProductContainer'>
@@ -131,7 +131,7 @@ export default function EditProduct() {
                     {error.discount && <p className='error'>{error.discount} </p>}
                     <br></br>
                     <label>Precio de venta:</label>
-                    <label>${average}</label>
+                    <label>${porcentage}</label>
                     <br></br>
                     <label>Descripción:</label>
                     <textarea
