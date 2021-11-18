@@ -13,12 +13,14 @@ import { filterByParams, resetFilter } from "../../Redux/Actions/index";
 import { useDispatch, } from "react-redux";
 import { Typography } from "@mui/material";
 import {Button} from "@mui/material/";
+import {useHistory} from "react-router-dom"
 
 export default function Home() {
   const shoes = useSelector(state => state.productsFilter);
   const orderState = useSelector(state => state.orden);
   const [orden, setOrden] = useState(orderState);
   const dispatch = useDispatch();
+  const history = useHistory();
   useEffect(() => {
     dispatch(filterByParams(orden));
     return () => {
@@ -38,6 +40,7 @@ export default function Home() {
 
   function handleClick(e) {
    dispatch(resetFilter());
+   history.go("/home");
   }
 
 
