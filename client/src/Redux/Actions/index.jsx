@@ -17,6 +17,7 @@ import {
   GET_ALL_USERS,
   GET_USER_LOGIN,
   FILTER_BY_PARAMS,
+  RESET_FILTER
 } from "./actionTypes";
 
 
@@ -255,3 +256,9 @@ export const filterByParams = payload => {
 
   });
 };
+export const resetFilter = () => {
+  return dispatch => 
+  dispatch({
+  type: RESET_FILTER,
+  });
+}

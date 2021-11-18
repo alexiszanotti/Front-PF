@@ -16,7 +16,8 @@ import {
   POST_REVIEW,
   GET_REVIEW,
   GET_ALL_USERS,
-  FILTER_BY_PARAMS
+  FILTER_BY_PARAMS,
+  RESET_FILTER
 } from "../Actions/actionTypes";
 
 const initialState = {
@@ -29,6 +30,12 @@ const initialState = {
   users: [],
   userLogin: [],
   review: [],
+  orden: {
+    collection: "All",
+    gender: "All",
+    price: "default",
+    discount: "All"
+  }
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -135,10 +142,10 @@ export default function rootReducer(state = initialState, action) {
       const {collection, gender, price, discount} = action.payload
       console.log(action.payload)
       let filtered = [...state.products]
-      console.log(filtered+" "+collection);
+    
       /////filter by collection
       filtered = collection === "All" ? filtered : [...filtered].filter(el => el.collection.name === collection);
-      console.log("collection>>>>>>>>>>"+filtered.length);
+     
       //filter by gender
       filtered = gender === "All" ? filtered : filtered.filter(el => 
         el.productName.toLowerCase().charAt(0) === gender.toLowerCase().charAt(0));
@@ -153,13 +160,27 @@ export default function rootReducer(state = initialState, action) {
       });
       ////filter by discount
       filtered = discount === "All" ? filtered : filtered.filter(el => el.discount === discount);
-      console.log("discount>>>>>>>>>>"+filtered);
+      
 
       return {
         ...state,
         productsFilter: filtered,
+        orden: action.payload
       
       }
+
+      case RESET_FILTER:
+        return{
+          ...state,
+          productsFilter: state.products,
+          orden: {
+            collection: "All",
+            gender: "All",
+            price: "default",
+            discount: "All"
+          }
+        }
+
     default:
       return state;
   }

@@ -9,18 +9,15 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { filterByParams } from "../../Redux/Actions/index";
+import { filterByParams, resetFilter } from "../../Redux/Actions/index";
 import { useDispatch, } from "react-redux";
 import { Typography } from "@mui/material";
+import {Button} from "@mui/material/";
 
 export default function Home() {
   const shoes = useSelector(state => state.productsFilter);
-  const [orden, setOrden] = useState({
-    collection: "All",
-    gender: "All",
-    price: "default",
-    discount: "All"
-  });
+  const orderState = useSelector(state => state.orden);
+  const [orden, setOrden] = useState(orderState);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(filterByParams(orden));
@@ -39,11 +36,13 @@ export default function Home() {
   };
 
 
-
+  function handleClick(e) {
+   dispatch(resetFilter());
+  }
 
 
   function handleChange (e){
-    
+
     setCurrentPage(1);
     setOrden({...orden,[e.target.name]: e.target.value});
   }
@@ -154,6 +153,7 @@ export default function Home() {
                     <MenuItem value={"40.00"}>40%</MenuItem>
                     <MenuItem value={"50.00"}>50%</MenuItem>
                   </Select>
+                  <Button onClick ={handleClick}>Resetear</Button>
                 </FormControl>
               </Box>
             </Grid>
