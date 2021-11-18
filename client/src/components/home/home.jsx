@@ -1,5 +1,5 @@
 import "./home.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Paginado from "../paged/paged";
 import Products from "../product/product";
 import { useSelector } from "react-redux";
@@ -9,56 +9,51 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { filterPrice, filterDiscount, filterModel, filterSexo } from "../../Redux/Actions/index";
-import { useDispatch } from "react-redux";
+import { filterByParams } from "../../Redux/Actions/index";
+import { useDispatch, } from "react-redux";
+import { Typography } from "@mui/material";
 
 export default function Home() {
-  const shoes = useSelector(state => state.products);
-  
-  const [ orden, setOrden] = useState({
-    coleccion: "All",
-    discount: "All",
-    gender:"All"
 
+  const shoes = useSelector(state => state.productsFilter);
+  const [orden, setOrden] = useState({
+    collection: "All",
+    gender: "All",
+    price: "default",
+    discount: "All"
   });
   const dispatch = useDispatch();
-
-  console.log(orden)
-
+  useEffect(() => {
+    dispatch(filterByParams(orden));
+    return () => {
+     
+    }
+  }, [orden])
+  console.log(orden);
   const [currentPage, setCurrentPage] = useState(1);
-  const [shoesPorPaginaPorPagina] = useState(20);
-  const indeceDelUltimoShoes = currentPage * shoesPorPaginaPorPagina; 
-  const indiceDelPrimerShoes = indeceDelUltimoShoes - shoesPorPaginaPorPagina; 
-  const currentShoes = shoes?.slice(indiceDelPrimerShoes, indeceDelUltimoShoes);
+  const [shoesPorPaginaPorPagina, setShoesPorPaginaPorPagina] = useState(20);
+  const indeceDelUltimoShoes = currentPage * shoesPorPaginaPorPagina; // 10
+  const indiceDelPrimerShoes = indeceDelUltimoShoes - shoesPorPaginaPorPagina; // 0
+  const currentShoes = shoes.slice(indiceDelPrimerShoes, indeceDelUltimoShoes);
+
   const paginado = pageNumber => {
     setCurrentPage(pageNumber);
   };
 
-  function handelFilterPrice(e) {
-    e.preventDefault();
-    dispatch(filterPrice(e.target.value));
-    setCurrentPage(1);
-    setOrden(e.target.value);
-  }
 
-  function handelFilterDiscount(e) {
-    e.preventDefault();
-    dispatch(filterDiscount(e.target.value));
+
+
+
+
+  function handleChange (e){
+    
     setCurrentPage(1);
-    setOrden(e.target.value);
+    setOrden({...orden,[e.target.name]: e.target.value});
   }
-  function handelFilterModel(e) {
-    e.preventDefault();
-    dispatch(filterModel(e.target.value));
-    setCurrentPage(1);
-    setOrden(e.target.value);
-  }
-  function handelFilterSexo(e) {
-    e.preventDefault();
-    dispatch(filterSexo(e.target.value));
-    setCurrentPage(1);
-    setOrden(e.target.value);
-  }
+ 
+
+  
+
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(shoes.length / shoesPorPaginaPorPagina); i++) {
@@ -95,8 +90,9 @@ export default function Home() {
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
                     label='MODELO'
-                    // value={orden.coleccion}
-                    onChange={handelFilterModel}
+
+                    name="collection"
+                    onChange={handleChange}
                   >
                     <MenuItem value='All'>TODOS</MenuItem>
                     <MenuItem value={"CORE / NEO"}>CORE/NEO</MenuItem>
@@ -115,8 +111,9 @@ export default function Home() {
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
                     label='GENERO'
-                    // value={orden.gender}
-                    onChange={handelFilterSexo}
+                    name="gender"
+                    onChange={handleChange}
+
                   >
                     <MenuItem value={"All"}>TODOS</MenuItem>
                     <MenuItem value={"Men's"}>MASCULINO</MenuItem>
@@ -135,8 +132,9 @@ export default function Home() {
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
                     label='PRECIO'
-                    // value=""
-                    onChange={handelFilterPrice}
+
+                    name="price"
+                    onChange={handleChange}
                   >
                     <MenuItem value={"ASC"}>MENOR A MAYOR</MenuItem>
                     <MenuItem value={"DESC"}>MAYOR A MENOR</MenuItem>
@@ -155,8 +153,8 @@ export default function Home() {
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
                     label='DESCUENTO'
-                    // value={orden.discount}
-                    onChange={handelFilterDiscount}
+                    name="discount"
+                    onChange={handleChange}
                   >
                     <MenuItem value='All'>TODOS</MenuItem>
                     <MenuItem value={"0.00"}>SIN DESCUENTO</MenuItem>
@@ -179,7 +177,8 @@ export default function Home() {
         />
       </div>
       <div className='contenedorHome'>
-        {currentShoes.length &&
+        {currentShoes.length ? 
+        
           currentShoes.map(products => {
             return (
               <Products
@@ -190,7 +189,9 @@ export default function Home() {
                 id={products.id}
               />
             );
-          })}
+          }):
+          <Typography>No hay productos con esos parametros</Typography> 
+        }
       </div>
     </div>
   );

@@ -16,6 +16,7 @@ import {
   GET_REVIEW,
   GET_ALL_USERS,
   GET_USER_LOGIN,
+  FILTER_BY_PARAMS,
 } from "./actionTypes";
 
 
@@ -197,10 +198,20 @@ export const postUserLogin = payload => {
 
 };
 
+
+export const filterByParams = payload => {
+  return dispatch => 
+  dispatch({
+  type: FILTER_BY_PARAMS,
+  payload: payload
+
+  });
+
 export const modifyProduct = payload => {
   return async () => {
     let res = await axios.post(`http://localhost:3001/users/updateProduct`, payload);
     return res;
   };
+
 
 };
