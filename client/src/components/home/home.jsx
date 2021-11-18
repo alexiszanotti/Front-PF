@@ -14,15 +14,22 @@ import { useDispatch } from "react-redux";
 
 export default function Home() {
   const shoes = useSelector(state => state.products);
-  const [ orden, setOrden] = useState("All");
+  
+  const [ orden, setOrden] = useState({
+    coleccion: "All",
+    discount: "All",
+    gender:"All"
+
+  });
   const dispatch = useDispatch();
 
+  console.log(orden)
 
   const [currentPage, setCurrentPage] = useState(1);
   const [shoesPorPaginaPorPagina] = useState(20);
   const indeceDelUltimoShoes = currentPage * shoesPorPaginaPorPagina; 
   const indiceDelPrimerShoes = indeceDelUltimoShoes - shoesPorPaginaPorPagina; 
-  const currentShoes = shoes.slice(indiceDelPrimerShoes, indeceDelUltimoShoes);
+  const currentShoes = shoes?.slice(indiceDelPrimerShoes, indeceDelUltimoShoes);
   const paginado = pageNumber => {
     setCurrentPage(pageNumber);
   };
@@ -88,7 +95,7 @@ export default function Home() {
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
                     label='MODELO'
-                    value={orden}
+                    // value={orden.coleccion}
                     onChange={handelFilterModel}
                   >
                     <MenuItem value='All'>TODOS</MenuItem>
@@ -108,7 +115,7 @@ export default function Home() {
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
                     label='GENERO'
-                    value={orden}
+                    // value={orden.gender}
                     onChange={handelFilterSexo}
                   >
                     <MenuItem value={"All"}>TODOS</MenuItem>
@@ -128,7 +135,7 @@ export default function Home() {
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
                     label='PRECIO'
-                    value=""
+                    // value=""
                     onChange={handelFilterPrice}
                   >
                     <MenuItem value={"ASC"}>MENOR A MAYOR</MenuItem>
@@ -148,7 +155,7 @@ export default function Home() {
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
                     label='DESCUENTO'
-                    value={orden}
+                    // value={orden.discount}
                     onChange={handelFilterDiscount}
                   >
                     <MenuItem value='All'>TODOS</MenuItem>

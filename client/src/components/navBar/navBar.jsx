@@ -26,6 +26,8 @@ import SearchBar from "../searchBar/searchBar";
 import { useSelector } from "react-redux";
 
 
+
+
 export default function NavBar() {
   // ----- esto pertenece al local storage donde guardamos el usuario --------
   const localStorage = window.localStorage;
@@ -50,6 +52,24 @@ export default function NavBar() {
   }
 
   // ----- esto pertenece al local storage donde guardamos el usuario --------
+
+
+  const favoritos = useSelector((state) => state.favorite);
+  const hola = JSON.parse(localStorage.getItem('favoritos'));
+  console.log(hola);
+  function handleClicka() {
+    if(favoritos.length === 0 && hola ){
+      localStorage.setItem("favoritos", JSON.stringify(hola));
+    }
+      // }else{
+      //   let aux = favoritos.filter((el) => el.id); // id productos fav
+      //   let aux2 = hola.filter((el) => el.id); // id productos local
+      //   let aux3 = [] // recorra elementos 1 y 2 y los pushee al aux3
+        
+      // }
+
+    }
+    
 
 
   const aux = useSelector(state => state.shoppingCart);
@@ -293,7 +313,7 @@ export default function NavBar() {
                 color='inherit'
               >
                 <Link to='/favorites/:'>
-                  <FavoriteIcon color='action' />
+                  <FavoriteIcon color='action' onClick={handleClicka} />
                 </Link>
               </IconButton>
             </Badge>

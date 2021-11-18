@@ -2,19 +2,17 @@ import React from "react";
 import { useSelector } from 'react-redux';
 import CardFavorite from "../cardFavorite/cardFavorite";
 import { Link } from "react-router-dom";
-
 import "./favorite.css"
 
 export default function Favorite() {
     const favoritos = useSelector((state) => state.favorite);
-    var hash = {};
-     let hola = favoritos.filter(function(current) {
-      var exists = !hash[current.id];
-      hash[current.id] = true;
-      return exists;
-    });
 
-
+      var hash = {};
+      let hola = favoritos.filter(function(current) {
+       var exists = !hash[current.id];
+       hash[current.id] = true;
+       return exists;
+     });
 
     return (
         <div>
