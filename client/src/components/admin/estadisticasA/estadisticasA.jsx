@@ -1,11 +1,24 @@
 import React from "react";
-import "./estadisticaA.css"
-
+import { useHistory } from 'react-router-dom';
 
 export default function EstadisticasA() {
 
+  // const History = useHistory()
+
+  // const localStorage = window.localStorage;
+
+  // const userLogin = JSON.parse(localStorage.getItem('user'));
+
+  // if(userLogin.type !== 'Admin') {
+    
+  //   History.push("/home");
+    
+  //   window.location.replace('');
+    
+  // }
+
   return (
-      <div className="estadistica">
+      <div>
           <h1>Bienvenido Admin</h1>
         </div>
   )

@@ -1,33 +1,18 @@
-/* .paginado {
+.paginado {
   display: flex;
   align-items: center;
   background-color: #ffffff;
   width: 98%;
-} */
+}
 
 .pag {
-  margin-right: 20px;
+  margin-right: 27px;
   margin-left: 20px;
   display: flex;
   justify-content: space-around;
 }
 .pag:hover {
   cursor: pointer;
-} 
-
-.paginationContainer{
-  padding-left: 200px;
-  display: flex;
-  text-align:center;
-  /* justify-content: space-between; */
-  align-items: center;
-  width:98%;
-  /* flex-direction:row; */
-}
-
-.paginationNumber{
-  display: flex;
-  flex-direction:row;
 }
 
 .btn1 {

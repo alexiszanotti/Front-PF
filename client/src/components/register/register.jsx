@@ -307,7 +307,7 @@ export default function Register() {
         </FormControl>
       </div>
 
-      <div className='titleRegister'>
+      <div>
         <Button onClick={handleSubmitCreate} variant='contained'>
           Registrarse
         </Button>

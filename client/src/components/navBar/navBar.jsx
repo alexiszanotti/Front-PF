@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -23,10 +23,9 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { Link } from "react-router-dom";
 import SearchBar from "../searchBar/searchBar";
-import { useSelector } from "react-redux";
-
-
-
+import { useSelector, useDispatch } from "react-redux";
+import { shoppingCart, favorite } from "../../Redux/Actions/index.jsx";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 export default function NavBar() {
   // ----- esto pertenece al local storage donde guardamos el usuario --------
@@ -53,24 +52,7 @@ export default function NavBar() {
 
   // ----- esto pertenece al local storage donde guardamos el usuario --------
 
-
-  const favoritos = useSelector((state) => state.favorite);
-  const hola = JSON.parse(localStorage.getItem('favoritos'));
-  console.log(hola);
-  function handleClicka() {
-    if(favoritos.length === 0 && hola ){
-      localStorage.setItem("favoritos", JSON.stringify(hola));
-    }
-      // }else{
-      //   let aux = favoritos.filter((el) => el.id); // id productos fav
-      //   let aux2 = hola.filter((el) => el.id); // id productos local
-      //   let aux3 = [] // recorra elementos 1 y 2 y los pushee al aux3
-        
-      // }
-
-    }
-    
-
+  const dispatch = useDispatch();
 
   const aux = useSelector(state => state.shoppingCart);
   const fav = useSelector(state => state.favorite);
@@ -293,7 +275,7 @@ export default function NavBar() {
             sx={{ display: { xs: "none", sm: "block" } }}
           >
             <Link to='/'>
-              <img src={Logo} width='50' height='40' alt="j"/>
+              <img src={Logo} width='50' height='40' />
             </Link>
           </Typography>
 
@@ -313,7 +295,7 @@ export default function NavBar() {
                 color='inherit'
               >
                 <Link to='/favorites/:'>
-                  <FavoriteIcon color='action' onClick={handleClicka} />
+                  <FavoriteIcon color='action' />
                 </Link>
               </IconButton>
             </Badge>

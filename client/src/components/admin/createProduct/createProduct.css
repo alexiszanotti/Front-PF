@@ -1,7 +1,7 @@
 .formulario-creacion {
-  border: 5px solid rgb(0, 0, 0);
+  border: 2px solid #ccc;
   width: 40%;
-  height: 98vh;
+  height: 115vh;
   text-align: center;
   margin: 0 auto;
   margin-bottom: 15px;
@@ -56,21 +56,4 @@
 
 .container-img img {
   margin-left: 10px;
-}
-
-.detailCategories{
-  display: flex;
-   flex-direction: column;
-   background-color: rgba(53, 53, 50, 0.644);
-   color: rgb(0, 0, 0);
-   width:100%;
-   padding: 10px;
-   margin-top: 20px;
-   margin-bottom: 30px;
-   list-style: none;
-   border-radius: 8px;
-}
-
-.titleCategories{
-  text-align: center;
 }

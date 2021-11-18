@@ -15,13 +15,14 @@ import {
   GET_USER_LOGIN,
   POST_REVIEW,
   GET_REVIEW,
-  GET_ALL_USERS
-
+  GET_ALL_USERS,
+  FILTER_BY_PARAMS,
+  RESET_FILTER
 } from "../Actions/actionTypes";
 
 const initialState = {
   products: [],
-  productsFilter: this?.products,
+  productsFilter: [],
   detail: [],
   shoppingCart: [],
   favorite: [],
@@ -29,6 +30,12 @@ const initialState = {
   users: [],
   userLogin: [],
   review: [],
+  orden: {
+    collection: "All",
+    gender: "All",
+    price: "default",
+    discount: "All"
+  }
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -54,30 +61,21 @@ export default function rootReducer(state = initialState, action) {
       };
     case FILTER_DISCOUNT:
       const products = state.productsFilter;
-      const statusDiscount =
+      const statusFilter =
         action.payload === "All" ? products : products.filter(el => el.discount === action.payload);
       return {
         ...state,
-        products: statusDiscount,
-        
+        products: statusFilter,
       };
     case FILTER_MODEL:
-      const producto = state.productsFilter;
-      const statusFilters =
-        action.payload === "All" ? producto : producto.filter(el => el.collection.name === action.payload);
       return {
         ...state,
-        products: statusFilters,
-        
+        products: action.payload,
       };
     case FILTER_SEXO:
-      const product = state.productsFilter;
-      const statusSexo =
-        action.payload === "All" ? product : product.filter(e => {
-          return e.productName.toLowerCase().charAt(0) === action.payload.toLowerCase().charAt(0);});
       return {
         ...state,
-        products: statusSexo,
+        products: action.payload,
       };
     case SEARCH_PRODUCTS:
       return {
@@ -140,6 +138,49 @@ export default function rootReducer(state = initialState, action) {
         userLogin: action.payload,
         
       };
+    case FILTER_BY_PARAMS:
+      const {collection, gender, price, discount} = action.payload
+      console.log(action.payload)
+      let filtered = [...state.products]
+    
+      /////filter by collection
+      filtered = collection === "All" ? filtered : [...filtered].filter(el => el.collection.name === collection);
+     
+      //filter by gender
+      filtered = gender === "All" ? filtered : filtered.filter(el => 
+        el.productName.toLowerCase().charAt(0) === gender.toLowerCase().charAt(0));
+      ///Order by price
+      filtered =
+      price === "ASC"
+      ? filtered.sort(function (a, b) {
+        return a.salePrice - b.salePrice;
+      })
+      : filtered.sort(function (a, b) {
+        return b.salePrice - a.salePrice;
+      });
+      ////filter by discount
+      filtered = discount === "All" ? filtered : filtered.filter(el => el.discount === discount);
+      
+
+      return {
+        ...state,
+        productsFilter: filtered,
+        orden: action.payload
+      
+      }
+
+      case RESET_FILTER:
+        return{
+          ...state,
+          productsFilter: state.products,
+          orden: {
+            collection: "All",
+            gender: "All",
+            price: "default",
+            discount: "All"
+          }
+        }
+
     default:
       return state;
   }
