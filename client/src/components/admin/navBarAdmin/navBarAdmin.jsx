@@ -9,9 +9,10 @@ import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import {userLogout} from '../../../Redux/Actions/index';
+import { useHistory } from 'react-router-dom';
 const drawerWidth = 240;
 export default function NavBarAdmin() {
-
+  const history = useHistory();
   const dispatch = useDispatch();
 
   
@@ -20,6 +21,7 @@ export default function NavBarAdmin() {
   const logOut = () => {
 
     dispatch(userLogout())
+    history.push("/")
 
   }
   return (

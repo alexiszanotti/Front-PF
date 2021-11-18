@@ -76,6 +76,7 @@ export function filterSexo(gender) {
 }
 
 export function searchProducts(name) {
+    console.log(name)
     return async function (dispatch) {
       let res = await axios(`http://localhost:3001/products/?name=${name}`);
       return dispatch({ type: SEARCH_PRODUCTS, payload: res.data });
