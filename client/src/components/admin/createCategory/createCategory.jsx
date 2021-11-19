@@ -27,7 +27,7 @@ export default function CreateCollection() {
     e.preventDefault();
     if (Object.keys(error).length === 0) {
       dispatch(createCollection(input));
-      alert("Categoría creado con éxito");
+      alert("Colección creada con éxito");
       history.push("/home");
       setInput({
         name: "",
@@ -39,11 +39,12 @@ export default function CreateCollection() {
 
   useEffect(() => {
     dispatch(getCollection());
+    validateForm(input);
   }, []);
 
   return (
     <div>
-      <h1>Crear categoría</h1>
+      <h1>Crear colección</h1>
       <br></br>
       <div className='createCategory'>
         <form className='form-inputs' onSubmit={e => handleSubmit(e)}>
@@ -59,7 +60,7 @@ export default function CreateCollection() {
           <br></br>
           <br></br>
           <button type='submit' className='btn'>
-            Crear categoría
+            Crear Colección
           </button>
         </form>
       </div>

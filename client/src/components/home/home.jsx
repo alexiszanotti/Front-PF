@@ -10,9 +10,9 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { filterByParams, resetFilter } from "../../Redux/Actions/index";
-import { useDispatch, } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Typography } from "@mui/material";
-import {Button} from "@mui/material/";
+import { Button } from "@mui/material/";
 
 export default function Home() {
   const shoes = useSelector(state => state.productsFilter);
@@ -21,10 +21,8 @@ export default function Home() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(filterByParams(orden));
-    return () => {
-     
-    }
-  }, [dispatch, orden])
+    return () => {};
+  }, [dispatch, orden]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [shoesPorPaginaPorPagina] = useState(20);
@@ -35,20 +33,15 @@ export default function Home() {
     setCurrentPage(pageNumber);
   };
 
-
   function handleClick(e) {
-   dispatch(resetFilter());
+    dispatch(resetFilter());
   }
 
-
-  function handleChange (e){
-
+  function handleChange(e) {
     setCurrentPage(1);
-    setOrden({...orden,[e.target.name]: e.target.value});
+    setOrden({ ...orden, [e.target.name]: e.target.value });
   }
- 
 
-  
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(shoes.length / shoesPorPaginaPorPagina); i++) {
@@ -84,8 +77,8 @@ export default function Home() {
                     sx={{ bgcolor: "white" }}
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
-                    label='MODELO'
-                    name="collection"
+                    label='COLECCION'
+                    name='collection'
                     onChange={handleChange}
                   >
                     <MenuItem value='All'>TODOS</MenuItem>
@@ -105,7 +98,7 @@ export default function Home() {
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
                     label='GENERO'
-                    name="gender"
+                    name='gender'
                     onChange={handleChange}
                   >
                     <MenuItem value={"All"}>TODOS</MenuItem>
@@ -125,7 +118,7 @@ export default function Home() {
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
                     label='PRECIO'
-                    name="price"
+                    name='price'
                     onChange={handleChange}
                   >
                     <MenuItem value={"ASC"}>MENOR A MAYOR</MenuItem>
@@ -145,7 +138,7 @@ export default function Home() {
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
                     label='DESCUENTO'
-                    name="discount"
+                    name='discount'
                     onChange={handleChange}
                   >
                     <MenuItem value='All'>TODOS</MenuItem>
@@ -153,7 +146,7 @@ export default function Home() {
                     <MenuItem value={"40.00"}>40%</MenuItem>
                     <MenuItem value={"50.00"}>50%</MenuItem>
                   </Select>
-                  <Button onClick ={handleClick}>Resetear</Button>
+                  <Button onClick={handleClick}>Resetear</Button>
                 </FormControl>
               </Box>
             </Grid>
@@ -170,8 +163,7 @@ export default function Home() {
         />
       </div>
       <div className='contenedorHome'>
-        {currentShoes.length ? 
-        
+        {currentShoes.length ? (
           currentShoes.map(products => {
             return (
               <Products
@@ -182,9 +174,10 @@ export default function Home() {
                 id={products.id}
               />
             );
-          }):
-          <Typography>No hay productos con esos parametros</Typography> 
-        }
+          })
+        ) : (
+          <Typography>No hay productos con esos parametros</Typography>
+        )}
       </div>
     </div>
   );
