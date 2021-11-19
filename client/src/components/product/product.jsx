@@ -44,8 +44,8 @@ export default function Products(props) {
   };
 
   return (
-    <div>
-      <Card className="contenedorProduct" sx={{ maxWidth: 345 }}>
+    <div className="productContainer">
+      <Card className="contenedorProduct" sx={{ maxWidth: 335 }}>
         <CardHeader title={props.title} subheader={props.price} />
         <Link to={`/detail/${props.id}`}>
           <CardMedia

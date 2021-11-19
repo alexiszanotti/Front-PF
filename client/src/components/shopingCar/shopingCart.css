@@ -4,6 +4,7 @@
     width: 600px;
     height: 300px;
     margin-right: 10px;
+    text-align:center;
 }
 .contenedorCart{
     margin-bottom: 20px;
@@ -21,7 +22,12 @@
     padding-right:20px;
     border-style: solid;
     border-radius:50px;
-    background-color:#bf97ff;
+    background-color:#ffffff;
+}
+
+.botonCart1:hover{
+    background-color:black;
+    color:white;
 }
 .tucarrito{
     font-size: 40px;
@@ -57,4 +63,15 @@
 .metodoTarjeta{
     margin-top: 100px;
     
+}
+.carritoVacio{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction: column;
+}
+.botonCart{
+    display: flex;
+    justify-content:center;
+    align-items: center;
 }

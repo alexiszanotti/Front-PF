@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getAllProducts } from "../../Redux/Actions";
 import { Carousel } from "react-carousel-minimal";
+import "./landing.css"
 export default function Landing() {
   const dispatch = useDispatch();
 
@@ -67,8 +68,8 @@ export default function Landing() {
     fontWeight: "bold",
   };
   return (
-    <div className='App'>
-      <h1 className='containerTitle'>Bienvenidos a Adidas Oficial</h1>
+    <div className='containerLanding'>
+      <h1 >Bienvenidos a Adidas Oficial</h1>
 
       <Link to='/home'>
         <button className='btn'>Entrar al sitio</button>

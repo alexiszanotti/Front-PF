@@ -17,6 +17,7 @@ import AdminRoute from "./components/routes/adminRoute/adminRoute";
 import EditProduct from "./components/admin/editProduct/editProduct";
 import CreateCollection from "./components/admin/createCategory/createCategory"
 import Perfil from "./components/perfil/perfil";
+import DefaultError from "./components/error/error"
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts, postCreateUser, getAllUsers, postUserLogin, userLogout } from "./Redux/Actions/index";
@@ -116,7 +117,7 @@ function App() {
           <Route path='/favorites' component={Favorite} />
           <Route path='/pago' component={GoShopping} />
           <Route path='/perfil' component={Perfil} />
-          <Route path="*" component={Landing}/>
+          <Route path="*" component={DefaultError}/>
           
 
         </Switch>

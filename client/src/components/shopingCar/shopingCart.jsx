@@ -23,7 +23,7 @@ export default function ShopingCart() {
     <div>
       <div>
         {cart.length === 0 ? (
-          <div>
+          <div className="carritoVacio">
             <h1>EL CARRITO ESTÁ VACÍO</h1>
             <p>
               Una vez que añadas algo a tu carrito, aparecerá acá. ¿Listo para
@@ -77,6 +77,7 @@ export default function ShopingCart() {
           </div>
         )}
       </div>
+      <div className="botonCart">
       {cart === undefined || cart.length === 0 ? (
         <Link to="/home">
           <Button>Empezar</Button>
@@ -97,6 +98,7 @@ export default function ShopingCart() {
           );
         })
       )}
+      </div>
     </div>
   );
 }

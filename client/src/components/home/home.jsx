@@ -21,7 +21,7 @@ export default function Home() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(filterByParams(orden));
-    return () => {};
+    return () => { };
   }, [dispatch, orden]);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -146,22 +146,13 @@ export default function Home() {
                     <MenuItem value={"40.00"}>40%</MenuItem>
                     <MenuItem value={"50.00"}>50%</MenuItem>
                   </Select>
-                  <Button onClick={handleClick}>Resetear</Button>
                 </FormControl>
               </Box>
             </Grid>
           </Grid>
         </Box>
       </div>
-      <div>
-        <Paginado
-          shoesPorPaginaPorPagina={shoesPorPaginaPorPagina}
-          shoes={shoes.length}
-          paginado={paginado}
-          previousPage={previousPage}
-          nextPage={nextPage}
-        />
-      </div>
+      <button className="botonCart1" onClick={handleClick}>Borrar filtros</button>
       <div className='contenedorHome'>
         {currentShoes.length ? (
           currentShoes.map(products => {
@@ -178,6 +169,15 @@ export default function Home() {
         ) : (
           <Typography>No hay productos con esos parametros</Typography>
         )}
+      </div>
+      <div className="paginado">
+        <Paginado
+          shoesPorPaginaPorPagina={shoesPorPaginaPorPagina}
+          shoes={shoes.length}
+          paginado={paginado}
+          previousPage={previousPage}
+          nextPage={nextPage}
+        />
       </div>
     </div>
   );

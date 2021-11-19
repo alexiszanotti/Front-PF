@@ -2,8 +2,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    
-
+}
+.favoriteContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 
