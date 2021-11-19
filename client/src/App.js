@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./components/navBar/navBar";
 import Home from "./components/home/home";
 import Landing from "./components/landing/landing";
@@ -23,7 +23,9 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 function App() {
 
-  const { user, isAuthenticated } = useAuth0()
+  const { user, isAuthenticated, logout } = useAuth0()
+
+  const [estadoLogeado, setEstadoLogeado] = useState(null)
 
   const dispatch = useDispatch();
   
@@ -59,11 +61,25 @@ function App() {
 
         dispatch(postUserLogin({ email }))
 
+        setEstadoLogeado(true)
+
       }
 
     }
   
   } 
+
+  if(Object.keys(logIn).length === 0) {
+
+    if(estadoLogeado) {
+
+      setEstadoLogeado(false)
+
+      logout({ returnTo: window.location.origin})
+
+    }
+
+  }
 
   if (logIn.type === "Admin"){
     return(
