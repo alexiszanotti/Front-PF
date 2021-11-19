@@ -39,15 +39,14 @@ export default function NavBar() {
   //   given_name: "nombre"
   //   name: "nombre completo"
   // }
-
+  const usr = useSelector(state => state.userLogin);
   let logIn = useSelector(state => state.userLogin)
 
   let avatar = []
 
-  if(user !== undefined) {
+  if(user !== undefined || user !== null) {
 
-    avatar = user.name?.slice(0,1).toUpperCase();
-
+    avatar = usr.email?.slice(0,1).toUpperCase();
   }
 
   const dispatch = useDispatch();

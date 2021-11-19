@@ -6,13 +6,19 @@ import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Box } from "@mui/system";
-export default function ShopingCart(props) {
+import { emptyCart } from "../../Redux/Actions/index"
+import { useDispatch } from "react-redux";
+export default function ShopingCart() {
+  const dispatch = useDispatch();
   const cart = useSelector((state) => state.shoppingCart);
 
   let total = 0;
   let suma = cart.map((el) => Number(el.salePrice));
   for (let i of suma) total += i;
 
+  const vaciar = () => {
+    dispatch(emptyCart());
+  }
   return (
     <div>
       <div>
@@ -39,6 +45,7 @@ export default function ShopingCart(props) {
                 Tené en cuenta que los productos añadidos al carrito no se
                 reservan. Finalizá tu compra ahora para hacerlos tuyos.
               </p>
+              <button onClick={vaciar}>BORRAR TODO</button>
             </div>
             <div className="contenedorTotal">
               <h1>RESUMEN DEL PEDIDO </h1>
