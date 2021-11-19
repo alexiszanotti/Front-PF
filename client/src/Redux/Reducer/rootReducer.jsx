@@ -83,7 +83,7 @@ export default function rootReducer(state = initialState, action) {
     case SEARCH_PRODUCTS:
       return {
         ...state,
-        products: action.payload,
+        productsFilter: action.payload,
       };
     case DETAIL_PRODUCTS:
       return {
