@@ -56,8 +56,6 @@ export default function NavBar() {
 
     dispatch(userLogout())
 
-    logout({ returnTo: window.location.origin})
-
   }
 
 
