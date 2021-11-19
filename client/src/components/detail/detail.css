@@ -12,8 +12,8 @@
 .detailContainer{
    display: flex;
    flex-direction: column;
-   /* align-items: center; */
-   background-color: rgba(233, 233, 223, 0.644);
+   align-items: center;
+   background-color: rgba(236, 236, 236, 0.527);
    color: rgb(0, 0, 0);
    width:80%;
    padding: 10px;
@@ -37,6 +37,7 @@
    border-radius: 8px;
 }
 
+
 .detailS{
     size: 20px;
 }
@@ -49,6 +50,10 @@
 .detailUl{
     text-decoration: none;
     list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
 }
 
 .detailSummary{
