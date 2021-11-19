@@ -6,3 +6,22 @@
 .boxCategories{
     margin-top: 15px;
 }
+.btnFiltros{
+    background-color: rgba(8, 38, 46, 0.644);
+    color: rgb(236, 230, 230);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    border: none;
+    float: right;
+}
+
+.btnFiltros:hover{
+    background-color: white; 
+    color: rgba(74, 59, 207, 0.644);
+}
+/* .paginado{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */

@@ -1,15 +1,17 @@
 .paginado {
   display: flex;
   align-items: center;
+  justify-content: center;
   background-color: #ffffff;
-  width: 98%;
+  width: 100%;
 }
 
 .pag {
-  margin-right: 27px;
+  margin-right: 20px;
   margin-left: 20px;
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
+  /* flex-direction: column; */
 }
 .pag:hover {
   cursor: pointer;

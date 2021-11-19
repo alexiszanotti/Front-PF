@@ -1,4 +1,13 @@
 .contenedorProduct{
     margin-top: 50px;
-    margin-left: 10px;
+    margin-left: 15px;
+    
+}
+.productContainer{
+    display: flex;
+    justify-content: center;
+
+
+    /* flex-direction: column;
+    align-items: center; */
 }
