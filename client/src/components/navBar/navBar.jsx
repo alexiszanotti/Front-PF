@@ -26,24 +26,41 @@ import SearchBar from "../searchBar/searchBar";
 import { useSelector, useDispatch } from "react-redux";
 import { userLogout } from "../../Redux/Actions";
 
+import { useAuth0 } from '@auth0/auth0-react';
+
 
 export default function NavBar() {
-  // ----- esto pertenece al local storage donde guardamos el usuario --------
+
+  const { logout, user, isAuthenticated, loginWithRedirect } = useAuth0();
+
+  // user: {
+  //   email: "correo"
+  //   family_name: "apellido"
+  //   given_name: "nombre"
+  //   name: "nombre completo"
+  // }
+
+  let logIn = useSelector(state => state.userLogin)
+
+  let avatar = []
+
+  if(user !== undefined) {
+
+    avatar = user.name?.slice(0,1).toUpperCase();
+
+  }
+
   const dispatch = useDispatch();
-
-
-  const logIn = useSelector(state => state.userLogin);
-
-  const avatar = logIn.email?.slice(0,1).toUpperCase();
 
 
   const logOut = () => {
 
     dispatch(userLogout())
 
+    logout({ returnTo: window.location.origin})
+
   }
 
-  // ----- esto pertenece al local storage donde guardamos el usuario --------
 
   const aux = useSelector(state => state.shoppingCart);
   const fav = useSelector(state => state.favorite);
@@ -163,7 +180,7 @@ export default function NavBar() {
   };
 
   const renderAvatar = () => {
-    if (logIn.type === "User") {
+    if (isAuthenticated || logIn.type === 'User') {
       return (
         <React.Fragment>
           <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
@@ -232,6 +249,7 @@ export default function NavBar() {
               </ListItemIcon>
               Logout
             </MenuItem>
+
           </Menu>
         </React.Fragment>
       );
@@ -246,9 +264,7 @@ export default function NavBar() {
             aria-haspopup='true'
             color='inherit'
           >
-            <Link to='/login'>
-              <AccountCircle color='action' />
-            </Link>
+            <AccountCircle color='action' onClick={() => loginWithRedirect()} />
           </IconButton>
         </>
       );

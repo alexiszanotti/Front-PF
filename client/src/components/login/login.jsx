@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { postUserLogin } from "../../Redux/Actions/index";
+import { postUserLogin, getAllUsers } from "../../Redux/Actions/index";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
@@ -16,9 +16,13 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import "./login.css";
-import { getAllUsers } from "../../Redux/Actions/index";
+
+import { useAuth0 } from '@auth0/auth0-react';
 
 export default function Login() {
+
+  const { loginWithRedirect } = useAuth0();
+
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -136,7 +140,7 @@ export default function Login() {
       </div>
 
       <div className='buttomLogin'>
-        <Button variant='outlined' size='large'>
+        <Button variant='outlined' size='large' onClick={() => loginWithRedirect()} >
           Google
         </Button>
 
