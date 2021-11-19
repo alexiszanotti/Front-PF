@@ -2,35 +2,21 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./createProduct.css";
 import { createProduct, getCollection } from "../../../Redux/Actions/index";
-import { Link, useHistory } from "react-router-dom";
+
 import zapa from "../../../images/ImgaProduct.png";
 
 const validateForm = input => {
   let error = {};
   if (!input.productName) error.productName = "El nombre del producto es requerido";
   else if (!input.listingPrice) error.listingPrice = "El precio de lista es requerido";
-  else if (!input.salePrice) error.salePrice = "El precio de venta es requerido";
-  else if (!input.discount) error.discount = "El descuento es requerido";
-  // else if (input.images.length < 1) error.images = "Al menos una imagen es requerida";
+  if (isNaN(input.discount) || input.discount < 0 || input.discount > 100) {
+    error.discount = "Tiene que ser un número entre 0 y 100";
+}  // else if (input.images.length < 1) error.images = "Al menos una imagen es requerida";
   else if (!input.description) error.description = "La descripción es requerida";
 
   return error;
 };
 export default function CreateProduct() {
-
-  const history = useHistory()
-
-  const localStorage = window.localStorage;
-
-  const userLogin = JSON.parse(localStorage.getItem('user'));
-  console.log(userLogin, 'createProducto')
-  if(userLogin.type !== 'Admin') {
-    console.log('no es admin')
-    History.push("/home");
-    
-    window.location.replace('');
-    
-  }
 
   const dispatch = useDispatch();
   const collections = useSelector(state => state.collections);
@@ -38,12 +24,13 @@ export default function CreateProduct() {
   const [input, setInput] = useState({
     productName: "",
     listingPrice: "",
-    salePrice: "",
     discount: "",
+    salePrice: "",
     images: "",
     collection: "",
     description: "",
   });
+  console.log(input, "asdasd")
 
   const handleInputChange = e => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -55,7 +42,7 @@ export default function CreateProduct() {
     if (Object.keys(error).length === 0) {
       dispatch(createProduct(input));
       alert("Producto creado con éxito");
-      history.push("/home");
+      
     } else {
       alert("Por favor, complete todos los campos requeridos");
     }
@@ -78,7 +65,10 @@ export default function CreateProduct() {
   };
   useEffect(() => {
     dispatch(getCollection());
-  }, []);
+  }, [dispatch]);
+  
+  // const porcentage = (((input.listingPrice * input.discount) / 100) - input.listingPrice) * (-1);
+  // porcentage && setInput(input.salePrice = porcentage);
 
   return (
     <div>
@@ -103,20 +93,20 @@ export default function CreateProduct() {
           {error.listingPrice && <p className='error'>{error.listingPrice} </p>}
           <input
             onChange={handleInputChange}
-            value={input.salePrice}
-            type='number'
-            name='salePrice'
-            placeholder='Precio de venta'
-          />
-          {error.salePrice && <p className='error'>{error.salePrice} </p>}
-          <input
-            onChange={handleInputChange}
             value={input.discount}
             type='number  '
             name='discount'
             placeholder='Descuento'
           />
           {error.discount && <p className='error'>{error.discount} </p>}
+          <input
+            onChange={handleInputChange}
+            value={input.salePrice}
+            type='number  '
+            name='salePrice'
+            placeholder='Precio de venta'
+          />
+          <br></br>
           <textarea
             onChange={handleInputChange}
             value={input.description}
@@ -130,22 +120,25 @@ export default function CreateProduct() {
           {/* {error.images && <p className='error'>{error.images} </p>} */}
           <div className='container-img'>
             <img
-              src={input.images[0] ? input.images[0] : zapa}
+              src={input?.images[0] ? input.images[0] : zapa}
               border='1px solid gray'
               width='100px'
               height='100px'
+              alt="k"
             />
             <img
               src={input.images[1] ? input.images[1] : zapa}
               border='1px solid gray'
               width='100px'
               height='100px'
+              alt="k"
             />
             <img
               src={input.images[2] ? input.images[2] : zapa}
               border='1px solid gray'
               width='100px'
               height='100px'
+              alt="k"
             />
           </div>
           <select value={input.collection} onChange={e => handleSelectChange(e)}>
@@ -161,7 +154,8 @@ export default function CreateProduct() {
               );
             })}
           </select>
-          <button className='crear-categoria'>Crear categoria</button>
+          <br></br>
+          <br></br>
           <button type='submit'>Crear Producto</button>
         </form>
       </div>

@@ -1,45 +1,26 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import AppBar from '@mui/material/AppBar';
-import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import {userLogout} from '../../../Redux/Actions/index';
 import { useHistory } from 'react-router-dom';
-
 const drawerWidth = 240;
-
 export default function NavBarAdmin() {
-  const History = useHistory()
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-  const localStorage = window.localStorage;
 
-  const userLogin = JSON.parse(localStorage.getItem('user'));
-  // console.log(userLogin, 'navAdmin')
-  // if(userLogin.type !== 'Admin') {
-  //   console.log('no es admin')
-  //   History.push("/home");
-    
-  //   window.location.replace('');
-    
-  // }
 
   const logOut = () => {
 
-    localStorage.setItem("user", JSON.stringify({
-
-      id: null,
-      type: 'Other',
-      userName: '',
-
-    }));
-    History.push("/")
-    window.location.replace('');
+    dispatch(userLogout())
+    history.push("/")
 
   }
   return (
@@ -64,13 +45,18 @@ export default function NavBarAdmin() {
                     </Link>
               </ListItem>
               <ListItem button >
+                    <Link to="/updateProduct">
+                    <Button>MODIFICAR PRODUCTOS</Button> 
+                    </Link>
+              </ListItem>
+              <ListItem button >
                   <Link to="/createProduct">
                     <Button>CREAR PRODUCTOS</Button> 
                     </Link>
               </ListItem>
               <ListItem button >
-                    <Link to="/updateProduct">
-                    <Button>EDITAR PRODUCTOS</Button> 
+                  <Link to="/createCollection">
+                    <Button>CREAR CATEGORIAS</Button> 
                     </Link>
               </ListItem>
               <ListItem button >
