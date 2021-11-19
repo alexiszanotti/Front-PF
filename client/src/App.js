@@ -16,10 +16,12 @@ import EstadisticasA from "./components/admin/estadisticasA/estadisticasA";
 import AdminRoute from "./components/routes/adminRoute/adminRoute";
 import EditProduct from "./components/admin/editProduct/editProduct";
 import CreateCollection from "./components/admin/createCategory/createCategory"
+import Perfil from "./components/perfil/perfil";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts, postCreateUser, getAllUsers, postUserLogin, userLogout } from "./Redux/Actions/index";
 import { useAuth0 } from '@auth0/auth0-react';
+
 
 function App() {
 
@@ -113,6 +115,7 @@ function App() {
           <Route path='/carrito/:id' component={ShopingCart} />
           <Route path='/favorites' component={Favorite} />
           <Route path='/pago' component={GoShopping} />
+          <Route path='/perfil' component={Perfil} />
           <Route path="*" component={Landing}/>
           
 

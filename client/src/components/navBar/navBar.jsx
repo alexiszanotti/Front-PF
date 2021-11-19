@@ -221,9 +221,11 @@ export default function NavBar() {
             transformOrigin={{ horizontal: "right", vertical: "top" }}
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           >
+            <Link to='/perfil'>
             <MenuItem>
               <Avatar /> Perfil
             </MenuItem>
+            </Link>
             <MenuItem>
               <Avatar /> Mi cuenta
             </MenuItem>
