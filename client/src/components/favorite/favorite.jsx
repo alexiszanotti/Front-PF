@@ -2,10 +2,12 @@ import React from "react";
 import { useSelector } from 'react-redux';
 import CardFavorite from "../cardFavorite/cardFavorite";
 import { Link } from "react-router-dom";
-
+import {emptyFavorites} from "../../Redux/Actions/index"
+import { useDispatch } from "react-redux";
 import "./favorite.css"
 
 export default function Favorite() {
+    const dispatch = useDispatch(); 
     const favoritos = useSelector((state) => state.favorite);
        
     var hash = {};
@@ -15,24 +17,29 @@ export default function Favorite() {
       return exists;
     });
 
+    const handleEmptyFavorites = () => {
+        dispatch(emptyFavorites());
+    }
+
 
 
     return (
         <div>
             <h1>Mi lista de deseos</h1>
             <h2>{hola.length} {hola.length === 1 ? "Artículo" : "Artículos"}       </h2>
+            <button onClick={handleEmptyFavorites}>BORRAR TODOS FAVORITOS</button>
 
             <br></br>
             <br></br>
             <div className="termo">
             {
-                hola === undefined || hola.length === 0 ? <h1>nose</h1> :
+                hola === undefined || hola.length === 0 ? <h1>...</h1> :
                 hola.map((products) => {
                         return (
                             
                                 <CardFavorite
-                                    key={products.id}
                                     id={products.id}
+                                    key={products.id}
                                     title={products.productName}
                                     price={products.salePrice}
                                     brand={products.collection.name}

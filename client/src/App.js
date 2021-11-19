@@ -76,6 +76,7 @@ function App() {
           <Route path='/userUpdata' component={UpDataUsers} />
           <Route path='/updateProduct' component={EditProduct} />
           <Route path='/createCollection' component={CreateCollection} />
+          
         </Switch>
       </div>
     </BrowserRouter>
@@ -87,8 +88,8 @@ function App() {
     <BrowserRouter>
       <div className='App'>
         <Navbar />
-          {(logIn.type === 'Admin') ? <AdminRoute exact path="/" component={ EstadisticasA }/> : <Route exact path='/' component={Landing} />}
         <Switch>
+          <Route exact path='/' component={Landing} />
           <Route path='/home' component={Home} />
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
@@ -96,6 +97,8 @@ function App() {
           <Route path='/carrito/:id' component={ShopingCart} />
           <Route path='/favorites' component={Favorite} />
           <Route path='/pago' component={GoShopping} />
+          <Route path="*" component={Landing}/>
+          
 
         </Switch>
       </div>
