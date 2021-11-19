@@ -1,0 +1,22 @@
+.contenedorPerfil{
+    background-color: white;
+    margin-left: 500px;
+    height: 550px;
+    width: 800px;
+}
+.detallecontenedor{
+    text-align: left;
+    margin-left: 50px;
+}
+.contenedorName{
+    background-color: white;
+    height: 200px;
+}
+
+.nombrePerfil{
+    text-align: center;
+    font-size: 60px;
+}
+.contenedorBotones{
+    margin-top: 120px;
+}
