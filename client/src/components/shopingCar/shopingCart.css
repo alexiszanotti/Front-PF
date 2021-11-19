@@ -5,11 +5,12 @@
     height: 300px;
     margin-right: 10px;
     text-align:center;
+    
 }
 .contenedorCart{
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     margin-left: 40px;
-
+    
 }
 .botonCart1{
     position: fixed;
@@ -71,7 +72,12 @@
     flex-direction: column;
 }
 .botonCart{
+    /* display: flex; */
+    /* justify-content:center; */
+    /* align-items: center; */
+}
+.cardContainer{
     display: flex;
-    justify-content:center;
-    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
