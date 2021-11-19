@@ -1,0 +1,32 @@
+.shoppingGeneral{
+    width:90%;
+    margin: auto;
+}
+.boxInvitados{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    float: left;
+    margin-left: 100px;
+    margin-top: 50px;
+}
+
+.informacionContacto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    float: right;
+    margin-right: 100px;
+    margin-top: 50px;
+}
+
+.informacionContacto1{
+    margin-bottom: 10px;
+
+}
+
+.continuarPago{
+    position: relative;
+    top: 600px;
+    right:560px;
+}
