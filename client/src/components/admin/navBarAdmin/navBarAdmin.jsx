@@ -10,13 +10,15 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { userLogout } from "../../../Redux/Actions/index";
 import { useHistory } from "react-router-dom";
+import { useAuth0 } from '@auth0/auth0-react';
 const drawerWidth = 240;
 export default function NavBarAdmin() {
   const history = useHistory();
   const dispatch = useDispatch();
-
+  const { logout } = useAuth0();
   const logOut = () => {
     dispatch(userLogout());
+    logout({ returnTo: window.location.origin})
     history.push("/");
   };
   return (

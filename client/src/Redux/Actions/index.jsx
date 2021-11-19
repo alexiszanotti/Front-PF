@@ -18,7 +18,8 @@ import {
   GET_USER_LOGIN,
   FILTER_BY_PARAMS,
   RESET_FILTER,
-  USER_LOGOUT
+  USER_LOGOUT,
+  EMPTY_CART
 } from "./actionTypes";
 
 
@@ -244,12 +245,15 @@ export const userLogout = () => {
 };
 
 export const createCollection = payload => {
-  try {
     return async () => {
       let res = await axios.post(`http://localhost:3001/categories`, payload);
       return res;
     };
-  } catch (error) {
-    console.error(error);
-  }
 };
+
+export const emptyCart = () => {
+  return {
+    type: EMPTY_CART,
+    payload: []
+  };
+}
