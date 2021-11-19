@@ -19,7 +19,8 @@ import {
   FILTER_BY_PARAMS,
   RESET_FILTER,
   USER_LOGOUT,
-  EMPTY_CART
+  EMPTY_CART,
+  EMPTY_FAVORITE
 } from "../Actions/actionTypes";
 
 const initialState = {
@@ -194,6 +195,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         shoppingCart: action.payload,
+      };
+    case EMPTY_FAVORITE:
+      return {
+        ...state,
+        favorite: action.payload,
       };
     default:
       return state;

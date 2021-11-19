@@ -2,13 +2,17 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import { useAuth0 } from '@auth0/auth0-react';
+import { Link, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { emptyCart } from "../../Redux/Actions";
 
 export default function GoShopping() {
+    const dispatch = useDispatch();
+    const history = useHistory();
     const usuario = useSelector((state) => state.userLogin);
     const usr = useSelector((state) => state.users);
 
@@ -16,6 +20,13 @@ export default function GoShopping() {
 
 
     const { loginWithRedirect } = useAuth0();
+
+    const vaciar = () => {
+        dispatch(emptyCart());
+        alert("😈")
+        history.push("/");
+        
+      }
 
     if (Object.keys(usuario).length === 0) {
         loginWithRedirect();
@@ -120,7 +131,7 @@ export default function GoShopping() {
                 noValidate
                 autoComplete="off"
             >
-                <Button variant="outlined" startIcon={<AttachMoneyIcon />}>
+                <Button variant="outlined" startIcon={<AttachMoneyIcon />} onClick={vaciar}>
                 Ir a pagar
                 </Button>
             </Box>

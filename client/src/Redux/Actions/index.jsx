@@ -19,7 +19,8 @@ import {
   FILTER_BY_PARAMS,
   RESET_FILTER,
   USER_LOGOUT,
-  EMPTY_CART
+  EMPTY_CART,
+  EMPTY_FAVORITE
 } from "./actionTypes";
 
 
@@ -254,6 +255,12 @@ export const createCollection = payload => {
 export const emptyCart = () => {
   return {
     type: EMPTY_CART,
+    payload: []
+  };
+}
+export const emptyFavorites = () => {
+  return {
+    type: EMPTY_FAVORITE,
     payload: []
   };
 }
