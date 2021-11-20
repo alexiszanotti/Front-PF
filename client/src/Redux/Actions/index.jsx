@@ -20,15 +20,13 @@ import {
   RESET_FILTER,
   USER_LOGOUT,
   EMPTY_CART,
-  EMPTY_FAVORITE
+  EMPTY_FAVORITE,
 } from "./actionTypes";
-
-
 
 export function getAllProducts() {
   return async function (dispatch) {
     try {
-      let res = await axios("http://localhost:3001/products");
+      let res = await axios("products");
 
       return dispatch({ type: GET_ALL_PRODUCTS, payload: res.data });
     } catch (error) {
@@ -54,9 +52,7 @@ export function filterDiscount(payload) {
 export function filterModel(collection) {
   return async function (dispatch) {
     try {
-      let res = await axios(
-        `http://localhost:3001/categories/collections/?collection=${collection}`
-      );
+      let res = await axios(`categories/collections/?collection=${collection}`);
 
       return dispatch({ type: FILTER_MODEL, payload: res.data });
     } catch (error) {
@@ -68,7 +64,7 @@ export function filterModel(collection) {
 export function filterSexo(gender) {
   return async function (dispatch) {
     try {
-      let res = await axios(`http://localhost:3001/categories/gender/?gender=${gender}`);
+      let res = await axios(`categories/gender/?gender=${gender}`);
 
       return dispatch({ type: FILTER_SEXO, payload: res.data });
     } catch (error) {
@@ -78,31 +74,31 @@ export function filterSexo(gender) {
 }
 
 export function searchProducts(name) {
-    console.log(name)
-    return async function (dispatch) {
-      let res = await axios(`http://localhost:3001/products/?name=${name}`);
-      return dispatch({ type: SEARCH_PRODUCTS, payload: res.data });
-    };
+  console.log(name);
+  return async function (dispatch) {
+    let res = await axios(`products/?name=${name}`);
+    return dispatch({ type: SEARCH_PRODUCTS, payload: res.data });
+  };
 }
 
 export const detailProducts = id => {
-    return async dispatch => {
-      let res = await axios(`http://localhost:3001/products/${id}`);
-      return dispatch({
-        type: DETAIL_PRODUCTS,
-        payload: res.data,
-      });
-    };
+  return async dispatch => {
+    let res = await axios(`products/${id}`);
+    return dispatch({
+      type: DETAIL_PRODUCTS,
+      payload: res.data,
+    });
+  };
 };
 
 export const shoppingCart = id => {
-    return async dispatch => {
-      let res = await axios(`http://localhost:3001/products/${id}`);
-      return dispatch({
-        type: SHOPPING_CART,
-        payload: res.data,
-      });
-    };
+  return async dispatch => {
+    let res = await axios(`products/${id}`);
+    return dispatch({
+      type: SHOPPING_CART,
+      payload: res.data,
+    });
+  };
 };
 
 export const removeCard = id => {
@@ -113,13 +109,13 @@ export const removeCard = id => {
 };
 
 export const favorite = id => {
-    return async dispatch => {
-      let res = await axios(`http://localhost:3001/products/${id}`);
-      return dispatch({
-        type: FAVORITE,
-        payload: res.data,
-      });
-    };
+  return async dispatch => {
+    let res = await axios(`products/${id}`);
+    return dispatch({
+      type: FAVORITE,
+      payload: res.data,
+    });
+  };
 };
 
 export const removeFavorite = id => {
@@ -130,137 +126,128 @@ export const removeFavorite = id => {
 };
 
 export const postCreateUser = payload => {
-    return async () => {
-      let res = await axios.post(`http://localhost:3001/users/`, payload);
-      return res.data;
-    };
-
+  return async () => {
+    let res = await axios.post(`users/`, payload);
+    return res.data;
+  };
 };
 
 export const createProduct = payload => {
-    return async () => {
-      let res = await axios.post(`http://localhost:3001/products/`, payload);
-      return res;
-    };
-
+  return async () => {
+    let res = await axios.post(`products/`, payload);
+    return res;
+  };
 };
 
 export const getCollection = payload => {
-    return async dispatch => {
-      let res = await axios(`http://localhost:3001/categories`);
-      return dispatch({
-        type: GET_COLLECTIONS,
-        payload: res.data,
-      });
-    };
-
+  return async dispatch => {
+    let res = await axios(`categories`);
+    return dispatch({
+      type: GET_COLLECTIONS,
+      payload: res.data,
+    });
+  };
 };
 
 export const postReview = payload => {
-    return async dispatch => {
-      let res = await axios.post(`http://localhost:3001/reviews`, payload);
-      return dispatch({ type: POST_REVIEW, payload: res.data });
-    };
-
+  return async dispatch => {
+    let res = await axios.post(`reviews`, payload);
+    return dispatch({ type: POST_REVIEW, payload: res.data });
+  };
 };
 
 export const getReview = id => {
-    return async dispatch => {
-      let res = await axios(`http://localhost:3001/reviews?id=${id}`);
-      return dispatch({
-        type: GET_REVIEW,
-        payload: res.data,
-      });
-    };
-
+  return async dispatch => {
+    let res = await axios(`reviews?id=${id}`);
+    return dispatch({
+      type: GET_REVIEW,
+      payload: res.data,
+    });
+  };
 };
 export const getAllUsers = payload => {
-    return async dispatch => {
-      let res = await axios(`http://localhost:3001/users`);
-      return dispatch({
-        type: GET_ALL_USERS,
+  return async dispatch => {
+    let res = await axios(`users`);
+    return dispatch({
+      type: GET_ALL_USERS,
 
-        payload: res.data,
-      });
-    };
-
+      payload: res.data,
+    });
+  };
 };
 export const modifyUser = payload => {
   console.log(payload);
-    return async () => {
-      let res = await axios.patch(`http://localhost:3001/users/`, payload);
-      return res.data;
-    };
-
+  return async () => {
+    let res = await axios.patch(`users/`, payload);
+    return res.data;
+  };
 };
 
 export const postUserLogin = payload => {
- 
-    return async dispatch => {
-      return await axios.post(`http://localhost:3001/users/loginUser`, payload).then(user =>
+  return async dispatch => {
+    return await axios
+      .post(`users/loginUser`, payload)
+      .then(user =>
         dispatch({
           type: GET_USER_LOGIN,
           payload: user.data,
         })
-      ).catch(error => {
-
-        
+      )
+      .catch(error => {
         alert("Usuario o contraseña incorrectos");
         return dispatch({
           type: GET_USER_LOGIN,
-          payload: {}},
-        )});
-    };
-
+          payload: {},
+        });
+      });
+  };
 };
 
 export const filterByParams = payload => {
-  return dispatch => 
-  dispatch({
-  type: FILTER_BY_PARAMS,
-  payload: payload
-
-  });
+  return dispatch =>
+    dispatch({
+      type: FILTER_BY_PARAMS,
+      payload: payload,
+    });
 };
 export const resetFilter = () => {
-  return dispatch => 
-  dispatch({
-  type: RESET_FILTER,
-  });
-}
+  return dispatch =>
+    dispatch({
+      type: RESET_FILTER,
+    });
+};
 
 export const modifyProduct = payload => {
   console.log(payload, "asdasd");
-    return async () => {
-      let res = await axios.patch(`http://localhost:3001/products`, payload);
-      return res;
-    };
-
+  return async () => {
+    let res = await axios.patch(`products`, payload);
+    return res;
+  };
 };
 
 export const userLogout = () => {
   return {
     type: USER_LOGOUT,
-    payload: {}
+    payload: {},
   };
 };
 
 export const createCollection = payload => {
-    return async () => {
-      let res = await axios.post(`http://localhost:3001/categories`, payload);
-      return res;
-    };
+  return async () => {
+    let res = await axios.post(`categories`, payload);
+    return res;
+  };
 };
 
 export const emptyCart = () => {
   return {
     type: EMPTY_CART,
-    payload: []
+    payload: [],
   };
-}
+};
 export const emptyFavorites = () => {
   return {
     type: EMPTY_FAVORITE,
-    payload: []
+    payload: [],
   };
-}
+};
