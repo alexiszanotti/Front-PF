@@ -22,12 +22,7 @@ export default function GoShopping() {
 
     const { loginWithRedirect } = useAuth0();
 
-    const vaciar = () => {
-        dispatch(emptyCart());
-        alert("😈")
-        history.push("/");
 
-    }
 
     if (Object.keys(usuario).length === 0) {
         loginWithRedirect();
@@ -126,8 +121,10 @@ export default function GoShopping() {
                         noValidate
                         autoComplete="off"
                     >
-                        <Button variant="outlined" startIcon={<AttachMoneyIcon />} onClick={vaciar}>
+                        <Button variant="outlined" startIcon={<AttachMoneyIcon />}>
+                            <Link to="/tarjeta">
                             Ir a pagar
+                            </Link>
                         </Button>
                     </Box>
                 </div>
