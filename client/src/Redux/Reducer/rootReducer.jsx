@@ -20,7 +20,8 @@ import {
   RESET_FILTER,
   USER_LOGOUT,
   EMPTY_CART,
-  EMPTY_FAVORITE
+  EMPTY_FAVORITE,
+  DATA_BASE_FAVORITOS
 } from "../Actions/actionTypes";
 
 const initialState = {
@@ -39,6 +40,7 @@ const initialState = {
     price: "default",
     discount: "All",
   },
+  favoriteAlmacen: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -201,6 +203,12 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         favorite: action.payload,
       };
+    case DATA_BASE_FAVORITOS:
+      return {
+        ...state,
+        favoriteAlmacen: action.payload,
+      };
+
     default:
       return state;
   }

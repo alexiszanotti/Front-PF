@@ -21,6 +21,7 @@ import {
   USER_LOGOUT,
   EMPTY_CART,
   EMPTY_FAVORITE,
+  DATA_BASE_FAVORITOS
 } from "./actionTypes";
 
 export function getAllProducts() {
@@ -249,5 +250,12 @@ export const emptyFavorites = () => {
   return {
     type: EMPTY_FAVORITE,
     payload: [],
+  };
+};
+
+export const addFavorites = (payload, id) => {
+  return {
+    type: DATA_BASE_FAVORITOS,
+    payload: payload, id
   };
 };

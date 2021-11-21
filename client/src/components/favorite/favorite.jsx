@@ -2,14 +2,16 @@ import React from "react";
 import { useSelector } from 'react-redux';
 import CardFavorite from "../cardFavorite/cardFavorite";
 import { Link } from "react-router-dom";
-import {emptyFavorites} from "../../Redux/Actions/index"
+import {emptyFavorites, addFavorites} from "../../Redux/Actions/index"
 import { useDispatch } from "react-redux";
 import "./favorite.css"
 
 export default function Favorite() {
     const dispatch = useDispatch(); 
     const favoritos = useSelector((state) => state.favorite);
-       
+    const userLogin = useSelector((state) => state.userLogin);
+    
+
     var hash = {};
      let hola = favoritos.filter(function(current) {
       var exists = !hash[current.id];
@@ -21,8 +23,15 @@ export default function Favorite() {
         dispatch(emptyFavorites());
     }
 
+    let idUser = userLogin.id;
+    let idPorducs = favoritos.map((el) => el.id)
+    console.log(idPorducs)
 
-
+    if (Object.keys(userLogin).length !== 0) {
+       if(Object.keys(favoritos).length !== 0){
+        dispatch(addFavorites(idPorducs))
+       }
+      }
     return (
         <div>
             <div className="favoriteContainer">
