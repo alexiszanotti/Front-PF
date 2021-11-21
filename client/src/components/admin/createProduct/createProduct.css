@@ -1,4 +1,4 @@
-.formulario-creacion {
+/* .formulario-creacion {
   border: 2px solid #ccc;
   width: 40%;
   height: 115vh;
@@ -6,6 +6,18 @@
   margin: 0 auto;
   margin-bottom: 15px;
   align-items: center;
+} */
+.createProduct{
+  display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border: 5px solid rgba(0, 0, 0, 0.589);
+  width: 50%;
+  height: 102vh;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  margin-top: 15px;
 }
 
 .form-inputs {

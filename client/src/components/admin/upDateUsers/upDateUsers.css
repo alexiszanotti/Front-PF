@@ -1,5 +1,17 @@
+.updateUserContainer{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border: 5px solid rgba(0, 0, 0, 0.589);
+  width: 50%;
+  height: 98vh;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
 .CreacionUsuario{
     display: flex;
     flex-direction: column;
-
+    margin-bottom: 15px;
 }
