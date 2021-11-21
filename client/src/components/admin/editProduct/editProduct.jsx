@@ -3,8 +3,9 @@ import { getAllProducts, modifyProduct, getCollection } from "../../../Redux/Act
 import { useDispatch, useSelector } from "react-redux";
 import Box from '@mui/material/Box';
 import zapa from "../../../images/ImgaProduct.png";
+import { Button } from "@mui/material/";
 import { Input } from "@mui/material";
-// import "./editProduct.css"
+import "./editProduct.css"
 
 const validateForm = input => {
     let error = {};
@@ -59,19 +60,19 @@ export default function EditProduct() {
         });
     }
 
-    const handleFiles = async e => {
-        const files = e.target.files;
-        const data = new FormData();
-        data.append("file", files[0]);
-        data.append("upload_preset", "Product_photo ");
-        const res = await fetch("https://api.cloudinary.com/v1_1/djtkn6o7r/image/upload", {
-            method: "POST",
-            body: data,
-        });
+    // const handleFiles = async e => {
+    //     const files = e.target.files;
+    //     const data = new FormData();
+    //     data.append("file", files[0]);
+    //     data.append("upload_preset", "Product_photo ");
+    //     const res = await fetch("https://api.cloudinary.com/v1_1/djtkn6o7r/image/upload", {
+    //         method: "POST",
+    //         body: data,
+    //     });
 
-        const file = await res.json();
-        setInput({ ...input, images: [...input.images, file.secure_url] });
-    };
+    //     const file = await res.json();
+    //     setInput({ ...input, images: [...input.images, file.secure_url] });
+    // };
 
     let aux = productsData.filter((el) => el.id === input.id)
     // const porcentage = (((input.listingPrice * input.discount) / 100) - input.listingPrice) * (-1)
@@ -125,38 +126,21 @@ export default function EditProduct() {
                         {/* <label>${porcentage}</label> */}
                         <br></br>
                         <label>Descripción:</label>
+                        <div className="descriptionEditProduct">
                         <textarea
                             onChange={handleInputChange}
                             value={input.description}
                             type='text'
                             name='description'
                             placeholder={aux?.map((el) => el.description)}
+                            rows="7" cols="70"
+                            
                         />
-                        <label>Imagen: </label>
-                        <input type='file' multiple='true' name='images' onChange={handleFiles} />
-                        <div className='container-img'>
-                            {/* <img
-                                src={input?.images[0] ? input.images[0] : zapa}
-                                border='1px solid gray'
-                                width='100px'
-                                height='100px'
-                                alt='l'
-                            />
-                            <img
-                                src={input.images[1] ? input.images[1] : zapa}
-                                border='1px solid gray'
-                                width='100px'
-                                height='100px'
-                                alt='l'
-                            />
-                            <img
-                                src={input.images[2] ? input.images[2] : zapa}
-                                border='1px solid gray'
-                                width='100px'
-                                height='100px'
-                                alt='l'
-                            /> */}
                         </div>
+                        {/* <label>Imagen: </label>
+                        <input type='file' multiple='true' name='images' onChange={handleFiles} />
+                        <div className='container-img'> */}
+                        {/* </div> */}
                         <br></br>
                         <select value={input.collection} onChange={e => handleSelectChangeCollection(e)}>
                             <option>Seleccione una categoria...</option>
@@ -171,7 +155,9 @@ export default function EditProduct() {
                             })}
                         </select>
                         <br></br>
-                        <button>GUARDAR CAMBIOS</button>
+                        <br></br>
+                        <br></br>
+                        <Button variant="contained">GUARDAR CAMBIOS</Button>
                     </form>
                 </Box>
             </div>

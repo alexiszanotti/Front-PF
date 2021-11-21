@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./createProduct.css";
 import { createProduct, getCollection } from "../../../Redux/Actions/index";
+import { Button } from "@mui/material/";
 
 import zapa from "../../../images/ImgaProduct.png";
 
@@ -71,7 +72,7 @@ export default function CreateProduct() {
   // porcentage && setInput(input.salePrice = porcentage);
 
   return (
-    <div>
+    <div className="createProduct">
       <h1>Crear producto</h1>
       <div className='formulario-creacion'>
         <form className='form-inputs' onSubmit={e => handleSubmit(e)}>
@@ -156,7 +157,7 @@ export default function CreateProduct() {
           </select>
           <br></br>
           <br></br>
-          <button type='submit'>Crear Producto</button>
+          <Button variant="contained">Crear Producto</Button>
         </form>
       </div>
     </div>

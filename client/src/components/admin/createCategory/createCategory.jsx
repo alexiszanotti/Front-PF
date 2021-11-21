@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { createCollection, getCollection } from "../../../Redux/Actions/index";
 import { useHistory } from "react-router-dom";
+import { Button } from "@mui/material/";
 import "./createCategory.css";
 
 const validateForm = input => {
@@ -43,10 +44,10 @@ export default function CreateCollection() {
   }, []);
 
   return (
-    <div>
-      <h1>Crear colección</h1>
+    <div className="createCategoryContainer"> 
+      <h1>Crear categoría</h1>
       <br></br>
-      <div className='createCategory'>
+      <div>
         <form className='form-inputs' onSubmit={e => handleSubmit(e)}>
           <input
             onChange={handleInputChange}
@@ -59,9 +60,9 @@ export default function CreateCollection() {
           <br></br>
           <br></br>
           <br></br>
-          <button type='submit' className='btn'>
-            Crear Colección
-          </button>
+          <Button variant="contained">
+            Crear categoría
+          </Button>
         </form>
       </div>
     </div>

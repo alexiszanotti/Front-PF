@@ -44,8 +44,18 @@ export default function Detail(props) {
     score: "",
     productId: props.match.params.id,
   });
-
-  
+  if (reseña.length) {
+    const puntuacionGeneral = reseña.map(el => el.score);
+    let cantidadReseñas = puntuacionGeneral.length
+    function promedio() {
+      let suma = puntuacionGeneral.reduce(function (valorAnterior, valorActual) {
+        return valorAnterior + valorActual;
+      });
+      let redondeo = suma / cantidadReseñas
+      return redondeo.toFixed(1)
+    }
+    var average1 = promedio();
+  } 
   useEffect(() => {
     dispatch(detailProducts(props.match.params.id));
   }, [dispatch, props.match.params.id]);
@@ -107,15 +117,6 @@ export default function Detail(props) {
     history.push(`/carrito/` + props.match.params.id);
   }
 
-  // const style1 = {
-  //   width: 400,
-  //   bgcolor: "background.paper",
-  //   border: "2px solid #000",
-  //   p: 2,
-  //   px: 4,
-  //   pb: 3,
-  // };
-
   const style1 = {
     position: "absolute",
     top: "50%",
@@ -130,11 +131,11 @@ export default function Detail(props) {
   };
 
   const labels = {
-    1: "Useless",
-    2: "Poor",
-    3: "Ok",
-    4: "Good",
-    5: "Excellent",
+    1: "Malo",
+    2: "Regulo",
+    3: "Bueno",
+    4: "Muy bueno",
+    5: "Excelente",
   };
 
   const [hover] = React.useState(-1);
@@ -142,9 +143,6 @@ export default function Detail(props) {
   const reseñas = (
     <div>
       <Box sx={style1}>
-        {/* <Typography id="modal-modal-title" variant="h6" component="h2">
-        <h1>Probando</h1>
-      </Typography> */}
         <form onSubmit={e => e}>
           <div className='detailContainer1'>
             <h3>Escriba su reseña</h3>
@@ -156,8 +154,7 @@ export default function Detail(props) {
               placeholder='Escriba su reseña aquí'
             />
             {error.review && <p className='error'>{error.review} </p>}
-            <h3>Puntuación</h3>
-            <Box
+             <Box
               sx={{
                 width: 200,
                 display: "flex",
@@ -232,17 +229,10 @@ export default function Detail(props) {
             <button className='btn1'>Seguir comprando</button>
           </Link>
         </Typography>
-        {/* <Typography id='modal-modal-description' sx={{ mt: 2 }}>
-          <button type='submit' onClick={() => openCloseModal1()} className='btn4'>
-            Cerrar
-          </button>
-        </Typography> */}
         <Typography id='modal-modal-description' sx={{ mt: 2 }}>
-          {/* <Link to={`/carrito/${detail.map(el => el.id)}`}> */}
           <button className='btn2' onClick={handleButtonCart}>
             Ver carrito
           </button>
-          {/* </Link> */}
         </Typography>
       </Box>
     </div>
@@ -298,11 +288,21 @@ export default function Detail(props) {
               <div>
                 <h4>Reseña: {product.review}</h4>
                 <Rating name='score' defaultValue={product.score} precision={1} readOnly />
-                {/* <h5>Puntuación: {product.score}</h5> */}
               </div>
             );
           })
         )}
+                <h3>Puntuacion general</h3>
+            <Box
+              sx={{
+                width: 200,
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <Rating name="half-rating-read" value={average1} precision={0.5} readOnly />
+              <h4>{average1}</h4>
+            </Box>
         <br></br>
         <div>
           <button type='button' onClick={openCloseModal} className='btn'>

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import {getAllUsers, modifyUser} from "../../../Redux/Actions/index"
 import { useDispatch, useSelector } from "react-redux";
 import Box from '@mui/material/Box';
+import { Button } from "@mui/material/";
 import "./upDateUsers.css"
 
 export default function UpDataUsers(){
@@ -50,7 +51,7 @@ export default function UpDataUsers(){
       let aux = usersData.filter((el) => el.id === input.id)
       console.log(input)
     return(
-        <div>
+        <div className="updateUserContainer">
             <h1>ELIJA EL USUARIO A MODIFICAR</h1>
 
                 <Box sx={{ minWidth: 120 }}>
@@ -92,7 +93,8 @@ export default function UpDataUsers(){
                         <option value="Admin" name="type">Admin</option>
                         <option value="User" name="type">User</option>
                     </select>
-                    <button>CARGAR DATOS</button>
+                    <br></br>
+                    <Button variant="contained">CARGAR DATOS</Button>
 
                 </form>
                 </Box>
