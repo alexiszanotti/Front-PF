@@ -253,9 +253,9 @@ export const emptyFavorites = () => {
   };
 };
 
-export const addFavorites = (payload, id) => {
-  return {
-    type: DATA_BASE_FAVORITOS,
-    payload: payload, id
+export const postFavorite = payload => {
+  return async () => {
+    let res = await axios.post(`favorite`, payload);
+    return res.data;
   };
 };
