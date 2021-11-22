@@ -209,7 +209,7 @@ export default function Detail(props) {
                 <ul className='detailUl'>
                   <li>{products.collection.name}</li>
                   <br></br>
-                  <img alt="k" className='img' src={products.images[0]} />
+                  <img alt="k" className='img' src={products.images} />
                   <br></br>
                   <br></br>
                   <li>{"$ " + Number(products.salePrice)}</li>
@@ -247,7 +247,7 @@ export default function Detail(props) {
             <ul className='detailUl'>
               <li>{products.collection.name}</li>
               <br></br>
-              <img alt="k" className='img' src={products.images[0]} />
+              <img alt="k" className='img' src={products.images} />
               <br></br>
               <br></br>
               <br></br>
