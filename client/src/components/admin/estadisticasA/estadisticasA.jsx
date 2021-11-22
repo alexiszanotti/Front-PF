@@ -1,12 +1,10 @@
-import React from "react";
 import "./estadisticaA.css";
-
+import React from "react";
 
 export default function EstadisticasA() {
-
   return (
-      <div className="adminContainer">
-          <h1>Bienvenido Admin</h1>
-        </div>
-  )
+    <div className="adminContainer">
+      <h1>Bienvenido Admin</h1>
+    </div>
+  );
 }

@@ -21,7 +21,6 @@ import {
   USER_LOGOUT,
   EMPTY_CART,
   EMPTY_FAVORITE,
-  DATA_BASE_FAVORITOS
 } from "../Actions/actionTypes";
 
 const initialState = {
@@ -203,12 +202,6 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         favorite: action.payload,
       };
-    case DATA_BASE_FAVORITOS:
-      return {
-        ...state,
-        favoriteAlmacen: action.payload,
-      };
-
     default:
       return state;
   }

@@ -13,7 +13,6 @@ import UpDataUsers from "./components/admin/upDateUsers/upDateUsers";
 import GoShopping from "./components/goShopping/goShopping";
 import NavBarAdmin from "./components/admin/navBarAdmin/navBarAdmin";
 import EstadisticasA from "./components/admin/estadisticasA/estadisticasA";
-import AdminRoute from "./components/routes/adminRoute/adminRoute";
 import EditProduct from "./components/admin/editProduct/editProduct";
 import CreateCollection from "./components/admin/createCategory/createCategory";
 import Perfil from "./components/perfil/perfil";
@@ -26,7 +25,6 @@ import {
   postCreateUser,
   getAllUsers,
   postUserLogin,
-  userLogout,
 } from "./Redux/Actions/index";
 import { useAuth0 } from "@auth0/auth0-react";
 
