@@ -94,7 +94,7 @@ export default function UpDataUsers(){
                         <option value="User" name="type">User</option>
                     </select>
                     <br></br>
-                    <Button variant="contained">CARGAR DATOS</Button>
+                    <button className="btn">Cargar datos</button>
 
                 </form>
                 </Box>

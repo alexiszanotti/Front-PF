@@ -29,7 +29,6 @@ export default function CreateCollection() {
     if (Object.keys(error).length === 0) {
       dispatch(createCollection(input));
       alert("Colección creada con éxito");
-      history.push("/home");
       setInput({
         name: "",
       });
@@ -60,9 +59,9 @@ export default function CreateCollection() {
           <br></br>
           <br></br>
           <br></br>
-          <Button variant="contained">
+          <button className="btn" >
             Crear categoría
-          </Button>
+          </button>
         </form>
       </div>
     </div>
