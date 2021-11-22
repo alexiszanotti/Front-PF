@@ -113,7 +113,7 @@ export default function EditProduct() {
                             name='discount'
                             placeholder={aux?.map((el) => el.discount)}
                         />
-                        {error.discount && <p className='error'>{error.discount} </p>}
+                        {/* {error.discount && <p className='error'>{error.discount} </p>} */}
                         <br></br>
                         <label>Precio de venta:</label>
                         <Input
@@ -157,7 +157,7 @@ export default function EditProduct() {
                         <br></br>
                         <br></br>
                         <br></br>
-                        <Button variant="contained">GUARDAR CAMBIOS</Button>
+                        <button className="btn">Guardar cambios</button>
                     </form>
                 </Box>
             </div>

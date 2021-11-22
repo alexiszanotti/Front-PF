@@ -9,7 +9,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { filterByParams, resetFilter } from "../../Redux/Actions/index";
+import { filterByParams, resetFilter, getCollection } from "../../Redux/Actions/index";
 import { useDispatch } from "react-redux";
 import { Typography } from "@mui/material";
 import { Button } from "@mui/material/";
@@ -17,6 +17,7 @@ import { Button } from "@mui/material/";
 export default function Home() {
   const shoes = useSelector(state => state.productsFilter);
   const orderState = useSelector(state => state.orden);
+  const collections = useSelector(state => state.collections);
   const [orden, setOrden] = useState(orderState);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -24,6 +25,11 @@ export default function Home() {
     return () => { };
   }, [dispatch, orden]);
 
+  useEffect(() => {
+    dispatch(getCollection());
+  },[dispatch])
+
+  console.log(collections);
   const [currentPage, setCurrentPage] = useState(1);
   const [shoesPorPaginaPorPagina] = useState(20);
   const indeceDelUltimoShoes = currentPage * shoesPorPaginaPorPagina; // 10
@@ -82,9 +88,15 @@ export default function Home() {
                     onChange={handleChange}
                   >
                     <MenuItem value='All'>TODOS</MenuItem>
-                    <MenuItem value={"CORE / NEO"}>CORE/NEO</MenuItem>
-                    <MenuItem value={"SPORT PERFORMANCE"}>SPORT PERFORMANCE</MenuItem>
-                    <MenuItem value={"ORIGINALS"}>ORIGINALS</MenuItem>
+                    {
+                      collections?.map((el) => {
+                        return (
+                          <MenuItem key={el.id} value={el.name}>
+                            {el.name}
+                          </MenuItem>
+                        );
+                      })
+                    }
                   </Select>
                 </FormControl>
               </Box>

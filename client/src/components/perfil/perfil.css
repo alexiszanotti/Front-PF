@@ -1,12 +1,13 @@
 .contenedorPerfil{
     background-color: white;
     margin-left: 500px;
-    height: 550px;
+    height: 1000px;
     width: 800px;
 }
 .detallecontenedor{
     text-align: left;
     margin-left: 50px;
+    
 }
 .contenedorName{
     background-color: white;

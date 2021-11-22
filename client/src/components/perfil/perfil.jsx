@@ -1,6 +1,7 @@
 import "./perfil.css";
 import React, {useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import { Modal } from "@material-ui/core";
@@ -9,11 +10,12 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel"; 
-import {modifyUser} from "../../Redux/Actions/index"
+import {modifyUser, userLogout} from "../../Redux/Actions/index"
 
 
 export default function Perfil() {
     const dispatch = useDispatch();
+    const history = useHistory();
   const userLogeado = useSelector((state) => state.userLogin);
   const users = useSelector((state) => state.users);
 
@@ -47,9 +49,15 @@ export default function Perfil() {
     alert("USUARIO MODIFICADO");
     setInput({
         id: "",
-    });
-    
+    }); 
   }
+
+  function handleSubmitLogout() {
+    dispatch(userLogout());
+    history.push("/home");
+  }
+
+
   console.log(input);
   
   const style = {
@@ -58,7 +66,7 @@ export default function Perfil() {
     left: "50%",
     transform: "translate(-50%, -50%)",
     width: 800,
-    height: 700,
+    height: 1000,
     bgcolor: "background.paper",
     border: "2px solid #000",
     boxShadow: 24,
@@ -69,22 +77,32 @@ export default function Perfil() {
     <form onSubmit={(e) => handleSubmit(e)}>
       <Box sx={style} >
             <h1>EDITAR DATOS FISCALES</h1>
-            <TextField label={usuario.map((el) => el.email)} color="secondary"  fullWidth name="email" onChange={handleInputChange} />
-            <br></br>
-            <br></br>
-            <br></br>
-            <TextField label={usuario.map((el) => el.name)} color="secondary" fullWidth name="name" onChange={handleInputChange} />
-            <br></br>
-            <br></br>
-            <br></br>
-            <TextField label={usuario.map((el) => el.lastName)} color="secondary"  fullWidth  name="lastName"  onChange={handleInputChange}/>
-            <h1>FECHA DE NACIMIENTO</h1>
-            <br></br>
-            <br></br>
-            <TextField label={usuario.map((el) => el.birthDay)} color="secondary"  fullWidth name="birthDay" onChange={handleInputChange} />
-            <br></br>
-            <br></br>
-            <br></br>
+            <TextField label={"Email: " + usuario.map((el) => el.email)} color="secondary"  fullWidth name="email" onChange={handleInputChange} />
+            
+            <TextField label={"Nombre: " + usuario.map((el) => el.name)} color="secondary" fullWidth name="name" onChange={handleInputChange} />
+            
+            <TextField label={"Apellido: " + usuario.map((el) => el.lastName)} color="secondary"  fullWidth  name="lastName"  onChange={handleInputChange}/>
+            
+            <TextField label={"Fecha de nacimiento: " + usuario.map((el) => el.birthDay)} color="secondary"  fullWidth name="birthDay" onChange={handleInputChange} />
+            
+            <TextField label={"Número de documento: " + usuario.map((el) => el.document)} color="secondary"  fullWidth name="document" onChange={handleInputChange} />
+            
+            <TextField label={"Teléfono: " +  usuario.map((el) => el.telephone)} color="secondary"  fullWidth name="telephone" onChange={handleInputChange} />
+            
+            <TextField label={"Dirección: " + usuario.map((el) => el.address)} color="secondary"  fullWidth name="address" onChange={handleInputChange} />
+            
+            <TextField label={"Altura: " + usuario.map((el) => el.number)} color="secondary"  fullWidth name="number" onChange={handleInputChange} />
+
+            <TextField label={"Piso: " + usuario.map((el) => el.floor)} color="secondary"  fullWidth name="floor" onChange={handleInputChange} />
+
+            <TextField label={"Departamento: " + usuario.map((el) => el.department)} color="secondary"  fullWidth name="department" onChange={handleInputChange} />
+            <TextField label={"Código postal: " + usuario.map((el) => el.cp)} color="secondary"  fullWidth name="cp" onChange={handleInputChange} />
+            
+            <TextField label={"Localidad: " + usuario.map((el) => el.location)} color="secondary"  fullWidth name="location" onChange={handleInputChange} />
+            
+            <TextField label={"Provincia: " + usuario.map((el) => el.province)} color="secondary"  fullWidth name="province" onChange={handleInputChange} />
+            
+            
             <FormControl fullWidth color="secondary">
                         <InputLabel >{usuario.map((el) => el.gender)}</InputLabel>
                         <Select
@@ -126,11 +144,22 @@ export default function Perfil() {
           return (
             <div className="detallecontenedor">
               <h2>DETALLE</h2>
-              <h3>Mail: {el.email}</h3>
               <h3>Nombre: {el.name}</h3>
               <h3>Apellido: {el.lastName}</h3>
-              <h3>Fecha: {el.birthDay}</h3>
+              <h3>Mail: {el.email}</h3>
+              <h3>Documento: {el.document}</h3>
+              <h3>Teléfono: {el.telephone}</h3>
+              <h3>Cumpleaños: {el.birthDay}</h3>
               <h3>Genero: {el.gender}</h3>
+              <h3>Dirección: {el.address}</h3>
+              <h3>Código postal: {el.cp}</h3>
+              <h3>Localidad: {el.location}</h3>
+              <h3>Provincia: {el.province}</h3>
+              <h3>Altura: {el.number}</h3>
+              <h3>Piso: {el.floor}</h3>
+              <h3>Departamento: {el.department}</h3>
+
+
               <Modal open={modal1} onClose={openCloseModal1}>
                   {editar}
                 </Modal>
@@ -140,7 +169,7 @@ export default function Perfil() {
         })}
         <div className="detallecontenedor">
           <h2>CERRAR SESIÓN</h2>
-          <Button>CERRAR SESIÓN</Button>
+          <Button onClick={handleSubmitLogout}>CERRAR SESIÓN</Button>
         </div>
       </div>
     </div>

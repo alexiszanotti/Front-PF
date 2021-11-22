@@ -157,7 +157,7 @@ export default function CreateProduct() {
           </select>
           <br></br>
           <br></br>
-          <Button variant="contained">Crear Producto</Button>
+          <button className="btn">Crear Producto</button>
         </form>
       </div>
     </div>
