@@ -156,7 +156,7 @@ export default function rootReducer(state = initialState, action) {
         gender === "All"
           ? filtered
           : filtered.filter(
-              el => el.productName.toLowerCase().charAt(0) === gender.toLowerCase().charAt(0)
+              el => el.gender.toLowerCase().charAt(0) === gender.toLowerCase().charAt(0)
             );
       ///Order by price
       filtered =

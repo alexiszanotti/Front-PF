@@ -9,14 +9,18 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { filterByParams, resetFilter, getCollection } from "../../Redux/Actions/index";
+import {
+  filterByParams,
+  resetFilter,
+  getCollection,
+} from "../../Redux/Actions/index";
 import { useDispatch } from "react-redux";
 import { Typography } from "@mui/material";
 
 export default function Home() {
-  const shoes = useSelector(state => state.productsFilter);
-  const orderState = useSelector(state => state.orden);
-  const collections = useSelector(state => state.collections);
+  const shoes = useSelector((state) => state.productsFilter);
+  const orderState = useSelector((state) => state.orden);
+  const collections = useSelector((state) => state.collections);
   const [orden, setOrden] = useState(orderState);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -33,7 +37,7 @@ export default function Home() {
   const indeceDelUltimoShoes = currentPage * shoesPorPaginaPorPagina; // 10
   const indiceDelPrimerShoes = indeceDelUltimoShoes - shoesPorPaginaPorPagina; // 0
   const currentShoes = shoes.slice(indiceDelPrimerShoes, indeceDelUltimoShoes);
-  const paginado = pageNumber => {
+  const paginado = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
@@ -70,23 +74,23 @@ export default function Home() {
 
   return (
     <div>
-      <div className='boxCategories'>
+      <div className="boxCategories">
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2} columns={16}>
             <Grid item xs={4}>
               <Box sx={{ minWidth: 120 }}>
                 <FormControl fullWidth>
-                  <InputLabel id='demo-simple-select-label'>MODELO</InputLabel>
+                  <InputLabel id="demo-simple-select-label">MODELO</InputLabel>
                   <Select
                     sx={{ bgcolor: "white" }}
-                    labelId='demo-simple-select-label'
-                    id='demo-simple-select'
-                    label='COLECCION'
-                    name='collection'
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    label="COLECCION"
+                    name="collection"
                     onChange={handleChange}
                   >
-                    <MenuItem value='All'>TODOS</MenuItem>
-                    {collections?.map(el => {
+                    <MenuItem value="All">TODOS</MenuItem>
+                    {collections?.map((el) => {
                       return (
                         <MenuItem key={el.id} value={el.name}>
                           {el.name}
@@ -100,18 +104,18 @@ export default function Home() {
             <Grid item xs={4}>
               <Box sx={{ minWidth: 120 }}>
                 <FormControl fullWidth>
-                  <InputLabel id='demo-simple-select-label'>GENERO</InputLabel>
+                  <InputLabel id="demo-simple-select-label">GENERO</InputLabel>
                   <Select
                     sx={{ bgcolor: "white" }}
-                    labelId='demo-simple-select-label'
-                    id='demo-simple-select'
-                    label='GENERO'
-                    name='gender'
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    label="GENERO"
+                    name="gender"
                     onChange={handleChange}
                   >
                     <MenuItem value={"All"}>TODOS</MenuItem>
-                    <MenuItem value={"Men's"}>MASCULINO</MenuItem>
-                    <MenuItem value={"Women's"}>FEMENINO</MenuItem>
+                    <MenuItem value={"Men"}>MASCULINO</MenuItem>
+                    <MenuItem value={"Women"}>FEMENINO</MenuItem>
                     <MenuItem value={"Unisex"}>UNISEX</MenuItem>
                   </Select>
                 </FormControl>
@@ -120,13 +124,13 @@ export default function Home() {
             <Grid item xs={4}>
               <Box sx={{ minWidth: 120 }}>
                 <FormControl fullWidth>
-                  <InputLabel id='demo-simple-select-label'>PRECIO</InputLabel>
+                  <InputLabel id="demo-simple-select-label">PRECIO</InputLabel>
                   <Select
                     sx={{ bgcolor: "white" }}
-                    labelId='demo-simple-select-label'
-                    id='demo-simple-select'
-                    label='PRECIO'
-                    name='price'
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    label="PRECIO"
+                    name="price"
                     onChange={handleChange}
                   >
                     <MenuItem value={"ASC"}>MENOR A MAYOR</MenuItem>
@@ -138,18 +142,18 @@ export default function Home() {
             <Grid item xs={4}>
               <Box sx={{ minWidth: 120 }}>
                 <FormControl fullWidth>
-                  <InputLabel value={"ALL"} id='demo-simple-select-label'>
+                  <InputLabel value={"ALL"} id="demo-simple-select-label">
                     DESCUENTO
                   </InputLabel>
                   <Select
                     sx={{ bgcolor: "white" }}
-                    labelId='demo-simple-select-label'
-                    id='demo-simple-select'
-                    label='DESCUENTO'
-                    name='discount'
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    label="DESCUENTO"
+                    name="discount"
                     onChange={handleChange}
                   >
-                    <MenuItem value='All'>TODOS</MenuItem>
+                    <MenuItem value="All">TODOS</MenuItem>
                     <MenuItem value={"0.00"}>SIN DESCUENTO</MenuItem>
                     <MenuItem value={"40.00"}>40%</MenuItem>
                     <MenuItem value={"50.00"}>50%</MenuItem>
@@ -160,12 +164,12 @@ export default function Home() {
           </Grid>
         </Box>
       </div>
-      <button className='botonCart1' onClick={handleClick}>
+      <button className="botonCart1" onClick={handleClick}>
         Borrar filtros
       </button>
-      <div className='contenedorHome'>
+      <div className="contenedorHome">
         {currentShoes.length ? (
-          currentShoes?.map(products => {
+          currentShoes?.map((products) => {
             return (
               <Products
                 key={products.id}
@@ -173,6 +177,7 @@ export default function Home() {
                 image={products.images}
                 price={"$ " + Number(products.salePrice)}
                 id={products.id}
+                stock={products.stock}
               />
             );
           })
@@ -180,7 +185,7 @@ export default function Home() {
           <Typography>No hay productos con esos parametros</Typography>
         )}
       </div>
-      <div className='paginado'>
+      <div className="paginado">
         <Paginado
           shoesPorPaginaPorPagina={shoesPorPaginaPorPagina}
           shoes={shoes.length}

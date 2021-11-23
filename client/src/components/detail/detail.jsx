@@ -238,6 +238,12 @@ export default function Detail(props) {
     </div>
   );
 
+  const stock= []
+  let stock1 = detail?.map(products => products.stock);
+  for (let i = 1; i <= stock1; i++) {
+      stock.push(i);
+    }
+
   return (
     <div className='container'>
       {detail.map(products => {
@@ -255,14 +261,20 @@ export default function Detail(props) {
               <br></br>
               <li>{Number(products.salePrice) + "$"}</li>
             </ul>
-            <FormControl sx={{ m: 1, minWidth: 80 }} className='detailS'>
-              <InputLabel id='demo-simple-select-label'>talle</InputLabel>
-              <Select labelId='demo-simple-select-label' id='demo-simple-select' label='talle'>
-                <MenuItem value={10}>40</MenuItem>
-                <MenuItem value={20}>41</MenuItem>
-                <MenuItem value={30}>45</MenuItem>
-              </Select>
-            </FormControl>
+            <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">dispobiles</InputLabel>
+                    <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    label="dispobiles"
+                    >
+                    {
+                        stock.map(item => {
+                            return <MenuItem value={item}>{item}</MenuItem>
+                        })
+                    }
+                    </Select>
+                </FormControl>
             <br></br>
             <br></br>
             <div>
