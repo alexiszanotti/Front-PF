@@ -15,11 +15,8 @@ import { favorite, removeFavorite } from "../../Redux/Actions/index";
 export default function Products(props) {
   const dispatch = useDispatch();
 
-
-
-
   const [checked, setChecked] = React.useState(false);
-  const handleChange = (event) => {
+  const handleChange = event => {
     setChecked(event.target.checked);
     if (checked === false) {
       dispatch(favorite(props.id));
@@ -29,20 +26,14 @@ export default function Products(props) {
   };
 
   return (
-    <div className="productContainer">
-      <Card className="contenedorProduct" sx={{ maxWidth: 335 }}>
+    <div className='productContainer'>
+      <Card className='contenedorProduct' sx={{ maxWidth: 335 }}>
         <CardHeader title={props.title} subheader={props.price} />
         <Link to={`/detail/${props.id}`}>
-          <CardMedia
-            component="img"
-            height="400"
-            image={props.image}
-            title="adidas sneaker"
-
-          />
+          <CardMedia component='img' height='400' image={props.image} title='adidas sneaker' />
         </Link>
         <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
+          <IconButton aria-label='add to favorites'>
             <Checkbox
               checked={checked}
               onChange={handleChange}

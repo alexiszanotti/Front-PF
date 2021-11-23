@@ -12,7 +12,6 @@ import Select from "@mui/material/Select";
 import { filterByParams, resetFilter, getCollection } from "../../Redux/Actions/index";
 import { useDispatch } from "react-redux";
 import { Typography } from "@mui/material";
-import { Button } from "@mui/material/";
 
 export default function Home() {
   const shoes = useSelector(state => state.productsFilter);
@@ -22,14 +21,13 @@ export default function Home() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(filterByParams(orden));
-    return () => { };
+    return () => {};
   }, [dispatch, orden]);
 
   useEffect(() => {
     dispatch(getCollection());
-  },[dispatch])
+  }, [dispatch]);
 
-  console.log(collections);
   const [currentPage, setCurrentPage] = useState(1);
   const [shoesPorPaginaPorPagina] = useState(20);
   const indeceDelUltimoShoes = currentPage * shoesPorPaginaPorPagina; // 10
@@ -88,15 +86,13 @@ export default function Home() {
                     onChange={handleChange}
                   >
                     <MenuItem value='All'>TODOS</MenuItem>
-                    {
-                      collections?.map((el) => {
-                        return (
-                          <MenuItem key={el.id} value={el.name}>
-                            {el.name}
-                          </MenuItem>
-                        );
-                      })
-                    }
+                    {collections?.map(el => {
+                      return (
+                        <MenuItem key={el.id} value={el.name}>
+                          {el.name}
+                        </MenuItem>
+                      );
+                    })}
                   </Select>
                 </FormControl>
               </Box>
@@ -164,14 +160,16 @@ export default function Home() {
           </Grid>
         </Box>
       </div>
-      <button className="botonCart1" onClick={handleClick}>Borrar filtros</button>
+      <button className='botonCart1' onClick={handleClick}>
+        Borrar filtros
+      </button>
       <div className='contenedorHome'>
         {currentShoes.length ? (
-          currentShoes.map(products => {
+          currentShoes?.map(products => {
             return (
               <Products
                 key={products.id}
-                title={products.productName}
+                title={products.productName.toUpperCase()}
                 image={products.images}
                 price={"$ " + Number(products.salePrice)}
                 id={products.id}
@@ -182,7 +180,7 @@ export default function Home() {
           <Typography>No hay productos con esos parametros</Typography>
         )}
       </div>
-      <div className="paginado">
+      <div className='paginado'>
         <Paginado
           shoesPorPaginaPorPagina={shoesPorPaginaPorPagina}
           shoes={shoes.length}

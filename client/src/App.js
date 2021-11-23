@@ -4,8 +4,6 @@ import Navbar from "./components/navBar/navBar";
 import Home from "./components/home/home";
 import Landing from "./components/landing/landing";
 import Detail from "./components/detail/detail";
-import Login from "./components/login/login";
-import Register from "./components/register/register";
 import ShopingCart from "./components/shopingCar/shopingCart";
 import Favorite from "./components/favorite/favorite";
 import createProduct from "./components/admin/createProduct/createProduct";
@@ -16,16 +14,11 @@ import EstadisticasA from "./components/admin/estadisticasA/estadisticasA";
 import EditProduct from "./components/admin/editProduct/editProduct";
 import CreateCollection from "./components/admin/createCategory/createCategory";
 import Perfil from "./components/perfil/perfil";
-import Pago from "./components/pago/pago"
+import Pago from "./components/pago/pago";
 import DefaultError from "./components/error/error";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getAllProducts,
-  postCreateUser,
-  getAllUsers,
-  postUserLogin,
-} from "./Redux/Actions/index";
+import { getAllProducts, postCreateUser, getAllUsers, postUserLogin } from "./Redux/Actions/index";
 import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
@@ -100,8 +93,6 @@ function App() {
           <Switch>
             <Route exact path='/' component={Landing} />
             <Route path='/home' component={Home} />
-            <Route path='/login' component={Login} />
-            <Route path='/register' component={Register} />
             <Route exact path='/detail/:id' component={Detail} />
             <Route path='/carrito/:id' component={ShopingCart} />
             <Route path='/favorites' component={Favorite} />
