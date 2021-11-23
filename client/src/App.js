@@ -13,6 +13,7 @@ import NavBarAdmin from "./components/admin/navBarAdmin/navBarAdmin";
 import EstadisticasA from "./components/admin/estadisticasA/estadisticasA";
 import EditProduct from "./components/admin/editProduct/editProduct";
 import CreateCollection from "./components/admin/createCategory/createCategory";
+import DeleteCollection from "./components/admin/deleteCategory/deleteCategory";
 import Perfil from "./components/perfil/perfil";
 import Pago from "./components/pago/pago";
 import DefaultError from "./components/error/error";
@@ -51,13 +52,13 @@ function App() {
         })
       );
     } else {
-      if (logIn.type === undefined) {
-        let email = user.email;
-
-        dispatch(postUserLogin({ email }));
-
-        setEstadoLogeado(true);
-      }
+      setTimeout(function () {
+        if (logIn.type === undefined) {
+          let email = user.email;
+          dispatch(postUserLogin({ email }))
+          setEstadoLogeado(true)
+        }
+      }, 1000);
     }
   }
 
@@ -80,6 +81,7 @@ function App() {
             <Route path='/userUpdata' component={UpDataUsers} />
             <Route path='/updateProduct' component={EditProduct} />
             <Route path='/createCollection' component={CreateCollection} />
+            <Route path='/deleteCollection' component={DeleteCollection} />
           </Switch>
         </div>
       </BrowserRouter>
