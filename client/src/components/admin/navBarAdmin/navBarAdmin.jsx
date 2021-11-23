@@ -69,7 +69,7 @@ export default function NavBarAdmin() {
                 </Link>
               </ListItem>
               <ListItem button>
-                <Link to="/createCollection">
+                <Link to="/deleteCollection">
                   <Button>ELIMINAR CATEGORÍAS</Button>
                 </Link>
               </ListItem>
