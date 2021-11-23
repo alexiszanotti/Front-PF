@@ -43,7 +43,6 @@ function App() {
     if (emailUsersDB.indexOf(user.email) === -1) {
       dispatch(
         postCreateUser({
-          password: "1234passADIDAS",
           email: user.email,
           name: user.given_name ? user.given_name : "name",
           lastName: user.family_name ? user.family_name : "lastName",

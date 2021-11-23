@@ -81,8 +81,8 @@ export function searchProducts(name) {
   };
 }
 
-export const detailProducts = (id) => {
-  return async (dispatch) => {
+export const detailProducts = id => {
+  return async dispatch => {
     let res = await axios(`products/${id}`);
     return dispatch({
       type: DETAIL_PRODUCTS,
@@ -91,8 +91,8 @@ export const detailProducts = (id) => {
   };
 };
 
-export const shoppingCart = (id) => {
-  return async (dispatch) => {
+export const shoppingCart = id => {
+  return async dispatch => {
     let res = await axios(`products/${id}`);
     return dispatch({
       type: SHOPPING_CART,
@@ -101,15 +101,15 @@ export const shoppingCart = (id) => {
   };
 };
 
-export const removeCard = (id) => {
+export const removeCard = id => {
   return {
     type: REMOVE_CARD,
     payload: id,
   };
 };
 
-export const favorite = (id) => {
-  return async (dispatch) => {
+export const favorite = id => {
+  return async dispatch => {
     let res = await axios(`products/${id}`);
     return dispatch({
       type: FAVORITE,
@@ -118,29 +118,29 @@ export const favorite = (id) => {
   };
 };
 
-export const removeFavorite = (id) => {
+export const removeFavorite = id => {
   return {
     type: REMOVE_FAVORITE,
     payload: id,
   };
 };
 
-export const postCreateUser = (payload) => {
+export const postCreateUser = payload => {
   return async () => {
     let res = await axios.post(`users/`, payload);
     return res.data;
   };
 };
 
-export const createProduct = (payload) => {
+export const createProduct = payload => {
   return async () => {
     let res = await axios.post(`products/`, payload);
     return res;
   };
 };
 
-export const getCollection = (payload) => {
-  return async (dispatch) => {
+export const getCollection = payload => {
+  return async dispatch => {
     let res = await axios(`categories`);
     return dispatch({
       type: GET_COLLECTIONS,
@@ -149,15 +149,15 @@ export const getCollection = (payload) => {
   };
 };
 
-export const postReview = (payload) => {
-  return async (dispatch) => {
+export const postReview = payload => {
+  return async dispatch => {
     let res = await axios.post(`reviews`, payload);
     return dispatch({ type: POST_REVIEW, payload: res.data });
   };
 };
 
-export const getReview = (id) => {
-  return async (dispatch) => {
+export const getReview = id => {
+  return async dispatch => {
     let res = await axios(`reviews?id=${id}`);
     return dispatch({
       type: GET_REVIEW,
@@ -165,8 +165,8 @@ export const getReview = (id) => {
     });
   };
 };
-export const getAllUsers = (payload) => {
-  return async (dispatch) => {
+export const getAllUsers = payload => {
+  return async dispatch => {
     let res = await axios(`users`);
     return dispatch({
       type: GET_ALL_USERS,
@@ -175,7 +175,7 @@ export const getAllUsers = (payload) => {
     });
   };
 };
-export const modifyUser = (payload) => {
+export const modifyUser = payload => {
   console.log(payload);
   return async () => {
     let res = await axios.patch(`users/`, payload);
@@ -183,17 +183,18 @@ export const modifyUser = (payload) => {
   };
 };
 
-export const postUserLogin = (payload) => {
-  return async (dispatch) => {
+export const postUserLogin = payload => {
+  console.log(payload);
+  return async dispatch => {
     return await axios
       .post(`users/loginUser`, payload)
-      .then((user) =>
+      .then(user =>
         dispatch({
           type: GET_USER_LOGIN,
           payload: user.data,
         })
       )
-      .catch((error) => {
+      .catch(error => {
         alert("Usuario o contraseña incorrectos");
         return dispatch({
           type: GET_USER_LOGIN,
@@ -203,21 +204,21 @@ export const postUserLogin = (payload) => {
   };
 };
 
-export const filterByParams = (payload) => {
-  return (dispatch) =>
+export const filterByParams = payload => {
+  return dispatch =>
     dispatch({
       type: FILTER_BY_PARAMS,
       payload: payload,
     });
 };
 export const resetFilter = () => {
-  return (dispatch) =>
+  return dispatch =>
     dispatch({
       type: RESET_FILTER,
     });
 };
 
-export const modifyProduct = (payload) => {
+export const modifyProduct = payload => {
   console.log(payload, "asdasd");
   return async () => {
     let res = await axios.patch(`products`, payload);
@@ -232,7 +233,7 @@ export const userLogout = () => {
   };
 };
 
-export const createCollection = (payload) => {
+export const createCollection = payload => {
   return async () => {
     let res = await axios.post(`categories`, payload);
     return res;
@@ -252,7 +253,7 @@ export const emptyFavorites = () => {
   };
 };
 
-export const postFavorite = (payload) => {
+export const postFavorite = payload => {
   return async () => {
     let res = await axios.post(`favorite`, payload);
     return res.data;
