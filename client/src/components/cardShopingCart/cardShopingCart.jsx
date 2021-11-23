@@ -14,6 +14,11 @@ import InputLabel from '@mui/material/InputLabel';
 
 
 export default function CardShopingCart(props) {
+    const stock= []
+    for (let i = 1; i <= props.stock; i++) {
+        stock.push(i);
+      }
+
     const dispatch = useDispatch();
     return (
         <Card sx={{ maxWidth: 350 }}>
@@ -39,15 +44,17 @@ export default function CardShopingCart(props) {
                 </CardContent>
             </CardActionArea>
                 <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">talle</InputLabel>
+                    <InputLabel id="demo-simple-select-label">dispobiles</InputLabel>
                     <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    label="talle"
+                    label="dispobiles"
                     >
-                    <MenuItem value={10}>40</MenuItem>
-                    <MenuItem value={20}>41</MenuItem>
-                    <MenuItem value={30}>45</MenuItem>
+                    {
+                        stock.map(item => {
+                            return <MenuItem value={item}>{item}</MenuItem>
+                        })
+                    }
                     </Select>
                 </FormControl>
         </Card>

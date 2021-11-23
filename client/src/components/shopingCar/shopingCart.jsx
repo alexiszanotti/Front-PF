@@ -92,7 +92,8 @@ export default function ShopingCart() {
                 title={products.productName}
                 price={Number(products.salePrice)}
                 brand={products.collection.name}
-                images={products.images[0]}
+                images={products.images}
+                stock={products.stock}
               />
             </div>
           );
