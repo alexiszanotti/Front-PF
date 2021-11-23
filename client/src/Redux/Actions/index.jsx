@@ -259,3 +259,10 @@ export const postFavorite = payload => {
     return res.data;
   };
 };
+
+export const deleteCollection = payload => {
+  return async () => {
+    let res = await axios.delete("categories", { data: payload});
+    return res;
+  };
+};
