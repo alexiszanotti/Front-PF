@@ -14,6 +14,7 @@ export default function EditProduct() {
   const productsData = useSelector((state) => state.products);
   const collections = useSelector((state) => state.collections);
 
+
   useEffect(() => {
     dispatch(getAllProducts());
   }, [dispatch]);
@@ -52,7 +53,8 @@ export default function EditProduct() {
 
   let aux = productsData.filter((el) => el.id === input.id);
   // const porcentage = (((input.listingPrice * input.discount) / 100) - input.listingPrice) * (-1)
-
+console.log(aux)
+console.log(input)
   return (
     <div className="editProductContainer">
       <div className="productContainer">
@@ -116,6 +118,14 @@ export default function EditProduct() {
                 cols="70"
               />
             </div>
+            <label>STOCK:</label>
+            <Input
+              onChange={handleInputChange}
+              type="number"
+              name="stock"
+              value={input.stock}
+              placeholder={aux?.map((el) => el.stock)}
+            />
             <br></br>
             <select
               value={input.collection}

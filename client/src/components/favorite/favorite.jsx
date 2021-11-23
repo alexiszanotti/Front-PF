@@ -22,7 +22,7 @@ export default function Favorite() {
     dispatch(emptyFavorites());
   };
 
-  const agregarfavorito = () => {
+  const agregarFavorito = () => {
     var idUser = userLogin.id;
     if (idUser) {
       let idPorducs = favoritos.map(el => el.id);
@@ -34,8 +34,8 @@ export default function Favorite() {
     }
   };
   useEffect(() => {
-    agregarfavorito();
-  }, [agregarfavorito]);
+    agregarFavorito();
+  }, [agregarFavorito]);
 
   return (
     <div>
