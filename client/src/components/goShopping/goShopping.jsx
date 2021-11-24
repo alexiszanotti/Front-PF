@@ -8,11 +8,14 @@ import "./goShopping.css";
 
 export default function GoShopping() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const usuario = useSelector(state => state.userLogin);
+  const usr = useSelector(state => state.users);
   const [input, setInput] = useState({
     id: usuario.id,
   });
 
+  let usuarioLogeado = usr.filter(el => el.id === usuario.id);
 
   const { loginWithRedirect } = useAuth0();
 

@@ -1,16 +1,21 @@
 import "./shopingCart.css";
-import React from "react";
+import React, {useEffect} from "react";
 import { useSelector } from "react-redux";
 import CardShopingCart from "../cardShopingCart/cardShopingCart";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Box } from "@mui/system";
-import { emptyCart } from "../../Redux/Actions/index"
+import { emptyCart, postShoppingCart } from "../../Redux/Actions/index"
 import { useDispatch } from "react-redux";
 export default function ShopingCart() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.shoppingCart);
+  const userLogin = useSelector(state => state.userLogin);
+  const users = useSelector(state => state.users);
+  let usr = users.filter(user => user.id === userLogin.id);
+  let cartId = usr.map((el) => el.Cart.id)
+  console.log(cartId, "hola")
 
   let total = 0;
   let suma = cart.map((el) => Number(el.salePrice));
@@ -19,6 +24,23 @@ export default function ShopingCart() {
   const vaciar = () => {
     dispatch(emptyCart());
   }
+
+  const agregarCarrito = () => {
+    var idUser = userLogin.id;
+    if (idUser) {
+      let idPorducs = cart.map(el => el.id);
+      if (idPorducs.length > 0) {
+        for (let i = 0; i < idPorducs.length; i++) {
+          dispatch(postShoppingCart({ cartId: cartId, productId: idPorducs[i] }));
+        }
+      }
+    }
+  };
+  useEffect(() => {
+    agregarCarrito();
+  }, [agregarCarrito]);
+
+
   return (
     <div>
       <div>
