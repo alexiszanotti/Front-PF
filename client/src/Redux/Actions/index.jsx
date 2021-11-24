@@ -266,3 +266,10 @@ export const deleteCollection = payload => {
     return res;
   };
 };
+
+export const postShoppingCart = payload => {
+  return async () => {
+    let res = await axios.post("cart", payload);
+    return res;
+  };
+}

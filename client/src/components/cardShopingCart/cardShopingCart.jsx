@@ -3,15 +3,12 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
+import { Button, CardActionArea, CardActions, IconButton } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import {removeCard} from "../../Redux/Actions/index"
 import {Link} from "react-router-dom";
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select'
-import MenuItem from '@mui/material/MenuItem';
-import InputLabel from '@mui/material/InputLabel';
-
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 export default function CardShopingCart(props) {
     const stock= []
@@ -43,20 +40,14 @@ export default function CardShopingCart(props) {
                 </Typography>
                 </CardContent>
             </CardActionArea>
-                <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">dispobiles</InputLabel>
-                    <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    label="dispobiles"
-                    >
-                    {
-                        stock.map(item => {
-                            return <MenuItem value={item}>{item}</MenuItem>
-                        })
-                    }
-                    </Select>
-                </FormControl>
+            <IconButton>
+                <ChevronLeftIcon />
+            </IconButton>
+            <label>{props.stock}</label>
+            <IconButton>
+                <ChevronRightIcon />
+            </IconButton>
+
         </Card>
     );
 }

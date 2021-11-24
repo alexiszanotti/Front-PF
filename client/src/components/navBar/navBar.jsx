@@ -25,12 +25,12 @@ import { Link } from "react-router-dom";
 import SearchBar from "../searchBar/searchBar";
 import { useSelector, useDispatch } from "react-redux";
 import { userLogout } from "../../Redux/Actions";
+import { styled } from "@mui/material/styles";
+import { deepPurple } from '@mui/material/colors';
 
-import { useAuth0 } from '@auth0/auth0-react';
-
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function NavBar() {
-
   const { logout, user, isAuthenticated, loginWithRedirect } = useAuth0();
 
   // user: {
@@ -39,28 +39,23 @@ export default function NavBar() {
   //   given_name: "nombre"
   //   name: "nombre completo"
   // }
-  const usr = useSelector(state => state.userLogin);
-  let logIn = useSelector(state => state.userLogin)
+  const usr = useSelector((state) => state.userLogin);
+  let logIn = useSelector((state) => state.userLogin);
 
-  let avatar = []
+  let avatar = [];
 
-  if(user !== undefined || user !== null) {
-
-    avatar = usr.email?.slice(0,1).toUpperCase();
+  if (user !== undefined || user !== null) {
+    avatar = usr.email?.slice(0, 1).toUpperCase();
   }
 
   const dispatch = useDispatch();
 
-
   const logOut = () => {
+    dispatch(userLogout());
+  };
 
-    dispatch(userLogout())
-
-  }
-
-
-  const aux = useSelector(state => state.shoppingCart);
-  const fav = useSelector(state => state.favorite);
+  const aux = useSelector((state) => state.shoppingCart);
+  const fav = useSelector((state) => state.favorite);
   // --------------- por ahora no tocar esto-------------------
   var hash = {};
   let favo = fav.filter(function (current) {
@@ -75,7 +70,7 @@ export default function NavBar() {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const handleProfileMenuOpen = event => {
+  const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -88,7 +83,7 @@ export default function NavBar() {
     handleMobileMenuClose();
   };
 
-  const handleMobileMenuOpen = event => {
+  const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
@@ -134,16 +129,20 @@ export default function NavBar() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton size='large' aria-label='show 4 new mails' color='inherit'>
-          <Badge badgeContent={4} color='error'>
+        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+          <Badge badgeContent={4} color="error">
             <MailIcon />
           </Badge>
         </IconButton>
         <p>LOGIN</p>
       </MenuItem>
       <MenuItem>
-        <IconButton size='large' aria-label='show 17 new notifications' color='inherit'>
-          <Badge badgeContent={17} color='error'>
+        <IconButton
+          size="large"
+          aria-label="show 17 new notifications"
+          color="inherit"
+        >
+          <Badge badgeContent={17} color="error">
             <NotificationsIcon />
           </Badge>
         </IconButton>
@@ -151,13 +150,13 @@ export default function NavBar() {
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
-          size='large'
-          aria-label='account of current user'
-          aria-controls='primary-search-account-menu'
-          aria-haspopup='true'
-          color='inherit'
+          size="large"
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="secondary" 
         >
-          <AccountCircle />
+          <AccountCircle  sx={{ width: 32, height: 32, bgcolor: deepPurple }}  />
         </IconButton>
         <p>PROFILE</p>
       </MenuItem>
@@ -168,22 +167,32 @@ export default function NavBar() {
 
   const open = Boolean(anchor);
 
-  const handleClick = event => {
+  const handleClick = (event) => {
     setAnchor(event.currentTarget);
   };
 
   const handleClose = () => {
     setAnchor(null);
   };
+  const StyledBadge = styled(Badge)(({ theme }) => ({
+    "& .MuiBadge-badge": {
+      right: -3,
+      top: 13,
+      border: `2px solid ${theme.palette.background.paper}`,
+      padding: "0 4px",
+    },
+  }));
 
   const renderAvatar = () => {
-    if (isAuthenticated || logIn.type === 'User') {
+    if (isAuthenticated || logIn.type === "User") {
       return (
         <React.Fragment>
-          <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
-            <Tooltip title='Account settings'>
-              <IconButton onClick={handleClick} size='small' sx={{ ml: 2 }}>
-                <Avatar sx={{ width: 32, height: 32 }}>{avatar}</Avatar>
+          <Box
+            sx={{ display: "flex", alignItems: "center", textAlign: "center" }}
+          >
+            <Tooltip title="Account settings">
+              <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
+                <Avatar sx={{ width: 32, height: 32, bgcolor: deepPurple[500] }}>{avatar}</Avatar>
               </IconButton>
             </Tooltip>
           </Box>
@@ -221,10 +230,10 @@ export default function NavBar() {
             transformOrigin={{ horizontal: "right", vertical: "top" }}
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           >
-            <Link to='/perfil'>
-            <MenuItem>
-              <Avatar /> Perfil
-            </MenuItem>
+            <Link to="/perfil">
+              <MenuItem>
+                <Avatar /> Perfil
+              </MenuItem>
             </Link>
             <MenuItem>
               <Avatar /> Mi cuenta
@@ -232,23 +241,22 @@ export default function NavBar() {
             <Divider />
             <MenuItem>
               <ListItemIcon>
-                <PersonAdd fontSize='small' />
+                <PersonAdd fontSize="small" />
               </ListItemIcon>
               Agregar otra cuenta
             </MenuItem>
             <MenuItem>
               <ListItemIcon>
-                <Settings fontSize='small' />
+                <Settings fontSize="small" />
               </ListItemIcon>
               Configuración
             </MenuItem>
             <MenuItem onClick={logOut}>
               <ListItemIcon>
-                <Logout fontSize='small' />
+                <Logout fontSize="small" />
               </ListItemIcon>
               Logout
             </MenuItem>
-
           </Menu>
         </React.Fragment>
       );
@@ -256,14 +264,14 @@ export default function NavBar() {
       return (
         <>
           <IconButton
-            size='large'
-            edge='end'
-            aria-label='account of current user'
+            size="large"
+            edge="end"
+            aria-label="account of current user"
             aria-controls={menuId}
-            aria-haspopup='true'
-            color='inherit'
+            aria-haspopup="true"
+            color="secondary"
           >
-            <AccountCircle color='action' onClick={() => loginWithRedirect()} />
+            <AccountCircle    sx={{ width: 32, height: 32, bgcolor: deepPurple }} onClick={() => loginWithRedirect()} />
           </IconButton>
         </>
       );
@@ -272,16 +280,16 @@ export default function NavBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position='static' className='navBar' sx={{ bgcolor: "white" }}>
+      <AppBar position="static" className="navBar" sx={{ bgcolor: "white" }}>
         <Toolbar>
           <Typography
-            variant='h6'
+            variant="h6"
             noWrap
-            component='div'
+            component="div"
             sx={{ display: { xs: "none", sm: "block" } }}
           >
-            <Link to='/'>
-              <img src={Logo} width='50' height='40' alt="k" />
+            <Link to="/">
+              <img src={Logo} width="50" height="40" alt="k" />
             </Link>
           </Typography>
 
@@ -291,43 +299,44 @@ export default function NavBar() {
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             {renderAvatar()}
 
-            <Badge badgeContent={favo.length} color='error'>
-              <IconButton
-                size='large'
-                edge='end'
-                aria-label='account of current user'
-                aria-controls={menuId}
-                aria-haspopup='true'
-                color='inherit'
-              >
-                <Link to='/favorites/:'>
-                  <FavoriteIcon color='action' />
+            <IconButton
+              size="large"
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              color="inherit"
+            >
+              <StyledBadge badgeContent={favo.length} color="secondary">
+                <Link to="/favorites/:">
+                  <FavoriteIcon/>
                 </Link>
-              </IconButton>
-            </Badge>
-            <Badge badgeContent={aux.length} color='error'>
-              <IconButton
-                size='large'
-                edge='end'
-                aria-label='account of current user'
-                aria-controls={menuId}
-                aria-haspopup='true'
-                color='inherit'
-              >
-                <Link to='/carrito/:'>
-                  <ShoppingCartIcon color='action' />
+              </StyledBadge>
+            </IconButton>
+
+            <IconButton
+              size="large"
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              color="inherit"
+            >
+              <StyledBadge badgeContent={aux.length} color="secondary">
+                <Link to="/carrito/:">
+                  <ShoppingCartIcon />
                 </Link>
-              </IconButton>
-            </Badge>
+              </StyledBadge>
+            </IconButton>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
-              size='large'
-              aria-label='show more'
+              size="large"
+              aria-label="show more"
               aria-controls={mobileMenuId}
-              aria-haspopup='true'
+              aria-haspopup="true"
               onClick={handleMobileMenuOpen}
-              color='inherit'
+              color="inherit"
             >
               <MoreIcon />
             </IconButton>

@@ -42,6 +42,10 @@ export default function EditProduct() {
     setInput({ ...input, collection: e.target.value });
   };
 
+  const handleLabelChangeCollection = (e) => {
+    setInput({ ...input, salePrice: e.target.value });
+  };
+
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(modifyProduct(input));
@@ -52,7 +56,9 @@ export default function EditProduct() {
   }
 
   let aux = productsData.filter((el) => el.id === input.id);
-  // const porcentage = (((input.listingPrice * input.discount) / 100) - input.listingPrice) * (-1)
+  const porcentage = (((input.listingPrice * input.discount) / 100) - input.listingPrice) * (-1)
+  
+
 console.log(aux)
 console.log(input)
   return (
@@ -97,14 +103,7 @@ console.log(input)
             />
             <br></br>
             <label>Precio de venta:</label>
-            <Input
-              onChange={handleInputChange}
-              value={input.salePrice}
-              type="number"
-              name="salePrice"
-              placeholder={aux?.map((el) => el.salePrice)}
-            />
-            {/* <label>${porcentage}</label> */}
+            <label value={input.salePrice}  onChange={handleLabelChangeCollection} name="salePrice">{porcentage} </label>
             <br></br>
             <label>Descripción:</label>
             <div className="descriptionEditProduct">
