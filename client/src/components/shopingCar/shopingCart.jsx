@@ -6,16 +6,22 @@ import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Box } from "@mui/system";
-import { emptyCart, postShoppingCart } from "../../Redux/Actions/index"
+import { emptyCart, postShoppingCart, addDataBaseShoppingCart } from "../../Redux/Actions/index"
 import { useDispatch } from "react-redux";
 export default function ShopingCart() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.shoppingCart);
+
   const userLogin = useSelector(state => state.userLogin);
   const users = useSelector(state => state.users);
   let usr = users.filter(user => user.id === userLogin.id);
   let cartId = usr.map((el) => el.Cart.id)
-  console.log(cartId, "hola")
+  
+  const dataBaseFavoritos = useSelector(state => state.favoriteAlmacen);
+  const productfavorite = dataBaseFavoritos?.Cart?.products
+  console.log(productfavorite);
+  
+  let idUser = userLogin.id;
 
   let total = 0;
   let suma = cart.map((el) => Number(el.salePrice));
@@ -31,27 +37,38 @@ export default function ShopingCart() {
       let idPorducs = cart.map(el => el.id);
       if (idPorducs.length > 0) {
         for (let i = 0; i < idPorducs.length; i++) {
-          dispatch(postShoppingCart({ cartId: cartId, productId: idPorducs[i] }));
+          dispatch(postShoppingCart({ cartId: cartId, productId: idPorducs[i], userId: idUser }));
         }
       }
     }
   };
+
   useEffect(() => {
     agregarCarrito();
   }, [agregarCarrito]);
-
+  
+  useEffect(() => {
+    if (idUser) {
+      dispatch(addDataBaseShoppingCart(idUser));
+    }
+  },[dispatch, idUser]);
 
   return (
     <div>
       <div>
-        {cart.length === 0 ? (
+        {  Object.keys(userLogin).length === 0 && cart.length === 0 ? (
           <div className="carritoVacio">
             <h1>EL CARRITO ESTÁ VACÍO</h1>
             <p>
               Una vez que añadas algo a tu carrito, aparecerá acá. ¿Listo para
               empezar?
             </p>
+            <Link to="/home">
+              <Button>Empezar</Button>
+            </Link>
+        
           </div>
+
         ) : (
           <div>
             <h1 className="tucarrito">TU CARRITO</h1>
@@ -100,28 +117,56 @@ export default function ShopingCart() {
         )}
       </div>
       <div className="botonCart">
-      {cart === undefined || cart.length === 0 ? (
-        <Link to="/home">
-          <Button>Empezar</Button>
-        </Link>
-      ) : (
-        cart.map((products) => {
-          return (
-            <div className="contenedorCart">
-              <CardShopingCart
-                key={products.id}
-                id={products.id}
-                title={products.productName}
-                price={Number(products.salePrice)}
-                brand={products.collection.name}
-                images={products.images}
-                stock={products.stock}
-              />
-            </div>
-          );
-        })
-      )}
+          {
+            idUser ? (
+                <>
+                {
+                  productfavorite?.map((products) => {
+                    return (
+                      <>
+                        <CardShopingCart 
+                        key={products.id}
+                        id={products.id}
+                        images={products.images}
+                        title={products.productName}
+                        />
+                      </>
+                    );
+                  })
+                }
+                </>
+       
+            ) : (
+              cart.map((products) => {
+                return (
+                  <div className="contenedorCart">
+                    <CardShopingCart
+                      key={products.id}
+                      id={products.id}
+                      title={products.productName}
+                      price={Number(products.salePrice)}
+                      brand={products.collection.name}
+                      images={products.images}
+                      stock={products.stock}
+                    />
+                  </div>
+                );
+              })
+            )
+
+          }
       </div>
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
