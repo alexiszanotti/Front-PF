@@ -75,6 +75,7 @@ export default function Home() {
   return (
     <div>
       <div className="boxCategories">
+        
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2} columns={16}>
             <Grid item xs={4}>

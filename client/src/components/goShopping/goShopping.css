@@ -1,6 +1,7 @@
 .shoppingGeneral{
     width:90%;
     margin: auto;
+    margin-top:20px;
 }
 .boxInvitados{
     display: flex;
