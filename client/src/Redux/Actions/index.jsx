@@ -21,6 +21,7 @@ import {
   USER_LOGOUT,
   EMPTY_CART,
   EMPTY_FAVORITE,
+  ADD_DATABASE_SHOPPING_CART
 } from "./actionTypes";
 
 export function getAllProducts() {
@@ -273,3 +274,12 @@ export const postShoppingCart = payload => {
     return res;
   };
 }
+export const addDataBaseShoppingCart = userId => {
+  return async dispatch => {
+    let res = await axios(`cart?userId=${userId}`);
+    return dispatch({
+      type: ADD_DATABASE_SHOPPING_CART,
+      payload: res.data,
+    });
+  };
+};
