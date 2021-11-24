@@ -279,8 +279,9 @@ export default function NavBar() {
   };
 
   return (
+      <div className="navBarContainer">
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" className="navBar" sx={{ bgcolor: "white" }}>
+      <AppBar position="fixed" className="navBar" sx={{ bgcolor: "white" }}>
         <Toolbar>
           <Typography
             variant="h6"
@@ -346,5 +347,6 @@ export default function NavBar() {
       {renderMobileMenu}
       {renderMenu}
     </Box>
+      </div>
   );
 }

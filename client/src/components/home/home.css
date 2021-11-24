@@ -4,7 +4,10 @@
     justify-content: center;
 }
 .boxCategories{
-    margin-top: 15px;
+    margin-top: 75px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 55px;
 }
 .btnFiltros{
     background-color: rgba(8, 38, 46, 0.644);
