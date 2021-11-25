@@ -49,9 +49,11 @@ export default function GoShopping() {
     } else {
         return (
             <div className='shoppingGeneral'>
-
+                <div className='title'>
                 <h3>Información de entrega</h3>
-                <form onSubmit={e => handleSubmit(e)} >
+
+                </div>
+                <form onSubmit={e => handleSubmit(e)} className="formulario" >
 
                     <div className="contenido">
                         <div className="sarasa">
@@ -63,20 +65,20 @@ export default function GoShopping() {
                             <input type='text' name='lastName' onChange={handleInputChange} placeholder={usuarioLogeado.map((el) => el.lastName)} />
                         </div>
                         <div className="sarasa">
+                            <label>EMAIL</label>
+                            <input type='text' name='email' onChange={handleInputChange} placeholder={usuarioLogeado.map((el) => el.email)} />
+                        </div>
+                        <div className="sarasa">
+                            <label>DOCUMENTO</label>
+                            <input type='text' name='document' onChange={handleInputChange} placeholder={usuarioLogeado.map((el) => el.document)} />
+                        </div>
+                        <div className="sarasa">
                             <label>DIRECCION</label>
                             <input type='text' name='address' onChange={handleInputChange} placeholder={usuarioLogeado.map((el) => el.address)} />
                         </div>
                         <div className="sarasa">
                             <label>ALTURA</label>
                             <input type='text' name='number' onChange={handleInputChange} placeholder={usuarioLogeado.map((el) => el.number)} />
-                        </div>
-                        <div className="sarasa">
-                            <label>PISO</label>
-                            <input type='text' name='floor' onChange={handleInputChange} placeholder={usuarioLogeado.map((el) => el.floor)} />
-                        </div>
-                        <div className="sarasa">
-                            <label>DEPARTAMENTO</label>
-                            <input type='text' name='department' onChange={handleInputChange} placeholder={usuarioLogeado.map((el) => el.department)} />
                         </div>
                         <div className="sarasa">
                             <label>LOCALIDAD</label>
@@ -88,29 +90,25 @@ export default function GoShopping() {
                             <input type='text' name='cp' onChange={handleInputChange} placeholder={usuarioLogeado.map((el) => el.cp)} />
                         </div>
                         <div className="sarasa">
+                            <label>PISO</label>
+                            <input type='text' name='floor' onChange={handleInputChange} placeholder={usuarioLogeado.map((el) => el.floor)} />
+                        </div>
+                        <div className="sarasa">
+                            <label>DEPARTAMENTO</label>
+                            <input type='text' name='department' onChange={handleInputChange} placeholder={usuarioLogeado.map((el) => el.department)} />
+                        </div>
+                        <div className="sarasa">
 
                             <label>PROVINCIA</label>
                             <input type='text' name='province' onChange={handleInputChange} placeholder={usuarioLogeado.map((el) => el.province)} />
                         </div>
                         <div className="sarasa">
-                            <label>EMAIL</label>
-                            <input type='text' name='email' onChange={handleInputChange} placeholder={usuarioLogeado.map((el) => el.email)} />
-                        </div>
-                        <div className="sarasa">
-                            <label>DOCUMENTO</label>
-                            <input type='text' name='document' onChange={handleInputChange} placeholder={usuarioLogeado.map((el) => el.document)} />
-                        </div>
-                        <div className="sarasa">
                             <label>TELEFONO</label>
                             <input type='text' name='telephone' onChange={handleInputChange} placeholder={usuarioLogeado.map((el) => el.telephone)} />
                         </div>
-                        <div>
-                        </div>
-                        <p>En el caso que algún dato este erroneo cambielo</p>
-                        <div>
-                        </div>
-                        <div>
-                        </div>
+                    </div>
+                    <div className="verdura">
+                        <p>En el caso que algún dato esté mal modifíquelo y presione en "modificar datos" para guardar los cambios. Luego podrá continuar con el pago.</p>                      
                         <button className='btn'>Modificar datos</button>
                     </div>
                 </form>
