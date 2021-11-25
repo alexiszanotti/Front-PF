@@ -6,6 +6,7 @@ import {
 } from "../../Redux/Actions/index.jsx";
 import Rating from "@mui/material/Rating";
 import { Modal } from "@material-ui/core";
+import swal from 'sweetalert';
 
 const validateForm = input => {
   let error = {};
@@ -60,7 +61,7 @@ export default function createReview() {
     if (Object.keys(error).length === 0) {
       dispatch(postReview(input));
       console.log(input);
-      alert("Reseña creada con éxito");
+      swal("Creacion Exitosa!", "Reseña creada con éxito!", "success");
       openCloseModal();
       dispatch(getReview(input.productId));
       setInput({
@@ -70,7 +71,7 @@ export default function createReview() {
       });
       console.log(input, "actual");
     } else {
-      alert("Por favor, complete todos los campos requeridos");
+      swal("Error!", "Por favor, complete todos los campos requeridos!", "error");
     }
   };
 

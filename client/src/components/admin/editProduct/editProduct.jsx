@@ -1,15 +1,20 @@
 import "./editProduct.css";
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from 'react-router-dom';
+import Box from "@mui/material/Box";
+import { Input } from "@mui/material";
 import {
   getAllProducts,
   modifyProduct,
   getCollection,
 } from "../../../Redux/Actions/index";
-import { useDispatch, useSelector } from "react-redux";
-import Box from "@mui/material/Box";
-import { Input } from "@mui/material";
+import swal from 'sweetalert';
 
 export default function EditProduct() {
+
+  const history = useHistory();
+
   const dispatch = useDispatch();
   const productsData = useSelector((state) => state.products);
   const collections = useSelector((state) => state.collections);
@@ -49,10 +54,11 @@ export default function EditProduct() {
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(modifyProduct(input));
-    alert("Producto modificado con éxito");
+    swal("Modificacion Exitosa!", "Producto modificado con éxito!", "success");
     setInput({
       id: "",
     });
+    history.push('/');
   }
 
   let aux = productsData.filter((el) => el.id === input.id);

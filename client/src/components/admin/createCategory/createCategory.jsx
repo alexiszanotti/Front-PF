@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { createCollection, getCollection } from "../../../Redux/Actions/index";
+import { useHistory } from 'react-router-dom';
+import swal from 'sweetalert';
 import "./createCategory.css";
 
 const validateForm = (input) => {
@@ -10,6 +12,9 @@ const validateForm = (input) => {
 };
 
 export default function CreateCollection() {
+
+  const history = useHistory();
+
   const dispatch = useDispatch();
 
   const [error, setError] = useState({});
@@ -32,12 +37,13 @@ export default function CreateCollection() {
     e.preventDefault();
     if (Object.keys(error).length === 0) {
       dispatch(createCollection(input));
-      alert("Colección creada con éxito");
+      swal("Creacion Exitosa!", "Colección creada con éxito!", "success");
       setInput({
         name: "",
       });
+      history.push('/');
     } else {
-      alert("Por favor, complete todos los campos requeridos");
+      swal("Error!", "Por favor, complete todos los campos requeridos!", "error");
     }
   };
 
