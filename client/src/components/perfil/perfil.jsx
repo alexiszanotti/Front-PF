@@ -10,8 +10,8 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel"; 
-import {modifyUser, userLogout} from "../../Redux/Actions/index"
-
+import {modifyUser, userLogout} from "../../Redux/Actions/index";
+import swal from 'sweetalert';
 
 export default function Perfil() {
     const dispatch = useDispatch();
@@ -46,7 +46,7 @@ export default function Perfil() {
 
   function handleSubmit(e) {
     dispatch(modifyUser(input));
-    alert("USUARIO MODIFICADO");
+    swal("Modificacion Exitosa!", "El usuario se modifico con éxito!", "success");
     setInput({
         id: "",
     }); 

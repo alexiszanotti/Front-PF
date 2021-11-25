@@ -1,11 +1,14 @@
 import React, {useState, useEffect} from "react";
 import {getAllUsers, modifyUser} from "../../../Redux/Actions/index"
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from 'react-router-dom';
 import Box from '@mui/material/Box';
+import swal from 'sweetalert';
 import "./upDateUsers.css"
 
 export default function UpDataUsers(){
 
+    const history = useHistory();
     const dispatch = useDispatch();
     const usersData = useSelector(state => state.users);
 
@@ -39,12 +42,13 @@ export default function UpDataUsers(){
       };
 
       function handleSubmit(e) {
+        e.preventDefault()
         dispatch(modifyUser(input));
-        alert("USUARIO RECARGADO");
+        swal("Modificacion Exitosa!", "Usuario modificado!", "success");
         setInput({
             id: "",
         });
-        
+        history.push('/');
       }
   
       let aux = usersData.filter((el) => el.id === input.id)

@@ -2,6 +2,8 @@ import "./createProduct.css";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createProduct, getCollection } from "../../../Redux/Actions/index";
+import { useHistory } from 'react-router-dom';
+import swal from 'sweetalert';
 import zapa from "../../../images/ImgaProduct.png";
 
 const validateForm = (input) => {
@@ -19,6 +21,9 @@ const validateForm = (input) => {
   return error;
 };
 export default function CreateProduct() {
+
+  const history = useHistory();
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -48,9 +53,10 @@ export default function CreateProduct() {
     e.preventDefault();
     if (Object.keys(error).length === 0) {
       dispatch(createProduct(input));
-      alert("Producto creado con éxito");
+      swal("Creacion Exitosa!", "Producto creado con éxito!", "success");
+      history.push('/');
     } else {
-      alert("Por favor, complete todos los campos requeridos");
+      swal("Error!", "Por favor, complete todos los campos requeridos!", "error");
     }
   };
 
