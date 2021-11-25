@@ -41,7 +41,7 @@ export default function NavBar() {
   // }
   const usr = useSelector((state) => state.userLogin);
   let logIn = useSelector((state) => state.userLogin);
-
+  console.log(logIn);
   let avatar = [];
 
   if (user !== undefined || user !== null) {
@@ -53,6 +53,13 @@ export default function NavBar() {
   const logOut = () => {
     dispatch(userLogout());
   };
+
+
+
+  const dataBaseShopping = useSelector((state) => state.ShoppingAlmacen);
+  const productShopping = dataBaseShopping?.Cart?.products;
+  const dataBaseFavorite = useSelector((state) => state.favoriteAlmacen)
+  console.log(dataBaseFavorite, "holaputo");
 
   const aux = useSelector((state) => state.shoppingCart);
   const fav = useSelector((state) => state.favorite);
@@ -308,7 +315,10 @@ export default function NavBar() {
               aria-haspopup="true"
               color="inherit"
             >
-              <StyledBadge badgeContent={favo.length} color="secondary">
+             
+              <StyledBadge badgeContent={
+               Object.keys(logIn).length ? dataBaseFavorite?.length :favo.length
+                } color="secondary">
                 <Link to="/favorites/:">
                   <FavoriteIcon/>
                 </Link>
@@ -323,7 +333,7 @@ export default function NavBar() {
               aria-haspopup="true"
               color="inherit"
             >
-              <StyledBadge badgeContent={aux.length} color="secondary">
+              <StyledBadge badgeContent={ Object.keys(logIn).length? productShopping?.length : aux.length} color="secondary">
                 <Link to="/carrito/:">
                   <ShoppingCartIcon />
                 </Link>

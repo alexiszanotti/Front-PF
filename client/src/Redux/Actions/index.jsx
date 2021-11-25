@@ -21,7 +21,8 @@ import {
   USER_LOGOUT,
   EMPTY_CART,
   EMPTY_FAVORITE,
-  ADD_DATABASE_SHOPPING_CART
+  ADD_DATABASE_SHOPPING_CART,
+  ADD_DATABASE_FAVORITE
 } from "./actionTypes";
 
 export function getAllProducts() {
@@ -279,6 +280,16 @@ export const addDataBaseShoppingCart = userId => {
     let res = await axios(`cart?userId=${userId}`);
     return dispatch({
       type: ADD_DATABASE_SHOPPING_CART,
+      payload: res.data,
+    });
+  };
+};
+
+export const addDataBaseFavorite = userId => {
+  return async dispatch => {
+    let res = await axios(`favorite?userId=${userId}`);
+    return dispatch({
+      type: ADD_DATABASE_FAVORITE,
       payload: res.data,
     });
   };
