@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -13,7 +13,7 @@ import Inventory2Icon from "@mui/icons-material/Inventory2";
 import Badge from '@mui/material/Badge';
 export default function CardShopingCart(props) {
   const [count, setCount] = useState(1);
-
+  const dispatch = useDispatch();
   const logIn = useSelector(state => state.userLogin);
   let idUser = logIn.id;
   const users = useSelector((state) => state.users);
@@ -27,7 +27,10 @@ export default function CardShopingCart(props) {
 
   console.log(props.stock);
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(deleteDataBaseShoppingCart())
+  },[dispatch])
+
   return (
     <Card sx={{ maxWidth: 350 }}>
       <CardActions>

@@ -22,7 +22,8 @@ import {
   EMPTY_CART,
   EMPTY_FAVORITE,
   ADD_DATABASE_SHOPPING_CART,
-  ADD_DATABASE_FAVORITE
+  ADD_DATABASE_FAVORITE,
+  GET_MERCADO_PAGO
 } from "../Actions/actionTypes";
 
 const initialState = {
@@ -42,7 +43,8 @@ const initialState = {
     discount: "All",
   },
   ShoppingAlmacen: [],
-  favoriteAlmacen: []
+  favoriteAlmacen: [],
+  mercadoPago: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -215,7 +217,11 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         favoriteAlmacen: action.payload,
       };
-
+    case GET_MERCADO_PAGO:
+      return {
+        ...state,
+        mercadoPago: action.payload,
+      };
     default:
       return state;
   }
