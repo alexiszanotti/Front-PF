@@ -2,6 +2,7 @@ import "./deleteCategory.css";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCollection, getCollection } from "../../../Redux/Actions/index";
+import swal from 'sweetalert';
 
 export default function DeleteCollection() {
     const dispatch = useDispatch();
@@ -22,9 +23,9 @@ export default function DeleteCollection() {
         e.preventDefault();
         if (Object.keys(error).length === 0) {
             dispatch(deleteCollection(input));
-            alert("Categoría eliminada con éxito");
+            swal("Eliminacion Exitosa!", "Categoría eliminada con éxito!", "success");
         } else {
-            alert("Por favor, complete todos los campos requeridos");
+            swal("Error!", "Por favor, complete todos los campos requeridos!", "error");
         }
     };
 
