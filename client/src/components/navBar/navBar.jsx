@@ -41,7 +41,7 @@ export default function NavBar() {
   // }
   const usr = useSelector((state) => state.userLogin);
   let logIn = useSelector((state) => state.userLogin);
-  console.log(logIn);
+
   let avatar = [];
 
   if (user !== undefined || user !== null) {
@@ -57,9 +57,10 @@ export default function NavBar() {
 
 
   const dataBaseShopping = useSelector((state) => state.ShoppingAlmacen);
-  const productShopping = dataBaseShopping?.Cart?.products;
+  const productShopping = dataBaseShopping.map((el) => el.product)
+
   const dataBaseFavorite = useSelector((state) => state.favoriteAlmacen)
-  console.log(dataBaseFavorite, "holaputo");
+ 
 
   const aux = useSelector((state) => state.shoppingCart);
   const fav = useSelector((state) => state.favorite);

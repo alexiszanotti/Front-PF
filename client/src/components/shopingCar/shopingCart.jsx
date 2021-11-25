@@ -8,8 +8,6 @@ import { Link } from "react-router-dom";
 import { Box } from "@mui/system";
 import {
   emptyCart,
-  postShoppingCart,
-  addDataBaseShoppingCart,
 } from "../../Redux/Actions/index";
 import { useDispatch } from "react-redux";
 export default function ShopingCart() {
@@ -17,13 +15,12 @@ export default function ShopingCart() {
   const cart = useSelector((state) => state.shoppingCart);
 
   const userLogin = useSelector((state) => state.userLogin);
-  const users = useSelector((state) => state.users);
-  let usr = users.filter((user) => user.id === userLogin.id);
-  let cartId = usr.map((el) => el.Cart.id);
+
 
   const dataBaseShopping = useSelector((state) => state.ShoppingAlmacen);
-  const productShopping = dataBaseShopping?.Cart?.products;
+  const productShopping = dataBaseShopping.map((el) => el.product)
 
+  console.log(productShopping);
   let idUser = userLogin.id;
 
   let total = 0; 
@@ -44,33 +41,8 @@ export default function ShopingCart() {
     dispatch(emptyCart());
   };
 
-  const agregarCarrito = () => {
-    var idUser = userLogin.id;
-    if (idUser) {
-      let idPorducs = cart.map((el) => el.id);
-      if (idPorducs.length > 0) {
-        for (let i = 0; i < idPorducs.length; i++) {
-          dispatch(
-            postShoppingCart({
-              cartId: cartId,
-              productId: idPorducs[i],
-              userId: idUser,
-            })
-          );
-        }
-      }
-    }
-  };
 
-  useEffect(() => {
-    agregarCarrito();
-  }, [agregarCarrito]);
 
-  useEffect(() => {
-    if (idUser) {
-      dispatch(addDataBaseShoppingCart(idUser));
-    }
-  }, [dispatch, idUser]);
 
   return (
     <div>
@@ -135,8 +107,8 @@ export default function ShopingCart() {
           <div>
             <h1 className="tucarrito">TU CARRITO</h1>
             <h2 className="total">
-              TOTAL ({cart.length}{" "}
-              {cart.length === 1 ? "PRODUCTO" : "PRODUCTOS"} ): $ {total}
+              TOTAL ({productShopping.length}{" "}
+              {productShopping.length === 1 ? "PRODUCTO" : "PRODUCTOS"} ): $ {total}
             </h2>
             <div className="comprarAhora">
               <h2 className="ahora">
@@ -151,7 +123,7 @@ export default function ShopingCart() {
             <div className="contenedorTotal">
               <h1>RESUMEN DEL PEDIDO </h1>
               <h2>
-                {cart.length} {cart.length === 1 ? "PRODUCTO" : "PRODUCTOS"} ${" "}
+                {productShopping.length} {productShopping.length === 1 ? "PRODUCTO" : "PRODUCTOS"} ${" "}
                 {total}
               </h2>
               <h2>TOTAL: $ {total}</h2>

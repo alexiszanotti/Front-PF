@@ -17,7 +17,6 @@ export default function SearchBar() {
     dispatch(searchProducts(name));
   }, [dispatch, name]);
 
-  console.log(name)
 
   return (
     <div>

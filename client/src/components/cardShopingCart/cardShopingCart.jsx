@@ -3,19 +3,22 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions, IconButton } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { removeCard } from "../../Redux/Actions/index";
+import { Button, CardActionArea, CardActions } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { removeCard, deleteDataBaseShoppingCart } from "../../Redux/Actions/index";
 import { Link } from "react-router-dom";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Inventory2Icon from "@mui/icons-material/Inventory2";
 import Badge from '@mui/material/Badge';
 export default function CardShopingCart(props) {
   const [count, setCount] = useState(1);
+
+  const logIn = useSelector(state => state.userLogin);
+  let idUser = logIn.id;
+  const users = useSelector((state) => state.users);
+  let usr = users.filter((user) => user.id === logIn.id);
+  let cartId = usr.map((el) => el.Cart.id);
 
   const stock = [];
   for (let i = 1; i <= props.stock; i++) {
@@ -28,7 +31,9 @@ export default function CardShopingCart(props) {
   return (
     <Card sx={{ maxWidth: 350 }}>
       <CardActions>
-        <Button onClick={() => dispatch(removeCard(props.id))}>ELIMINAR</Button>
+        <Button onClick={
+          idUser ? () => dispatch(deleteDataBaseShoppingCart({cartId: cartId.toString() , productId: props.id})) : () => dispatch(removeCard(props.id))
+        }>ELIMINAR</Button>
         <Badge badgeContent={
             count === 0 ? props.stock : props.stock - count
         } color="primary">

@@ -14,12 +14,13 @@ import EstadisticasA from "./components/admin/estadisticasA/estadisticasA";
 import EditProduct from "./components/admin/editProduct/editProduct";
 import CreateCollection from "./components/admin/createCategory/createCategory";
 import DeleteCollection from "./components/admin/deleteCategory/deleteCategory";
+import Stock from "./components/admin/stock/stock";
 import Perfil from "./components/perfil/perfil";
 import Pago from "./components/pago/pago";
 import DefaultError from "./components/error/error";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts, postCreateUser, getAllUsers, postUserLogin } from "./Redux/Actions/index";
+import { getAllProducts, postCreateUser, getAllUsers, postUserLogin, addDataBaseShoppingCart, addDataBaseFavorite } from "./Redux/Actions/index";
 import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
@@ -39,6 +40,18 @@ function App() {
   const emailUsersDB = usersDB.map(e => e.email);
 
   const logIn = useSelector(state => state.userLogin);
+  const users = useSelector((state) => state.users);
+  let usr = users.filter((user) => user.id === logIn.id);
+  let cartId = usr.map((el) => el.Cart.id);
+  let idUser = logIn.id;
+
+  useEffect(() => {
+    if (idUser) {
+      dispatch(addDataBaseShoppingCart(cartId.toString()));
+      dispatch(addDataBaseFavorite(idUser));
+    }
+  }, [dispatch, idUser]);
+
 
   if (isAuthenticated) {
     if (emailUsersDB.indexOf(user.email) === -1) {
@@ -82,6 +95,7 @@ function App() {
             <Route path='/updateProduct' component={EditProduct} />
             <Route path='/createCollection' component={CreateCollection} />
             <Route path='/deleteCollection' component={DeleteCollection} />
+            <Route path="/stock" component={Stock} />
           </Switch>
         </div>
       </BrowserRouter>
