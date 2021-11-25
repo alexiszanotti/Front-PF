@@ -22,7 +22,8 @@ import {
   EMPTY_CART,
   EMPTY_FAVORITE,
   ADD_DATABASE_SHOPPING_CART,
-  ADD_DATABASE_FAVORITE
+  ADD_DATABASE_FAVORITE,
+  DELETE_DATABASE_SHOPPING_CART
 } from "./actionTypes";
 
 export function getAllProducts() {
@@ -277,10 +278,10 @@ export const postShoppingCart = payload => {
 }
 export const addDataBaseShoppingCart = userId => {
   return async dispatch => {
-    let res = await axios(`cart?userId=${userId}`);
+    let res = await axios(`cart?cartId=${userId}`);
     return dispatch({
       type: ADD_DATABASE_SHOPPING_CART,
-      payload: res.data,
+      payload: res.data.ProductsInCarts,
     });
   };
 };
@@ -292,5 +293,12 @@ export const addDataBaseFavorite = userId => {
       type: ADD_DATABASE_FAVORITE,
       payload: res.data,
     });
+  };
+};
+
+export const deleteDataBaseShoppingCart = payload => {
+  return async () => {
+    let res = await axios.delete("cart", { data: payload});
+    return res;
   };
 };

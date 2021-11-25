@@ -71,7 +71,7 @@ export default function Home() {
       setCurrentPage(currentPage - 1);
     }
   }
-
+  console.log(currentShoes)
   return (
     <div>
       <div className="boxCategories">
