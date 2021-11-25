@@ -15,12 +15,14 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Inventory2Icon from "@mui/icons-material/Inventory2";
 import Badge from '@mui/material/Badge';
 export default function CardShopingCart(props) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
 
   const stock = [];
   for (let i = 1; i <= props.stock; i++) {
     stock.push(i);
   }
+
+  console.log(props.stock);
 
   const dispatch = useDispatch();
   return (

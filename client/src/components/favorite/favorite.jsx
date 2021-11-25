@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import CardFavorite from "../cardFavorite/cardFavorite";
 import { Link } from "react-router-dom";
-import { emptyFavorites, postFavorite } from "../../Redux/Actions/index";
+import { emptyFavorites, postFavorite, addDataBaseFavorite } from "../../Redux/Actions/index";
 import { useDispatch } from "react-redux";
 import "./favorite.css";
 
@@ -10,10 +10,10 @@ export default function Favorite() {
   const dispatch = useDispatch();
   const favoritos = useSelector((state) => state.favorite);
   const userLogin = useSelector((state) => state.userLogin);
-  const users = useSelector((state) => state.users);
-  let usr = users.filter((user) => user.id === userLogin.id);
-  let productsFav = usr.map((el) => el.products);
-  console.log(productsFav);
+  const dataBaseFavorite = useSelector((state) => state.favoriteAlmacen)
+  console.log(dataBaseFavorite)
+
+  let idUser = userLogin.id;
   var hash = {};
   let sinLogin = favoritos.filter(function (current) {
     var exists = !hash[current.id];
@@ -40,6 +40,12 @@ export default function Favorite() {
     agregarFavorito();
   }, [agregarFavorito]);
 
+  useEffect(() => {
+    if(idUser){
+      dispatch(addDataBaseFavorite(idUser));
+    }
+  }, [dispatch, idUser]);
+
   return (
     <div>
       {userLogin.id ? (
@@ -47,8 +53,8 @@ export default function Favorite() {
           <div className="favoriteContainer">
             <h1>Mi lista de deseos</h1>
             <h2>
-              {sinLogin.length}{" "}
-              {sinLogin.length === 1 ? "Artículo" : "Artículos"}{" "}
+              {dataBaseFavorite.length}{" "}
+              {dataBaseFavorite.length === 1 ? "Artículo" : "Artículos"}{" "}
             </h2>
             <button onClick={handleEmptyFavorites}>
               BORRAR TODOS FAVORITOS
@@ -57,17 +63,16 @@ export default function Favorite() {
           <br></br>
           <br></br>
           <div className="termo">
-            {sinLogin === undefined || sinLogin.length === 0 ? (
+            {dataBaseFavorite === undefined || dataBaseFavorite.length === 0 ? (
               <h1>...</h1>
             ) : (
-              sinLogin.map((products) => {
+              dataBaseFavorite.map((products) => {
                 return (
                   <CardFavorite
                     id={products.id}
                     key={products.id}
                     title={products.productName}
                     price={products.salePrice}
-                    brand={products.collection.name}
                     images={products.images}
                   />
                 );

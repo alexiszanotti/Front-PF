@@ -21,7 +21,8 @@ import {
   USER_LOGOUT,
   EMPTY_CART,
   EMPTY_FAVORITE,
-  ADD_DATABASE_SHOPPING_CART
+  ADD_DATABASE_SHOPPING_CART,
+  ADD_DATABASE_FAVORITE
 } from "../Actions/actionTypes";
 
 const initialState = {
@@ -40,6 +41,7 @@ const initialState = {
     price: "default",
     discount: "All",
   },
+  ShoppingAlmacen: [],
   favoriteAlmacen: []
 };
 
@@ -206,8 +208,14 @@ export default function rootReducer(state = initialState, action) {
     case ADD_DATABASE_SHOPPING_CART:
       return {
         ...state,
+        ShoppingAlmacen: action.payload,
+      };
+    case ADD_DATABASE_FAVORITE:
+      return {
+        ...state,
         favoriteAlmacen: action.payload,
       };
+
     default:
       return state;
   }
