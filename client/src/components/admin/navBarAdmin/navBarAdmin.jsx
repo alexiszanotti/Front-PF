@@ -76,7 +76,7 @@ export default function NavBarAdmin() {
               <ListItem button>
               <Link to="/stock">
                 <Button>STOCK</Button>
-                </Link>
+              </Link>
               </ListItem>
               <ListItem button>
                 <Button>ESTADOS DE ORDEN</Button>
