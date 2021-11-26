@@ -222,7 +222,6 @@ export const resetFilter = () => {
 };
 
 export const modifyProduct = payload => {
-  console.log(payload, "asdasd");
   return async () => {
     let res = await axios.patch(`products`, payload);
     return res;

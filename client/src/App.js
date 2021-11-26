@@ -40,17 +40,17 @@ function App() {
   const emailUsersDB = usersDB.map(e => e.email);
 
   const logIn = useSelector(state => state.userLogin);
-  const users = useSelector((state) => state.users);
-  let usr = users.filter((user) => user.id === logIn.id);
-  let cartId = usr.map((el) => el.Cart.id);
-  let idUser = logIn.id;
+  // const users = useSelector((state) => state.users);
+  // let usr = users.filter((user) => user.id === logIn.id);
+  // let cartId = usr.map((el) => el.Cart.id);
+  // let idUser = logIn.id;
 
-  useEffect(() => {
-    if (idUser) {
-      dispatch(addDataBaseShoppingCart(cartId.toString()));
-      dispatch(addDataBaseFavorite(idUser));
-    }
-  }, [dispatch, idUser]);
+  // useEffect(() => {
+  //   if (idUser) {
+  //     dispatch(addDataBaseShoppingCart(cartId.toString()));
+  //     dispatch(addDataBaseFavorite(idUser));
+  //   }
+  // }, [dispatch, idUser]);
 
 
   if (isAuthenticated) {
