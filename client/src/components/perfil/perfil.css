@@ -1,8 +1,12 @@
 .contenedorPerfil{
     background-color: white;
-    margin-left: 500px;
-    height: 1000px;
-    width: 800px;
+    /* margin-left: 500px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 550px;
+    /* width: 850px; */
 }
 .detallecontenedor{
     text-align: left;
@@ -17,7 +21,22 @@
 .nombrePerfil{
     text-align: center;
     font-size: 60px;
+    margin-top: 80px;
 }
 .contenedorBotones{
     margin-top: 120px;
 }
+
+.contenido1{
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    grid-auto-columns: minmax(1fr);
+    grid-gap: 5px;
+    width: 90%;
+    margin-top: 20px;
+}
+
+.signOut{
+    float: right;
+}
+
