@@ -61,7 +61,7 @@ export default function Home() {
   }
   function nextPage() {
     if (currentPage === pageNumbers.length) {
-      setCurrentPage(1);
+      setCurrentPage(5);
       console.log("entro al console");
     } else {
       setCurrentPage(currentPage + 1);
@@ -69,7 +69,7 @@ export default function Home() {
   }
   function previousPage() {
     if (currentPage === 1) {
-      setCurrentPage(pageNumbers.length);
+      setCurrentPage(1);
       console.log("entro al console");
     } else {
       setCurrentPage(currentPage - 1);

@@ -52,11 +52,11 @@ export default function GoShopping() {
                     <div className="contenido">
                         <div className="sarasa">
                             <label>NOMBRE</label>
-                            <input type='text' name='name' onChange={handleInputChange} placeholder={usuarioLogeado.map((el) => el.name)} />
+                            <input type='text' name='name' onChange={handleInputChange} placeholder={usuarioLogeado.map((el) => el.name)} className='inputSarasa' />
                         </div>
                         <div className="sarasa">
                             <label>APELLIDO</label>
-                            <input type='text' name='lastName' onChange={handleInputChange} placeholder={usuarioLogeado.map((el) => el.lastName)} />
+                            <input type='text' name='lastName' onChange={handleInputChange} placeholder={usuarioLogeado.map((el) => el.lastName)}  />
                         </div>
                         <div className="sarasa">
                             <label>EMAIL</label>

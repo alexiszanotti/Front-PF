@@ -115,12 +115,6 @@ export default function ShopingCart() {
                   <Button onClick={handleCheckOut}>IR A COMPRAR</Button>
                 </Link>
               </Box>
-              <h1 className="metodoTarjeta">OPCIONES DE PAGO</h1>
-              <img
-                alt="k"
-                className="imagenTarjeta"
-                src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/esAR/Images/Logos_Argentina-sinMP_tcm216-730132.png"
-              />
             </div>
             <Link to="/home">
               <button className="botonCart1">volver</button>
@@ -162,12 +156,6 @@ export default function ShopingCart() {
                   <Button>IR A COMPRAR</Button>
                 </Link>
               </Box>
-              {/* <h1 className="metodoTarjeta">OPCIONES DE PAGO</h1>
-              <img
-                alt="k"
-                className="imagenTarjeta"
-                src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/esAR/Images/Logos_Argentina-sinMP_tcm216-730132.png"
-              /> */}
             </div>
             <Link to="/home">
               <button className="botonCart1">volver</button>
