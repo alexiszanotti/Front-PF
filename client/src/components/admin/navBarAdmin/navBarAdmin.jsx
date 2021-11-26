@@ -78,9 +78,11 @@ export default function NavBarAdmin() {
                 <Button>STOCK</Button>
               </Link>
               </ListItem>
+              <Link to='/verOrdenes'>
               <ListItem button>
                 <Button>ESTADOS DE ORDEN</Button>
               </ListItem>
+              </Link>
             </List>
             <ListItem button>
               <Button onClick={logOut}>SALIR</Button>
