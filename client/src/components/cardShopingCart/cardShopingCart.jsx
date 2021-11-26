@@ -27,15 +27,23 @@ export default function CardShopingCart(props) {
 
   console.log(props.stock);
 
-  useEffect(() => {
-    dispatch(deleteDataBaseShoppingCart())
-  },[dispatch])
+  const handleDetele = () => {
+    if(idUser){
+      window.location.reload("");
+      dispatch(deleteDataBaseShoppingCart({cartId: cartId.toString(), productId: props.id}));
+      
+    }else{
+
+      dispatch(removeCard(props.id));
+    }
+  }
+
 
   return (
     <Card sx={{ maxWidth: 350 }}>
       <CardActions>
         <Button onClick={
-          idUser ? () => dispatch(deleteDataBaseShoppingCart({cartId: cartId.toString() , productId: props.id})) : () => dispatch(removeCard(props.id))
+        handleDetele
         }>ELIMINAR</Button>
         <Badge badgeContent={
             count === 0 ? props.stock : props.stock - count
