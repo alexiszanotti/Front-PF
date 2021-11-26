@@ -68,7 +68,7 @@ export default function ShopingCart() {
   return (
     <div>
       <div>
-        {Object.keys(logIn).length === 0 && cart.length === 0 ? (
+        {productShopping?.length === 0 && cart.length === 0 ? (
           <div className="carritoVacio">
             <h1>EL CARRITO ESTÁ VACÍO</h1>
             <p>
