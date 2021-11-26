@@ -19,7 +19,8 @@ import {
   addDataBaseShoppingCart,
   postFavorite,
   addDataBaseFavorite,
-  emptyCart
+  emptyCart,
+  deleteDataBaseShoppingCart
 } from "../../Redux/Actions/index";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { IconButton } from "@mui/material";
@@ -92,7 +93,13 @@ export default function Products(props) {
         dispatch(shoppingCart(props.id));
       }
     } else {
-      dispatch(removeCard(props.id));
+      if(idUser){
+        dispatch(deleteDataBaseShoppingCart({cartId: cartId.toString(), productId: props.id}));
+        
+      }else{
+        dispatch(removeCard(props.id));
+      }
+      
     }
   };
 

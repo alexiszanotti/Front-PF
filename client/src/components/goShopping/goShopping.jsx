@@ -7,7 +7,7 @@ import { modifyUser } from "../../Redux/Actions";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import { emptyCart } from "../../Redux/Actions";
+import { getMercadoPago } from "../../Redux/Actions";
 import "./goShopping.css";
 
 export default function GoShopping() {
@@ -36,12 +36,6 @@ export default function GoShopping() {
         setInput({
             id: "",
         });
-    }
-    const vaciar = () => {
-        dispatch(emptyCart());
-        alert("😈")
-        history.push("/");
-
     }
   
     if (Object.keys(usuario).length === 0) {
@@ -121,7 +115,8 @@ export default function GoShopping() {
                         noValidate
                         autoComplete="off"
                     >
-                        <Button variant="outlined" startIcon={<AttachMoneyIcon />} onClick={vaciar}>
+
+                        <Button variant="outlined" startIcon={<AttachMoneyIcon />} href="https://www.mercadopago.com.ar/checkout/v1/payment/redirect/644b005a-debd-4e39-b84c-e116e60b12b1/payment-option-form/?preference-id=255500937-d5de320a-9e6c-4247-b9e3-ee18a7cfcc2f&p=7cd4d9a374e78e54a8061566fd1eb19c#/">
                             Ir a pagar
                         </Button>
                     </Box>

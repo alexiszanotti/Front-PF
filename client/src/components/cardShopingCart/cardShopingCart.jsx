@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -13,7 +13,7 @@ import Inventory2Icon from "@mui/icons-material/Inventory2";
 import Badge from '@mui/material/Badge';
 export default function CardShopingCart(props) {
   const [count, setCount] = useState(1);
-
+  const dispatch = useDispatch();
   const logIn = useSelector(state => state.userLogin);
   let idUser = logIn.id;
   const users = useSelector((state) => state.users);
@@ -27,12 +27,23 @@ export default function CardShopingCart(props) {
 
   console.log(props.stock);
 
-  const dispatch = useDispatch();
+  const handleDetele = () => {
+    if(idUser){
+      window.location.reload("");
+      dispatch(deleteDataBaseShoppingCart({cartId: cartId.toString(), productId: props.id}));
+      
+    }else{
+
+      dispatch(removeCard(props.id));
+    }
+  }
+
+
   return (
     <Card sx={{ maxWidth: 350 }}>
       <CardActions>
         <Button onClick={
-          idUser ? () => dispatch(deleteDataBaseShoppingCart({cartId: cartId.toString() , productId: props.id})) : () => dispatch(removeCard(props.id))
+        handleDetele
         }>ELIMINAR</Button>
         <Badge badgeContent={
             count === 0 ? props.stock : props.stock - count
