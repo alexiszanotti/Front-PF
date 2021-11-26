@@ -1,13 +1,12 @@
 .contenedorTotal{
     background-color: rgb(255, 255, 255);
+    margin: auto;
     float: right;
-    width: 550px;
-    height: 300px;
-    margin-right: 10px;
+    width: 30%;
+    /* margin-right: 10px; */
     text-align:center;    
     position: fixed;
-    /* z-index: 1; */
-    margin-left: 950px;
+    margin-left: 69%;
 }
 .contenedorCart{
     margin-bottom: 10px;
@@ -76,8 +75,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr  ;
     grid-auto-columns: minmax(1fr);
-    grid-gap: 5px;
+    grid-gap: 25px;
     width: 50%;
+    margin-left: 3%;
     /* margin-top: 20px;  */
 }
 .cardContainer{
