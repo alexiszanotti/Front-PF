@@ -25,6 +25,12 @@ export default function Checkuot() {
               <p>
                 Nombre: {el.name} {el.lastName}
               </p>
+              <p>
+              Mail: {el.email}
+              </p>
+              <p>
+              Telefono: {el.telephone}
+              </p>
               <p>Direccion: </p>
               <li>Calle: {el.address}</li>
               <li>Numero: {el.number}</li>
