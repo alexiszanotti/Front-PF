@@ -12,20 +12,19 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Inventory2Icon from "@mui/icons-material/Inventory2";
 import Badge from '@mui/material/Badge';
 export default function CardShopingCart(props) {
+  const logIn = useSelector(state => state.userLogin);
+  const users = useSelector((state) => state.users);
   const [count, setCount] = useState(1);
   const dispatch = useDispatch();
-  const logIn = useSelector(state => state.userLogin);
-  let idUser = logIn.id;
-  const users = useSelector((state) => state.users);
-  let usr = users.filter((user) => user.id === logIn.id);
-  let cartId = usr.map((el) => el.Cart.id);
 
   const stock = [];
   for (let i = 1; i <= props.stock; i++) {
     stock.push(i);
   }
 
-  console.log(props.stock);
+  let idUser = logIn.id;
+  let usr = users?.filter((user) => user.id === logIn.id);
+  let cartId = usr?.map((el) => el.Cart.id);
 
   const handleDetele = () => {
     if(idUser){
