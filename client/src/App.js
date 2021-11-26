@@ -14,10 +14,13 @@ import EstadisticasA from "./components/admin/estadisticasA/estadisticasA";
 import EditProduct from "./components/admin/editProduct/editProduct";
 import CreateCollection from "./components/admin/createCategory/createCategory";
 import DeleteCollection from "./components/admin/deleteCategory/deleteCategory";
+import VerOrdenes from "./components/admin/verOrdenes/verOrdenes";
 import Stock from "./components/admin/stock/stock";
 import Perfil from "./components/perfil/perfil";
 import Pago from "./components/pago/pago";
 import DefaultError from "./components/error/error";
+import Checkuot from "./components/checkuot/checkuot";
+import MisCompras from "./components/misCompras/misCompras";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -102,6 +105,7 @@ function App() {
             <Route path='/createCollection' component={CreateCollection} />
             <Route path='/deleteCollection' component={DeleteCollection} />
             <Route path='/stock' component={Stock} />
+            <Route path='/verOrdenes' component={VerOrdenes} />
           </Switch>
         </div>
       </BrowserRouter>
@@ -120,6 +124,8 @@ function App() {
             <Route path='/pago' component={GoShopping} />
             <Route path='/perfil' component={Perfil} />
             <Route path='/tarjeta' component={Pago} />
+            <Route path='/checkout' component={Checkuot} />
+            <Route path='/misCompras' component={MisCompras} />
             <Route path='*' component={DefaultError} />
           </Switch>
         </div>

@@ -27,7 +27,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { userLogout } from "../../Redux/Actions";
 import { styled } from "@mui/material/styles";
 import { deepPurple } from '@mui/material/colors';
-
+import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function NavBar() {
@@ -60,7 +60,7 @@ export default function NavBar() {
   const productShopping = dataBaseShopping.map((el) => el.product)
 
   const dataBaseFavorite = useSelector((state) => state.favoriteAlmacen)
- 
+
 
   const aux = useSelector((state) => state.shoppingCart);
   const fav = useSelector((state) => state.favorite);
@@ -162,9 +162,9 @@ export default function NavBar() {
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
-          color="secondary" 
+          color="secondary"
         >
-          <AccountCircle  sx={{ width: 32, height: 32, bgcolor: deepPurple }}  />
+          <AccountCircle sx={{ width: 32, height: 32, bgcolor: deepPurple }} />
         </IconButton>
         <p>PROFILE</p>
       </MenuItem>
@@ -244,26 +244,17 @@ export default function NavBar() {
               </MenuItem>
             </Link>
             <MenuItem>
-              <Avatar /> Mi cuenta
+              <ShoppingCartIcon />
+              <Link to='/misCompras'>
+                Mis compras
+              </Link>
             </MenuItem>
             <Divider />
-            <MenuItem>
-              <ListItemIcon>
-                <PersonAdd fontSize="small" />
-              </ListItemIcon>
-              Agregar otra cuenta
-            </MenuItem>
-            <MenuItem>
-              <ListItemIcon>
-                <Settings fontSize="small" />
-              </ListItemIcon>
-              Configuración
-            </MenuItem>
             <MenuItem onClick={logOut}>
               <ListItemIcon>
                 <Logout fontSize="small" />
               </ListItemIcon>
-              Logout
+              Cerrar sesión
             </MenuItem>
           </Menu>
         </React.Fragment>
@@ -279,7 +270,7 @@ export default function NavBar() {
             aria-haspopup="true"
             color="secondary"
           >
-            <AccountCircle    sx={{ width: 32, height: 32, bgcolor: deepPurple }} onClick={() => loginWithRedirect()} />
+            <AccountCircle sx={{ width: 32, height: 32, bgcolor: deepPurple }} onClick={() => loginWithRedirect()} />
           </IconButton>
         </>
       );
@@ -287,77 +278,77 @@ export default function NavBar() {
   };
 
   return (
-      <div className="navBarContainer">
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed" className="navBar" sx={{ bgcolor: "white" }}>
-        <Toolbar>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: "none", sm: "block" } }}
-          >
-            <Link to="/">
-              <img src={Logo} width="50" height="40" alt="k" />
-            </Link>
-          </Typography>
-
-          <SearchBar />
-
-          <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            {renderAvatar()}
-
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              color="inherit"
+    <div className="navBarContainer">
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="fixed" className="navBar" sx={{ bgcolor: "white" }}>
+          <Toolbar>
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ display: { xs: "none", sm: "block" } }}
             >
-             
-              <StyledBadge badgeContent={
-               Object.keys(logIn).length ? dataBaseFavorite?.length :favo.length
+              <Link to="/">
+                <img src={Logo} width="50" height="40" alt="k" />
+              </Link>
+            </Typography>
+
+            <SearchBar />
+
+            <Box sx={{ flexGrow: 1 }} />
+            <Box sx={{ display: { xs: "none", md: "flex" } }}>
+              {renderAvatar()}
+
+              <IconButton
+                size="large"
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                color="inherit"
+              >
+
+                <StyledBadge badgeContent={
+                  Object.keys(logIn).length ? dataBaseFavorite?.length : favo.length
                 } color="secondary">
-                <Link to="/favorites/:">
-                  <FavoriteIcon/>
-                </Link>
-              </StyledBadge>
-            </IconButton>
+                  <Link to="/favorites/:">
+                    <FavoriteIcon />
+                  </Link>
+                </StyledBadge>
+              </IconButton>
 
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              color="inherit"
-            >
-              <StyledBadge badgeContent={ Object.keys(logIn).length? productShopping?.length : aux.length} color="secondary">
-                <Link to="/carrito/:">
-                  <ShoppingCartIcon />
-                </Link>
-              </StyledBadge>
-            </IconButton>
-          </Box>
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </Box>
-        </Toolbar>
-      </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
-    </Box>
-      </div>
+              <IconButton
+                size="large"
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                color="inherit"
+              >
+                <StyledBadge badgeContent={Object.keys(logIn).length ? productShopping?.length : aux.length} color="secondary">
+                  <Link to="/carrito/:">
+                    <ShoppingCartIcon />
+                  </Link>
+                </StyledBadge>
+              </IconButton>
+            </Box>
+            <Box sx={{ display: { xs: "flex", md: "none" } }}>
+              <IconButton
+                size="large"
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={handleMobileMenuOpen}
+                color="inherit"
+              >
+                <MoreIcon />
+              </IconButton>
+            </Box>
+          </Toolbar>
+        </AppBar>
+        {renderMobileMenu}
+        {renderMenu}
+      </Box>
+    </div>
   );
 }

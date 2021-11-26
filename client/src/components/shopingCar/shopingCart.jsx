@@ -1,11 +1,12 @@
 import "./shopingCart.css";
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import CardShopingCart from "../cardShopingCart/cardShopingCart";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Box } from "@mui/system";
+<<<<<<< HEAD
 import { emptyCart } from "../../Redux/Actions/index";
 import { useDispatch } from "react-redux";
 export default function ShopingCart() {
@@ -24,6 +25,32 @@ export default function ShopingCart() {
   if (idUser) {
     if (productShopping) {
       let suma = productShopping.map(el => Number(el.salePrice));
+=======
+import {
+  emptyCart,
+  checkoutProducts
+} from "../../Redux/Actions/index";
+import { useDispatch } from "react-redux";
+export default function ShopingCart() {
+  const dispatch = useDispatch();
+
+
+  const cart = useSelector((state) => state.shoppingCart);
+  const userLogin = useSelector((state) => state.userLogin);
+  const dataBaseShopping = useSelector((state) => state.ShoppingAlmacen);
+  const productShopping = dataBaseShopping.map((el) => el.product)
+  let idUser = userLogin.id;
+
+
+  const [valor, setValor] = useState({
+    product: productShopping,
+  });
+
+  let total = 0; 
+  if(idUser){
+    if(productShopping){
+      let suma = productShopping.map((el) => Number(el.salePrice));
+>>>>>>> c0e5b69fa5119f32f62f2431a48ef9f3796de43b
       for (let i of suma) total += i;
     }
   } else {
@@ -35,6 +62,16 @@ export default function ShopingCart() {
     dispatch(emptyCart());
   };
 
+<<<<<<< HEAD
+=======
+  console.log(valor)
+  const handleCheckOut = () => {
+    dispatch(checkoutProducts(valor));
+
+  }
+
+
+>>>>>>> c0e5b69fa5119f32f62f2431a48ef9f3796de43b
   return (
     <div>
       <div>
@@ -70,8 +107,13 @@ export default function ShopingCart() {
               <h2>TOTAL: $ {total}</h2>
               <TextField label='Codigo de descuento' color='secondary' focused />
               <Box>
+<<<<<<< HEAD
                 <Link to='/pago'>
                   <Button>IR A COMPRAR</Button>
+=======
+                <Link to="/pago">
+                  <Button onClick={handleCheckOut}>IR A COMPRAR</Button>
+>>>>>>> c0e5b69fa5119f32f62f2431a48ef9f3796de43b
                 </Link>
               </Box>
               <h1 className='metodoTarjeta'>OPCIONES DE PAGO</h1>
@@ -113,12 +155,21 @@ export default function ShopingCart() {
                   <Button>IR A COMPRAR</Button>
                 </Link>
               </Box>
+<<<<<<< HEAD
               <h1 className='metodoTarjeta'>OPCIONES DE PAGO</h1>
               <img
                 alt='k'
                 className='imagenTarjeta'
                 src='https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/esAR/Images/Logos_Argentina-sinMP_tcm216-730132.png'
               />
+=======
+              {/* <h1 className="metodoTarjeta">OPCIONES DE PAGO</h1>
+              <img
+                alt="k"
+                className="imagenTarjeta"
+                src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/esAR/Images/Logos_Argentina-sinMP_tcm216-730132.png"
+              /> */}
+>>>>>>> c0e5b69fa5119f32f62f2431a48ef9f3796de43b
             </div>
             <Link to='/home'>
               <button className='botonCart1'>volver</button>
