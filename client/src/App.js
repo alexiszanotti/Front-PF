@@ -18,6 +18,7 @@ import Stock from "./components/admin/stock/stock";
 import Perfil from "./components/perfil/perfil";
 import Pago from "./components/pago/pago";
 import DefaultError from "./components/error/error";
+import Checkuot from "./components/checkuot/checkuot";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts, postCreateUser, getAllUsers, postUserLogin, addDataBaseShoppingCart, addDataBaseFavorite } from "./Redux/Actions/index";
@@ -40,17 +41,17 @@ function App() {
   const emailUsersDB = usersDB.map(e => e.email);
 
   const logIn = useSelector(state => state.userLogin);
-  // const users = useSelector((state) => state.users);
-  // let usr = users.filter((user) => user.id === logIn.id);
-  // let cartId = usr.map((el) => el.Cart.id);
-  // let idUser = logIn.id;
+  const users = useSelector((state) => state.users);
+  let usr = users.filter((user) => user.id === logIn.id);
+  let cartId = usr.map((el) => el.Cart.id);
+  let idUser = logIn.id;
 
-  // useEffect(() => {
-  //   if (idUser) {
-  //     dispatch(addDataBaseShoppingCart(cartId.toString()));
-  //     dispatch(addDataBaseFavorite(idUser));
-  //   }
-  // }, [dispatch, idUser]);
+  useEffect(() => {
+    if (idUser) {
+      dispatch(addDataBaseShoppingCart(cartId.toString()));
+      dispatch(addDataBaseFavorite(idUser));
+    }
+  }, [dispatch, idUser]);
 
 
   if (isAuthenticated) {
@@ -114,6 +115,7 @@ function App() {
             <Route path='/pago' component={GoShopping} />
             <Route path='/perfil' component={Perfil} />
             <Route path='/tarjeta' component={Pago} />
+            <Route path='/checkout' component={Checkuot} />
             <Route path='*' component={DefaultError} />
           </Switch>
         </div>

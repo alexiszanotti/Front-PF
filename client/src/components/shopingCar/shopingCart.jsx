@@ -1,5 +1,5 @@
 import "./shopingCart.css";
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import CardShopingCart from "../cardShopingCart/cardShopingCart";
 import TextField from "@mui/material/TextField";
@@ -8,20 +8,23 @@ import { Link } from "react-router-dom";
 import { Box } from "@mui/system";
 import {
   emptyCart,
+  checkoutProducts
 } from "../../Redux/Actions/index";
 import { useDispatch } from "react-redux";
 export default function ShopingCart() {
   const dispatch = useDispatch();
+
+
   const cart = useSelector((state) => state.shoppingCart);
-
   const userLogin = useSelector((state) => state.userLogin);
-
-
   const dataBaseShopping = useSelector((state) => state.ShoppingAlmacen);
   const productShopping = dataBaseShopping.map((el) => el.product)
-
-  console.log(productShopping);
   let idUser = userLogin.id;
+
+
+  const [valor, setValor] = useState({
+    product: productShopping,
+  });
 
   let total = 0; 
   if(idUser){
@@ -41,7 +44,11 @@ export default function ShopingCart() {
     dispatch(emptyCart());
   };
 
+  console.log(valor)
+  const handleCheckOut = () => {
+    dispatch(checkoutProducts(valor));
 
+  }
 
 
   return (
@@ -89,7 +96,7 @@ export default function ShopingCart() {
               />
               <Box>
                 <Link to="/pago">
-                  <Button>IR A COMPRAR</Button>
+                  <Button onClick={handleCheckOut}>IR A COMPRAR</Button>
                 </Link>
               </Box>
               <h1 className="metodoTarjeta">OPCIONES DE PAGO</h1>

@@ -23,7 +23,7 @@ import {
   EMPTY_FAVORITE,
   ADD_DATABASE_SHOPPING_CART,
   ADD_DATABASE_FAVORITE,
-  GET_MERCADO_PAGO
+  CHECKOUT_PRODUCTS
 } from "./actionTypes";
 
 export function getAllProducts() {
@@ -302,6 +302,11 @@ export const deleteDataBaseShoppingCart = payload => {
   };
 };
 
-export function getMercadoPago() {
+export const checkoutProducts = (payload) => {
+  return {
+    type: CHECKOUT_PRODUCTS,
+    payload: payload,
+  };
+};
 
-}
+
