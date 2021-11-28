@@ -45,6 +45,7 @@ function App() {
   const logIn = useSelector(state => state.userLogin);
 
   if (isAuthenticated) {
+    
     if (emailUsersDB.indexOf(user.email) === -1) {
       dispatch(
         postCreateUser({

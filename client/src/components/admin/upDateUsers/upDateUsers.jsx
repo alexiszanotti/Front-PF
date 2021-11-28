@@ -95,6 +95,7 @@ export default function UpDataUsers(){
                         <option value="" ></option>
                         <option value="Admin" name="type">Admin</option>
                         <option value="User" name="type">User</option>
+                        <option value="Locked" name="type">Eliminar</option>
                     </select>
                     <br></br>
                     <button className="btn">Cargar datos</button>

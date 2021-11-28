@@ -192,7 +192,11 @@ export default function NavBar() {
   }));
 
   const renderAvatar = () => {
-    if (isAuthenticated || logIn.type === "User") {
+    if(isAuthenticated && logIn.type === "Locked") {
+
+      logOut()
+
+    } else if (isAuthenticated || logIn.type === "User") {
       return (
         <React.Fragment>
           <Box
