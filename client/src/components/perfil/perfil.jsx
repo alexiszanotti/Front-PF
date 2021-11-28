@@ -2,6 +2,7 @@ import "./perfil.css";
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import { Modal } from "@material-ui/core";
@@ -18,6 +19,10 @@ export default function Perfil() {
   const history = useHistory();
   const userLogeado = useSelector((state) => state.userLogin);
   const users = useSelector((state) => state.users);
+
+  const { user, isAuthenticated, logout } = useAuth0();
+
+  if(!isAuthenticated && userLogeado.type === undefined) history.push("/home");
 
   let usuario = users.filter((user) => user.id === userLogeado.id);
 

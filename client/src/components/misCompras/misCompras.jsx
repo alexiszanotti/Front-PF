@@ -1,5 +1,8 @@
 import './misCompras.css';
 import React from "react";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -10,6 +13,15 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 
 export default function MisCompras() {
+
+    
+    const userLogeado = useSelector((state) => state.userLogin);
+    
+    const history = useHistory();   
+        
+    const { user, isAuthenticated, logout } = useAuth0();
+
+    if(!isAuthenticated && userLogeado.type === undefined) history.push("/home");
 
     return (
         <div className='misComprasContainer'>
