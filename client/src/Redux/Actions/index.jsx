@@ -23,7 +23,10 @@ import {
   EMPTY_FAVORITE,
   ADD_DATABASE_SHOPPING_CART,
   ADD_DATABASE_FAVORITE,
-  CHECKOUT_PRODUCTS
+  CHECKOUT_PRODUCTS,
+  ESTADO_ORDEN,
+  FILTER_STATUS,
+  FILTER_BY_CART
 } from "./actionTypes";
 
 export function getAllProducts() {
@@ -309,4 +312,47 @@ export const checkoutProducts = (payload) => {
   };
 };
 
+export const getAllOrders = payload => {
+  return async dispatch => {
+    let res = await axios(`order`);
+    return dispatch({
+      type: ESTADO_ORDEN,
+      payload: res.data,
+    });
+  };
+};
 
+export const modifyOrders = payload => {
+  return async () => {
+    try {
+      console.log(payload, "enzooo")
+      let res = await axios.patch(`order`, payload);
+      return res.data;     
+    } catch (error) {
+      alert("Esta mal");
+      console.log(error)
+    }
+  };
+};
+
+export function filterStatus(payload) {
+  return async function (dispatch) {
+    try {
+      return dispatch({ type: FILTER_STATUS, payload });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function filterByCart(payload) {
+  return async function (dispatch) {
+    try {
+      let res = await axios.get(`/order/cart?CartId=${payload}`);
+      console.log(res, "dale HDP")
+      return dispatch({ type: FILTER_BY_CART, payload: res.data});
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
