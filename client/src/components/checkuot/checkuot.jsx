@@ -22,6 +22,7 @@ export default function Checkuot() {
   let sumas = product.map((el) => Number(el.stock));
   for (let i of sumas) s += i;
 
+  console.log(product)
 
   return (
     <div>

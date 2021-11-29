@@ -6,9 +6,9 @@ import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Box } from "@mui/system";
+import Alert from "@mui/material/Alert";
 import {
   emptyCart,
-  checkoutProducts,
   addDataBaseShoppingCart,
 } from "../../Redux/Actions/index";
 import { useDispatch } from "react-redux";
@@ -19,24 +19,11 @@ export default function ShopingCart() {
   const users = useSelector((state) => state.users);
   const dataBaseShopping = useSelector((state) => state.ShoppingAlmacen);
   const productShopping = dataBaseShopping.map((el) => el.product);
+  const stockTotal = productShopping.map((el) => el.stock);
   let idUser = logIn.id;
 
   let usr = users?.filter((user) => user.id === logIn.id);
   let cartId = usr?.map((el) => el.Cart.id);
-
-  let productsModificado = productShopping.map((el) => {
-    return{
-      id:el.id,
-      productName:el.productName,
-      salePrice:el.salePrice,
-      images:el.images,
-      stock:1,
-    }
-  })
-  console.log(productsModificado);
-  const [valor, setValor] = useState({
-    product: productsModificado,
-  });
 
   let total = 0;
   if (idUser) {
@@ -53,17 +40,12 @@ export default function ShopingCart() {
     dispatch(emptyCart());
   };
 
-  console.log(valor);
-
-  const handleCheckOut = () => {
-    dispatch(checkoutProducts(valor));
-  };
-
   useEffect(() => {
     if (idUser) {
       dispatch(addDataBaseShoppingCart(cartId.toString()));
     }
   }, [dispatch]);
+
 
   return (
     <div>
@@ -105,16 +87,19 @@ export default function ShopingCart() {
                 {total}
               </h2>
               <h2>TOTAL: $ {total}</h2>
-              <TextField
-                label="Codigo de descuento"
-                color="secondary"
-                focused
-              />
-              <Box>
-                <Link to="/pago">
-                  <Button onClick={handleCheckOut}>IR A COMPRAR</Button>
-                </Link>
-              </Box>
+              {stockTotal.every((el) => el > 0) ? (
+                <Box>
+                  <Link to="/pago">
+                    <Button>Ir a comprar</Button>
+                  </Link>
+                </Box>
+              ) : (
+                <>
+                  <Alert variant="outlined" severity="error">
+                    Stock no disponible
+                  </Alert>
+                </>
+              )}
             </div>
             <Link to="/home">
               <button className="botonCart1">volver</button>

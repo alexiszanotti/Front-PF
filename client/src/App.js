@@ -23,7 +23,7 @@ import Checkuot from "./components/checkuot/checkuot";
 import MisCompras from "./components/misCompras/misCompras";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts, postCreateUser, getAllUsers, postUserLogin} from "./Redux/Actions/index";
+import { getAllProducts, postCreateUser, getAllUsers, postUserLogin, addDataBaseFavorite, addDataBaseShoppingCart} from "./Redux/Actions/index";
 import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
@@ -39,10 +39,20 @@ function App() {
   }, [dispatch]);
 
   const usersDB = useSelector(state => state.users);
-
   const emailUsersDB = usersDB.map(e => e.email);
+  const users = useSelector((state) => state.users);
 
   const logIn = useSelector(state => state.userLogin);
+
+  useEffect(() => {
+    if (logIn.type === "User") {
+      let idUser = logIn.id;
+      let usr = users?.filter((user) => user.id === logIn.id);
+      let cartId = usr?.map((el) => el.Cart.id);
+      dispatch(addDataBaseFavorite(idUser));
+      dispatch(addDataBaseShoppingCart(cartId.toString()));
+    }
+  }, [dispatch]);
 
   if (isAuthenticated) {
     
