@@ -21,6 +21,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding-left: 10px;
+    border: 2px solid black;
+    background-color: rgba(69, 0, 148, 0.568);
+    border-radius: 10px;
+}
+
+.inputSarasa{
+    margin: auto;
 }
 
 

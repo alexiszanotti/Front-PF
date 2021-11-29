@@ -13,24 +13,28 @@ import {
   filterByParams,
   resetFilter,
   getCollection,
+  addDataBaseShoppingCart,
+  addDataBaseFavorite
 } from "../../Redux/Actions/index";
 import { useDispatch } from "react-redux";
 import { Typography } from "@mui/material";
 
 export default function Home() {
+  const dispatch = useDispatch();
+
+  const logIn = useSelector(state => state.userLogin);
+  const users = useSelector((state) => state.users);
   const shoes = useSelector((state) => state.productsFilter);
   const orderState = useSelector((state) => state.orden);
   const collections = useSelector((state) => state.collections);
-  const [orden, setOrden] = useState(orderState);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(filterByParams(orden));
-    return () => {};
-  }, [dispatch, orden]);
 
-  useEffect(() => {
-    dispatch(getCollection());
-  }, [dispatch]);
+  
+  let usr = users?.filter((user) => user.id === logIn.id);
+  let cartId = usr?.map((el) => el.Cart.id);
+
+  let idUser = logIn.id;
+  
+  const [orden, setOrden] = useState(orderState);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [shoesPorPaginaPorPagina] = useState(20);
@@ -57,7 +61,7 @@ export default function Home() {
   }
   function nextPage() {
     if (currentPage === pageNumbers.length) {
-      setCurrentPage(1);
+      setCurrentPage(5);
       console.log("entro al console");
     } else {
       setCurrentPage(currentPage + 1);
@@ -65,13 +69,28 @@ export default function Home() {
   }
   function previousPage() {
     if (currentPage === 1) {
-      setCurrentPage(pageNumbers.length);
+      setCurrentPage(1);
       console.log("entro al console");
     } else {
       setCurrentPage(currentPage - 1);
     }
   }
-  console.log(currentShoes)
+
+  useEffect(() => {
+    dispatch(filterByParams(orden));
+    return () => {};
+  }, [dispatch, orden]);
+
+  useEffect(() => {
+    dispatch(getCollection());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (idUser) {
+      dispatch(addDataBaseShoppingCart(cartId.toString()));
+      dispatch(addDataBaseFavorite(idUser));
+    }
+  }, [dispatch]);
   return (
     <div>
       <div className="boxCategories">

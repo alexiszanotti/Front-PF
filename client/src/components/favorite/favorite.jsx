@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import CardFavorite from "../cardFavorite/cardFavorite";
 import { Link } from "react-router-dom";
-import { emptyFavorites } from "../../Redux/Actions/index";
+import { emptyFavorites, addDataBaseFavorite } from "../../Redux/Actions/index";
 import { useDispatch } from "react-redux";
 import "./favorite.css";
 
@@ -10,8 +10,9 @@ export default function Favorite() {
   const dispatch = useDispatch();
   const favoritos = useSelector((state) => state.favorite);
   const userLogin = useSelector((state) => state.userLogin);
+  const logIn = useSelector(state => state.userLogin);
   const dataBaseFavorite = useSelector((state) => state.favoriteAlmacen)
-
+  let idUser = logIn.id;
 
   var hash = {};
   let sinLogin = favoritos.filter(function (current) {
@@ -24,6 +25,12 @@ export default function Favorite() {
     dispatch(emptyFavorites());
   };
 
+  useEffect(() => {
+    if (idUser) {
+      dispatch(addDataBaseFavorite(idUser));
+
+    }
+  }, [dispatch]);
 
   return (
     <div>

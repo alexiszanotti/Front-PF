@@ -2,6 +2,7 @@ import "./perfil.css";
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import { Modal } from "@material-ui/core";
@@ -19,7 +20,12 @@ export default function Perfil() {
   const userLogeado = useSelector((state) => state.userLogin);
   const users = useSelector((state) => state.users);
 
+  const { user, isAuthenticated, logout } = useAuth0();
+
+  if(!isAuthenticated && userLogeado.type === undefined) history.push("/home");
+
   let usuario = users.filter((user) => user.id === userLogeado.id);
+
 
 
   const [input, setInput] = useState({
@@ -156,7 +162,7 @@ export default function Perfil() {
           </h3>
         </div>
         <br></br>
-        {usuario.map((el) => {
+        {/* {usuario.map((el) => {
           return (
             <div className="detallecontenedor">
                <Box
@@ -301,17 +307,71 @@ export default function Perfil() {
                   readOnly: true,
                 }}
                 />
-              </Box>
+              </Box> */}
+ <form onSubmit={e => handleSubmit(e)} className="formulario" >
 
+<div className="contenido">
+    <div className="sarasa">
+        <label>NOMBRE</label>
+        <input type='text' name='name' onChange={handleInputChange} placeholder={usuario.map((el) => el.name)} />
+    </div>
+    <div className="sarasa">
+        <label>APELLIDO</label>
+        <input type='text' name='lastName' onChange={handleInputChange} placeholder={usuario.map((el) => el.lastName)} />
+    </div>
+    <div className="sarasa">
+        <label>EMAIL</label>
+        <input type='text' name='email' onChange={handleInputChange} placeholder={usuario.map((el) => el.email)} />
+    </div>
+    <div className="sarasa">
+        <label>DOCUMENTO</label>
+        <input type='text' name='document' onChange={handleInputChange} placeholder={usuario.map((el) => el.document)} />
+    </div>
+    <div className="sarasa">
+        <label>DIRECCION</label>
+        <input type='text' name='address' onChange={handleInputChange} placeholder={usuario.map((el) => el.address)} />
+    </div>
+    <div className="sarasa">
+        <label>ALTURA</label>
+        <input type='text' name='number' onChange={handleInputChange} placeholder={usuario.map((el) => el.number)} />
+    </div>
+    <div className="sarasa">
+        <label>LOCALIDAD</label>
+        <input type='text' name='location' onChange={handleInputChange} placeholder={usuario.map((el) => el.location)} />
+    </div>
+    <div className="sarasa">
+
+        <label>CODIGO POSTAL</label>
+        <input type='text' name='cp' onChange={handleInputChange} placeholder={usuario.map((el) => el.cp)} />
+    </div>
+    <div className="sarasa">
+        <label>PISO</label>
+        <input type='text' name='floor' onChange={handleInputChange} placeholder={usuario.map((el) => el.floor)} />
+    </div>
+    <div className="sarasa">
+        <label>DEPARTAMENTO</label>
+        <input type='text' name='department' onChange={handleInputChange} placeholder={usuario.map((el) => el.department)} />
+    </div>
+    <div className="sarasa">
+
+        <label>PROVINCIA</label>
+        <input type='text' name='province' onChange={handleInputChange} placeholder={usuario.map((el) => el.province)} />
+    </div>
+    <div className="sarasa">
+        <label>TELEFONO</label>
+        <input type='text' name='telephone' onChange={handleInputChange} placeholder={usuario.map((el) => el.telephone)} />
+    </div>
+</div>
+</form>
 
 
               <Modal open={modal1} onClose={openCloseModal1}>
                 {editar}
               </Modal>
               <Button onClick={() => openCloseModal1()} >EDITAR</Button>
-            </div>
-          );
-        })}
+            {/* </div> */}
+          {/* ); */}
+        {/* })} */}
       </div>
     </div>
   );
