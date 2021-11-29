@@ -30,8 +30,8 @@ export default function Products(props) {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const users = useSelector((state) => state.users);
-  const allProducts= useSelector((state) => state.products);
   const favoritosUser = useSelector((state) => state.favoriteAlmacen);
+  const shoppingUser = useSelector((state) => state.ShoppingAlmacen)
   let usr = users.filter((user) => user.id === userLogin.id);
   let cartId = usr.map((el) => el.Cart.id);
   let idUser = userLogin.id;
@@ -71,13 +71,12 @@ export default function Products(props) {
     }
   }
 
+  const idShop = shoppingUser?.map((el) => el.product.id)
+  const idFav = favoritosUser?.products?.map(e => e.id)
 
 
-  
-  
-  
-  let [checked, setChecked] = React.useState(false);
-  let [checked1, setChecked2] = React.useState(false);
+  let [checked, setChecked] = React.useState(idFav?.includes(props.id) ? true : false);
+  let [checked1, setChecked2] = React.useState(idShop?.includes(props.id) ? true : false);
   
 
   const handleChange = (event) => {
