@@ -1,14 +1,13 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { useSelector } from "react-redux";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import ListSubheader from "@mui/material/ListSubheader";
 import IconButton from "@mui/material/IconButton";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { Button } from "@mui/material";
 import { mercadoPago } from "../../Redux/Actions";
 import MercadoPago from "../mercadoPago/mercadoPago"
+import axios from "axios";
 import {useDispatch} from "react-redux";
 export default function Checkuot() {
   const dispatch = useDispatch();
@@ -16,11 +15,16 @@ export default function Checkuot() {
   const usr = useSelector((state) => state.users);
   let usuarioLogeado = usr.filter((el) => el.id === usuario.id);
   let cartId = usuarioLogeado.map((el) => el.Cart.id);
+  const idMP = useSelector((state) => state.mercadoPago )
 
-  useEffect(() => {
-    dispatch(mercadoPago({ cartId: cartId.toString() }));
-  }, [cartId]);
+  console.log(idMP);
 
+
+
+  useEffect(()=>{
+    dispatch(mercadoPago(cartId))
+  },[])
+  
 
   const product = useSelector((state) => state.checkoutProducts.product);
   let total= 0;
@@ -31,7 +35,7 @@ export default function Checkuot() {
   let sumas = product.map((el) => Number(el.stock));
   for (let i of sumas) s += i;
 
-  console.log(cartId)
+
   return (
     <div>
       <div className="shoppingGeneral">
@@ -84,7 +88,7 @@ export default function Checkuot() {
           </ImageListItem>
         ))}
       </ImageList>
-      <MercadoPago data={cartId}/>
+      <MercadoPago data={idMP}/>
       </div>
     </div>
   );
