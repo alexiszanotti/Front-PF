@@ -13,8 +13,6 @@ import {
   filterByParams,
   resetFilter,
   getCollection,
-  addDataBaseShoppingCart,
-  addDataBaseFavorite
 } from "../../Redux/Actions/index";
 import { useDispatch } from "react-redux";
 import { Typography } from "@mui/material";
@@ -23,16 +21,11 @@ export default function Home() {
   const dispatch = useDispatch();
 
   const logIn = useSelector(state => state.userLogin);
-  const users = useSelector((state) => state.users);
   const shoes = useSelector((state) => state.productsFilter);
   const orderState = useSelector((state) => state.orden);
   const collections = useSelector((state) => state.collections);
 
-  
-  let usr = users?.filter((user) => user.id === logIn.id);
-  let cartId = usr?.map((el) => el.Cart.id);
-
-  let idUser = logIn.id;
+  // let idUser = logIn.id;
   
   const [orden, setOrden] = useState(orderState);
 
@@ -85,12 +78,7 @@ export default function Home() {
     dispatch(getCollection());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (idUser) {
-      dispatch(addDataBaseShoppingCart(cartId.toString()));
-      dispatch(addDataBaseFavorite(idUser));
-    }
-  }, [dispatch]);
+  
   return (
     <div>
       <div className="boxCategories">

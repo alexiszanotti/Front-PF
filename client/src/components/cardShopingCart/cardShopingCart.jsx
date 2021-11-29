@@ -5,14 +5,16 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { removeCard, deleteDataBaseShoppingCart } from "../../Redux/Actions/index";
+import {
+  removeCard,
+  deleteDataBaseShoppingCart,
+} from "../../Redux/Actions/index";
 import { Link } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import Inventory2Icon from "@mui/icons-material/Inventory2";
-import Badge from '@mui/material/Badge';
+import Alert from "@mui/material/Alert";
 export default function CardShopingCart(props) {
-  const logIn = useSelector(state => state.userLogin);
+  const logIn = useSelector((state) => state.userLogin);
   const users = useSelector((state) => state.users);
   const [count, setCount] = useState(1);
   const dispatch = useDispatch();
@@ -27,28 +29,32 @@ export default function CardShopingCart(props) {
   let cartId = usr?.map((el) => el.Cart.id);
 
   const handleDetele = () => {
-    if(idUser){
+    if (idUser) {
       window.location.reload("");
-      dispatch(deleteDataBaseShoppingCart({cartId: cartId.toString(), productId: props.id}));
-      
-    }else{
-
+      dispatch(
+        deleteDataBaseShoppingCart({
+          cartId: cartId.toString(),
+          productId: props.id,
+        })
+      );
+    } else {
       dispatch(removeCard(props.id));
     }
-  }
-
+  };
 
   return (
     <Card sx={{ maxWidth: 350 }}>
       <CardActions>
-        <Button onClick={
-        handleDetele
-        }>ELIMINAR</Button>
-        <Badge badgeContent={
-            count === 0 ? props.stock : props.stock - count
-        } color="primary">
-          <Inventory2Icon />
-        </Badge>
+        <Button onClick={handleDetele}>ELIMINAR</Button>
+        {
+          props.stock > 0 ? (
+            null
+          ) : (
+            <Alert variant="outlined" severity="error">
+            Stock no disponible
+          </Alert>
+          )
+        }
       </CardActions>
       <CardActionArea>
         <Link to={`/detail/${props.id}`}>
@@ -64,7 +70,13 @@ export default function CardShopingCart(props) {
             {props.title}
           </Typography>
           <Typography variant="h4" color="text.secondary">
-            {count <= 0 ? <h3>ERROR</h3> : count ===1 ?  props.price : props.price * count}
+            {count <= 0 ? (
+              <h3>ERROR</h3>
+            ) : count === 1 ? (
+              props.price
+            ) : (
+              props.price * count
+            )}
           </Typography>
           <div>
             <p>Cantidad/es {count} </p>
