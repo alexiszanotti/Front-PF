@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useSelector } from "react-redux";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
@@ -7,11 +7,20 @@ import ListSubheader from "@mui/material/ListSubheader";
 import IconButton from "@mui/material/IconButton";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Button } from "@mui/material";
+import { mercadoPago } from "../../Redux/Actions";
+import MercadoPago from "../mercadoPago/mercadoPago"
+import {useDispatch} from "react-redux";
 export default function Checkuot() {
+  const dispatch = useDispatch();
   const usuario = useSelector((state) => state.userLogin);
   const usr = useSelector((state) => state.users);
-
   let usuarioLogeado = usr.filter((el) => el.id === usuario.id);
+  let cartId = usuarioLogeado.map((el) => el.Cart.id);
+
+  useEffect(() => {
+    dispatch(mercadoPago({ cartId: cartId.toString() }));
+  }, [cartId]);
+
 
   const product = useSelector((state) => state.checkoutProducts.product);
   let total= 0;
@@ -22,8 +31,7 @@ export default function Checkuot() {
   let sumas = product.map((el) => Number(el.stock));
   for (let i of sumas) s += i;
 
-  console.log(product)
-
+  console.log(cartId)
   return (
     <div>
       <div className="shoppingGeneral">
@@ -76,7 +84,7 @@ export default function Checkuot() {
           </ImageListItem>
         ))}
       </ImageList>
-      <Button>Comprar Todo</Button>
+      <MercadoPago data={cartId}/>
       </div>
     </div>
   );
