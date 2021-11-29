@@ -23,7 +23,8 @@ import {
   EMPTY_FAVORITE,
   ADD_DATABASE_SHOPPING_CART,
   ADD_DATABASE_FAVORITE,
-  CHECKOUT_PRODUCTS
+  CHECKOUT_PRODUCTS,
+  MERCADO_PAGO
 } from "./actionTypes";
 
 export function getAllProducts() {
@@ -309,4 +310,21 @@ export const checkoutProducts = (payload) => {
   };
 };
 
+export function mercadoPago() {
+  return async function (dispatch) {
+    try {
+      let res = await axios("mercadoPago");
 
+      return dispatch({ type: MERCADO_PAGO, payload: res.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export const deleteDataBaseFavorite = payload => {
+  return async () => {
+    let res = await axios.delete("favorite", { data: payload});
+    return res;
+  };
+};

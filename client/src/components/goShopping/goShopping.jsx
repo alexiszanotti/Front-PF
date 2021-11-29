@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { modifyUser } from "../../Redux/Actions";
+import { modifyUser, checkoutProducts } from "../../Redux/Actions";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
@@ -15,6 +15,9 @@ export default function GoShopping() {
     const history = useHistory();
     const usuario = useSelector(state => state.userLogin);
     const usr = useSelector(state => state.users);
+    const dataBaseShopping = useSelector((state) => state.ShoppingAlmacen);
+    const productShopping = dataBaseShopping.map((el) => el.product);
+
     const [input, setInput] = useState({
         id: usuario.id,
     });
@@ -37,6 +40,25 @@ export default function GoShopping() {
             id: "",
         });
     }
+
+    let productsModificado = productShopping.map((el) => {
+        return {
+          id: el.id,
+          productName: el.productName,
+          salePrice: el.salePrice,
+          images: el.images,
+          stock: 1,
+        };
+      });
+      
+      console.log(productsModificado)
+      const [valor, setValor] = useState({
+        product: productsModificado,
+      });
+
+    const handleCheckOut = () => {
+        dispatch(checkoutProducts(valor));
+    };
   
     if (Object.keys(usuario).length === 0) {
         loginWithRedirect();
@@ -116,7 +138,7 @@ export default function GoShopping() {
                         autoComplete="off"
                     >
                         <Link to="/checkout">
-                            <Button variant="outlined" startIcon={<AttachMoneyIcon />} >
+                            <Button  onClick={handleCheckOut} variant="outlined" startIcon={<AttachMoneyIcon />} >
                                 Ver todo
                             </Button>
                         </Link>
