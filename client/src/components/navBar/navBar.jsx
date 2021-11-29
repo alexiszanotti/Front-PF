@@ -58,7 +58,7 @@ export default function NavBar() {
   const productShopping = dataBaseShopping.map((el) => el.product);
 
   const dataBaseFavorite = useSelector((state) => state.favoriteAlmacen);
-  const productsFavorite = dataBaseFavorite.products
+
 
   const aux = useSelector((state) => state.shoppingCart);
   const fav = useSelector((state) => state.favorite);
@@ -315,7 +315,7 @@ export default function NavBar() {
                 <StyledBadge
                   badgeContent={
                     Object.keys(logIn).length
-                      ? productsFavorite?.length
+                      ? dataBaseFavorite?.products?.length
                       : favo.length
                   }
                   color="secondary"
