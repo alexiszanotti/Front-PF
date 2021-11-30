@@ -26,8 +26,8 @@ import SearchBar from "../searchBar/searchBar";
 import { useSelector, useDispatch } from "react-redux";
 import { userLogout } from "../../Redux/Actions";
 import { styled } from "@mui/material/styles";
-import { deepPurple } from '@mui/material/colors';
-import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
+import { deepPurple } from "@mui/material/colors";
+import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function NavBar() {
@@ -54,12 +54,10 @@ export default function NavBar() {
     dispatch(userLogout());
   };
 
-
-
   const dataBaseShopping = useSelector((state) => state.ShoppingAlmacen);
-  const productShopping = dataBaseShopping.map((el) => el.product)
+  const productShopping = dataBaseShopping.map((el) => el.product);
 
-  const dataBaseFavorite = useSelector((state) => state.favoriteAlmacen)
+  const dataBaseFavorite = useSelector((state) => state.favoriteAlmacen);
 
 
   const aux = useSelector((state) => state.shoppingCart);
@@ -192,7 +190,9 @@ export default function NavBar() {
   }));
 
   const renderAvatar = () => {
-    if (isAuthenticated || logIn.type === "User") {
+    if (isAuthenticated && logIn.type === "Locked") {
+      logOut();
+    } else if (isAuthenticated || logIn.type === "User") {
       return (
         <React.Fragment>
           <Box
@@ -200,7 +200,11 @@ export default function NavBar() {
           >
             <Tooltip title="Account settings">
               <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
-                <Avatar sx={{ width: 32, height: 32, bgcolor: deepPurple[500] }}>{avatar}</Avatar>
+                <Avatar
+                  sx={{ width: 32, height: 32, bgcolor: deepPurple[500] }}
+                >
+                  {avatar}
+                </Avatar>
               </IconButton>
             </Tooltip>
           </Box>
@@ -245,16 +249,14 @@ export default function NavBar() {
             </Link>
             <MenuItem>
               <ShoppingCartIcon />
-              <Link to='/misCompras'>
-                Mis compras
-              </Link>
+              <Link to="/misCompras">Mis compras</Link>
             </MenuItem>
             <Divider />
             <MenuItem onClick={logOut}>
               <ListItemIcon>
                 <Logout fontSize="small" />
               </ListItemIcon>
-              Cerrar sesión
+              <Link to="/home">Cerrar sesión</Link>
             </MenuItem>
           </Menu>
         </React.Fragment>
@@ -270,7 +272,10 @@ export default function NavBar() {
             aria-haspopup="true"
             color="secondary"
           >
-            <AccountCircle sx={{ width: 32, height: 32, bgcolor: deepPurple }} onClick={() => loginWithRedirect()} />
+            <AccountCircle
+              sx={{ width: 32, height: 32, bgcolor: deepPurple }}
+              onClick={() => loginWithRedirect()}
+            />
           </IconButton>
         </>
       );
@@ -307,10 +312,14 @@ export default function NavBar() {
                 aria-haspopup="true"
                 color="inherit"
               >
-
-                <StyledBadge badgeContent={
-                  Object.keys(logIn).length ? dataBaseFavorite?.length : favo.length
-                } color="secondary">
+                <StyledBadge
+                  badgeContent={
+                    Object.keys(logIn).length
+                      ? dataBaseFavorite?.products?.length
+                      : favo.length
+                  }
+                  color="secondary"
+                >
                   <Link to="/favorites/:">
                     <FavoriteIcon />
                   </Link>
@@ -325,7 +334,14 @@ export default function NavBar() {
                 aria-haspopup="true"
                 color="inherit"
               >
-                <StyledBadge badgeContent={Object.keys(logIn).length ? productShopping?.length : aux.length} color="secondary">
+                <StyledBadge
+                  badgeContent={
+                    Object.keys(logIn).length
+                      ? productShopping?.length
+                      : aux.length
+                  }
+                  color="secondary"
+                >
                   <Link to="/carrito/:">
                     <ShoppingCartIcon />
                   </Link>

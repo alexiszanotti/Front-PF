@@ -9,10 +9,11 @@ import "./favorite.css";
 export default function Favorite() {
   const dispatch = useDispatch();
   const favoritos = useSelector((state) => state.favorite);
-  const userLogin = useSelector((state) => state.userLogin);
   const logIn = useSelector(state => state.userLogin);
   const dataBaseFavorite = useSelector((state) => state.favoriteAlmacen)
   let idUser = logIn.id;
+
+  console.log(dataBaseFavorite)
 
   var hash = {};
   let sinLogin = favoritos.filter(function (current) {
@@ -34,13 +35,13 @@ export default function Favorite() {
 
   return (
     <div>
-      {userLogin.id ? (
+      {idUser ? (
         <>
           <div className="favoriteContainer">
             <h1>Mi lista de deseos</h1>
             <h2>
-              {dataBaseFavorite?.length}{" "}
-              {dataBaseFavorite?.length === 1 ? "Artículo" : "Artículos"}{" "}
+              {dataBaseFavorite.products?.length}{" "}
+              {dataBaseFavorite.products?.length === 1 ? "Artículo" : "Artículos"}{" "}
             </h2>
             <button onClick={handleEmptyFavorites}>
               BORRAR TODOS FAVORITOS
@@ -49,10 +50,10 @@ export default function Favorite() {
           <br></br>
           <br></br>
           <div className="termo">
-            {dataBaseFavorite === undefined || dataBaseFavorite?.length === 0 ? (
+            {dataBaseFavorite.products === undefined || dataBaseFavorite.products?.length === 0 ? (
               <h1>...</h1>
             ) : (
-              dataBaseFavorite?.map((products) => {
+              dataBaseFavorite.products?.map((products) => {
                 return (
                   <CardFavorite
                     id={products.id}

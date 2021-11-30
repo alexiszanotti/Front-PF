@@ -10,6 +10,7 @@ import Favorite from "@mui/icons-material/Favorite";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Alert from "@mui/material/Alert";
+import swal from 'sweetalert';
 import {
   favorite,
   removeFavorite,
@@ -20,6 +21,7 @@ import {
   postFavorite,
   addDataBaseFavorite,
   emptyCart,
+  emptyFavorites,
   deleteDataBaseShoppingCart
 } from "../../Redux/Actions/index";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -28,37 +30,59 @@ export default function Products(props) {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const users = useSelector((state) => state.users);
+  const favoritosUser = useSelector((state) => state.favoriteAlmacen);
+  const shoppingUser = useSelector((state) => state.ShoppingAlmacen)
   let usr = users.filter((user) => user.id === userLogin.id);
   let cartId = usr.map((el) => el.Cart.id);
   let idUser = userLogin.id;
 
-  // const shoppingCartLocal = useSelector((state) => state.shoppingCart);
-  // const idShoppingCartLocal = shoppingCartLocal.map((el) => el.id);
-  // console.log(idShoppingCartLocal.toString())
+  const shoppingCartLocal = useSelector((state) => state.shoppingCart);
+  const idShoppingCartLocal = shoppingCartLocal.map((el) => el.id);
+  const favoritosLocal = useSelector((state) => state.favorite);
+  const idFavoritosLocal = favoritosLocal.map((el) => el.id);
+
+  if(idUser){
+    if(Object.keys(shoppingCartLocal).length !== 0){
+      for(let i=0; i<idShoppingCartLocal.length; i++){
+        dispatch(
+          postShoppingCart({
+            cartId: cartId.toString(),
+            productId: idShoppingCartLocal[i].toString() ,
+          })
+        );
+        dispatch(addDataBaseShoppingCart(cartId.toString()));
+      }
+      dispatch(emptyCart());
+    }
+  }
+
+  if(idUser){
+    if(Object.keys(favoritosLocal).length !== 0){
+      for(let i=0; i<idFavoritosLocal.length; i++){
+        dispatch(
+          postFavorite({
+            userId: idUser,
+            productId: idFavoritosLocal[i].toString() ,
+          })
+        );
+        dispatch(addDataBaseFavorite(idUser));
+      }
+      dispatch(emptyFavorites());
+    }
+  }
+
+  const idShop = shoppingUser?.map((el) => el.product.id)
+  const idFav = favoritosUser?.products?.map(e => e.id)
+
+
+  let [checked, setChecked] = React.useState(idFav?.includes(props.id) ? true : false);
+  let [checked1, setChecked2] = React.useState(idShop?.includes(props.id) ? true : false);
   
-  //   if (idUser) {
-  //     if(Object.keys(shoppingCartLocal).length !== 0){
-  //           dispatch(
-  //             postShoppingCart({
-  //               cartId: cartId.toString(),
-  //               productId: idShoppingCartLocal.toString() ,
-  //             })
-  //           );
-  //           dispatch(addDataBaseShoppingCart(cartId.toString()));
-  //           // dispatch(postFavorite({ userId: idUser, productId: idPorducs[i] }));
-        
-  //         }
-  //         dispatch(emptyCart());
-  //   }
 
-
-  const [checked, setChecked] = React.useState(false);
-  const [checked1, setChecked2] = React.useState(false);
   const handleChange = (event) => {
     setChecked(event.target.checked);
     if (checked === false) {
       if(idUser){
-        console.log("entro")
         dispatch(
           postFavorite({
             productId: props.id,
@@ -66,9 +90,10 @@ export default function Products(props) {
           })
         );
         dispatch(addDataBaseFavorite(idUser));
-        
+        swal("Se agrego a favoritos", "Producto agregado con éxito!", "success");
       }else{
         dispatch(favorite(props.id));
+        swal("Se agrego a favoritos", "Producto agregado con éxito!", "success");
       }
     } else {
       dispatch(removeFavorite(props.id));
@@ -79,6 +104,7 @@ export default function Products(props) {
     setChecked2(event.target.checked);
     if (checked1 === false) {
       if (idUser) {
+        dispatch(addDataBaseShoppingCart(cartId.toString()));
           dispatch(
             postShoppingCart({
               cartId: cartId.toString(),
@@ -86,22 +112,26 @@ export default function Products(props) {
             })
           );
           dispatch(addDataBaseShoppingCart(cartId.toString()));
-        
-          
+          swal("Se agrego al carrito", "Producto agregado con éxito!", "success");
       }else{
-
+        swal("Se agrego al carrito", "Producto agregado con éxito!", "success");
         dispatch(shoppingCart(props.id));
       }
     } else {
       if(idUser){
         dispatch(deleteDataBaseShoppingCart({cartId: cartId.toString(), productId: props.id}));
+        swal("Se elimino con exito", "Producto agregado con éxito!", "error");
+        dispatch(addDataBaseShoppingCart(cartId.toString()));
         
       }else{
         dispatch(removeCard(props.id));
+        swal("Se elimino con exito", "Producto agregado con éxito!", "error");
       }
       
     }
   };
+
+  
 
 
 
@@ -125,7 +155,7 @@ export default function Products(props) {
             checkedIcon={<Favorite />}
           />
 
-          {props.stock === "0.00" ? (
+          {props.stock === 0 ? (
             <>
               <Checkbox
                 checked={checked1}
@@ -154,7 +184,7 @@ export default function Products(props) {
           ) : (
             <Checkbox
               checked={checked1}
-              onChange={handleChangeCarrito}
+              onClick={handleChangeCarrito}
               icon={<ShoppingCartIcon />}
               checkedIcon={<ShoppingCartIcon />}
             />
