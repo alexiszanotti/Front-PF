@@ -1,11 +1,7 @@
 import {
   GET_ALL_PRODUCTS,
-  FILTER_PRICE,
   SEARCH_PRODUCTS,
   DETAIL_PRODUCTS,
-  FILTER_DISCOUNT,
-  FILTER_MODEL,
-  FILTER_SEXO,
   SHOPPING_CART,
   REMOVE_CARD,
   FAVORITE,
@@ -41,7 +37,6 @@ const initialState = {
     collection: "All",
     gender: "All",
     price: "default",
-    discount: "All",
   },
   ShoppingAlmacen: [],
   favoriteAlmacen: [],
@@ -57,37 +52,7 @@ export default function rootReducer(state = initialState, action) {
         products: action.payload,
         productsFilter: action.payload,
       };
-    case FILTER_PRICE:
-      let sortedArr =
-        action.payload === "ASC"
-          ? state.products.sort(function (a, b) {
-              return a.salePrice - b.salePrice;
-            })
-          : state.products.sort(function (a, b) {
-              return b.salePrice - a.salePrice;
-            });
-      return {
-        ...state,
-        products: sortedArr,
-      };
-    case FILTER_DISCOUNT:
-      const products = state.productsFilter;
-      const statusFilter =
-        action.payload === "All" ? products : products.filter(el => el.discount === action.payload);
-      return {
-        ...state,
-        products: statusFilter,
-      };
-    case FILTER_MODEL:
-      return {
-        ...state,
-        products: action.payload,
-      };
-    case FILTER_SEXO:
-      return {
-        ...state,
-        products: action.payload,
-      };
+
     case SEARCH_PRODUCTS:
       return {
         ...state,
@@ -148,7 +113,7 @@ export default function rootReducer(state = initialState, action) {
         userLogin: action.payload,
       };
     case FILTER_BY_PARAMS:
-      const { collection, gender, price, discount } = action.payload;
+      const { collection, gender, price } = action.payload;
       console.log(action.payload);
       let filtered = [...state.products];
 
@@ -174,8 +139,6 @@ export default function rootReducer(state = initialState, action) {
           : filtered.sort(function (a, b) {
               return b.salePrice - a.salePrice;
             });
-      ////filter by discount
-      filtered = discount === "All" ? filtered : filtered.filter(el => el.discount === discount);
 
       return {
         ...state,
@@ -191,7 +154,6 @@ export default function rootReducer(state = initialState, action) {
           collection: "All",
           gender: "All",
           price: "default",
-          discount: "All",
         },
       };
     case USER_LOGOUT:

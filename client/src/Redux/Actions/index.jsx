@@ -1,10 +1,6 @@
 import axios from "axios";
 import {
   GET_ALL_PRODUCTS,
-  FILTER_PRICE,
-  FILTER_DISCOUNT,
-  FILTER_MODEL,
-  FILTER_SEXO,
   SEARCH_PRODUCTS,
   DETAIL_PRODUCTS,
   SHOPPING_CART,
@@ -24,7 +20,7 @@ import {
   ADD_DATABASE_SHOPPING_CART,
   ADD_DATABASE_FAVORITE,
   CHECKOUT_PRODUCTS,
-  MERCADO_PAGO
+  MERCADO_PAGO,
 } from "./actionTypes";
 
 export function getAllProducts() {
@@ -33,44 +29,6 @@ export function getAllProducts() {
       let res = await axios("products");
 
       return dispatch({ type: GET_ALL_PRODUCTS, payload: res.data });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-}
-
-export function filterPrice(payload) {
-  return {
-    type: FILTER_PRICE,
-    payload,
-  };
-}
-
-export function filterDiscount(payload) {
-  return {
-    type: FILTER_DISCOUNT,
-    payload,
-  };
-}
-
-export function filterModel(collection) {
-  return async function (dispatch) {
-    try {
-      let res = await axios(`categories/collections/?collection=${collection}`);
-
-      return dispatch({ type: FILTER_MODEL, payload: res.data });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-}
-
-export function filterSexo(gender) {
-  return async function (dispatch) {
-    try {
-      let res = await axios(`categories/gender/?gender=${gender}`);
-
-      return dispatch({ type: FILTER_SEXO, payload: res.data });
     } catch (error) {
       console.log(error);
     }
@@ -265,7 +223,7 @@ export const postFavorite = payload => {
 
 export const deleteCollection = payload => {
   return async () => {
-    let res = await axios.delete("categories", { data: payload});
+    let res = await axios.delete("categories", { data: payload });
     return res;
   };
 };
@@ -275,7 +233,7 @@ export const postShoppingCart = payload => {
     let res = await axios.post("cart", payload);
     return res;
   };
-}
+};
 export const addDataBaseShoppingCart = userId => {
   return async dispatch => {
     let res = await axios(`cart?cartId=${userId}`);
@@ -298,12 +256,12 @@ export const addDataBaseFavorite = userId => {
 
 export const deleteDataBaseShoppingCart = payload => {
   return async () => {
-    let res = await axios.delete("cart", { data: payload});
+    let res = await axios.delete("cart", { data: payload });
     return res;
   };
 };
 
-export const checkoutProducts = (payload) => {
+export const checkoutProducts = payload => {
   return {
     type: CHECKOUT_PRODUCTS,
     payload: payload,
@@ -311,10 +269,10 @@ export const checkoutProducts = (payload) => {
 };
 
 export const mercadoPago = cartId => {
-  console.log(cartId)
+  console.log(cartId);
   return async dispatch => {
     let res = await axios(`mercadoPago?cartId=${cartId}`);
-    console.log(res.data)
+    console.log(res.data);
     return dispatch({
       type: MERCADO_PAGO,
       payload: res.data,
@@ -324,7 +282,7 @@ export const mercadoPago = cartId => {
 
 export const deleteDataBaseFavorite = payload => {
   return async () => {
-    let res = await axios.delete("favorite", { data: payload});
+    let res = await axios.delete("favorite", { data: payload });
     return res;
   };
 };
