@@ -33,10 +33,11 @@ export default function Home({setCurrentPage, currentPage}) {
   const paginado = pageNumber => {
     setCurrentPage(pageNumber);
   };
-
+  
   function handleClick(e) {
     dispatch(resetFilter());
-    setStateValue(true)
+
+    setOrden({collection: 'All', gender: 'All', price: 'default'});
   }
 
   function handleChange(e) {
@@ -90,6 +91,7 @@ export default function Home({setCurrentPage, currentPage}) {
                     id='demo-simple-select'
                     label='COLECCION'
                     name='collection'
+                    value={orden.collection}
                     onChange={handleChange}
                   >
                     <MenuItem value='All'>TODOS</MenuItem>
@@ -114,6 +116,7 @@ export default function Home({setCurrentPage, currentPage}) {
                     id='demo-simple-select'
                     label='GENERO'
                     name='gender'
+                    value={orden.gender}
                     onChange={handleChange}
                   >
                     <MenuItem value={"All"}>TODOS</MenuItem>
@@ -134,8 +137,10 @@ export default function Home({setCurrentPage, currentPage}) {
                     id='demo-simple-select'
                     label='PRECIO'
                     name='price'
+                    value={orden.price}
                     onChange={handleChange}
                   >
+                    <MenuItem value={"default"}>TODOS</MenuItem>
                     <MenuItem value={"ASC"}>MENOR A MAYOR</MenuItem>
                     <MenuItem value={"DESC"}>MAYOR A MENOR</MenuItem>
                   </Select>

@@ -121,7 +121,6 @@ export default function rootReducer(state = initialState, action) {
       };
     case FILTER_BY_PARAMS:
       const { collection, gender, price } = action.payload;
-      console.log(action.payload);
       let filtered = [...state.products];
       filtered =
         collection === "All"
