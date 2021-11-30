@@ -78,7 +78,9 @@ export default function rootReducer(state = initialState, action) {
     case REMOVE_CARD:
       return {
         ...state,
-        shoppingCart: state.shoppingCart.filter(el => el.id !== action.payload),
+        shoppingCart: state.shoppingCart.filter(
+          (el) => el.id !== action.payload
+        ),
       };
     case FAVORITE:
       return {
@@ -88,7 +90,7 @@ export default function rootReducer(state = initialState, action) {
     case REMOVE_FAVORITE:
       return {
         ...state,
-        favorite: state.favorite.filter(el => el.id !== action.payload),
+        favorite: state.favorite.filter((el) => el.id !== action.payload),
       };
     case CREATE_PRODUCT:
       return {
@@ -126,14 +128,16 @@ export default function rootReducer(state = initialState, action) {
       filtered =
         collection === "All"
           ? filtered
-          : [...filtered].filter(el => el.collection.name === collection);
+          : [...filtered].filter((el) => el.collection.name === collection);
 
       //filter by gender
       filtered =
         gender === "All"
           ? filtered
           : filtered.filter(
-              el => el.gender.toLowerCase().charAt(0) === gender.toLowerCase().charAt(0)
+              (el) =>
+                el.gender.toLowerCase().charAt(0) ===
+                gender.toLowerCase().charAt(0)
             );
       ///Order by price
       filtered =
@@ -191,25 +195,30 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         checkoutProducts: action.payload,
       };
-      case ESTADO_ORDEN:
-        return {
-          ...state,
-          orders: action.payload,
-          filterOrderStatus: action.payload
-        };
-      case FILTER_STATUS:
-        let ordenes = state.filterOrderStatus
-        let ordenesFiltradas = action.payload === "TODOS"? ordenes : ordenes.filter((e) => e.status.includes(action.payload.toString().toUpperCase()))
-        return{
-          ...state,
-          orders: ordenesFiltradas,
-        };
-        case FILTER_BY_CART:
-          return{
-            ...state,
-            misCompras: action.payload,
-          };
-       case MERCADO_PAGO:
+    case ESTADO_ORDEN:
+      return {
+        ...state,
+        orders: action.payload,
+        filterOrderStatus: action.payload,
+      };
+    case FILTER_STATUS:
+      let ordenes = state.filterOrderStatus;
+      let ordenesFiltradas =
+        action.payload === "TODOS"
+          ? ordenes
+          : ordenes.filter((e) =>
+              e.status.includes(action.payload.toString().toUpperCase())
+            );
+      return {
+        ...state,
+        orders: ordenesFiltradas,
+      };
+    case FILTER_BY_CART:
+      return {
+        ...state,
+        misCompras: action.payload,
+      };
+    case MERCADO_PAGO:
       return {
         ...state,
         mercadoPago: action.payload,

@@ -21,8 +21,14 @@ export default function Landing() {
   }, [dispatch]);
 
   const products = useSelector((state) => state.products);
-  products.splice(10, 50);
-  const data = products.map((el) => {
+  let aux = []
+  for(let i = 0; i < products.length ; i++ ){
+    if(i < 10){
+      aux.push(products[i])
+    }
+  }
+
+  const data = aux.map((el) => {
     return {
       image: el.images,
       caption: el.productName,
