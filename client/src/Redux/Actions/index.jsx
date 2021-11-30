@@ -20,6 +20,9 @@ import {
   ADD_DATABASE_SHOPPING_CART,
   ADD_DATABASE_FAVORITE,
   CHECKOUT_PRODUCTS,
+  ESTADO_ORDEN,
+  FILTER_STATUS,
+  FILTER_BY_CART,
   MERCADO_PAGO,
 } from "./actionTypes";
 
@@ -118,9 +121,10 @@ export const postReview = payload => {
   };
 };
 
-export const getReview = id => {
+export const getReview = userId => {
+  console.log(userId, "cessnaa")
   return async dispatch => {
-    let res = await axios(`reviews?id=${id}`);
+    let res = await axios(`reviews?id=${userId}`);
     return dispatch({
       type: GET_REVIEW,
       payload: res.data,
@@ -234,6 +238,7 @@ export const postShoppingCart = payload => {
     return res;
   };
 };
+
 export const addDataBaseShoppingCart = userId => {
   return async dispatch => {
     let res = await axios(`cart?cartId=${userId}`);
@@ -268,6 +273,15 @@ export const checkoutProducts = payload => {
   };
 };
 
+export const getAllOrders = payload => {
+  return async dispatch => {
+    let res = await axios(`order`);
+    return dispatch({
+      type: ESTADO_ORDEN,
+    });
+  };
+};
+
 export const mercadoPago = cartId => {
   console.log(cartId);
   return async dispatch => {
@@ -280,9 +294,44 @@ export const mercadoPago = cartId => {
   };
 };
 
+export const modifyOrders = payload => {
+  return async () => {
+    try {
+      console.log(payload, "enzooo")
+      let res = await axios.patch(`order`, payload);
+      return res.data;     
+    } catch (error) {
+      alert("Esta mal");
+      console.log(error)
+    }
+  };
+};
+
+export function filterStatus(payload) {
+  return async function (dispatch) {
+    try {
+      return dispatch({ type: FILTER_STATUS, payload });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function filterByCart(payload) {
+  return async function (dispatch) {
+    try {
+      let res = await axios.get(`/order/cart?CartId=${payload}`);
+      return dispatch({ type: FILTER_BY_CART, payload: res.data});
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
 export const deleteDataBaseFavorite = payload => {
   return async () => {
     let res = await axios.delete("favorite", { data: payload });
     return res;
   };
 };
+

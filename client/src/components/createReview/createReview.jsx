@@ -31,6 +31,7 @@ export default function createReview() {
     review: "",
     score: "",
     productId: props.match.params.id,
+    userId: props.match.params.id
   });
   if (reseña.length) {
     const puntuacionGeneral = reseña.map(el => el.score);
@@ -68,6 +69,7 @@ export default function createReview() {
         review: "",
         score: "",
         productId: props.match.params.id,
+        userId: props.match.params.id
       });
       console.log(input, "actual");
     } else {

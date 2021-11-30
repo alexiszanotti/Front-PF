@@ -20,10 +20,14 @@ import {
   ADD_DATABASE_SHOPPING_CART,
   ADD_DATABASE_FAVORITE,
   CHECKOUT_PRODUCTS,
+  ESTADO_ORDEN,
+  FILTER_STATUS,
+  FILTER_BY_CART,
   MERCADO_PAGO,
 } from "../Actions/actionTypes";
 
 const initialState = {
+  compras: [],
   products: [],
   productsFilter: [],
   detail: [],
@@ -41,6 +45,9 @@ const initialState = {
   ShoppingAlmacen: [],
   favoriteAlmacen: [],
   checkoutProducts: [],
+  orders: [],
+  filterOrderStatus: [],
+  misCompras: [],
   mercadoPago: [],
 };
 
@@ -116,8 +123,6 @@ export default function rootReducer(state = initialState, action) {
       const { collection, gender, price } = action.payload;
       console.log(action.payload);
       let filtered = [...state.products];
-
-      /////filter by collection
       filtered =
         collection === "All"
           ? filtered
@@ -186,7 +191,25 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         checkoutProducts: action.payload,
       };
-    case MERCADO_PAGO:
+      case ESTADO_ORDEN:
+        return {
+          ...state,
+          orders: action.payload,
+          filterOrderStatus: action.payload
+        };
+      case FILTER_STATUS:
+        let ordenes = state.filterOrderStatus
+        let ordenesFiltradas = action.payload === "TODOS"? ordenes : ordenes.filter((e) => e.status.includes(action.payload.toString().toUpperCase()))
+        return{
+          ...state,
+          orders: ordenesFiltradas,
+        };
+        case FILTER_BY_CART:
+          return{
+            ...state,
+            misCompras: action.payload,
+          };
+       case MERCADO_PAGO:
       return {
         ...state,
         mercadoPago: action.payload,
