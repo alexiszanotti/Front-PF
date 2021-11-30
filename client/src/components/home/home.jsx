@@ -24,7 +24,7 @@ export default function Home({setCurrentPage, currentPage}) {
   // let idUser = logIn.id;
 
   const [orden, setOrden] = useState(orderState);
-
+  const [stateValue, setStateValue] = useState(false)
 
   const [shoesPorPaginaPorPagina] = useState(20);
   const indeceDelUltimoShoes = currentPage * shoesPorPaginaPorPagina; // 10
@@ -36,6 +36,7 @@ export default function Home({setCurrentPage, currentPage}) {
 
   function handleClick(e) {
     dispatch(resetFilter());
+    setStateValue(true)
   }
 
   function handleChange(e) {

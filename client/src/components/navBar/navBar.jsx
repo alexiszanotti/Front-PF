@@ -39,13 +39,13 @@ export default function NavBar({setCurrentPage}) {
   //   given_name: "nombre"
   //   name: "nombre completo"
   // }
-  const usr = useSelector((state) => state.userLogin);
+  
   let logIn = useSelector((state) => state.userLogin);
 
   let avatar = [];
 
-  if (user !== undefined || user !== null) {
-    avatar = usr.email?.slice(0, 1).toUpperCase();
+  if (logIn !== undefined || logIn !== null) {
+    avatar = logIn?.email?.slice(0, 1).toUpperCase();
   }
 
   const dispatch = useDispatch();

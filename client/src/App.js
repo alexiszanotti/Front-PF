@@ -73,7 +73,7 @@ function App() {
           gender: "Other",
         })
       );
-    } else {
+
       setTimeout(function () {
         if (logIn.type === undefined) {
           let email = user.email;
@@ -81,6 +81,17 @@ function App() {
           setEstadoLogeado(true);
         }
       }, 1000);
+
+    } else {
+
+      setTimeout(function () {
+        if (logIn.type === undefined) {
+          let email = user.email;
+          dispatch(postUserLogin({ email }));
+          setEstadoLogeado(true);
+        }
+      }, 1000);
+
     }
   }
 
