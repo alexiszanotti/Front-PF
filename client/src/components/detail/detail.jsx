@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   detailProducts,
   shoppingCart,
+  getReview
 } from "../../Redux/Actions/index.jsx";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,20 +15,36 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Modal } from "@material-ui/core";
 import "./detail.css";
+import Rating from "@mui/material/Rating";
 
 export default function Detail(props) {
   const dispatch = useDispatch();
   const history = useHistory();
   const detail = useSelector(state => state.detail);
+  const reseña = useSelector(state => state.review);
 
   useEffect(() => {
     dispatch(detailProducts(props.match.params.id));
+    dispatch(getReview(props.match.params.id));
   }, [dispatch, props.match.params.id]);
 
   const cart = useSelector(state => state.shoppingCart);
   let total = 0;
   let suma = cart.map(el => Number(el.salePrice));
   for (let i of suma) total += i;
+
+  if (reseña.length) {
+    const puntuacionGeneral = reseña.map(el => el.score);
+    let cantidadReseñas = puntuacionGeneral.length
+    function promedio() {
+      let suma = puntuacionGeneral.reduce(function (valorAnterior, valorActual) {
+        return valorAnterior + valorActual;
+      });
+      let redondeo = suma / cantidadReseñas
+      return redondeo.toFixed(1)
+    }
+    var average1 = promedio();
+  }
 
   function handleButtonHome(e) {
     e.preventDefault();
@@ -150,7 +167,7 @@ export default function Detail(props) {
             <br></br>
             <br></br>
             <div>
-              <button type='button' onClick={() => openCloseModal1(dispatchCart())} className='btn'>
+              <button type='button' onClick={() => openCloseModal1(dispatchCart())} className='btn2'>
                 Agregar al carrito
               </button>
               <div>
@@ -162,6 +179,32 @@ export default function Detail(props) {
           </div>
         );
       })}
+      <div className='detailContainer'>
+        <h1>Valoraciones y reseñas</h1>
+        {reseña === undefined || reseña.length === 0 ? (
+          <h4>No hay reseñas</h4>
+        ) : (
+          reseña.map(product => {
+            return (
+              <div>
+                <h4>Reseña: {product.review}</h4>
+                <Rating name='score' defaultValue={product.score} precision={1} readOnly />
+              </div>
+            );
+          })
+        )}
+        <h3>Puntuacion general</h3>
+        <Box
+          sx={{
+            width: 200,
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <Rating name="half-rating-read" value={average1} precision={0.5} readOnly />
+          <h4>{average1}</h4>
+        </Box>
+        </div>
       <button onClick={handleButtonHome} className='btn'>
         Home
       </button>

@@ -52,6 +52,7 @@ const initialState = {
   checkoutProducts: [],
   orders: [],
   filterOrderStatus: [],
+  misCompras: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -233,19 +234,20 @@ export default function rootReducer(state = initialState, action) {
         return {
           ...state,
           orders: action.payload,
+          filterOrderStatus: action.payload
         };
       case FILTER_STATUS:
-        let ordenes = state.orders
-        let ordenesFiltradas = ordenes.filter((e) => e.status.includes(action.payload.toString().toUpperCase()))
+        let ordenes = state.filterOrderStatus
+        let ordenesFiltradas = action.payload === "TODOS"? ordenes : ordenes.filter((e) => e.status.includes(action.payload.toString().toUpperCase()))
         // const ordernesFiltradas = ordenes.filter(el => el.status.includes(action.payload))
         return{
           ...state,
-          orders: action.payload === "TODOS" ? state.orders : ordenesFiltradas,
+          orders: ordenesFiltradas,
         };
         case FILTER_BY_CART:
           return{
             ...state,
-            compras: action.payload,
+            misCompras: action.payload,
           };
     default:
       return state;

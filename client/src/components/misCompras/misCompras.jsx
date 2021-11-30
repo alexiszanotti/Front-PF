@@ -10,78 +10,46 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { getAllOrders, getAllUsers, filterByCart } from "../../Redux/Actions/index";
 import { useDispatch, useSelector } from "react-redux";
+import Compras from "./compras/compras"
 
 
 export default function MisCompras() {
     const dispatch = useDispatch();
-    const allOrders = useSelector(state => state.orders);
     const userLogin = useSelector((state) => state.userLogin);
-    const logIn = useSelector(state => state.userLogin);
     const usuarios = useSelector((state) => state.users)
     const usuariosCarritoFiltrado = usuarios.filter(el => el.id === userLogin.id)
-    const compras = useSelector((state) => state.compras)
-    console.log((usuariosCarritoFiltrado[0].Cart.id), "ID CARRITO")
+    var compras = useSelector((state) => state.misCompras)
+
     useEffect(() => {
-        dispatch(getAllOrders());
+        // dispatch(getAllOrders());
         dispatch(getAllUsers());
         dispatch(filterByCart(usuariosCarritoFiltrado[0].Cart.id))
     }, [dispatch]);
 
-    const productosAFiltrar = compras.Cart
-    console.log(compras, "asdasdasd")
-    console.log(productosAFiltrar, "aprendimosque hay qyue yusar AWAIT")
+    const productosFiltrados = compras.Cart
+    const productosFiltros = compras?.Cart?.ProductsInCarts
+    console.log(productosFiltrados, "GASTONNNN")
+    console.log(compras, "sarasa")
     
     return (
-        <div className='misComprasContainer'>
-            <h1>Mis compras</h1>
-            <p>Total de compras</p>
-            <div>
+            <div className='misComprasContainer'>
+                <h1>Mis compras</h1>
+                <p>Total de compras</p>
                 {
-                    allOrders.map(el => {
-                        return (
-                            <Card sx={{ maxWidth: 1200 }}>
-                                <CardActionArea>
-                                    <CardMedia
-                                    // component="img"
-                                    // height="140"
-                                    // image="/static/images/cards/contemplative-reptile.jpg"
-                                    // alt="green iguana"
-                                    />
-                                    <TextField
-                                        id="outlined-read-only-input"
-                                        fullWidth
-                                        // defaultValue={el.dateOfPurchase}
-                                InputProps={{
-                                            readOnly: true,
-                                        }}
-                                    />
-                                    <CardContent className="misComprasCard">
-                                        <Typography gutterBottom variant="h5" component="div">
-                                            Imagen
-                                        </Typography>
-                                        <div className="misCompras">
-                                            <Typography gutterBottom variant="h5" component="div">
-                                                Status
-                                            </Typography>
-                                            <Typography gutterBottom variant="h5" component="div">
-                                                Fecha de entrega
-                                            </Typography>
-                                            <Typography variant="body2" color="text.secondary">
-                                                Nombre del producto
-                                            </Typography>
-                                        </div>
-                                        <Stack direction="column" spacing={2}>
-                                            <Button variant="contained">Ver compra</Button>
-                                            <Button variant="contained"> Volver a comprar</Button>
-                                        </Stack>
-                                    </CardContent>
-                                </CardActionArea>
-                            </Card>
+                    productosFiltros?.map((el) =>{
+                        return(
+                            <Compras 
+                                id={el.product.id}
+                                precioProducto={el.product.salePrice}
+                                nombreProducto= {el.product.productName}
+                                imagenProducto= {el.product.images} 
+                                fechaCompra={productosFiltrados.dateOfPurchase}
+                                estadoOrden={productosFiltrados.status}
+                                cantidad={el?.quantity}
+                            />
                         )
                     })
                 }
-
             </div>
-        </div>
-    )
+        )
 }

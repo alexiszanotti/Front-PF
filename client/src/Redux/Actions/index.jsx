@@ -162,9 +162,10 @@ export const postReview = payload => {
   };
 };
 
-export const getReview = id => {
+export const getReview = userId => {
+  console.log(userId, "cessnaa")
   return async dispatch => {
-    let res = await axios(`reviews?id=${id}`);
+    let res = await axios(`reviews?id=${userId}`);
     return dispatch({
       type: GET_REVIEW,
       payload: res.data,
@@ -349,7 +350,6 @@ export function filterByCart(payload) {
   return async function (dispatch) {
     try {
       let res = await axios.get(`/order/cart?CartId=${payload}`);
-      console.log(res, "dale HDP")
       return dispatch({ type: FILTER_BY_CART, payload: res.data});
     } catch (error) {
       console.log(error);
