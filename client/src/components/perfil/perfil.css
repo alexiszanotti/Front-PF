@@ -10,7 +10,7 @@
 }
 .detallecontenedor{
     text-align: left;
-    margin-left: 50px;
+    /* margin-left: 50px; */
     
 }
 .contenedorName{
@@ -37,6 +37,10 @@
 }
 
 .signOut{
+    float: right;
+}
+
+.modalPerfil{
     float: right;
 }
 

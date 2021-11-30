@@ -81,8 +81,6 @@ export default function UpDataUsers(){
                     <input type="text" name="lastName" onChange={handleInputChange} placeholder={aux?.map((el) => el.lastName)}/>
                     <label>FECHA</label>
                     <input type="text" name="birthDay" onChange={handleInputChange} placeholder={aux?.map((el) => el.birthDay)}/>
-                    <label>CONTRASEÑA</label>
-                    <input type="text" name="password" onChange={handleInputChange} placeholder={aux?.map((el) => el.password)}/>
                     <label>GENERO</label>
                     <select onChange={(e) => handleSelect(e)} name="gender" >
                         <option value=""></option>
