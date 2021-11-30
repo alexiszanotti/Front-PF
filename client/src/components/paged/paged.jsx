@@ -26,27 +26,14 @@ function Paginado({ shoesPorPaginaPorPagina, shoes, paginado, previousPage, next
             <button onClick={previousPage} className='btn1'>
               Anterior
             </button>
-            <Box sx={{ minWidth: 120 }}>
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Página</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={page}
-                  label="Página"
-                  onChange={handleChange}
-                >
-                  {pageNumber &&
-                    pageNumber.map(number => {
-                      return (
-                        <MenuItem value={number} className='pag' onClick={() => paginado(number)}>
-                          {number}
-                        </MenuItem>
-                      );
-                    })}
-                </Select>
-              </FormControl>
-            </Box>
+            {pageNumber &&
+              pageNumber.map(number => {
+                return (
+                  <li value={number} className='pag' onClick={() => paginado(number)}>
+                    {number}
+                  </li>
+                );
+              })}
             <button onClick={nextPage} className='btn2'>
               Siguiente
             </button>
