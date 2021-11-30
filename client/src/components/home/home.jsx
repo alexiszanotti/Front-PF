@@ -13,7 +13,7 @@ import { filterByParams, resetFilter, getCollection } from "../../Redux/Actions/
 import { useDispatch } from "react-redux";
 import { Typography } from "@mui/material";
 
-export default function Home() {
+export default function Home({setCurrentPage, currentPage}) {
   const dispatch = useDispatch();
 
   const logIn = useSelector(state => state.userLogin);
@@ -25,7 +25,7 @@ export default function Home() {
 
   const [orden, setOrden] = useState(orderState);
 
-  const [currentPage, setCurrentPage] = useState(1);
+
   const [shoesPorPaginaPorPagina] = useState(20);
   const indeceDelUltimoShoes = currentPage * shoesPorPaginaPorPagina; // 10
   const indiceDelPrimerShoes = indeceDelUltimoShoes - shoesPorPaginaPorPagina; // 0
@@ -78,8 +78,8 @@ export default function Home() {
     <div>
       <div className='boxCategories'>
         <Box sx={{ flexGrow: 1 }}>
-          <Grid container spacing={2} columns={16}>
-            <Grid item xs={4}>
+          <Grid container spacing={2} columns={18}>
+            <Grid item xs={6}>
               <Box sx={{ minWidth: 120 }}>
                 <FormControl fullWidth>
                   <InputLabel id='demo-simple-select-label'>MODELO</InputLabel>
@@ -103,7 +103,7 @@ export default function Home() {
                 </FormControl>
               </Box>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={6}>
               <Box sx={{ minWidth: 120 }}>
                 <FormControl fullWidth>
                   <InputLabel id='demo-simple-select-label'>GENERO</InputLabel>
@@ -123,7 +123,7 @@ export default function Home() {
                 </FormControl>
               </Box>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={6}>
               <Box sx={{ minWidth: 120 }}>
                 <FormControl fullWidth>
                   <InputLabel id='demo-simple-select-label'>PRECIO</InputLabel>

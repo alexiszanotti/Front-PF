@@ -1,5 +1,5 @@
 import "./product.css";
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -10,7 +10,7 @@ import Favorite from "@mui/icons-material/Favorite";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Alert from "@mui/material/Alert";
-import swal from 'sweetalert';
+
 import {
   favorite,
   removeFavorite,
@@ -22,7 +22,8 @@ import {
   addDataBaseFavorite,
   emptyCart,
   emptyFavorites,
-  deleteDataBaseShoppingCart
+  deleteDataBaseShoppingCart,
+  deleteDataBaseFavorite,
 } from "../../Redux/Actions/index";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { IconButton } from "@mui/material";
@@ -31,7 +32,7 @@ export default function Products(props) {
   const userLogin = useSelector((state) => state.userLogin);
   const users = useSelector((state) => state.users);
   const favoritosUser = useSelector((state) => state.favoriteAlmacen);
-  const shoppingUser = useSelector((state) => state.ShoppingAlmacen)
+  const shoppingUser = useSelector((state) => state.ShoppingAlmacen);
   let usr = users.filter((user) => user.id === userLogin.id);
   let cartId = usr.map((el) => el.Cart.id);
   let idUser = userLogin.id;
@@ -41,62 +42,80 @@ export default function Products(props) {
   const favoritosLocal = useSelector((state) => state.favorite);
   const idFavoritosLocal = favoritosLocal.map((el) => el.id);
 
-  if(idUser){
-    if(Object.keys(shoppingCartLocal).length !== 0){
-      for(let i=0; i<idShoppingCartLocal.length; i++){
+  if (idUser) {
+    if (Object.keys(shoppingCartLocal).length !== 0) {
+      for (let i = 0; i < idShoppingCartLocal.length; i++) {
         dispatch(
           postShoppingCart({
             cartId: cartId.toString(),
-            productId: idShoppingCartLocal[i].toString() ,
+            productId: idShoppingCartLocal[i].toString(),
           })
         );
-        dispatch(addDataBaseShoppingCart(cartId.toString()));
+        setTimeout(() => {
+          dispatch(addDataBaseShoppingCart(cartId.toString()));
+        }, 200);
       }
       dispatch(emptyCart());
     }
   }
 
-  if(idUser){
-    if(Object.keys(favoritosLocal).length !== 0){
-      for(let i=0; i<idFavoritosLocal.length; i++){
+  if (idUser) {
+    if (Object.keys(favoritosLocal).length !== 0) {
+      for (let i = 0; i < idFavoritosLocal.length; i++) {
         dispatch(
           postFavorite({
             userId: idUser,
-            productId: idFavoritosLocal[i].toString() ,
+            productId: idFavoritosLocal[i].toString(),
           })
         );
-        dispatch(addDataBaseFavorite(idUser));
+        setTimeout(() => {
+          dispatch(addDataBaseFavorite(idUser));
+        }, 200);
       }
       dispatch(emptyFavorites());
     }
   }
 
-  const idShop = shoppingUser?.map((el) => el.product.id)
-  const idFav = favoritosUser?.products?.map(e => e.id)
+  const idShop = shoppingUser?.map((el) => el.product.id);
+  const idFav = favoritosUser?.products?.map((e) => e.id);
 
-
-  let [checked, setChecked] = React.useState(idFav?.includes(props.id) ? true : false);
-  let [checked1, setChecked2] = React.useState(idShop?.includes(props.id) ? true : false);
-  
+  let [checked, setChecked] = React.useState(
+    idFav?.includes(props.id) ? true : false
+  );
+  let [checked1, setChecked2] = React.useState(
+    idShop?.includes(props.id) ? true : false
+  );
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
     if (checked === false) {
-      if(idUser){
+      if (idUser) {
         dispatch(
           postFavorite({
             productId: props.id,
             userId: idUser,
           })
         );
-        dispatch(addDataBaseFavorite(idUser));
-        swal("Se agrego a favoritos", "Producto agregado con éxito!", "success");
-      }else{
+        setTimeout(() => {
+          dispatch(addDataBaseFavorite(idUser));
+        }, 200);
+      } else {
         dispatch(favorite(props.id));
-        swal("Se agrego a favoritos", "Producto agregado con éxito!", "success");
       }
     } else {
-      dispatch(removeFavorite(props.id));
+      if (idUser) {
+        dispatch(
+          deleteDataBaseFavorite({
+            userId: idUser.toString(),
+            productId: props.id,
+          })
+        );
+        setTimeout(() => {
+          dispatch(addDataBaseFavorite(idUser));
+        }, 200);
+      } else {
+        dispatch(removeFavorite(props.id));
+      }
     }
   };
 
@@ -104,36 +123,35 @@ export default function Products(props) {
     setChecked2(event.target.checked);
     if (checked1 === false) {
       if (idUser) {
-        dispatch(addDataBaseShoppingCart(cartId.toString()));
-          dispatch(
-            postShoppingCart({
-              cartId: cartId.toString(),
-              productId: props.id,
-            })
-          );
+        dispatch(
+          postShoppingCart({
+            cartId: cartId.toString(),
+            productId: props.id,
+          })
+        );
+        setTimeout(() => {
           dispatch(addDataBaseShoppingCart(cartId.toString()));
-          swal("Se agrego al carrito", "Producto agregado con éxito!", "success");
-      }else{
-        swal("Se agrego al carrito", "Producto agregado con éxito!", "success");
+        }, 200);
+      } else {
         dispatch(shoppingCart(props.id));
       }
     } else {
-      if(idUser){
-        dispatch(deleteDataBaseShoppingCart({cartId: cartId.toString(), productId: props.id}));
-        swal("Se elimino con exito", "Producto agregado con éxito!", "error");
-        dispatch(addDataBaseShoppingCart(cartId.toString()));
-        
-      }else{
+      if (idUser) {
+        dispatch(
+          deleteDataBaseShoppingCart({
+            cartId: cartId.toString(),
+            productId: props.id,
+          })
+        );
+
+        setTimeout(() => {
+          dispatch(addDataBaseShoppingCart(cartId.toString()));
+        }, 200);
+      } else {
         dispatch(removeCard(props.id));
-        swal("Se elimino con exito", "Producto agregado con éxito!", "error");
       }
-      
     }
   };
-
-  
-
-
 
   return (
     <div className="productContainer">

@@ -30,7 +30,7 @@ import { deepPurple } from "@mui/material/colors";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import { useAuth0 } from "@auth0/auth0-react";
 
-export default function NavBar() {
+export default function NavBar({setCurrentPage}) {
   const { logout, user, isAuthenticated, loginWithRedirect } = useAuth0();
 
   // user: {
@@ -298,7 +298,7 @@ export default function NavBar() {
               </Link>
             </Typography>
 
-            <SearchBar />
+            <SearchBar setCurrentPage={setCurrentPage} />
 
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>

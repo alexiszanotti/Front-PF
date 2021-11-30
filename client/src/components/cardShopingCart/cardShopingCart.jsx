@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   removeCard,
   deleteDataBaseShoppingCart,
+  addDataBaseShoppingCart
 } from "../../Redux/Actions/index";
 import { Link } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -30,13 +31,15 @@ export default function CardShopingCart(props) {
 
   const handleDetele = () => {
     if (idUser) {
-      window.location.reload("");
       dispatch(
         deleteDataBaseShoppingCart({
           cartId: cartId.toString(),
           productId: props.id,
         })
       );
+      setTimeout(() =>{
+        dispatch(addDataBaseShoppingCart(cartId.toString()));
+      }, 200)
     } else {
       dispatch(removeCard(props.id));
     }
