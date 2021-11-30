@@ -116,7 +116,6 @@ export default function ShopingCart() {
                 {total}
               </h2>
               <h2>TOTAL: $ {total}</h2>
-              <TextField label='Codigo de descuento' color='secondary' focused />
               <Box>
                 <Link to='/pago'>
                   <Button>IR A COMPRAR</Button>

@@ -310,17 +310,17 @@ export const checkoutProducts = (payload) => {
   };
 };
 
-export function mercadoPago() {
-  return async function (dispatch) {
-    try {
-      let res = await axios("mercadoPago");
-
-      return dispatch({ type: MERCADO_PAGO, payload: res.data });
-    } catch (error) {
-      console.log(error);
-    }
+export const mercadoPago = cartId => {
+  console.log(cartId)
+  return async dispatch => {
+    let res = await axios(`mercadoPago?cartId=${cartId}`);
+    console.log(res.data)
+    return dispatch({
+      type: MERCADO_PAGO,
+      payload: res.data,
+    });
   };
-}
+};
 
 export const deleteDataBaseFavorite = payload => {
   return async () => {
