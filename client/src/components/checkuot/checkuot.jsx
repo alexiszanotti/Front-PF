@@ -9,6 +9,7 @@ import { mercadoPago } from "../../Redux/Actions";
 import MercadoPago from "../mercadoPago/mercadoPago"
 import axios from "axios";
 import {useDispatch} from "react-redux";
+import { getFormControlUnstyledUtilityClasses } from "@mui/base";
 export default function Checkuot() {
   const dispatch = useDispatch();
   const usuario = useSelector((state) => state.userLogin);
@@ -25,15 +26,16 @@ export default function Checkuot() {
     dispatch(mercadoPago(cartId))
   },[])
   
+  const pro = useSelector((state) => state.ShoppingAlmacen)
+  const product = pro.map((el) => el.product)
+  // const product = useSelector((state) => state.checkoutProducts.product);
+  // let total= 0;
+  // let suma = product.map((el) => Number(el.salePrice));
+  // for (let i of suma) total += i;
 
-  const product = useSelector((state) => state.checkoutProducts.product);
-  let total= 0;
-  let suma = product.map((el) => Number(el.salePrice));
-  for (let i of suma) total += i;
-
-  let s= 0;
-  let sumas = product.map((el) => Number(el.stock));
-  for (let i of sumas) s += i;
+  // let s= 0;
+  // let sumas = product.map((el) => Number(el.stock));
+  // for (let i of sumas) s += i;
 
 
   return (
@@ -63,7 +65,7 @@ export default function Checkuot() {
         })}
       <ImageList sx={{ width: 500, height: 450 }}>
         <ImageListItem key="Subheader" cols={2}>
-          <ListSubheader component="div">CARRITO - TOTAL A PAGAR: {total} - TOTAL DE PRODUCTOS: {s} </ListSubheader>
+          <ListSubheader component="div">CARRITO - TOTAL A PAGAR:  - TOTAL DE PRODUCTOS:   </ListSubheader>
         </ImageListItem>
         {product?.map((item) => (
           <ImageListItem key={item.images}>

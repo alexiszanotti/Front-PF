@@ -8,13 +8,15 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   removeCard,
   deleteDataBaseShoppingCart,
-  addDataBaseShoppingCart
+  addDataBaseShoppingCart,
+  checkoutProducts
 } from "../../Redux/Actions/index";
 import { Link } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Alert from "@mui/material/Alert";
 export default function CardShopingCart(props) {
+
   const logIn = useSelector((state) => state.userLogin);
   const users = useSelector((state) => state.users);
   const [count, setCount] = useState(1);
@@ -42,6 +44,29 @@ export default function CardShopingCart(props) {
       }, 200)
     } else {
       dispatch(removeCard(props.id));
+    }
+  };
+
+  let productsModificado = {
+      id: props.id,
+      productName: props.title,
+      salePrice: props.price,
+      images: props.images,
+      stock: count,
+
+  }
+ 
+    const handleCheckOutMas = () => {
+      setCount(count + 1)
+      if(props.id !== props.valor.id){
+        props.setValor(productsModificado)
+      }
+   };
+
+   const handleCheckOutMenos = () => {
+    setCount(count - 1)
+    if(props.id !== props.valor.id){
+      props.setValor(productsModificado)
     }
   };
 
@@ -83,8 +108,8 @@ export default function CardShopingCart(props) {
           </Typography>
           <div>
             <p>Cantidad/es {count} </p>
-            <ArrowBackIosNewIcon onClick={() => setCount(count - 1)} />
-            <ArrowForwardIosIcon onClick={() => setCount(count + 1)} />
+            <ArrowBackIosNewIcon onClick={handleCheckOutMenos} />
+            <ArrowForwardIosIcon onClick={handleCheckOutMas} />
           </div>
         </CardContent>
       </CardActionArea>

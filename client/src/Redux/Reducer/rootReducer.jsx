@@ -1,3 +1,4 @@
+import { checkoutProducts } from "../Actions";
 import {
   GET_ALL_PRODUCTS,
   SEARCH_PRODUCTS,
@@ -44,7 +45,7 @@ const initialState = {
   },
   ShoppingAlmacen: [],
   favoriteAlmacen: [],
-  checkoutProducts: [],
+  checkoutProducts: [{id:0, cant:0}],
   orders: [],
   filterOrderStatus: [],
   misCompras: [],
@@ -190,6 +191,15 @@ export default function rootReducer(state = initialState, action) {
         favoriteAlmacen: action.payload,
       };
     case CHECKOUT_PRODUCTS:
+      // let check = state.checkoutProducts
+      // check.map((element) => {
+      //   if(element.id !== action.payload.id){
+      //     return{
+      //       ...state,
+      //       checkoutProducts: state.checkoutProducts.push(action.payload)
+      //     }
+      //   }
+      // });
       return {
         ...state,
         checkoutProducts: action.payload,

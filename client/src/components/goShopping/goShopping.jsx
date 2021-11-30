@@ -41,24 +41,11 @@ export default function GoShopping() {
     });
   }
 
-  let productsModificado = productShopping.map(el => {
-    return {
-      id: el.id,
-      productName: el.productName,
-      salePrice: el.salePrice,
-      images: el.images,
-      stock: 2,
-    };
-  });
 
-  console.log(productsModificado);
-  const [valor, setValor] = useState({
-    product: productsModificado,
-  });
 
-  const handleCheckOut = () => {
-    dispatch(checkoutProducts(valor));
-  };
+  // const handleCheckOut = () => {
+  //   dispatch(checkoutProducts(valor));
+  // };
 
   if (Object.keys(usuario).length === 0) {
     loginWithRedirect();
@@ -198,7 +185,7 @@ export default function GoShopping() {
             autoComplete='off'
           >
             <Link to='/checkout'>
-              <Button onClick={handleCheckOut} variant='outlined' startIcon={<AttachMoneyIcon />}>
+              <Button variant='outlined' startIcon={<AttachMoneyIcon />}>
                 Ver todo
               </Button>
             </Link>

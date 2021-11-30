@@ -11,6 +11,7 @@ import { emptyCart, addDataBaseShoppingCart } from "../../Redux/Actions/index";
 import { useDispatch } from "react-redux";
 export default function ShopingCart() {
   const dispatch = useDispatch();
+  const [valor, setValor] = useState([])
   const cart = useSelector(state => state.shoppingCart);
   const logIn = useSelector(state => state.userLogin);
   const users = useSelector(state => state.users);
@@ -42,6 +43,8 @@ export default function ShopingCart() {
       dispatch(addDataBaseShoppingCart(cartId.toString()));
     }
   }, [dispatch]);
+
+  console.log(valor)
 
   return (
     <div>
@@ -141,6 +144,9 @@ export default function ShopingCart() {
                     title={products.productName}
                     stock={products.stock}
                     price={Number(products.salePrice)}
+                    setValor={setValor}
+                    valor={valor}
+                    
                   />
                 </>
               );
@@ -158,6 +164,8 @@ export default function ShopingCart() {
                   brand={products.collection.name}
                   images={products.images}
                   stock={products.stock}
+                  setValor={setValor}
+                  valor={valor}
                 />
               </div>
             );
