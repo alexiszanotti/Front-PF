@@ -22,7 +22,7 @@ export default function Perfil() {
 
   const { user, isAuthenticated, logout } = useAuth0();
 
-  if(!isAuthenticated && userLogeado.type === undefined) history.push("/home");
+  if (!isAuthenticated && userLogeado.type === undefined) history.push("/home");
 
   let usuario = users.filter((user) => user.id === userLogeado.id);
 
@@ -151,227 +151,74 @@ export default function Perfil() {
     <div>
       <div className="contenedorName">
         <br></br>
-        <h1 className="nombrePerfil">Hola {usuario.map((el) => `${el.name}  ${el.lastName}`)}</h1>
+        <h1 className="nombrePerfil">Hola {usuario.map((el) => `${el.name} ${el.lastName}`)}</h1>
       </div>
       <div className="contenedorPerfil">
         <div className="detallecontenedor">
           <h1>MIS DATOS</h1>
           <h3>
-            Modifica sus datos personales a continuación para que su cuenta esté
-            actualizada.
+            En caso de querer actualizar sus datos haga click 
+            <Button onClick={() => openCloseModal1()} >acá</Button>.
           </h3>
+          <div className="modalPerfil">
+            <Modal open={modal1} onClose={openCloseModal1}>
+              {editar}
+            </Modal>
+          </div>
         </div>
-        <br></br>
-        {/* {usuario.map((el) => {
-          return (
-            <div className="detallecontenedor">
-               <Box
-                component="form"
-                sx={{
-                  '& > :not(style)': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-              >
-                <TextField id="outlined-read-only-input" 
-                label="Nombre" 
-                value={el.name}
-                InputProps={{
-                  readOnly: true,
-                }}
-                />
-                <TextField id="outlined-read-only-input" 
-                label="Apellido" 
-                value={el.lastName}
-                InputProps={{
-                  readOnly: true,
-                }}
-                />
-                <TextField id="outlined-read-only-input" 
-                label="Email" 
-                value={el.email}
-                InputProps={{
-                  readOnly: true,
-                }}
-                />
-              </Box>
-              <Box
-                component="form"
-                sx={{
-                  '& > :not(style)': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-              >
-                <TextField id="outlined-read-only-input" 
-                label="Documento" 
-                value={el.document}
-                InputProps={{
-                  readOnly: true,
-                }}
-                />
-                <TextField id="outlined-read-only-input" 
-                label="Teléfono" 
-                value={el.telephone}
-                InputProps={{
-                  readOnly: true,
-                }}
-                />
-                <TextField id="outlined-read-only-input" 
-                label="Cumpleaños" 
-                value={el.birthDay}
-                InputProps={{
-                  readOnly: true,
-                }}
-                />
-              </Box>
-              <Box
-                component="form"
-                sx={{
-                  '& > :not(style)': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-              >
-                <TextField id="outlined-read-only-input" 
-                label="Dirección" 
-                value={el.address}
-                InputProps={{
-                  readOnly: true,
-                }}
-                />
-                <TextField id="outlined-read-only-input" 
-                label="Altura" 
-                value={el.number}
-                InputProps={{
-                  readOnly: true,
-                }}
-                />
-                <TextField id="outlined-read-only-input" 
-                label="Localidad" 
-                value={el.location}
-                InputProps={{
-                  readOnly: true,
-                }}
-                />
-              </Box>
-              <Box
-                component="form"
-                sx={{
-                  '& > :not(style)': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-              >
-                <TextField id="outlined-read-only-input" 
-                label="Código postal" 
-                value={el.cp}
-                InputProps={{
-                  readOnly: true,
-                }}
-                />
-                <TextField id="outlined-read-only-input" 
-                label="Piso" 
-                value={el.floor}
-                InputProps={{
-                  readOnly: true,
-                }}
-                />
-                <TextField id="outlined-read-only-input" 
-                label="Departamento" 
-                value={el.department}
-                InputProps={{
-                  readOnly: true,
-                }}
-                />
-              </Box>
-              <Box
-                component="form"
-                sx={{
-                  '& > :not(style)': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-              >
-                <TextField id="outlined-read-only-input" 
-                label="Provincia" 
-                value={el.province}
-                InputProps={{
-                  readOnly: true,
-                }}
-                />
-                <TextField id="outlined-read-only-input" 
-                label="Género" 
-                value={el.gender}
-                InputProps={{
-                  readOnly: true,
-                }}
-                />
-              </Box> */}
- <form onSubmit={e => handleSubmit(e)} className="formulario" >
+        <form onSubmit={e => handleSubmit(e)} className="formulario" >
+          <div className="contenido">
+            <div className="sarasa">
+              <label>NOMBRE</label>
+              <input type='text' name='name' onChange={handleInputChange} value={usuario.map((el) => el.name)} readOnly={true} />
+            </div>
+            <div className="sarasa">
+              <label>APELLIDO</label>
+              <input type='text' name='lastName' onChange={handleInputChange} value={usuario.map((el) => el.lastName)} readOnly={true} />
+            </div>
+            <div className="sarasa">
+              <label>EMAIL</label>
+              <input type='text' name='email' onChange={handleInputChange} value={usuario.map((el) => el.email)} readOnly={true} />
+            </div>
+            <div className="sarasa">
+              <label>DOCUMENTO</label>
+              <input type='text' name='document' onChange={handleInputChange} value={usuario.map((el) => el.document)} readOnly={true} />
+            </div>
+            <div className="sarasa">
+              <label>DIRECCION</label>
+              <input type='text' name='address' onChange={handleInputChange} value={usuario.map((el) => el.address)} readOnly={true} />
+            </div>
+            <div className="sarasa">
+              <label>ALTURA</label>
+              <input type='text' name='number' onChange={handleInputChange} value={usuario.map((el) => el.number)} readOnly={true} />
+            </div>
+            <div className="sarasa">
+              <label>LOCALIDAD</label>
+              <input type='text' name='location' onChange={handleInputChange} value={usuario.map((el) => el.location)} readOnly={true} />
+            </div>
+            <div className="sarasa">
 
-<div className="contenido">
-    <div className="sarasa">
-        <label>NOMBRE</label>
-        <input type='text' name='name' onChange={handleInputChange} placeholder={usuario.map((el) => el.name)} />
-    </div>
-    <div className="sarasa">
-        <label>APELLIDO</label>
-        <input type='text' name='lastName' onChange={handleInputChange} placeholder={usuario.map((el) => el.lastName)} />
-    </div>
-    <div className="sarasa">
-        <label>EMAIL</label>
-        <input type='text' name='email' onChange={handleInputChange} placeholder={usuario.map((el) => el.email)} />
-    </div>
-    <div className="sarasa">
-        <label>DOCUMENTO</label>
-        <input type='text' name='document' onChange={handleInputChange} placeholder={usuario.map((el) => el.document)} />
-    </div>
-    <div className="sarasa">
-        <label>DIRECCION</label>
-        <input type='text' name='address' onChange={handleInputChange} placeholder={usuario.map((el) => el.address)} />
-    </div>
-    <div className="sarasa">
-        <label>ALTURA</label>
-        <input type='text' name='number' onChange={handleInputChange} placeholder={usuario.map((el) => el.number)} />
-    </div>
-    <div className="sarasa">
-        <label>LOCALIDAD</label>
-        <input type='text' name='location' onChange={handleInputChange} placeholder={usuario.map((el) => el.location)} />
-    </div>
-    <div className="sarasa">
-
-        <label>CODIGO POSTAL</label>
-        <input type='text' name='cp' onChange={handleInputChange} placeholder={usuario.map((el) => el.cp)} />
-    </div>
-    <div className="sarasa">
-        <label>PISO</label>
-        <input type='text' name='floor' onChange={handleInputChange} placeholder={usuario.map((el) => el.floor)} />
-    </div>
-    <div className="sarasa">
-        <label>DEPARTAMENTO</label>
-        <input type='text' name='department' onChange={handleInputChange} placeholder={usuario.map((el) => el.department)} />
-    </div>
-    <div className="sarasa">
-
-        <label>PROVINCIA</label>
-        <input type='text' name='province' onChange={handleInputChange} placeholder={usuario.map((el) => el.province)} />
-    </div>
-    <div className="sarasa">
-        <label>TELEFONO</label>
-        <input type='text' name='telephone' onChange={handleInputChange} placeholder={usuario.map((el) => el.telephone)} />
-    </div>
-</div>
-</form>
-
-
-              <Modal open={modal1} onClose={openCloseModal1}>
-                {editar}
-              </Modal>
-              <Button onClick={() => openCloseModal1()} >EDITAR</Button>
-            {/* </div> */}
-          {/* ); */}
-        {/* })} */}
+              <label>CODIGO POSTAL</label>
+              <input type='text' name='cp' onChange={handleInputChange} value={usuario.map((el) => el.cp)} readOnly={true} />
+            </div>
+            <div className="sarasa">
+              <label>PISO</label>
+              <input type='text' name='floor' onChange={handleInputChange} value={usuario.map((el) => el.floor)} readOnly={true} />
+            </div>
+            <div className="sarasa">
+              <label>DEPARTAMENTO</label>
+              <input type='text' name='department' onChange={handleInputChange} value={usuario.map((el) => el.department)} readOnly={true} />
+            </div>
+            <div className="sarasa">
+              <label>PROVINCIA</label>
+              <input type='text' name='province' onChange={handleInputChange} value={usuario.map((el) => el.province)} readOnly={true} />
+            </div>
+            <div className="sarasa">
+              <label>TELEFONO</label>
+              <input type='text' name='telephone' onChange={handleInputChange} value={usuario.map((el) => el.telephone)} readOnly={true} />
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   );
