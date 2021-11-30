@@ -148,24 +148,6 @@ export default function Detail(props) {
               <br></br>
               <li>{Number(products.salePrice) + "$"}</li>
             </ul>
-            <FormControl sx={{
-              '& > :not(style)': { m: 1, width: '25ch' },
-            }}>
-              <InputLabel id="demo-simple-select-label">cantidad</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                label="dispobiles"
-              >
-                {
-                  stock.map(item => {
-                    return <MenuItem value={item}>{item}</MenuItem>
-                  })
-                }
-              </Select>
-            </FormControl>
-            <br></br>
-            <br></br>
             <div>
               <button type='button' onClick={() => openCloseModal1(dispatchCart())} className='btn2'>
                 Agregar al carrito
