@@ -4,7 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { searchProducts } from "../../Redux/Actions";
 import Styles from "./searchBar.css";
 
-export default function SearchBar() {
+export default function SearchBar({setCurrentPage}) {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
 
@@ -14,6 +14,7 @@ export default function SearchBar() {
   };
 
   useEffect(() => {
+    setCurrentPage(1);
     dispatch(searchProducts(name));
   }, [dispatch, name]);
 

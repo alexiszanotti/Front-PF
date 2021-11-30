@@ -34,6 +34,7 @@ import {
 import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
+  const [currentPage, setCurrentPage] = useState(1);
   const { user, isAuthenticated, logout } = useAuth0();
 
   const [estadoLogeado, setEstadoLogeado] = useState(null);
@@ -113,10 +114,12 @@ function App() {
     return (
       <BrowserRouter>
         <div className='App'>
-          <Navbar />
+          <Navbar setCurrentPage={setCurrentPage} />
           <Switch>
             <Route exact path='/' component={Landing} />
-            <Route path='/home' component={Home} />
+            <Route path='/home'>
+              <Home currentPage={currentPage}  setCurrentPage={setCurrentPage} />
+              </Route>
             <Route exact path='/detail/:id' component={Detail} />
             <Route path='/carrito/:id' component={ShopingCart} />
             <Route path='/favorites' component={Favorite} />
