@@ -53,6 +53,8 @@ const initialState = {
   misCompras: [],
   mercadoPago: [],
   totalCompra: [],
+  checkoutProducts:[],
+  enzoPrueba: {}
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -263,6 +265,8 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         totalCompra: [],
+        checkoutProducts: [],
+        enzoPrueba: action.payload
       };
 
     default:

@@ -11,6 +11,7 @@ import {
   addDataBaseShoppingCart,
   addtotalCompras,
   removetotalCompras,
+  checkoutProducts
 } from "../../Redux/Actions/index";
 import { Link } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -23,7 +24,10 @@ export default function CardShopingCart(props) {
   const totalCompra = useSelector(state => state.totalCompra);
   const logIn = useSelector(state => state.userLogin);
   const users = useSelector(state => state.users);
+  const dataBaseShopping = useSelector(state => state.ShoppingAlmacen);
+  const productShopping = dataBaseShopping.map(el => el.product);
   const dispatch = useDispatch();
+
 
   const stock = [];
   for (let i = 1; i <= props.stock; i++) {
@@ -63,13 +67,28 @@ export default function CardShopingCart(props) {
     }
   };
 
-  const [cantidad, setCantidad] = useState(0);
+  const [cantidad, setCantidad] = useState(1);
+  const [valor, setValor] = useState({
+    totalCompra,
+  });
   //cantidad es una variable vacia 98
   //set cantidad es una funcion para modificar la cantidad
 
+  useEffect(() =>{
+    if(totalCompra.length < productShopping.length ){
+      dispatch(addtotalCompras({
+        productId: props.id,
+        cantidad: 1,
+        images: props.images,
+        price: props.price,
+        title: props.title,
+      }))
+    }
+  },[dispatch, addtotalCompras ])
   const agregarCantidad = () => {
     if (cantidad === props.stock) {
       setCantidad(cantidad);
+      dispatch(checkoutProducts(valor))
     } else {
       setCantidad(cantidad + 1);
       dispatch(
@@ -81,12 +100,14 @@ export default function CardShopingCart(props) {
           title: props.title,
         })
       );
+      dispatch(checkoutProducts(valor))
     }
   };
 
   const disminuirCantidad = () => {
     if (cantidad < 1) {
       setCantidad(cantidad);
+      dispatch(checkoutProducts(valor))
     } else {
       setCantidad(cantidad - 1);
       dispatch(
@@ -94,6 +115,7 @@ export default function CardShopingCart(props) {
           productId: props.id,
         })
       );
+      dispatch(checkoutProducts(valor))
       console.log(totalCompra);
     }
   };
@@ -119,19 +141,24 @@ export default function CardShopingCart(props) {
                 {props.title}
               </Typography>
               <Typography variant='h4' color='text.secondary'>
-                {cantidad == 0 || cantidad == undefined ? (
-                  <h5>Seleccione una Cantidad</h5>
-                ) : cantidad === 1 ? (
-                  <h5>$ {props.price}</h5>
-                ) : (
-                  <h5>$ {props.price * cantidad}</h5>
-                )}
+                {
+                  idUser ?  cantidad == 0 || cantidad == undefined ? (
+                    <h5>Seleccione una Cantidad</h5>
+                  ) : cantidad === 1 ? (
+                    <h5>$ {props.price}</h5>
+                  ) : (
+                    <h5>$ {props.price * cantidad}</h5>
+                  ) : <h5>{props.price}</h5>
+                }
+               
               </Typography>
-              <div>
+              {
+                idUser ? <div>
                 <h5>La Cantidad es : {cantidad} </h5>
                 <ArrowBackIosNewIcon onClick={disminuirCantidad} />
                 <ArrowForwardIosIcon onClick={agregarCantidad} />
-              </div>
+              </div> : null
+              }
             </CardContent>
           </CardActionArea>
         </Card>

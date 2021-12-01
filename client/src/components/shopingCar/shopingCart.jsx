@@ -22,7 +22,7 @@ export default function ShopingCart() {
   const users = useSelector(state => state.users);
   const dataBaseShopping = useSelector(state => state.ShoppingAlmacen);
   const productShopping = dataBaseShopping.map(el => el.product);
-  const stockTotal = productShopping.map(el => el.stock);
+
   let idUser = logIn.id;
 
   let usr = users?.filter(user => user.id === logIn.id);
@@ -90,10 +90,6 @@ export default function ShopingCart() {
         ) : idUser ? (
           <div>
             <h1 className='tucarrito'>TU CARRITO</h1>
-            <h2 className='total'>
-              TOTAL ({productShopping?.length}{" "}
-              {productShopping?.length === 1 ? "PRODUCTO" : "PRODUCTOS"} ): {undefined}
-            </h2>
             <div className='comprarAhora'>
               <h2 className='ahora'>¡COMPRÁ AHORA! TU CARRITO NO ASEGURA INVENTARIO</h2>
               <p className='tene'>
@@ -139,24 +135,21 @@ export default function ShopingCart() {
               <button onClick={vaciar}>BORRAR TODO</button>
             </div>
             <div>
-              {
-                (cart.map(products => {
-                  return (
-                    <div className='contenedorCart'>
-                      <CardShopingCart
-                        key={products.id}
-                        id={products.id}
-                        title={products.productName}
-                        price={Number(products.salePrice)}
-                        brand={products.collection.name}
-                        images={products.images}
-                        stock={products.stock}
-                      />
-                    </div>
-                  );
-                }),
-                (<h2>Tenes que estar Logeado para poder Comprar</h2>))
-              }
+            {cart?.map(products => {
+                return (
+                  <>
+                    <CardShopingCart
+                      key={products.id}
+                      id={products.id}
+                      images={products.images}
+                      title={products.productName}
+                      stock={products.stock}
+                      price={Number(products.salePrice)}
+                    />
+                  </>
+                );
+              })}
+              <Comprar />
             </div>
             <Link to='/home'>
               <button className='botonCart1'>volver</button>
@@ -164,43 +157,7 @@ export default function ShopingCart() {
           </div>
         )}
       </div>
-      <div className='botonCart'>
-        {idUser ? (
-          <>
-            {productShopping?.map(products => {
-              return (
-                <>
-                  <CardShopingCart
-                    key={products.id}
-                    id={products.id}
-                    images={products.images}
-                    title={products.productName}
-                    stock={products.stock}
-                    price={Number(products.salePrice)}
-                  />
-                </>
-              );
-            })}
-          </>
-        ) : (
-          cart.map(products => {
-            return (
-              <div className='contenedorCart'>
-                <CardShopingCart
-                  key={products.id}
-                  id={products.id}
-                  title={products.productName}
-                  price={Number(products.salePrice)}
-                  brand={products.collection.name}
-                  images={products.images}
-                  stock={products.stock}
-                />
-              </div>
-            );
-          })
-        )}
-      </div>
-      <ToastContainer />
+     
     </div>
   );
 }
