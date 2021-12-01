@@ -24,6 +24,7 @@ export default function EditProduct() {
 
   const [input, setInput] = useState({
     id: "",
+    images: "",
   });
 
   const successSubmit = () => {
@@ -56,7 +57,7 @@ export default function EditProduct() {
   };
 
   const handleSelectChangeCollection = e => {
-    setInput({ ...input, collection: e.target.value });
+    setInput({ ...input, [e.target.name]: e.target.value });
   };
 
   const handleLabelChangeCollection = e => {
@@ -74,6 +75,19 @@ export default function EditProduct() {
   }
 
   let aux = productsData.filter(el => el.id === input.id);
+
+  const handleFiles = async e => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "Product_photo ");
+    const res = await fetch("https://api.cloudinary.com/v1_1/djtkn6o7r/image/upload", {
+      method: "POST",
+      body: data,
+    });
+    const file = await res.json();
+    setInput({ ...input, images: file.secure_url });
+  };
 
   return (
     <div className='editProductContainer'>
@@ -124,6 +138,8 @@ export default function EditProduct() {
               placeholder={aux?.map(el => el.stock)}
             />
             <br></br>
+            <input type='file' multiple='true' name='images' onChange={handleFiles} />
+            <br></br>
             <select value={input.collection} onChange={e => handleSelectChangeCollection(e)}>
               <option>Seleccione una categoria...</option>
               {collections?.map(c => {
@@ -135,6 +151,14 @@ export default function EditProduct() {
                   </>
                 );
               })}
+            </select>
+            <br></br>
+            <br></br>
+            <select name='gender' onChange={e => handleSelectChangeCollection(e)}>
+              <option value='UNISEX'>Seleccione un genero...</option>
+              <option value='UNISEX'>UNISEX</option>
+              <option value='MASCULINO'>MASCULINO</option>
+              <option value='FEMENINO'>FEMENINO</option>
             </select>
             <br></br>
             <br></br>
