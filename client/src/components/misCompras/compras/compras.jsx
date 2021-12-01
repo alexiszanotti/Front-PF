@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   postReview,
-  getReview
+  getReview,
+  addDataBaseShoppingCart
 } from "../../../Redux/Actions/index";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -33,22 +34,21 @@ const validateForm = input => {
     return error;
   };
 
-export default function Compras({ nombreProducto, imagenProducto, fechaCompra, precioProducto, estadoOrden, cantidad, id}) {
+export default function Compras({ nombreProducto, imagenProducto, fechaCompra, precioProducto, estadoOrden, cantidad, productId, cartId, userId }) {
+    console.log(productId, "producto", cartId, "cartId", userId, "userId")
     const dispatch = useDispatch();
     const history = useHistory();
-    const reseña = useSelector(state => state.review);
-    console.log(reseña, "gaston")
+        const reseña = useSelector(state => state.review);
     const [error, setError] = useState({});
+    const carritoAlmacen = useSelector(state => state.ShoppingAlmacen);
+    console.log(carritoAlmacen, "alee")
     useEffect(() => {
-        dispatch(getReview(input.productId));
+        dispatch(getReview({productId: input.productId}));
       }, [dispatch]);
     const [input, setInput] = useState({
       review: "",
       score: "",
-    //   productId: input.productId,
-    //   userId: input.userId
     });
-    console.log(input, "asdasd")
 
     const handleInputChange = e => {
         e.preventDefault();
@@ -59,19 +59,17 @@ export default function Compras({ nombreProducto, imagenProducto, fechaCompra, p
       const handleSubmit = e => {
         e.preventDefault();
         if (Object.keys(error).length === 0) {
-          dispatch(postReview(input));
+            console.log({score: input.score, review: input.review, productId: productId, userId: userId[0].id, cartId: cartId}, "verduraaaaaaaaaa")
+          dispatch(postReview({score: input.score, review: input.review, productId: productId, userId: userId[0].id, cartId: cartId}));
           console.log(input);
           swal("Creacion Exitosa!", "Reseña creada con éxito!", "success");
           openCloseModal();
-          dispatch(getReview(input.productId));
           setInput({
             review: "",
             score: "",
-            // productId: input.productId,
-            // userId: input.userId
           });
           console.log(input, "actual");
-          history.push(`/detail/${id}`)
+          history.push(`/detail/${productId}`)
         } else {
           swal("Error!", "Por favor, complete todos los campos requeridos!", "error");
         }
@@ -180,7 +178,7 @@ export default function Compras({ nombreProducto, imagenProducto, fechaCompra, p
                                 {reseñas}
                             </Modal>
                         </div>
-                        <Link to={`/detail/${id}`}>
+                        <Link to={`/detail/${productId}`}>
                             <Button variant="contained"> Volver a comprar</Button>
                         </Link>
                     </Stack>

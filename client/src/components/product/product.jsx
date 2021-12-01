@@ -147,9 +147,9 @@ export default function Products(props) {
         setTimeout(() => {
           dispatch(addDataBaseFavorite(idUser));
         }, 200);
+        successSubmitFavorite()
       } else {
         dispatch(favorite(props.id));
-        successSubmitFavorite()
       }
     } else {
       if (idUser) {
@@ -162,9 +162,9 @@ export default function Products(props) {
         setTimeout(() => {
           dispatch(addDataBaseFavorite(idUser));
         }, 200);
+        errorSubmitFavorite()
       } else {
         dispatch(removeFavorite(props.id));
-        errorSubmitFavorite()
       }
     }
   };
@@ -182,9 +182,9 @@ export default function Products(props) {
         setTimeout(() => {
           dispatch(addDataBaseShoppingCart(cartId.toString()));
         }, 200);
+        successSubmitCart()
       } else {
         dispatch(shoppingCart(props.id));
-        successSubmitCart()
       }
     } else {
       if (idUser) {
@@ -198,9 +198,9 @@ export default function Products(props) {
         setTimeout(() => {
           dispatch(addDataBaseShoppingCart(cartId.toString()));
         }, 200);
+        errorSubmitCart()
       } else {
         dispatch(removeCard(props.id));
-        errorSubmitCart()
       }
     }
   };

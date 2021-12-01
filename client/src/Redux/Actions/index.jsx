@@ -123,19 +123,25 @@ export const getCollection = payload => {
 
 export const postReview = payload => {
   return async dispatch => {
-    let res = await axios.post(`reviews`, payload);
+    let res = await axios.post(`reviews/create`, payload);
     return dispatch({ type: POST_REVIEW, payload: res.data });
   };
 };
 
-export const getReview = userId => {
-  console.log(userId, "cessnaa");
+export const getReview = (payload) => {
+  console.log(payload, "payload getReview")
+  // console.log(id, "cessnaa");
   return async dispatch => {
-    let res = await axios(`reviews?id=${userId}`);
-    return dispatch({
-      type: GET_REVIEW,
-      payload: res.data,
-    });
+    try {
+      let res = await axios.post(`reviews`, payload);
+      return dispatch({
+        type: GET_REVIEW,
+        payload: res.data,
+      });
+      
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 export const getAllUsers = payload => {
