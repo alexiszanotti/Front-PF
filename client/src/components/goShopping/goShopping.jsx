@@ -62,20 +62,20 @@ export default function GoShopping() {
 
   const handleCheckOut = () => {
     if (
-      usuarioLogeado.name === null ||
-      usuarioLogeado.lastName === null ||
-      usuarioLogeado.email === null ||
-      usuarioLogeado.documento === null ||
-      usuarioLogeado.address === null ||
-      usuarioLogeado.number === null ||
-      usuarioLogeado.location === null ||
-      usuarioLogeado.cp === null ||
-      usuarioLogeado.province === null ||
-      usuarioLogeado.telephone === null
+      usuarioLogeado.name == null ||
+      usuarioLogeado.lastName == null ||
+      usuarioLogeado.email == null ||
+      usuarioLogeado.documento == null ||
+      usuarioLogeado.address == null ||
+      usuarioLogeado.number == null ||
+      usuarioLogeado.location == null ||
+      usuarioLogeado.cp == null ||
+      usuarioLogeado.province == null ||
+      usuarioLogeado.telephone == null
     ) {
       swal("Error!", "Por favor, complete todos los campos requeridos!", "error");
     } else {
-  
+
       history.push("/checkout");
     }
   };
@@ -99,7 +99,7 @@ export default function GoShopping() {
                 placeholder={usuarioLogeado.map(el => el.name)}
                 className='inputSarasa'
               />
-              {/* {error.name && <p className='error'>{error.name} </p>} */}
+              {error.name && <p className='error'>{error.name} </p>}
             </div>
             <div className='sarasa'>
               <label>APELLIDO</label>
@@ -109,7 +109,7 @@ export default function GoShopping() {
                 onChange={handleInputChange}
                 placeholder={usuarioLogeado.map(el => el.lastName)}
               />
-              {/* {error.lastName && <p className='error'>{error.lastName} </p>} */}
+              {error.lastName && <p className='error'>{error.lastName} </p>}
             </div>
             <div className='sarasa'>
               <label>EMAIL</label>
@@ -119,7 +119,7 @@ export default function GoShopping() {
                 onChange={handleInputChange}
                 placeholder={usuarioLogeado.map(el => el.email)}
               />
-              {/* {error.email && <p className='error'>{error.email} </p>} */}
+              {error.email && <p className='error'>{error.email} </p>}
             </div>
             <div className='sarasa'>
               <label>DOCUMENTO</label>
@@ -129,7 +129,7 @@ export default function GoShopping() {
                 onChange={handleInputChange}
                 placeholder={usuarioLogeado.map(el => el.document)}
               />
-              {/* {error.document && <p className='error'>{error.document} </p>} */}
+              {error.document && <p className='error'>{error.document} </p>}
             </div>
             <div className='sarasa'>
               <label>DIRECCION</label>
@@ -139,7 +139,7 @@ export default function GoShopping() {
                 onChange={handleInputChange}
                 placeholder={usuarioLogeado.map(el => el.address)}
               />
-              {/* {error.address && <p className='error'>{error.address} </p>} */}
+              {error.address && <p className='error'>{error.address} </p>}
             </div>
             <div className='sarasa'>
               <label>ALTURA</label>
@@ -149,7 +149,7 @@ export default function GoShopping() {
                 onChange={handleInputChange}
                 placeholder={usuarioLogeado.map(el => el.number)}
               />
-              {/* {error.number && <p className='error'>{error.number} </p>} */}
+              {error.number && <p className='error'>{error.number} </p>}
             </div>
             <div className='sarasa'>
               <label>LOCALIDAD</label>
@@ -159,7 +159,7 @@ export default function GoShopping() {
                 onChange={handleInputChange}
                 placeholder={usuarioLogeado.map(el => el.location)}
               />
-              {/* {error.location && <p className='error'>{error.location} </p>} */}
+              {error.location && <p className='error'>{error.location} </p>}
             </div>
             <div className='sarasa'>
               <label>CODIGO POSTAL</label>
@@ -169,7 +169,7 @@ export default function GoShopping() {
                 onChange={handleInputChange}
                 placeholder={usuarioLogeado.map(el => el.cp)}
               />
-              {/* {error.cp && <p className='error'>{error.cp} </p>} */}
+              {error.cp && <p className='error'>{error.cp} </p>}
             </div>
             <div className='sarasa'>
               <label>PISO</label>
@@ -197,7 +197,7 @@ export default function GoShopping() {
                 onChange={handleInputChange}
                 placeholder={usuarioLogeado.map(el => el.province)}
               />
-              {/* {error.province && <p className='error'>{error.province} </p>} */}
+              {error.province && <p className='error'>{error.province} </p>}
             </div>
             <div className='sarasa'>
               <label>TELEFONO</label>
@@ -207,7 +207,7 @@ export default function GoShopping() {
                 onChange={handleInputChange}
                 placeholder={usuarioLogeado.map(el => el.telephone)}
               />
-              {/* {error.telephone && <p className='error'>{error.telephone} </p>} */}
+              {error.telephone && <p className='error'>{error.telephone} </p>}
             </div>
           </div>
           <div className='verdura'>

@@ -61,9 +61,9 @@ export default function CardShopingCart(props) {
       setTimeout(() => {
         dispatch(addDataBaseShoppingCart(cartId.toString()));
       }, 200);
+      errorSubmitCart()
     } else {
       dispatch(removeCard(props.id));
-      errorSubmitCart()
     }
   };
 
@@ -163,6 +163,7 @@ export default function CardShopingCart(props) {
           </CardActionArea>
         </Card>
       </div>
+      <ToastContainer />
     </div>
   );
 }

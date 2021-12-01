@@ -42,13 +42,15 @@ export default function MisCompras() {
                     productosFiltros?.map((el) =>{
                         return(
                             <Compras 
-                                id={el.product.id}
+                                productId={el.product.id}
                                 precioProducto={el.product.salePrice}
                                 nombreProducto= {el.product.productName}
                                 imagenProducto= {el.product.images} 
                                 fechaCompra={productosFiltrados.dateOfPurchase}
                                 estadoOrden={productosFiltrados.status}
                                 cantidad={el?.quantity}
+                                cartId={usuariosCarritoFiltrado[0].Cart.id}
+                                userId={usuariosCarritoFiltrado}
                             />
                         )
                     })

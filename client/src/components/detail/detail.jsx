@@ -22,11 +22,16 @@ export default function Detail(props) {
   const history = useHistory();
   const detail = useSelector(state => state.detail);
   const reseña = useSelector(state => state.review);
+  console.log(reseña, "RESEÑAAA")
+  console.log(detail, "DETALLEEEE")
 
   useEffect(() => {
     dispatch(detailProducts(props.match.params.id));
-    dispatch(getReview(props.match.params.id));
+    setTimeout(() => {
+      dispatch(getReview({productId:props.match.params.id}));     
+    }, 1000);
   }, [dispatch, props.match.params.id]);
+  console.log(props.match.params.id, "ale querido")
 
   const cart = useSelector(state => state.shoppingCart);
   let total = 0;
@@ -171,6 +176,7 @@ export default function Detail(props) {
               <div>
                 <h4>Reseña: {product.review}</h4>
                 <Rating name='score' defaultValue={product.score} precision={1} readOnly />
+                
               </div>
             );
           })

@@ -21,7 +21,7 @@ export default function CardFavorite(props) {
   const logIn = useSelector((state) => state.userLogin);
   let idUser = logIn.id;
 
-  const errorSubmitCart = () => {
+  const errorSubmit = () => {
     toast.error('Producto eliminado con éxito', {
       position: "bottom-right",
       autoClose: 2000,
@@ -30,7 +30,7 @@ export default function CardFavorite(props) {
       pauseOnHover: false,
       draggable: true,
       progress: undefined,
-      });
+    });
   }
 
   function handleClick() {
@@ -40,41 +40,41 @@ export default function CardFavorite(props) {
           userId: idUser.toString(),
           productId: props.id,
         })
-        );
-        setTimeout(() =>{
-          dispatch(addDataBaseFavorite(idUser));
-        }, 200)
-      } else {
-        dispatch(removeFavorite(props.id));
-        errorSubmitCart()
+      );
+      setTimeout(() => {
+        dispatch(addDataBaseFavorite(idUser));
+      }, 200)
+      errorSubmit()
+    } else {
+      dispatch(removeFavorite(props.id));
     }
   }
   return (
     <div>
-    <Card sx={{ maxWidth: 345 }} className="contenedorCardFavorite">
-      <CardActionArea>
-        <Link to={`/detail/${props.id}`}>
-          <CardMedia
-            component="img"
-            height="180"
-            image={props.images}
-            alt="green iguana"
-          />
-        </Link>
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {props.title}
-          </Typography>
-          <Typography variant="h4" color="text.secondary">
-            {props.price + "$"}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button onClick={handleClick}>ELIMINAR</Button>
-      </CardActions>
-    </Card>
-                <ToastContainer />
-                </div>
+      <Card sx={{ maxWidth: 345 }} className="contenedorCardFavorite">
+        <CardActionArea>
+          <Link to={`/detail/${props.id}`}>
+            <CardMedia
+              component="img"
+              height="180"
+              image={props.images}
+              alt="green iguana"
+            />
+          </Link>
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {props.title}
+            </Typography>
+            <Typography variant="h4" color="text.secondary">
+              {props.price + "$"}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Button onClick={handleClick}>ELIMINAR</Button>
+        </CardActions>
+      </Card>
+      <ToastContainer />
+    </div>
   );
 }

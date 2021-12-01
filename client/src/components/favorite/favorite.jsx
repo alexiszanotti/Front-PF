@@ -24,7 +24,7 @@ export default function Favorite() {
     return exists;
   });
 
-  const errorSubmitCart = () => {
+  const errorSubmit = () => {
     toast.error('Productos eliminados con éxito', {
       position: "bottom-right",
       autoClose: 2000,
@@ -33,12 +33,12 @@ export default function Favorite() {
       pauseOnHover: false,
       draggable: true,
       progress: undefined,
-      });
+    });
   }
 
   const handleEmptyFavorites = () => {
     dispatch(emptyFavorites());
-    errorSubmitCart()
+    errorSubmit()
   };
 
   useEffect(() => {
@@ -126,7 +126,7 @@ export default function Favorite() {
           </div>
         </>
       )}
-            <ToastContainer />
+      <ToastContainer />
     </div>
   );
 }

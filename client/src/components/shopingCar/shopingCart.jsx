@@ -28,7 +28,18 @@ export default function ShopingCart() {
   let usr = users?.filter(user => user.id === logIn.id);
   let cartId = usr?.map(el => el.Cart.id);
 
-  const errorSubmitCart = () => {
+  
+  let total = 0;
+  if (idUser) {
+    if (productShopping) {
+      let suma = productShopping.map(el => Number(el.salePrice));
+      for (let i of suma) total += i;
+    }
+  } else {
+    let suma = cart.map(el => Number(el.salePrice));
+    for (let i of suma) total += i;
+  }
+  const errorSubmit = () => {
     toast.error('Productos eliminados con éxito', {
       position: "bottom-right",
       autoClose: 2000,
@@ -40,20 +51,9 @@ export default function ShopingCart() {
       });
   }
 
-  let total = 0;
-  if (idUser) {
-    if (productShopping) {
-      let suma = productShopping.map(el => Number(el.salePrice));
-      for (let i of suma) total += i;
-    }
-  } else {
-    let suma = cart.map(el => Number(el.salePrice));
-    for (let i of suma) total += i;
-  }
-
   const vaciar = () => {
     dispatch(emptyCart());
-    errorSubmitCart()
+    errorSubmit()
   };
 
   useEffect(() => {
