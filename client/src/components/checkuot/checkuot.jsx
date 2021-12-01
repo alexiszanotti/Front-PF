@@ -9,7 +9,16 @@ import { mercadoPago } from "../../Redux/Actions";
 import MercadoPago from "../mercadoPago/mercadoPago"
 import axios from "axios";
 import {useDispatch} from "react-redux";
+import { Modal } from "@material-ui/core";
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 export default function Checkuot() {
+  const [modal1, setModal1] = useState(false);
+
+  const openCloseModal1 = () => {
+    setModal1(!modal1);
+  };
+
   const dispatch = useDispatch();
   const usuario = useSelector((state) => state.userLogin);
   const usr = useSelector((state) => state.users);
@@ -17,13 +26,13 @@ export default function Checkuot() {
   let cartId = usuarioLogeado.map((el) => el.Cart.id);
   const idMP = useSelector((state) => state.mercadoPago )
 
-  console.log(idMP);
+  console.log(cartId.toString());
 
-
+  let cartIdd = cartId.toString()
 
   useEffect(()=>{
-    dispatch(mercadoPago(cartId))
-  },[])
+    dispatch(mercadoPago({cartId:  cartIdd}))
+  },[dispatch])
   
 
   const product = useSelector((state) => state.checkoutProducts.product);
@@ -34,8 +43,30 @@ export default function Checkuot() {
   let s= 0;
   let sumas = product.map((el) => Number(el.stock));
   for (let i of sumas) s += i;
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 800,
+    height: 650,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
+  const editar = (
+    <div className='detailContainer'>
+      <h1>Estas seguro que quieres realizar la compra?</h1>
+      <div className="formulario">
+        <MercadoPago data={idMP}/>
+        <Link to="/">
+        <Button>Volver</Button>
+        </Link>
+      </div>
 
-
+    </div>
+  );
   return (
     <div>
       <div className="shoppingGeneral">
@@ -88,7 +119,11 @@ export default function Checkuot() {
           </ImageListItem>
         ))}
       </ImageList>
-      <MercadoPago data={idMP}/>
+      <button onClick={() => openCloseModal1()} >acá</button>.
+      <Modal open={modal1} onClose={openCloseModal1}>
+              {editar}
+      </Modal>
+    
       </div>
     </div>
   );

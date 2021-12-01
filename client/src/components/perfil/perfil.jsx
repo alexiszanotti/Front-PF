@@ -6,11 +6,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import { Modal } from "@material-ui/core";
-import TextField from '@mui/material/TextField';
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import InputLabel from "@mui/material/InputLabel";
 import { modifyUser, userLogout } from "../../Redux/Actions/index";
 import swal from 'sweetalert';
 
