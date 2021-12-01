@@ -63,40 +63,46 @@ function App() {
   }, [dispatch]);
 
   if (isAuthenticated) {
-    if (emailUsersDB.indexOf(user.email) === -1) {
-      dispatch(
-        postCreateUser({
-          email: user.email,
-          name: user.given_name ? user.given_name : "name",
-          lastName: user.family_name ? user.family_name : "lastName",
-          birthDay: "2000-01-01",
-          gender: "Other",
-        })
-      );
+    setTimeout(function () {
+      if (emailUsersDB.indexOf(user.email) === -1) {
 
-      setTimeout(function () {
-        if (logIn.type === undefined) {
-          let email = user.email;
-          dispatch(postUserLogin({ email }));
-          setEstadoLogeado(true);
-        }
-      }, 1000);
+        dispatch(
+          postCreateUser({
+            email: user.email,
+            name: user.given_name ? user.given_name : "name",
+            lastName: user.family_name ? user.family_name : "lastName",
+            birthDay: "2000-01-01",
+            gender: "Other",
+          })
+        );
+  
+        setTimeout(function () {
+          if (logIn.type === undefined) {
+            let email = user.email;
+            dispatch(postUserLogin({ email }));
+            setEstadoLogeado(true);
+          }
+        }, 2000);
+  
+      } else {
+  
+        setTimeout(function () {
+          if (logIn.type === undefined) {
+            let email = user.email;
+            dispatch(postUserLogin({ email }));
+            setEstadoLogeado(true);
+          }
+        }, 1000);
+  
+      }
 
-    } else {
-
-      setTimeout(function () {
-        if (logIn.type === undefined) {
-          let email = user.email;
-          dispatch(postUserLogin({ email }));
-          setEstadoLogeado(true);
-        }
-      }, 1000);
-
-    }
+    }, 2000);
+    
   }
 
   if (Object.keys(logIn).length === 0) {
     if (estadoLogeado) {
+      console.log("ema trolo ")
       setEstadoLogeado(false);
 
       logout({ returnTo: window.location.origin });
