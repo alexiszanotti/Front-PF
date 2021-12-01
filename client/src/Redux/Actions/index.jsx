@@ -300,7 +300,6 @@ export const getAllOrders = payload => {
 };
 
 export const mercadoPago = cartId => {
-  console.log(cartId);
   return async dispatch => {
     let res = await axios.post(`mercadoPago`, cartId);
     console.log(res.data);

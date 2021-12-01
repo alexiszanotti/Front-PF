@@ -17,8 +17,8 @@ import { Link } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Alert from "@mui/material/Alert";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 export default function CardShopingCart(props) {
   const totalCompra = useSelector(state => state.totalCompra);
@@ -34,17 +34,17 @@ export default function CardShopingCart(props) {
     stock.push(i);
   }
 
-  const errorSubmitCart = () => {
-    toast.error('Producto eliminado con éxito', {
-      position: "bottom-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-      });
-  }
+  // const errorSubmitCart = () => {
+  //   toast.error('Producto eliminado con éxito', {
+  //     position: "bottom-right",
+  //     autoClose: 2000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: false,
+  //     draggable: true,
+  //     progress: undefined,
+  //     });
+  // }
 
   let idUser = logIn.id;
   let usr = users?.filter(user => user.id === logIn.id);
@@ -61,7 +61,7 @@ export default function CardShopingCart(props) {
       setTimeout(() => {
         dispatch(addDataBaseShoppingCart(cartId.toString()));
       }, 200);
-      errorSubmitCart()
+      // errorSubmitCart()
     } else {
       dispatch(removeCard(props.id));
     }
@@ -75,14 +75,17 @@ export default function CardShopingCart(props) {
   //set cantidad es una funcion para modificar la cantidad
 
   useEffect(() =>{
-    if(totalCompra.length < productShopping.length ){
-      dispatch(addtotalCompras({
-        productId: props.id,
-        cantidad: 1,
-        images: props.images,
-        price: props.price,
-        title: props.title,
-      }))
+    if(idUser){
+      // if(productShopping.length > totalCompra.length ){
+        dispatch(addtotalCompras({
+          productId: props.id,
+          cantidad: 1,
+          images: props.images,
+          price: props.price,
+          title: props.title,
+        }))
+
+      // }
     }
   },[dispatch, addtotalCompras ])
   const agregarCantidad = () => {
@@ -163,7 +166,7 @@ export default function CardShopingCart(props) {
           </CardActionArea>
         </Card>
       </div>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </div>
   );
 }
