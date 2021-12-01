@@ -33,7 +33,6 @@ export default function GoShopping() {
   const usuario = useSelector(state => state.userLogin);
   const usr = useSelector(state => state.users);
   const dataBaseShopping = useSelector(state => state.ShoppingAlmacen);
-  const productShopping = dataBaseShopping.map(el => el.product);
   const [error, setError] = useState({});
 
   const [input, setInput] = useState({
@@ -61,10 +60,6 @@ export default function GoShopping() {
     }
   }
 
-  const [valor, setValor] = useState({
-    product: productShopping,
-  });
-
   const handleCheckOut = () => {
     if (
       usuarioLogeado.name === null ||
@@ -80,7 +75,7 @@ export default function GoShopping() {
     ) {
       swal("Error!", "Por favor, complete todos los campos requeridos!", "error");
     } else {
-      dispatch(checkoutProducts(valor));
+  
       history.push("/checkout");
     }
   };
