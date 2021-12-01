@@ -29,18 +29,18 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { IconButton } from "@mui/material";
 export default function Products(props) {
   const dispatch = useDispatch();
-  const userLogin = useSelector((state) => state.userLogin);
-  const users = useSelector((state) => state.users);
-  const favoritosUser = useSelector((state) => state.favoriteAlmacen);
-  const shoppingUser = useSelector((state) => state.ShoppingAlmacen);
-  let usr = users.filter((user) => user.id === userLogin.id);
-  let cartId = usr.map((el) => el.Cart.id);
+  const userLogin = useSelector(state => state.userLogin);
+  const users = useSelector(state => state.users);
+  const favoritosUser = useSelector(state => state.favoriteAlmacen);
+  const shoppingUser = useSelector(state => state.ShoppingAlmacen);
+  let usr = users.filter(user => user.id === userLogin.id);
+  let cartId = usr.map(el => el.Cart.id);
   let idUser = userLogin.id;
 
-  const shoppingCartLocal = useSelector((state) => state.shoppingCart);
-  const idShoppingCartLocal = shoppingCartLocal.map((el) => el.id);
-  const favoritosLocal = useSelector((state) => state.favorite);
-  const idFavoritosLocal = favoritosLocal.map((el) => el.id);
+  const shoppingCartLocal = useSelector(state => state.shoppingCart);
+  const idShoppingCartLocal = shoppingCartLocal.map(el => el.id);
+  const favoritosLocal = useSelector(state => state.favorite);
+  const idFavoritosLocal = favoritosLocal.map(el => el.id);
 
   if (idUser) {
     if (Object.keys(shoppingCartLocal).length !== 0) {
@@ -76,17 +76,13 @@ export default function Products(props) {
     }
   }
 
-  const idShop = shoppingUser?.map((el) => el.product.id);
-  const idFav = favoritosUser?.products?.map((e) => e.id);
+  const idShop = shoppingUser?.map(el => el.product.id);
+  const idFav = favoritosUser?.products?.map(e => e.id);
 
-  let [checked, setChecked] = React.useState(
-    idFav?.includes(props.id) ? true : false
-  );
-  let [checked1, setChecked2] = React.useState(
-    idShop?.includes(props.id) ? true : false
-  );
+  let [checked, setChecked] = React.useState(idFav?.includes(props.id) ? true : false);
+  let [checked1, setChecked2] = React.useState(idShop?.includes(props.id) ? true : false);
 
-  const handleChange = (event) => {
+  const handleChange = event => {
     setChecked(event.target.checked);
     if (checked === false) {
       if (idUser) {
@@ -119,7 +115,7 @@ export default function Products(props) {
     }
   };
 
-  const handleChangeCarrito = (event) => {
+  const handleChangeCarrito = event => {
     setChecked2(event.target.checked);
     if (checked1 === false) {
       if (idUser) {
@@ -154,16 +150,11 @@ export default function Products(props) {
   };
 
   return (
-    <div className="productContainer">
-      <Card className="contenedorProduct" sx={{ maxWidth: 400 }}>
+    <div className='productContainer'>
+      <Card className='contenedorProduct' sx={{ maxWidth: 400 }}>
         <CardHeader title={props.title} subheader={props.price} />
         <Link to={`/detail/${props.id}`}>
-          <CardMedia
-            component="img"
-            height="400"
-            image={props.image}
-            title="adidas sneaker"
-          />
+          <CardMedia component='img' height='400' image={props.image} title={props.title} />
         </Link>
         <CardActions disableSpacing>
           <Checkbox
@@ -183,7 +174,7 @@ export default function Products(props) {
                 disabled
                 checked
               />
-              <Alert variant="outlined" severity="error">
+              <Alert variant='outlined' severity='error'>
                 Stock no disponible
               </Alert>
             </>
@@ -195,7 +186,7 @@ export default function Products(props) {
                 icon={<ShoppingCartIcon />}
                 checkedIcon={<ShoppingCartIcon />}
               />
-              <Alert variant="filled" severity="warning">
+              <Alert variant='filled' severity='warning'>
                 Ultimas en stock
               </Alert>
             </>

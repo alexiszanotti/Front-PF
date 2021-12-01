@@ -26,6 +26,7 @@ import {
   MERCADO_PAGO,
   ADD_TOTAL_COMPRA,
   REMOVE_TOTAL_COMPRA,
+  CHANGE_STATUS_CART,
 } from "./actionTypes";
 
 export function getAllProducts() {
@@ -98,9 +99,8 @@ export const postCreateUser = payload => {
       let res = await axios.post(`users/`, payload);
       return res.data;
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-   
   };
 };
 
@@ -129,7 +129,7 @@ export const postReview = payload => {
 };
 
 export const getReview = userId => {
-  console.log(userId, "cessnaa")
+  console.log(userId, "cessnaa");
   return async dispatch => {
     let res = await axios(`reviews?id=${userId}`);
     return dispatch({
@@ -156,7 +156,7 @@ export const modifyUser = payload => {
   };
 };
 
-/* export const postUserLogin = payload => {
+export const postUserLogin = payload => {
   console.log(payload);
   return async dispatch => {
     return await axios
@@ -175,24 +175,7 @@ export const modifyUser = payload => {
         });
       });
   };
-}; */
-
-export const postUserLogin = payload => {
-  return async dispatch => {
-    try {
-      let res =  await axios.post(`users/loginUser`, payload)
-      return dispatch({ type: GET_USER_LOGIN, payload: res.data, })
-    } catch (error) {
-     /*  alert("Usuario o contraseña incorrectos"); */
-     /*  return dispatch({
-        type: GET_USER_LOGIN,
-        payload: {},
-      }); */
-      console.log(error)
-    }
-    
-  };
-}; 
+};
 
 export const filterByParams = payload => {
   return dispatch =>
@@ -285,8 +268,12 @@ export const addDataBaseFavorite = userId => {
 
 export const deleteDataBaseShoppingCart = payload => {
   return async () => {
-    let res = await axios.delete("cart", { data: payload });
-    return res;
+    try {
+      let res = await axios.delete("cart", { data: payload });
+      return res;
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 
@@ -321,12 +308,12 @@ export const mercadoPago = cartId => {
 export const modifyOrders = payload => {
   return async () => {
     try {
-      console.log(payload, "enzooo")
+      console.log(payload, "enzooo");
       let res = await axios.patch(`order`, payload);
-      return res.data;     
+      return res.data;
     } catch (error) {
       alert("Esta mal");
-      console.log(error)
+      console.log(error);
     }
   };
 };
@@ -345,11 +332,11 @@ export function filterByCart(payload) {
   return async function (dispatch) {
     try {
       let res = await axios.get(`/order/cart?CartId=${payload}`);
-      return dispatch({ type: FILTER_BY_CART, payload: res.data});
+      return dispatch({ type: FILTER_BY_CART, payload: res.data });
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 }
 
 export const deleteDataBaseFavorite = payload => {
@@ -378,3 +365,13 @@ export function removetotalCompras(payload) {
   };
 }
 
+export function changeStatusCart(payload) {
+  return async function (dispatch) {
+    try {
+      let res = await axios.patch(`checkout`, payload);
+      return dispatch({ type: CHANGE_STATUS_CART, payload: res.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}

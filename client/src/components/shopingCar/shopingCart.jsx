@@ -2,17 +2,18 @@ import "./shopingCart.css";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import CardShopingCart from "../cardShopingCart/cardShopingCart";
-import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import { Box } from "@mui/system";
-import Alert from "@mui/material/Alert";
-import { emptyCart, addDataBaseShoppingCart } from "../../Redux/Actions/index";
+import {
+  emptyCart,
+  addDataBaseShoppingCart,
+  deleteDataBaseShoppingCart,
+} from "../../Redux/Actions/index";
 import { useDispatch } from "react-redux";
-import Comprar from "../shopingCar/Comprar.jsx"
+import Comprar from "../shopingCar/Comprar.jsx";
 export default function ShopingCart() {
   const dispatch = useDispatch();
-  
+
   const cart = useSelector(state => state.shoppingCart);
   const logIn = useSelector(state => state.userLogin);
   const users = useSelector(state => state.users);
@@ -21,32 +22,32 @@ export default function ShopingCart() {
   const stockTotal = productShopping.map(el => el.stock);
   let idUser = logIn.id;
 
-
-
   let usr = users?.filter(user => user.id === logIn.id);
   let cartId = usr?.map(el => el.Cart.id);
- 
-
- 
 
   const vaciar = () => {
     dispatch(emptyCart());
   };
 
-
-
-
-  
-
   useEffect(() => {
     if (idUser) {
       dispatch(addDataBaseShoppingCart(cartId.toString()));
-      
-
     }
   }, [dispatch]);
 
-
+  const borrarCarrito = () => {
+    for (let i = 0; i < dataBaseShopping.length; i++) {
+      dispatch(
+        deleteDataBaseShoppingCart({
+          cartId: cartId.toString(),
+          productId: dataBaseShopping[i].productId,
+        })
+      );
+    }
+    setTimeout(() => {
+      dispatch(addDataBaseShoppingCart(cartId.toString()));
+    }, 200);
+  };
 
   return (
     <div>
@@ -72,11 +73,10 @@ export default function ShopingCart() {
                 Tené en cuenta que los productos añadidos al carrito no se reservan. Finalizá tu
                 compra ahora para hacerlos tuyos.
               </p>
-              <button onClick={vaciar}>BORRAR TODO</button>
+              <button onClick={borrarCarrito}>BORRAR TODO</button>
             </div>
             <div>
-            {
-              productShopping?.map(products => {
+              {productShopping?.map(products => {
                 return (
                   <>
                     <CardShopingCart
@@ -86,13 +86,11 @@ export default function ShopingCart() {
                       title={products.productName}
                       stock={products.stock}
                       price={Number(products.salePrice)}
-                   
                     />
                   </>
                 );
-              })
-            }
-            <Comprar/>
+              })}
+              <Comprar />
             </div>
             <Link to='/home'>
               <button className='botonCart1'>volver</button>
@@ -115,7 +113,7 @@ export default function ShopingCart() {
             </div>
             <div>
               {
-                cart.map(products => {
+                (cart.map(products => {
                   return (
                     <div className='contenedorCart'>
                       <CardShopingCart
@@ -130,19 +128,15 @@ export default function ShopingCart() {
                     </div>
                   );
                 }),
-                <h2>Tenes que estar Logeado para poder Comprar</h2>
+                (<h2>Tenes que estar Logeado para poder Comprar</h2>))
               }
-            
             </div>
             <Link to='/home'>
               <button className='botonCart1'>volver</button>
             </Link>
           </div>
-
         )}
       </div>
-  
-      
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -18,9 +18,9 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Alert from "@mui/material/Alert";
 
 export default function CardShopingCart(props) {
-  const totalCompra = useSelector((state) => state.totalCompra);
-  const logIn = useSelector((state) => state.userLogin);
-  const users = useSelector((state) => state.users);
+  const totalCompra = useSelector(state => state.totalCompra);
+  const logIn = useSelector(state => state.userLogin);
+  const users = useSelector(state => state.users);
   const dispatch = useDispatch();
 
   const stock = [];
@@ -29,8 +29,8 @@ export default function CardShopingCart(props) {
   }
 
   let idUser = logIn.id;
-  let usr = users?.filter((user) => user.id === logIn.id);
-  let cartId = usr?.map((el) => el.Cart.id);
+  let usr = users?.filter(user => user.id === logIn.id);
+  let cartId = usr?.map(el => el.Cart.id);
 
   const eliminarProducto = () => {
     if (idUser) {
@@ -42,7 +42,7 @@ export default function CardShopingCart(props) {
       );
       setTimeout(() => {
         dispatch(addDataBaseShoppingCart(cartId.toString()));
-      }, 200)
+      }, 200);
     } else {
       dispatch(removeCard(props.id));
     }
@@ -50,36 +50,38 @@ export default function CardShopingCart(props) {
 
   const [cantidad, setCantidad] = useState(0);
   //cantidad es una variable vacia 98
-  //set cantidad es una funcion para modificar la cantidad 
-
-
+  //set cantidad es una funcion para modificar la cantidad
 
   const agregarCantidad = () => {
-    if(cantidad === props.stock){
-      setCantidad(cantidad)
-    }else {
-      setCantidad(cantidad + 1)
-      dispatch(addtotalCompras({
-        productId: props.id,
-        cantidad: 1,
-      }))
-
-      console.log(totalCompra)
+    if (cantidad === props.stock) {
+      setCantidad(cantidad);
+    } else {
+      setCantidad(cantidad + 1);
+      dispatch(
+        addtotalCompras({
+          productId: props.id,
+          cantidad: 1,
+          images: props.images,
+          price: props.price,
+          title: props.title,
+        })
+      );
     }
   };
 
   const disminuirCantidad = () => {
     if (cantidad < 1) {
-      setCantidad(cantidad)
+      setCantidad(cantidad);
     } else {
-      setCantidad(cantidad - 1)
-      dispatch(removetotalCompras({
-        productId: props.id,
-      }))
-      console.log(totalCompra)
+      setCantidad(cantidad - 1);
+      dispatch(
+        removetotalCompras({
+          productId: props.id,
+        })
+      );
+      console.log(totalCompra);
     }
   };
-
 
   return (
     <div>
@@ -87,34 +89,25 @@ export default function CardShopingCart(props) {
         <Card sx={{ maxWidth: 350 }}>
           <CardActions>
             <Button onClick={eliminarProducto}>ELIMINAR</Button>
-            {
-              props.stock > 0 ? (
-                null
-              ) : (
-                <Alert variant="outlined" severity="error">
-                  Stock no disponible
-                </Alert>
-              )
-            }
+            {props.stock > 0 ? null : (
+              <Alert variant='outlined' severity='error'>
+                Stock no disponible
+              </Alert>
+            )}
           </CardActions>
           <CardActionArea>
             <Link to={`/detail/${props.id}`}>
-              <CardMedia
-                component="img"
-                height="200"
-                image={props.images}
-                alt="green iguana"
-              />
+              <CardMedia component='img' height='200' image={props.images} alt='green iguana' />
             </Link>
             <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
+              <Typography gutterBottom variant='h5' component='div'>
                 {props.title}
               </Typography>
-              <Typography variant="h4" color="text.secondary">
+              <Typography variant='h4' color='text.secondary'>
                 {cantidad == 0 || cantidad == undefined ? (
                   <h5>Seleccione una Cantidad</h5>
                 ) : cantidad === 1 ? (
-                  <h5>$ {props.price}</h5> 
+                  <h5>$ {props.price}</h5>
                 ) : (
                   <h5>$ {props.price * cantidad}</h5>
                 )}
@@ -128,8 +121,6 @@ export default function CardShopingCart(props) {
           </CardActionArea>
         </Card>
       </div>
-
     </div>
-
   );
 }
