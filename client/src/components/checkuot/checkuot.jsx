@@ -6,29 +6,50 @@ import ImageListItemBar from "@mui/material/ImageListItemBar";
 import ListSubheader from "@mui/material/ListSubheader";
 import IconButton from "@mui/material/IconButton";
 import { useDispatch } from "react-redux";
-import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import {changeStatusCart} from "../../Redux/Actions/index"
 
 export default function Checkuot() {
   const dispatch = useDispatch();
   const usuario = useSelector(state => state.userLogin);
   const usr = useSelector(state => state.users);
+  const enzo = useSelector((state) => state.enzoPrueba)
   let usuarioLogeado = usr.filter(el => el.id === usuario.id);
   let cartId = usuarioLogeado.map(el => el.Cart.id);
   const idMP = useSelector(state => state.mercadoPago);
-  const totalCompra = useSelector(state => state.totalCompra);
+  const totalCompra = useSelector(state => state.checkoutProducts);
+  
+
+
   let cartIdd = cartId.toString();
 
   let total = 0;
   let suma = totalCompra.map(el => Number(el.price) * el.cantidad + totalCompra.length);
   for (let i of suma) total += i;
-  console.log("Suma", suma);
+
   suma = suma + totalCompra.length;
   let s = 0;
   let sumas = totalCompra.map(el => Number(el.cantidad));
   for (let i of sumas) s += i;
 
-  const changeStatusCart = () => {};
+  const setChangeStatusCart = () => {
+    setTimeout(() =>{
+      let hoy = new Date();
+      let fecha = hoy.getDate() + '-' + ( hoy.getMonth() + 1 ) + '-' + hoy.getFullYear();
+      let DIA_EN_MILISEGUNDOS = 24 * 60 * 60 * 1000;
+      let manana = new Date(hoy.getTime() + (DIA_EN_MILISEGUNDOS * 2));
+      let fechaFutura = manana.getDate() + '-' + ( manana.getMonth() + 1 ) + '-' + manana.getFullYear();
+      dispatch(changeStatusCart({
+        cartId: cartIdd, // carrito del user logeaddo
+        InfoCart: [{
+          dateOfPurchase: fecha,
+          confirmationDate: fecha,
+          dateCancellation: fechaFutura 
+        }],  // Arreglo con un objeto con info de la fecha en la cual se clickeo (dia de hoy)
+        infoProducts: totalCompra
+      }))
+    }, 2000)
+    console.log(enzo)
+  };
 
   return (
     <div>
@@ -75,7 +96,7 @@ export default function Checkuot() {
             </ImageListItem>
           ))}
         </ImageList>
-        <button>CONTINUAR CON EL PAGO</button>.
+        <button onClick={setChangeStatusCart}>CONTINUAR CON EL PAGO</button>.
       </div>
     </div>
   );
