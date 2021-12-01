@@ -1,3 +1,4 @@
+import { checkoutProducts } from "../Actions";
 import {
   GET_ALL_PRODUCTS,
   SEARCH_PRODUCTS,
@@ -24,6 +25,9 @@ import {
   FILTER_STATUS,
   FILTER_BY_CART,
   MERCADO_PAGO,
+  ADD_TOTAL_COMPRA,
+  REMOVE_TOTAL_COMPRA,
+  CHANGE_STATUS_CART,
 } from "../Actions/actionTypes";
 
 const initialState = {
@@ -44,11 +48,11 @@ const initialState = {
   },
   ShoppingAlmacen: [],
   favoriteAlmacen: [],
-  checkoutProducts: [],
   orders: [],
   filterOrderStatus: [],
   misCompras: [],
   mercadoPago: [],
+  totalCompra: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -78,9 +82,7 @@ export default function rootReducer(state = initialState, action) {
     case REMOVE_CARD:
       return {
         ...state,
-        shoppingCart: state.shoppingCart.filter(
-          (el) => el.id !== action.payload
-        ),
+        shoppingCart: state.shoppingCart.filter(el => el.id !== action.payload),
       };
     case FAVORITE:
       return {
@@ -90,7 +92,7 @@ export default function rootReducer(state = initialState, action) {
     case REMOVE_FAVORITE:
       return {
         ...state,
-        favorite: state.favorite.filter((el) => el.id !== action.payload),
+        favorite: state.favorite.filter(el => el.id !== action.payload),
       };
     case CREATE_PRODUCT:
       return {
@@ -127,16 +129,14 @@ export default function rootReducer(state = initialState, action) {
       filtered =
         collection === "All"
           ? filtered
-          : [...filtered].filter((el) => el.collection.name === collection);
+          : [...filtered].filter(el => el.collection.name === collection);
 
       //filter by gender
       filtered =
         gender === "All"
           ? filtered
           : filtered.filter(
-              (el) =>
-                el.gender.toLowerCase().charAt(0) ===
-                gender.toLowerCase().charAt(0)
+              el => el.gender.toLowerCase().charAt(0) === gender.toLowerCase().charAt(0)
             );
       ///Order by price
       filtered =
@@ -205,9 +205,7 @@ export default function rootReducer(state = initialState, action) {
       let ordenesFiltradas =
         action.payload === "TODOS"
           ? ordenes
-          : ordenes.filter((e) =>
-              e.status.includes(action.payload.toString().toUpperCase())
-            );
+          : ordenes.filter(e => e.status.includes(action.payload.toString().toUpperCase()));
       return {
         ...state,
         orders: ordenesFiltradas,
@@ -222,6 +220,51 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         mercadoPago: action.payload,
       };
+    case ADD_TOTAL_COMPRA:
+      //product id 1
+      //cantidad 1
+      let comprasActuales = state.totalCompra; //objeto con id de producto y cantidad que es un numero
+      let aux = comprasActuales.filter(e => e.productId === action.payload.productId); // es un objeto que tine product id y cantidad
+      if (aux.length > 0) {
+        for (let i = 0; i < comprasActuales.length; i++) {
+          //recorro todo
+          if (comprasActuales[i].productId === aux[0].productId)
+            comprasActuales[i].cantidad = comprasActuales[i].cantidad + 1;
+          //cantidad 2
+          //cantidad 3
+        }
+      } else {
+        comprasActuales.push(action.payload);
+      }
+
+      return {
+        ...state,
+        totalCompra: comprasActuales,
+      };
+    case REMOVE_TOTAL_COMPRA:
+      let comprasActuales1 = state.totalCompra;
+      let aux1 = comprasActuales1.filter(e => e.productId === action.payload.productId);
+      if (aux1.length > 0 && aux1[0].cantidad > 0) {
+        for (let i = 0; i < comprasActuales1.length; i++) {
+          if (
+            comprasActuales1[i].productId === aux1[0].productId &&
+            comprasActuales1[i].cantidad > 0
+          ) {
+            comprasActuales1[i].cantidad = comprasActuales1[i].cantidad - 1;
+          }
+        }
+      }
+
+      return {
+        ...state,
+        totalCompra: comprasActuales1,
+      };
+    case CHANGE_STATUS_CART:
+      return {
+        ...state,
+        totalCompra: [],
+      };
+
     default:
       return state;
   }

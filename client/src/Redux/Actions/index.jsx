@@ -24,6 +24,9 @@ import {
   FILTER_STATUS,
   FILTER_BY_CART,
   MERCADO_PAGO,
+  ADD_TOTAL_COMPRA,
+  REMOVE_TOTAL_COMPRA,
+  CHANGE_STATUS_CART,
 } from "./actionTypes";
 
 export function getAllProducts() {
@@ -92,8 +95,12 @@ export const removeFavorite = id => {
 
 export const postCreateUser = payload => {
   return async () => {
-    let res = await axios.post(`users/`, payload);
-    return res.data;
+    try {
+      let res = await axios.post(`users/`, payload);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 
@@ -122,7 +129,7 @@ export const postReview = payload => {
 };
 
 export const getReview = userId => {
-  console.log(userId, "cessnaa")
+  console.log(userId, "cessnaa");
   return async dispatch => {
     let res = await axios(`reviews?id=${userId}`);
     return dispatch({
@@ -261,8 +268,12 @@ export const addDataBaseFavorite = userId => {
 
 export const deleteDataBaseShoppingCart = payload => {
   return async () => {
-    let res = await axios.delete("cart", { data: payload });
-    return res;
+    try {
+      let res = await axios.delete("cart", { data: payload });
+      return res;
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 
@@ -297,12 +308,12 @@ export const mercadoPago = cartId => {
 export const modifyOrders = payload => {
   return async () => {
     try {
-      console.log(payload, "enzooo")
+      console.log(payload, "enzooo");
       let res = await axios.patch(`order`, payload);
-      return res.data;     
+      return res.data;
     } catch (error) {
       alert("Esta mal");
-      console.log(error)
+      console.log(error);
     }
   };
 };
@@ -321,11 +332,11 @@ export function filterByCart(payload) {
   return async function (dispatch) {
     try {
       let res = await axios.get(`/order/cart?CartId=${payload}`);
-      return dispatch({ type: FILTER_BY_CART, payload: res.data});
+      return dispatch({ type: FILTER_BY_CART, payload: res.data });
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 }
 
 export const deleteDataBaseFavorite = payload => {
@@ -335,4 +346,32 @@ export const deleteDataBaseFavorite = payload => {
   };
 };
 
+export function addtotalCompras(payload) {
+  return async function (dispatch) {
+    try {
+      return dispatch({ type: ADD_TOTAL_COMPRA, payload });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+export function removetotalCompras(payload) {
+  return async function (dispatch) {
+    try {
+      return dispatch({ type: REMOVE_TOTAL_COMPRA, payload });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
 
+export function changeStatusCart(payload) {
+  return async function (dispatch) {
+    try {
+      let res = await axios.patch(`checkout`, payload);
+      return dispatch({ type: CHANGE_STATUS_CART, payload: res.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}

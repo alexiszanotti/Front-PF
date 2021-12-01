@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -8,7 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   removeCard,
   deleteDataBaseShoppingCart,
-  addDataBaseShoppingCart
+  addDataBaseShoppingCart,
+  addtotalCompras,
+  removetotalCompras,
 } from "../../Redux/Actions/index";
 import { Link } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -18,9 +20,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function CardShopingCart(props) {
-  const logIn = useSelector((state) => state.userLogin);
-  const users = useSelector((state) => state.users);
-  const [count, setCount] = useState(1);
+  const totalCompra = useSelector(state => state.totalCompra);
+  const logIn = useSelector(state => state.userLogin);
+  const users = useSelector(state => state.users);
   const dispatch = useDispatch();
 
   const stock = [];
@@ -41,10 +43,10 @@ export default function CardShopingCart(props) {
   }
 
   let idUser = logIn.id;
-  let usr = users?.filter((user) => user.id === logIn.id);
-  let cartId = usr?.map((el) => el.Cart.id);
+  let usr = users?.filter(user => user.id === logIn.id);
+  let cartId = usr?.map(el => el.Cart.id);
 
-  const handleDetele = () => {
+  const eliminarProducto = () => {
     if (idUser) {
       dispatch(
         deleteDataBaseShoppingCart({
@@ -52,58 +54,88 @@ export default function CardShopingCart(props) {
           productId: props.id,
         })
       );
-      setTimeout(() =>{
+      setTimeout(() => {
         dispatch(addDataBaseShoppingCart(cartId.toString()));
-      }, 200)
+      }, 200);
     } else {
       dispatch(removeCard(props.id));
       errorSubmitCart()
     }
   };
 
+  const [cantidad, setCantidad] = useState(0);
+  //cantidad es una variable vacia 98
+  //set cantidad es una funcion para modificar la cantidad
+
+  const agregarCantidad = () => {
+    if (cantidad === props.stock) {
+      setCantidad(cantidad);
+    } else {
+      setCantidad(cantidad + 1);
+      dispatch(
+        addtotalCompras({
+          productId: props.id,
+          cantidad: 1,
+          images: props.images,
+          price: props.price,
+          title: props.title,
+        })
+      );
+    }
+  };
+
+  const disminuirCantidad = () => {
+    if (cantidad < 1) {
+      setCantidad(cantidad);
+    } else {
+      setCantidad(cantidad - 1);
+      dispatch(
+        removetotalCompras({
+          productId: props.id,
+        })
+      );
+      console.log(totalCompra);
+    }
+  };
+
   return (
-    <Card sx={{ maxWidth: 350 }}>
-      <CardActions>
-        <Button onClick={handleDetele}>ELIMINAR</Button>
-        {
-          props.stock > 0 ? (
-            null
-          ) : (
-            <Alert variant="outlined" severity="error">
-            Stock no disponible
-          </Alert>
-          )
-        }
-      </CardActions>
-      <CardActionArea>
-        <Link to={`/detail/${props.id}`}>
-          <CardMedia
-            component="img"
-            height="200"
-            image={props.images}
-            alt="green iguana"
-          />
-        </Link>
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {props.title}
-          </Typography>
-          <Typography variant="h4" color="text.secondary">
-            {count <= 0 ? (
-              <h3>ERROR</h3>
-            ) : count === 1 ? (
-              props.price
-            ) : (
-              props.price * count
+    <div>
+      <div>
+        <Card sx={{ maxWidth: 350 }}>
+          <CardActions>
+            <Button onClick={eliminarProducto}>ELIMINAR</Button>
+            {props.stock > 0 ? null : (
+              <Alert variant='outlined' severity='error'>
+                Stock no disponible
+              </Alert>
             )}
-          </Typography>
-          <div>
-            <p>Cantidad/es {count} </p>
-            <ArrowBackIosNewIcon onClick={() => setCount(count - 1)} />
-            <ArrowForwardIosIcon onClick={() => setCount(count + 1)} />
-          </div>
-        </CardContent>
-      </CardActionArea>
-    </Card>
+          </CardActions>
+          <CardActionArea>
+            <Link to={`/detail/${props.id}`}>
+              <CardMedia component='img' height='200' image={props.images} alt='green iguana' />
+            </Link>
+            <CardContent>
+              <Typography gutterBottom variant='h5' component='div'>
+                {props.title}
+              </Typography>
+              <Typography variant='h4' color='text.secondary'>
+                {cantidad == 0 || cantidad == undefined ? (
+                  <h5>Seleccione una Cantidad</h5>
+                ) : cantidad === 1 ? (
+                  <h5>$ {props.price}</h5>
+                ) : (
+                  <h5>$ {props.price * cantidad}</h5>
+                )}
+              </Typography>
+              <div>
+                <h5>La Cantidad es : {cantidad} </h5>
+                <ArrowBackIosNewIcon onClick={disminuirCantidad} />
+                <ArrowForwardIosIcon onClick={agregarCantidad} />
+              </div>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      </div>
+    </div>
   );
 }
