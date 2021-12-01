@@ -19,6 +19,8 @@ export default function Comprar() {
   
    let totalCompra= []
 
+   console.log(total, "totaol")
+   console.log(shopping, "Shopping")
   
   if(idUser){
     let idTotalCompra = total.map((el) => el.productId)

@@ -62,16 +62,16 @@ export default function GoShopping() {
 
   const handleCheckOut = () => {
     if (
-      usuarioLogeado.name == null ||
-      usuarioLogeado.lastName == null ||
-      usuarioLogeado.email == null ||
-      usuarioLogeado.documento == null ||
-      usuarioLogeado.address == null ||
-      usuarioLogeado.number == null ||
-      usuarioLogeado.location == null ||
-      usuarioLogeado.cp == null ||
-      usuarioLogeado.province == null ||
-      usuarioLogeado.telephone == null
+      usuarioLogeado.name === null ||
+      usuarioLogeado.lastName === null ||
+      usuarioLogeado.email === null ||
+      usuarioLogeado.documento === null ||
+      usuarioLogeado.address === null ||
+      usuarioLogeado.number === null ||
+      usuarioLogeado.location === null ||
+      usuarioLogeado.cp === null ||
+      usuarioLogeado.province === null ||
+      usuarioLogeado.telephone === null
     ) {
       swal("Error!", "Por favor, complete todos los campos requeridos!", "error");
     } else {

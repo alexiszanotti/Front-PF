@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { useSelector } from "react-redux";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
@@ -6,7 +6,9 @@ import ImageListItemBar from "@mui/material/ImageListItemBar";
 import ListSubheader from "@mui/material/ListSubheader";
 import IconButton from "@mui/material/IconButton";
 import { useDispatch } from "react-redux";
-import {changeStatusCart} from "../../Redux/Actions/index"
+import {changeStatusCart, mercadoPago} from "../../Redux/Actions/index"
+import MercadoPago from "../mercadoPago/mercadoPago"
+
 
 export default function Checkuot() {
   const dispatch = useDispatch();
@@ -18,6 +20,7 @@ export default function Checkuot() {
   const idMP = useSelector(state => state.mercadoPago);
   const totalCompra = useSelector(state => state.checkoutProducts);
   
+  const[esperar, setEsperar] = useState(false)
 
 
   let cartIdd = cartId.toString();
@@ -30,6 +33,10 @@ export default function Checkuot() {
   let s = 0;
   let sumas = totalCompra.map(el => Number(el.cantidad));
   for (let i of sumas) s += i;
+
+  useEffect(()=>{
+    dispatch(mercadoPago({cartId:  cartIdd}))
+  },[dispatch])
 
   const setChangeStatusCart = () => {
     setTimeout(() =>{
@@ -47,13 +54,19 @@ export default function Checkuot() {
         }],  // Arreglo con un objeto con info de la fecha en la cual se clickeo (dia de hoy)
         infoProducts: totalCompra
       }))
-    }, 2000)
-    console.log(enzo)
+      setEsperar(true)
+      console.log(esperar, "chau")
+    }, 1000)
+    
+
   };
 
   return (
     <div>
-      <div className='shoppingGeneral'>
+      {
+        esperar === false ?
+        <>
+         <div className='shoppingGeneral'>
         <h1>RESUMEN DE COMPRA</h1>
         {usuarioLogeado.map(el => {
           return (
@@ -96,8 +109,19 @@ export default function Checkuot() {
             </ImageListItem>
           ))}
         </ImageList>
-        <button onClick={setChangeStatusCart}>CONTINUAR CON EL PAGO</button>.
+          <button onClick={setChangeStatusCart}>CONTINUAR CON EL PAGO</button>
       </div>
+        </>
+        :
+        <>
+        <div className="shoppingGeneral">
+          <img src="https://hvghobbies.com/wp-content/uploads/2019/07/mercadopago-01-e1562863464953.png?w=640"/>
+          <MercadoPago />
+
+        </div>
+        </>
+      }
+     
     </div>
   );
 }
