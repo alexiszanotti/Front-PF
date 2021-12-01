@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { emptyFavorites, addDataBaseFavorite } from "../../Redux/Actions/index";
 import { useDispatch } from "react-redux";
 import "./favorite.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Favorite() {
   const dispatch = useDispatch();
@@ -22,8 +24,21 @@ export default function Favorite() {
     return exists;
   });
 
+  const errorSubmitCart = () => {
+    toast.error('Productos eliminados con éxito', {
+      position: "bottom-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      });
+  }
+
   const handleEmptyFavorites = () => {
     dispatch(emptyFavorites());
+    errorSubmitCart()
   };
 
   useEffect(() => {
@@ -111,6 +126,7 @@ export default function Favorite() {
           </div>
         </>
       )}
+            <ToastContainer />
     </div>
   );
 }

@@ -9,6 +9,9 @@ import { Box } from "@mui/system";
 import Alert from "@mui/material/Alert";
 import { emptyCart, addDataBaseShoppingCart } from "../../Redux/Actions/index";
 import { useDispatch } from "react-redux";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function ShopingCart() {
   const dispatch = useDispatch();
   const cart = useSelector(state => state.shoppingCart);
@@ -21,6 +24,18 @@ export default function ShopingCart() {
 
   let usr = users?.filter(user => user.id === logIn.id);
   let cartId = usr?.map(el => el.Cart.id);
+
+  const errorSubmitCart = () => {
+    toast.error('Productos eliminados con éxito', {
+      position: "bottom-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      });
+  }
 
   let total = 0;
   if (idUser) {
@@ -35,6 +50,7 @@ export default function ShopingCart() {
 
   const vaciar = () => {
     dispatch(emptyCart());
+    errorSubmitCart()
   };
 
   useEffect(() => {
@@ -164,6 +180,7 @@ export default function ShopingCart() {
           })
         )}
       </div>
+      <ToastContainer />
     </div>
   );
 }

@@ -5,11 +5,11 @@ import { useHistory } from "react-router-dom";
 import Box from "@mui/material/Box";
 import { Input } from "@mui/material";
 import { getAllProducts, modifyProduct, getCollection } from "../../../Redux/Actions/index";
-import swal from "sweetalert";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function EditProduct() {
   const history = useHistory();
-
   const dispatch = useDispatch();
   const productsData = useSelector(state => state.products);
   const collections = useSelector(state => state.collections);
@@ -25,6 +25,24 @@ export default function EditProduct() {
   const [input, setInput] = useState({
     id: "",
   });
+
+  const successSubmit = () => {
+    toast.success('Producto modificado con éxito', {
+      position: "bottom-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
+  }
+
+  const handleButton = () => {
+    setTimeout(() => {
+      window.location.replace('');
+    }, 2000)
+}
 
   const handleSelectChange = function (e) {
     setInput({ ...input, id: e.target.value });
@@ -48,11 +66,11 @@ export default function EditProduct() {
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(modifyProduct(input));
-    swal("Modificacion Exitosa!", "Producto modificado con éxito!", "success");
+    successSubmit(handleButton())
     setInput({
       id: "",
     });
-    history.push("/");
+    // history.push("/");
   }
 
   let aux = productsData.filter(el => el.id === input.id);
@@ -125,6 +143,7 @@ export default function EditProduct() {
           </form>
         </Box>
       </div>
+      <ToastContainer />
     </div>
   );
 }

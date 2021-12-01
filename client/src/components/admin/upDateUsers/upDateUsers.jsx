@@ -3,8 +3,10 @@ import {getAllUsers, modifyUser} from "../../../Redux/Actions/index"
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom';
 import Box from '@mui/material/Box';
-import swal from 'sweetalert';
+// import swal from 'sweetalert';
 import "./upDateUsers.css"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function UpDataUsers(){
 
@@ -21,7 +23,23 @@ export default function UpDataUsers(){
       
     });
 
+    const successSubmit = () => {
+      toast.success('Usuario modificado con éxito', {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        });
+    }
 
+    const handleButton = () => {
+      setTimeout(() => {
+        window.location.replace('');
+      }, 2000)
+  }
 
       const handleSelectChange = function (e) {
         setInput({ ...input, id: e.target.value });
@@ -44,11 +62,12 @@ export default function UpDataUsers(){
       function handleSubmit(e) {
         e.preventDefault()
         dispatch(modifyUser(input));
-        swal("Modificacion Exitosa!", "Usuario modificado!", "success");
+        // swal("Modificacion Exitosa!", "Usuario modificado!", "success");
+        successSubmit(handleButton())
         setInput({
-            id: "",
+          id: "",
         });
-        history.push('/');
+        // history.push('/')
       }
   
       let aux = usersData.filter((el) => el.id === input.id)
@@ -100,7 +119,7 @@ export default function UpDataUsers(){
 
                 </form>
                 </Box>
-
+                <ToastContainer />
 
         </div>
     )

@@ -27,6 +27,9 @@ import {
 } from "../../Redux/Actions/index";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { IconButton } from "@mui/material";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function Products(props) {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
@@ -41,6 +44,55 @@ export default function Products(props) {
   const idShoppingCartLocal = shoppingCartLocal.map((el) => el.id);
   const favoritosLocal = useSelector((state) => state.favorite);
   const idFavoritosLocal = favoritosLocal.map((el) => el.id);
+
+  
+  const successSubmitFavorite = () => {
+    toast.success('Producto guardado con éxito', {
+      position: "bottom-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
+  }
+
+  const errorSubmitFavorite = () => {
+    toast.error('Producto eliminado éxito', {
+      position: "bottom-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      });
+  }
+
+  const successSubmitCart = () => {
+    toast.success('Producto agregado con éxito', {
+      position: "bottom-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
+  }
+
+  const errorSubmitCart = () => {
+    toast.error('Producto eliminado con éxito', {
+      position: "bottom-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      });
+  }
 
   if (idUser) {
     if (Object.keys(shoppingCartLocal).length !== 0) {
@@ -67,7 +119,7 @@ export default function Products(props) {
             userId: idUser,
             productId: idFavoritosLocal[i].toString(),
           })
-        );
+          );
         setTimeout(() => {
           dispatch(addDataBaseFavorite(idUser));
         }, 200);
@@ -101,6 +153,7 @@ export default function Products(props) {
         }, 200);
       } else {
         dispatch(favorite(props.id));
+        successSubmitFavorite()
       }
     } else {
       if (idUser) {
@@ -115,6 +168,7 @@ export default function Products(props) {
         }, 200);
       } else {
         dispatch(removeFavorite(props.id));
+        errorSubmitFavorite()
       }
     }
   };
@@ -134,6 +188,7 @@ export default function Products(props) {
         }, 200);
       } else {
         dispatch(shoppingCart(props.id));
+        successSubmitCart()
       }
     } else {
       if (idUser) {
@@ -149,6 +204,7 @@ export default function Products(props) {
         }, 200);
       } else {
         dispatch(removeCard(props.id));
+        errorSubmitCart()
       }
     }
   };
@@ -209,6 +265,7 @@ export default function Products(props) {
           )}
         </CardActions>
       </Card>
+      <ToastContainer />
     </div>
   );
 }

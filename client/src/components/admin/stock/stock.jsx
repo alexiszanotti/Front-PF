@@ -9,6 +9,8 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { modifyProduct, } from "../../../Redux/Actions/index";
 import './stock.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Stock(){
 
@@ -37,10 +39,22 @@ export default function Stock(){
     
     }
 
+    const successSubmit = () => {
+        toast.success('Cantidad modificada con éxito', {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
+      }
+
     const handleButton = () => {
-
-        window.location.replace('');
-
+        setTimeout(() => {
+            window.location.replace('');    
+        }, 2000);
     }
 
     const Img = styled('img')({
@@ -82,7 +96,7 @@ export default function Stock(){
                                                 <Button onClick={() => {
                                                     
                                                     setInput({...input, id: e.id})
-
+                                                    successSubmit()
                                                     handleButton()
 
                                                 }} variant="outlined">Modificar Stock</Button>
@@ -107,7 +121,7 @@ export default function Stock(){
 
                     }
             </Paper>
-
+            <ToastContainer />
         </div>
 
       );

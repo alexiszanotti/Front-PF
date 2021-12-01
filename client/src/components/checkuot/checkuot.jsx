@@ -12,6 +12,9 @@ import {useDispatch} from "react-redux";
 import { Modal } from "@material-ui/core";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import Box from "@mui/material/Box";
+import "./checkout.css"
+
 export default function Checkuot() {
   const [modal1, setModal1] = useState(false);
 
@@ -48,24 +51,28 @@ export default function Checkuot() {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 800,
-    height: 650,
+    width: 600,
+    height: 300,
     bgcolor: "background.paper",
     border: "2px solid #000",
-    boxShadow: 24,
+    boxShadow: 10,
     p: 4,
   };
   const editar = (
     <div className='detailContainer'>
+      <Box sx={style} >
       <h1>Estas seguro que quieres realizar la compra?</h1>
       <div className="formulario">
+        <div className="btnMp">
         <MercadoPago data={idMP}/>
+        </div>
         <Link to="/">
         <Button>Volver</Button>
         </Link>
       </div>
-
+      </Box>
     </div>
+
   );
   return (
     <div>

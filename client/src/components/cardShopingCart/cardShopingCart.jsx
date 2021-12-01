@@ -14,6 +14,9 @@ import { Link } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Alert from "@mui/material/Alert";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function CardShopingCart(props) {
   const logIn = useSelector((state) => state.userLogin);
   const users = useSelector((state) => state.users);
@@ -23,6 +26,18 @@ export default function CardShopingCart(props) {
   const stock = [];
   for (let i = 1; i <= props.stock; i++) {
     stock.push(i);
+  }
+
+  const errorSubmitCart = () => {
+    toast.error('Producto eliminado con éxito', {
+      position: "bottom-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      });
   }
 
   let idUser = logIn.id;
@@ -42,6 +57,7 @@ export default function CardShopingCart(props) {
       }, 200)
     } else {
       dispatch(removeCard(props.id));
+      errorSubmitCart()
     }
   };
 
