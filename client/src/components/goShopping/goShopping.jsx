@@ -72,13 +72,12 @@ export default function GoShopping() {
     };
   });
 
-  console.log(productsModificado);
   const [valor, setValor] = useState({
     product: productsModificado,
   });
 
   const handleCheckOut = () => {
-    if(usuarioLogeado.name == null || usuarioLogeado.lastName == null || usuarioLogeado.email == null || usuarioLogeado.documento == null || usuarioLogeado.address == null || usuarioLogeado.number == null || usuarioLogeado.location == null || usuarioLogeado.cp == null || usuarioLogeado.province == null || usuarioLogeado.telephone == null){
+    if(usuarioLogeado.name === null || usuarioLogeado.lastName === null || usuarioLogeado.email === null || usuarioLogeado.documento === null || usuarioLogeado.address === null || usuarioLogeado.number === null || usuarioLogeado.location === null || usuarioLogeado.cp === null || usuarioLogeado.province === null || usuarioLogeado.telephone === null){
       swal("Error!", "Por favor, complete todos los campos requeridos!", "error");
     }else{
       dispatch(checkoutProducts(valor));
