@@ -2,30 +2,73 @@ import "./deleteCategory.css";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCollection, getCollection } from "../../../Redux/Actions/index";
-import swal from 'sweetalert';
+// import swal from 'sweetalert';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const validateForm = input => {
+  let error = {};
+  if (!input.name) {
+    error.name = "El nombre es requerido";
+  } else if (input.name.length < 4 || input.name.length > 10) {
+    error.name = "El nombre debe tener entre 4 y 15 caracteres";
+  }
+  
+  return error;
+};
 
 export default function DeleteCollection() {
     const dispatch = useDispatch();
 
+    
+    const collections = useSelector((state) => state.collections);
+    
+    const [error, setError] = useState({});
+    
+    const [input, setInput] = useState({
+      name: ""
+    });
     useEffect(() => {
         dispatch(getCollection());
-    }, [dispatch]);
+        validateForm(input)
+    }, [dispatch, input]);
 
-    const collections = useSelector((state) => state.collections);
+    const successSubmit = () => {
+      toast.success('Categoría eliminada con éxito', {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        });
+    }
 
-    const [error, setError] = useState({});
-
-    const [input, setInput] = useState({
-        name: ""
-    });
+    const errorSubmit = () => {
+      toast.error('Complete todos los campos requeridos', {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        });
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (Object.keys(error).length === 0) {
             dispatch(deleteCollection(input));
-            swal("Eliminacion Exitosa!", "Categoría eliminada con éxito!", "success");
+            successSubmit()
+            setInput({
+              name: "",
+            });
+            // swal("Eliminacion Exitosa!", "Categoría eliminada con éxito!", "success");
         } else {
-            swal("Error!", "Por favor, complete todos los campos requeridos!", "error");
+          errorSubmit()
+            // swal("Error!", "Por favor, complete todos los campos requeridos!", "error");
         }
     };
 
@@ -44,6 +87,8 @@ export default function DeleteCollection() {
             onChange={(e) => handleSelectChange(e)}
           >
             <option>Seleccione una categoria...</option>
+            {error.name && <p className="error">{error.name} </p>}
+
 
             {collections?.map((c) => {
               return (
@@ -61,6 +106,7 @@ export default function DeleteCollection() {
                     <button className="btn">Eliminar categoría</button>
                 </form>
             </div>
+            <ToastContainer />
         </div>
     )
 

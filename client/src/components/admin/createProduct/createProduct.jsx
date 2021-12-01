@@ -3,8 +3,9 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createProduct, getCollection } from "../../../Redux/Actions/index";
 import { useHistory } from "react-router-dom";
-import swal from "sweetalert";
 import zapa from "../../../images/ImgaProduct.png";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const validateForm = input => {
   let error = {};
@@ -37,6 +38,30 @@ export default function CreateProduct() {
     description: "",
   });
 
+  const successSubmit = () => {
+    toast.success('Categoría eliminada con éxito', {
+      position: "bottom-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
+  }
+
+  const errorSubmit = () => {
+    toast.error('Complete todos los campos requeridos', {
+      position: "bottom-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      });
+  }
+
   const handleInputChange = e => {
     setInput({ ...input, [e.target.name]: e.target.value });
     setError(validateForm({ ...input, [e.target.name]: e.target.value }));
@@ -46,10 +71,10 @@ export default function CreateProduct() {
     e.preventDefault();
     if (Object.keys(error).length === 0) {
       dispatch(createProduct(input));
-      swal("Creacion Exitosa!", "Producto creado con éxito!", "success");
-      history.push("/");
+      successSubmit()
+      // history.push("/");
     } else {
-      swal("Error!", "Por favor, complete todos los campos requeridos!", "error");
+      errorSubmit();
     }
   };
 
@@ -153,6 +178,7 @@ export default function CreateProduct() {
           <button className='btn'>Crear Producto</button>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 }

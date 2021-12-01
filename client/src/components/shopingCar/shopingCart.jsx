@@ -10,7 +10,10 @@ import {
   deleteDataBaseShoppingCart,
 } from "../../Redux/Actions/index";
 import { useDispatch } from "react-redux";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Comprar from "../shopingCar/Comprar.jsx";
+
 export default function ShopingCart() {
   const dispatch = useDispatch();
 
@@ -25,8 +28,32 @@ export default function ShopingCart() {
   let usr = users?.filter(user => user.id === logIn.id);
   let cartId = usr?.map(el => el.Cart.id);
 
+  const errorSubmitCart = () => {
+    toast.error('Productos eliminados con éxito', {
+      position: "bottom-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      });
+  }
+
+  let total = 0;
+  if (idUser) {
+    if (productShopping) {
+      let suma = productShopping.map(el => Number(el.salePrice));
+      for (let i of suma) total += i;
+    }
+  } else {
+    let suma = cart.map(el => Number(el.salePrice));
+    for (let i of suma) total += i;
+  }
+
   const vaciar = () => {
     dispatch(emptyCart());
+    errorSubmitCart()
   };
 
   useEffect(() => {
@@ -137,6 +164,43 @@ export default function ShopingCart() {
           </div>
         )}
       </div>
+      <div className='botonCart'>
+        {idUser ? (
+          <>
+            {productShopping?.map(products => {
+              return (
+                <>
+                  <CardShopingCart
+                    key={products.id}
+                    id={products.id}
+                    images={products.images}
+                    title={products.productName}
+                    stock={products.stock}
+                    price={Number(products.salePrice)}
+                  />
+                </>
+              );
+            })}
+          </>
+        ) : (
+          cart.map(products => {
+            return (
+              <div className='contenedorCart'>
+                <CardShopingCart
+                  key={products.id}
+                  id={products.id}
+                  title={products.productName}
+                  price={Number(products.salePrice)}
+                  brand={products.collection.name}
+                  images={products.images}
+                  stock={products.stock}
+                />
+              </div>
+            );
+          })
+        )}
+      </div>
+      <ToastContainer />
     </div>
   );
 }
