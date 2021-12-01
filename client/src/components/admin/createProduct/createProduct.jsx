@@ -36,6 +36,7 @@ export default function CreateProduct() {
     images: "",
     collection: "",
     description: "",
+    gender: "",
   });
 
   const successSubmit = () => {
@@ -70,6 +71,7 @@ export default function CreateProduct() {
   const handleSubmit = e => {
     e.preventDefault();
     if (Object.keys(error).length === 0) {
+      console.log(input)
       dispatch(createProduct(input));
       successSubmit()
       // history.push("/");
@@ -88,11 +90,11 @@ export default function CreateProduct() {
       body: data,
     });
     const file = await res.json();
-    setInput({ ...input, images: [...input.images, file.secure_url] });
+    setInput({ ...input, images: file.secure_url });
   };
 
   const handleSelectChange = e => {
-    setInput({ ...input, collection: e.target.value });
+    setInput({ ...input, [e.target.name]: e.target.value });
   };
 
   return (
@@ -139,28 +141,14 @@ export default function CreateProduct() {
           {/* {error.images && <p className='error'>{error.images} </p>} */}
           <div className='container-img'>
             <img
-              src={input?.images[0] ? input.images[0] : zapa}
-              border='1px solid gray'
-              width='100px'
-              height='100px'
-              alt='k'
-            />
-            <img
-              src={input.images[1] ? input.images[1] : zapa}
-              border='1px solid gray'
-              width='100px'
-              height='100px'
-              alt='k'
-            />
-            <img
-              src={input.images[2] ? input.images[2] : zapa}
+              src={input?.images[0] ? input.images : zapa}
               border='1px solid gray'
               width='100px'
               height='100px'
               alt='k'
             />
           </div>
-          <select value={input.collection} onChange={e => handleSelectChange(e)}>
+          <select name='collection' value={input.collection} onChange={e => handleSelectChange(e)}>
             <option>Seleccione una categoria...</option>
 
             {collections?.map(c => {
@@ -172,6 +160,14 @@ export default function CreateProduct() {
                 </>
               );
             })}
+          </select>
+          <br></br>
+          <br></br>
+          <select name='gender' onChange={e => handleSelectChange(e)}>
+            <option value='UNISEX'>Seleccione un genero...</option>
+            <option value='UNISEX'>UNISEX</option>
+            <option value='MASCULINO'>MASCULINO</option>
+            <option value='FEMENINO'>FEMENINO</option>
           </select>
           <br></br>
           <br></br>
