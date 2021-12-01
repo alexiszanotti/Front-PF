@@ -1,3 +1,4 @@
+import { checkoutProducts } from "../Actions";
 import {
   GET_ALL_PRODUCTS,
   SEARCH_PRODUCTS,
@@ -24,6 +25,8 @@ import {
   FILTER_STATUS,
   FILTER_BY_CART,
   MERCADO_PAGO,
+  ADD_TOTAL_COMPRA,
+  REMOVE_TOTAL_COMPRA,
 } from "../Actions/actionTypes";
 
 const initialState = {
@@ -44,11 +47,11 @@ const initialState = {
   },
   ShoppingAlmacen: [],
   favoriteAlmacen: [],
-  checkoutProducts: [],
   orders: [],
   filterOrderStatus: [],
   misCompras: [],
   mercadoPago: [],
+  totalCompra:[],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -190,6 +193,15 @@ export default function rootReducer(state = initialState, action) {
         favoriteAlmacen: action.payload,
       };
     case CHECKOUT_PRODUCTS:
+      // let check = state.checkoutProducts
+      // check.map((element) => {
+      //   if(element.id !== action.payload.id){
+      //     return{
+      //       ...state,
+      //       checkoutProducts: state.checkoutProducts.push(action.payload)
+      //     }
+      //   }
+      // });
       return {
         ...state,
         checkoutProducts: action.payload,
@@ -222,6 +234,44 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         mercadoPago: action.payload,
       };
+      case ADD_TOTAL_COMPRA:
+        //product id 1
+        //cantidad 1
+        let comprasActuales = state.totalCompra//objeto con id de producto y cantidad que es un numero 
+        let aux = comprasActuales.filter(e=> e.productId === action.payload.productId )// es un objeto que tine product id y cantidad
+        if(aux.length > 0 ){
+         
+          for(let i = 0; i < comprasActuales.length; i++){//recorro todo 
+            if(comprasActuales[i].productId === aux[0].productId)
+            comprasActuales[i].cantidad =  comprasActuales[i].cantidad +1
+            //cantidad 2
+            //cantidad 3
+          } 
+        }else {
+          comprasActuales.push(action.payload)
+        };
+        
+      return {
+        ...state,
+        totalCompra: comprasActuales,
+      };
+      case REMOVE_TOTAL_COMPRA:
+        let comprasActuales1 = state.totalCompra
+        let aux1 = comprasActuales1.filter(e=> e.productId === action.payload.productId )
+        if(aux1.length > 0 && aux1[0].cantidad > 0 ){
+         
+          for(let i = 0; i < comprasActuales1.length; i++){
+            if(comprasActuales1[i].productId === aux1[0].productId && comprasActuales1[i].cantidad > 0 ){
+              comprasActuales1[i].cantidad = comprasActuales1[i].cantidad -1
+            }
+          } 
+        }
+        
+      return {
+        ...state,
+        totalCompra: comprasActuales1,
+      };
+      
     default:
       return state;
   }

@@ -7,7 +7,6 @@ import ListSubheader from "@mui/material/ListSubheader";
 import IconButton from "@mui/material/IconButton";
 import { mercadoPago } from "../../Redux/Actions";
 import MercadoPago from "../mercadoPago/mercadoPago"
-import axios from "axios";
 import {useDispatch} from "react-redux";
 import { Modal } from "@material-ui/core";
 import { Button } from "@mui/material";

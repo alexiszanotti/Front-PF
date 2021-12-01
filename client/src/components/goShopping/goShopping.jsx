@@ -62,15 +62,7 @@ export default function GoShopping() {
     }
   }
 
-  let productsModificado = productShopping.map(el => {
-    return {
-      id: el.id,
-      productName: el.productName,
-      salePrice: el.salePrice,
-      images: el.images,
-      stock: 2,
-    };
-  });
+
 
   const [valor, setValor] = useState({
     product: productsModificado,
@@ -84,6 +76,7 @@ export default function GoShopping() {
       history.push('/checkout')
     }
   };
+
 
   if (Object.keys(usuario).length === 0) {
     loginWithRedirect();
@@ -232,6 +225,7 @@ export default function GoShopping() {
             noValidate
             autoComplete='off'
           >
+
             {/* <Link to='/checkout'> */}
               <Button onClick={handleCheckOut} variant='outlined' startIcon={<AttachMoneyIcon />}>
                 Continuar al pago

@@ -24,6 +24,8 @@ import {
   FILTER_STATUS,
   FILTER_BY_CART,
   MERCADO_PAGO,
+  ADD_TOTAL_COMPRA,
+  REMOVE_TOTAL_COMPRA,
 } from "./actionTypes";
 
 export function getAllProducts() {
@@ -92,8 +94,13 @@ export const removeFavorite = id => {
 
 export const postCreateUser = payload => {
   return async () => {
-    let res = await axios.post(`users/`, payload);
-    return res.data;
+    try {
+      let res = await axios.post(`users/`, payload);
+      return res.data;
+    } catch (error) {
+      console.log(error)
+    }
+   
   };
 };
 
@@ -149,7 +156,7 @@ export const modifyUser = payload => {
   };
 };
 
-export const postUserLogin = payload => {
+/* export const postUserLogin = payload => {
   console.log(payload);
   return async dispatch => {
     return await axios
@@ -168,7 +175,24 @@ export const postUserLogin = payload => {
         });
       });
   };
-};
+}; */
+
+export const postUserLogin = payload => {
+  return async dispatch => {
+    try {
+      let res =  await axios.post(`users/loginUser`, payload)
+      return dispatch({ type: GET_USER_LOGIN, payload: res.data, })
+    } catch (error) {
+     /*  alert("Usuario o contraseña incorrectos"); */
+     /*  return dispatch({
+        type: GET_USER_LOGIN,
+        payload: {},
+      }); */
+      console.log(error)
+    }
+    
+  };
+}; 
 
 export const filterByParams = payload => {
   return dispatch =>
@@ -335,4 +359,22 @@ export const deleteDataBaseFavorite = payload => {
   };
 };
 
+export function addtotalCompras(payload) {
+  return async function (dispatch) {
+    try {
+      return dispatch({ type: ADD_TOTAL_COMPRA, payload });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+export function removetotalCompras(payload) {
+  return async function (dispatch) {
+    try {
+      return dispatch({ type: REMOVE_TOTAL_COMPRA, payload });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
 
