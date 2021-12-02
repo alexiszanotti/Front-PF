@@ -75,15 +75,14 @@ export default function CardShopingCart(props) {
   // });
   //cantidad es una variable vacia 98
   //set cantidad es una funcion para modificar la cantidad
-
-  const auxId = checkoutProducts.map((el) => {
-    if(el.cantidad === 1){
-      return el.productId
-    }
-  } )
-  
+ 
   useEffect(() =>{
     if(idUser){
+      const auxId = checkoutProducts.map((el) => {
+        if(el.cantidad === 1){
+          return el.productId
+        }
+      } )
       if(!auxId.includes(props.id))
         dispatch(addtotalCompras({
           productId: props.id,
