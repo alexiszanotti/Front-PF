@@ -1,0 +1,10 @@
+.errorContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('https://dam.muyinteresante.com.mx/wp-content/uploads/2020/04/error-404.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin-top: 50px;
+}

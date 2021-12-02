@@ -1,23 +1,14 @@
-import { GET_ALL_PRODUCTS, FILTER_PRODUCTS } from "../Actions/actionTypes";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import rootReducer from "./rootReducer";
 
-const initialState = {
-  products: [],
-
+const persistConfig = {
+  key: "root",
+  debug: true,
+  storage,
+  whitelist: ["favorite", "shoppingCart", "users", "userLogin", "checkoutProducts", "checkoutProducts1"],
 };
 
-export default function rootReducer(state = initialState, action) {
-  switch (action.type) {
-    case GET_ALL_PRODUCTS:
-      return {
-        ...state,
-        products: action.payload,
-      };
-      case FILTER_PRODUCTS:
-        return{
-          ...state,
-          products: action.payload,
-        }
-    default:
-      return state;
-  }
-}
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export default persistedReducer;

@@ -1,0 +1,206 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('http://www.portaldapropaganda.com.br/noticias/wp-content/uploads/2017/02/adidas_Sport17_Womens_PR_Still_00086669_JAN3.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin-top: 20px;
+}
+
+.detailContainer{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   background-color: rgba(236, 236, 236, 0.527);
+   color: rgb(0, 0, 0);
+   width:80%;
+   padding: 10px;
+   margin-top: 20px;
+   margin-bottom: 30px;
+   list-style: none;
+   border-radius: 8px;
+}
+
+.detailContainer1{
+    display: flex;
+   flex-direction: column;
+   /* align-items: center; */
+   background-color: rgba(0, 0, 0, 0.548);
+   color: white;
+   width:80%;
+   padding: 10px;
+   margin-top: 20px;
+   margin-bottom: 30px;
+   list-style: none;
+   border-radius: 8px;
+}
+
+
+.detailS{
+    size: 20px;
+}
+
+.detailContainer.btnUl{
+    display: flex;
+    justify-content: space-between;
+}
+
+.detailUl{
+    text-decoration: none;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
+
+.detailSummary{
+        text-align: justify;
+}
+
+
+.img{
+    width:350px;
+    height:310px;
+    border-radius: 8px;
+
+}
+
+.btn1{
+    background-color: rgba(8, 38, 46, 0.644);
+    color: rgb(236, 230, 230);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    border: none;
+    display: flex;
+    float: left;
+}
+
+.btn1:hover {
+    background-color: white; 
+    color: rgba(74, 59, 207, 0.644);
+} 
+
+.btn2{
+    background-color: rgba(8, 38, 46, 0.644);
+    color: rgb(236, 230, 230);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    border: none;
+    display: flex;
+    float: right;   
+}
+
+.btn1:hover {
+    background-color: white; 
+    color: rgba(74, 59, 207, 0.644);
+} 
+
+.btn{
+    background-color: rgba(8, 38, 46, 0.644);
+    color: rgb(236, 230, 230);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    border: none;
+    
+}
+
+.btn:hover {
+    background-color: white; 
+    color: rgba(74, 59, 207, 0.644);
+} 
+
+
+table {
+    table-layout: fixed;
+    width: 100%;
+  }
+    
+  th, td {
+    padding: 20px;
+  }
+
+  .styleTd{
+      color: black;
+  }
+
+  .detailBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn3{
+    background-color: rgba(8, 38, 46, 0.644);
+    color: rgb(236, 230, 230);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    border: none;
+    
+}
+
+.btn3:hover {
+    background-color: white; 
+    color: rgba(74, 59, 207, 0.644);
+} 
+
+.btn4{
+    background-color: rgba(8, 38, 46, 0.644);
+    color: rgb(236, 230, 230);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    border: none;
+    display: flex;
+    float: center; 
+}
+
+.btn4:hover {
+    background-color: white; 
+    color: rgba(74, 59, 207, 0.644);
+} 
+
+.btnSucces{
+    color: green;
+}
+
+.btnClose{
+    color:red;
+    float: right;
+}
+
+.reviewContainer{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.carritoTitle{
+    background-color: rgba(8, 38, 46, 0.644);
+    color: rgb(236, 230, 230);
+    border-radius: 5px;
+    display: flex;
+    justify-content:center
+}
+
+.carritoDiv{
+    background-color: rgba(8, 38, 46, 0.644);
+    color: rgb(236, 230, 230);
+    border-radius: 5px;
+    text-align: center;
+    
+}
+
+.carritoTotal{
+    border-radius: 5px;
+    border: 3px solid rgba(0, 0, 0, 0.507);
+    width: 60%;
+    margin: auto;
+}
+

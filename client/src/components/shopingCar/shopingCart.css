@@ -1,0 +1,105 @@
+.contenedorTotal{
+    background-color: rgb(255, 255, 255);
+    margin: auto;
+    float: right;
+    width: 30%;
+    /* margin-right: 10px; */
+    text-align:center;    
+    position: fixed;
+    margin-left: 69%;
+}
+.contenedorCart{
+    margin-bottom: 10px;
+    margin-left: 40px;
+    
+}
+.botonCart1{
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    font-size: 20px;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:20px;
+    padding-right:20px;
+    border-style: solid;
+    border-radius:50px;
+    background-color:#ffffff00;
+}
+
+.botonCart1:hover{
+    background-color:black;
+    color:white;
+}
+.tucarrito{
+    font-size: 40px;
+    text-align: left;
+    margin-left: 40px;
+    margin-top: 75px;
+}
+.total{
+    text-align: left;
+    margin-left: 40px;
+    color: rgb(82, 82, 82);
+}
+.comprarAhora{
+    text-align: left;
+    margin-left: 40px;
+    background-color: rgb(255, 255, 255);
+    width: 900px;
+    height: 100px;
+    margin-bottom: 30px;
+}
+.ahora{
+    font-size: 30px;
+    text-align: center;
+}
+.tene{
+    text-align: center;
+}
+.imagenTarjeta{
+    width: 500px;
+    height: 100px;
+}
+.metodoTarjeta{
+    margin-top: 100px;
+    
+}
+.carritoVacio{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction: column;
+    margin-top: 75px;
+}
+.botonCart{
+    display: grid;
+    grid-template-columns: 1fr 1fr  ;
+    grid-auto-columns: minmax(1fr);
+    grid-gap: 25px;
+    width: 50%;
+    margin-left: 3%;
+    /* margin-top: 20px;  */
+}
+.cardContainer{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.contenidoShoppingCart{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-auto-columns: minmax(1fr);
+    grid-gap: 10px;
+    width: 90%;
+    margin-top: 3%;
+    margin-left: 3%;
+}
+
+.btnComprar{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3%;
+    margin-top: 3%
+}

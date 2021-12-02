@@ -1,138 +1,185 @@
-import "./home.css"
-import React from "react";
+import "./home.css";
+import React, { useState, useEffect } from "react";
+import Paginado from "../paged/paged";
 import Products from "../product/product";
+import { useSelector } from "react-redux";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import { filterByParams, resetFilter, getCollection } from "../../Redux/Actions/index";
+import { useDispatch } from "react-redux";
+import { Typography } from "@mui/material";
 
-export default function Home() {
-    const adidas = [
-        {
-            "ProductName" : " Originals Sleek Shoes",
-            "ProductID" : "G27341",
-            "ListingPrice" : "7599",
-            "Sale Price" : "3799",
-            "Discount" : "50",
-            "Brand" : "ORIGINALS",
-            "Description" : "A modern take on adidas sport heritage, tailored just for women. Perforated 3-Stripes on the leather upper of these shoes offer a sleek look that mirrors iconic tennis styles.",
-            "Rating" : "0",
-            "Reviews" : "0",
-           
-            "Last Visited" : "2020-04-13T15:06:15"
-        },
-        {
-            
-            "ProductName" : "Swim Puka Slippers ",
-            "ProductID" : "CM0081",
-            "ListingPrice" : "999",
-            "Sale Price" : "599",
-            "Discount" : "40",
+export default function Home({setCurrentPage, currentPage}) {
+  const dispatch = useDispatch();
 
-            "Description" : "These adidas Puka slippers for women's come with slim straps for a great fit. Feature performance logo on the footbed and textured Rubber outsole that gives unique comfort.",
-            "Rating" : "0",
-            "Reviews" : "0",
-            
-            "Last Visited" : "2020-04-13T15:06:15"
-        },
-        {
-           
-            "ProductName" : " Questar Ride Shoes",
-            "ProductID" : "B44832",
-            "ListingPrice" : "6999",
-            "Sale Price" : "3499",
-            "Discount" : "50",
+  const logIn = useSelector(state => state.userLogin);
+  const shoes = useSelector(state => state.productsFilter);
+  const orderState = useSelector(state => state.orden);
+  const collections = useSelector(state => state.collections);
 
-            "Description" : "Inspired by modern tech runners, these women's shoes step out with unexpected style. They're built with a breathable knit upper, while the heel offers the extra support of an Achilles-hugging design. The cushioned midsole provides a soft landing with every stride.",
-            "Rating" : "0",
-            "Reviews" : "0",
-            
-            "Last Visited" : "2020-04-13T15:06:15"
-        },
-        {
-            
-            "ProductName" : "Taekwondo Shoes",
-            "ProductID" : "D98205",
-            "ListingPrice" : "7999",
-            "Sale Price" : "3999",
-            "Discount" : "50",
-            "Brand" : "ORIGINALS",
-            "Description" : "This design is inspired by vintage Taekwondo styles originally worn to perfect high kicks and rapid foot strikes. The canvas shoes make a streetwear fashion statement as a chic, foot-hugging slip-on. They're shaped for a narrow, women's-specific fit and ride on a soft gum rubber outsole.",
-            "Rating" : "0",
-            "Reviews" : "0",
-            
-            "Last Visited" : "2020-04-13T15:06:15"
-        },
-        {
-            
-            "ProductName" : " Duramo Lite 2.0 Shoes",
-            "ProductID" : "B75586",
-            "ListingPrice" : "4799",
-            "Sale Price" : "1920",
-            "Discount" : "60",
+  // let idUser = logIn.id;
 
-            "Description" : "Refine your interval training in these women's versatile running-inspired shoes. Featuring a lightweight mesh and synthetic upper, they combine responsive midsole cushioning with a soft collar that reduces ankle pressure. ",
-            "Rating" : "0",
-            "Reviews" : "0",
-           
-            "Last Visited" : "2020-04-13T15:06:15"
-        },
-        {
-            
-            "ProductName" : "Duramo Lite 2.0 Shoes",
-            "ProductID" : "CG4051",
-            "ListingPrice" : "4799",
-            "Sale Price" : "2399",
-            "Discount" : "50",
+  const [orden, setOrden] = useState(orderState);
+  const [stateValue, setStateValue] = useState(false)
 
-            "Description" : "Refine your interval training in these women's versatile running-inspired shoes. Featuring a lightweight mesh and synthetic upper, they combine responsive midsole cushioning with a soft collar that reduces ankle pressure. ",
-            "Rating" : "0",
-            "Reviews" : "0",
-            
-            "Last Visited" : "2020-04-13T15:06:15"
-        },
-        {
-           
-            "ProductName" : " Puka Slippers ",
-            "ProductID" : "CM0080",
-            "ListingPrice" : "999",
-            "Sale Price" : "599",
-            "Discount" : "40",
+  const [shoesPorPaginaPorPagina] = useState(20);
+  const indeceDelUltimoShoes = currentPage * shoesPorPaginaPorPagina; // 10
+  const indiceDelPrimerShoes = indeceDelUltimoShoes - shoesPorPaginaPorPagina; // 0
+  const currentShoes = shoes.slice(indiceDelPrimerShoes, indeceDelUltimoShoes);
+  const paginado = pageNumber => {
+    setCurrentPage(pageNumber);
+  };
+  
+  function handleClick(e) {
+    dispatch(resetFilter());
 
-            "Description" : "These adidas Puka slippers for women's come with slim straps for a great fit. Feature performance logo on the footbed and textured Rubber outsole that gives unique comfort.",
-            "Rating" : "0",
-            "Reviews" : "0",
-           
-            "Last Visited" : "2020-04-13T15:06:15"
-        },
-        {
+    setOrden({collection: 'All', gender: 'All', price: 'default'});
+  }
 
-            "ProductName" : "DURAMO 9 SHOES",
-            "ProductID" : "B75990",
-            "ListingPrice" : "5599",
-            "Sale Price" : "2799",
-            "Discount" : "50",
+  function handleChange(e) {
+    setCurrentPage(1);
+    setOrden({ ...orden, [e.target.name]: e.target.value });
+  }
 
-            "Description" : "These women's neutral running shoes will get you on the road to your goals. A sandwich mesh upper offers lightweight breathability, while a seamless print overlay adds support for a stable stride. The midsole offers pillow-soft Cloudfoam cushioning that eases every stride.",
-            "Rating" : "0",
-            "Reviews" : "0",
-            
-            "Last Visited" : "2020-04-13T15:06:15"
-        },
-    ]
-    return (
-        <div className="contenedor">
-            {
-                adidas.map((products) =>{
-                    return(
-                        <Products 
-                        key={products.Discount}
-                        title={products.ProductName}
-                        image={"https://media.revistagq.com/photos/5ce269279d80fc260ce332f7/master/w_1600%2Cc_limit/EG5293-adidas-yeezy-glow-release-date.jpg"}
-                        price={products.ListingPrice + "$"}
-                       
-                        />
-                    )
-                })
-            }
-        </div>
+  const pageNumbers = [];
 
-    )
+  for (let i = 1; i <= Math.ceil(shoes.length / shoesPorPaginaPorPagina); i++) {
+    pageNumbers.push(i);
+  }
+  function nextPage() {
+    if (currentPage === pageNumbers.length) {
+      setCurrentPage(5);
+      console.log("entro al console");
+    } else {
+      setCurrentPage(currentPage + 1);
+    }
+  }
+  function previousPage() {
+    if (currentPage === 1) {
+      setCurrentPage(1);
+      console.log("entro al console");
+    } else {
+      setCurrentPage(currentPage - 1);
+    }
+  }
 
+  useEffect(() => {
+    dispatch(filterByParams(orden));
+    return () => {};
+  }, [dispatch, orden]);
+
+  useEffect(() => {
+    dispatch(getCollection());
+  }, [dispatch]);
+
+  return (
+    <div>
+      <div className='boxCategories'>
+        <Box sx={{ flexGrow: 1 }}>
+          <Grid container spacing={2} columns={18}>
+            <Grid item xs={6}>
+              <Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
+                  <InputLabel id='demo-simple-select-label'>MODELO</InputLabel>
+                  <Select
+                    sx={{ bgcolor: "white" }}
+                    labelId='demo-simple-select-label'
+                    id='demo-simple-select'
+                    label='COLECCION'
+                    name='collection'
+                    value={orden.collection}
+                    onChange={handleChange}
+                  >
+                    <MenuItem value='All'>TODOS</MenuItem>
+                    {collections?.map(el => {
+                      return (
+                        <MenuItem key={el.id} value={el.name}>
+                          {el.name}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </FormControl>
+              </Box>
+            </Grid>
+            <Grid item xs={6}>
+              <Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
+                  <InputLabel id='demo-simple-select-label'>GENERO</InputLabel>
+                  <Select
+                    sx={{ bgcolor: "white" }}
+                    labelId='demo-simple-select-label'
+                    id='demo-simple-select'
+                    label='GENERO'
+                    name='gender'
+                    value={orden.gender}
+                    onChange={handleChange}
+                  >
+                    <MenuItem value={"All"}>TODOS</MenuItem>
+                    <MenuItem value={"Men"}>MASCULINO</MenuItem>
+                    <MenuItem value={"Women"}>FEMENINO</MenuItem>
+                    <MenuItem value={"Unisex"}>UNISEX</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
+            </Grid>
+            <Grid item xs={6}>
+              <Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
+                  <InputLabel id='demo-simple-select-label'>PRECIO</InputLabel>
+                  <Select
+                    sx={{ bgcolor: "white" }}
+                    labelId='demo-simple-select-label'
+                    id='demo-simple-select'
+                    label='PRECIO'
+                    name='price'
+                    value={orden.price}
+                    onChange={handleChange}
+                  >
+                    <MenuItem value={"default"}>TODOS</MenuItem>
+                    <MenuItem value={"ASC"}>MENOR A MAYOR</MenuItem>
+                    <MenuItem value={"DESC"}>MAYOR A MENOR</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
+            </Grid>
+          </Grid>
+        </Box>
+      </div>
+      <button className='botonCart1' onClick={handleClick}>
+        Borrar filtros
+      </button>
+      <div className='contenedorHome'>
+        {currentShoes.length ? (
+          currentShoes?.map(products => {
+            return (
+              <Products
+                key={products.id}
+                title={products.productName.toUpperCase()}
+                image={products.images}
+                price={"$ " + Number(products.salePrice)}
+                id={products.id}
+                stock={products.stock}
+              />
+            );
+          })
+        ) : (
+          <Typography>No hay productos con esos parametros</Typography>
+        )}
+      </div>
+      <div className='paginado'>
+        <Paginado
+          shoesPorPaginaPorPagina={shoesPorPaginaPorPagina}
+          shoes={shoes.length}
+          paginado={paginado}
+          previousPage={previousPage}
+          nextPage={nextPage}
+        />
+      </div>
+    </div>
+  );
 }
