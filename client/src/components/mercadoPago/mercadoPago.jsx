@@ -16,10 +16,10 @@ export default function Comprar({ data }) {
 
     //Agrega el script como nodo hijo del elemento form
     document.getElementById("form1").appendChild(script);
-    return () => {
-      //Elimina el script como nodo hijo del elemento form
-      document.getElementById("form1").removeChild(script);
-    };
+    // return () => {
+    //   //Elimina el script como nodo hijo del elemento form
+    //   document.getElementById("form1").removeChild(script);
+    // };
   }, [data]);
   return (
     <div>

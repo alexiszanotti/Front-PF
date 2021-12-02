@@ -8,6 +8,7 @@ import {
   emptyCart,
   addDataBaseShoppingCart,
   deleteDataBaseShoppingCart,
+  emptyShoppingPersist
 } from "../../Redux/Actions/index";
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from 'react-toastify';
@@ -53,6 +54,7 @@ export default function ShopingCart() {
 
   const vaciar = () => {
     dispatch(emptyCart());
+    dispatch(emptyShoppingPersist())
     errorSubmit()
   };
 
@@ -71,6 +73,7 @@ export default function ShopingCart() {
         })
       );
     }
+    dispatch(emptyShoppingPersist())
     setTimeout(() => {
       dispatch(addDataBaseShoppingCart(cartId.toString()));
     }, 200);

@@ -11,7 +11,8 @@ import {
   addDataBaseShoppingCart,
   addtotalCompras,
   removetotalCompras,
-  checkoutProducts
+  checkoutProducts,
+  removeShoppingPersist
 } from "../../Redux/Actions/index";
 import { Link } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -21,7 +22,7 @@ import Alert from "@mui/material/Alert";
 // import 'react-toastify/dist/ReactToastify.css';
 
 export default function CardShopingCart(props) {
-  const totalCompra = useSelector(state => state.totalCompra);
+  const checkoutProducts = useSelector(state => state.checkoutProducts);
   const logIn = useSelector(state => state.userLogin);
   const users = useSelector(state => state.users);
   const dataBaseShopping = useSelector(state => state.ShoppingAlmacen);
@@ -52,6 +53,7 @@ export default function CardShopingCart(props) {
 
   const eliminarProducto = () => {
     if (idUser) {
+      dispatch(removeShoppingPersist(props.id))
       dispatch(
         deleteDataBaseShoppingCart({
           cartId: cartId.toString(),
@@ -60,7 +62,7 @@ export default function CardShopingCart(props) {
       );
       setTimeout(() => {
         dispatch(addDataBaseShoppingCart(cartId.toString()));
-      }, 200);
+      }, 300);
       // errorSubmitCart()
     } else {
       dispatch(removeCard(props.id));
@@ -68,15 +70,21 @@ export default function CardShopingCart(props) {
   };
 
   const [cantidad, setCantidad] = useState(1);
-  const [valor, setValor] = useState({
-    totalCompra,
-  });
+  // const [valor, setValor] = useState({
+  //   checkoutProducts,
+  // });
   //cantidad es una variable vacia 98
   //set cantidad es una funcion para modificar la cantidad
 
+  const auxId = checkoutProducts.map((el) => {
+    if(el.cantidad === 1){
+      return el.productId
+    }
+  } )
+  
   useEffect(() =>{
     if(idUser){
-      // if(productShopping.length > totalCompra.length ){
+      if(!auxId.includes(props.id))
         dispatch(addtotalCompras({
           productId: props.id,
           cantidad: 1,
@@ -85,13 +93,12 @@ export default function CardShopingCart(props) {
           title: props.title,
         }))
 
-      // }
     }
   },[dispatch, addtotalCompras ])
   const agregarCantidad = () => {
     if (cantidad === props.stock) {
       setCantidad(cantidad);
-      dispatch(checkoutProducts(valor))
+      // dispatch(checkoutProducts(valor))
     } else {
       setCantidad(cantidad + 1);
       dispatch(
@@ -103,14 +110,14 @@ export default function CardShopingCart(props) {
           title: props.title,
         })
       );
-      dispatch(checkoutProducts(valor))
+      // dispatch(checkoutProducts(valor))
     }
   };
 
   const disminuirCantidad = () => {
     if (cantidad < 1) {
       setCantidad(cantidad);
-      dispatch(checkoutProducts(valor))
+      // dispatch(checkoutProducts(valor))
     } else {
       setCantidad(cantidad - 1);
       dispatch(
@@ -118,8 +125,8 @@ export default function CardShopingCart(props) {
           productId: props.id,
         })
       );
-      dispatch(checkoutProducts(valor))
-      console.log(totalCompra);
+      // dispatch(checkoutProducts(valor))
+      console.log(checkoutProducts);
     }
   };
 
