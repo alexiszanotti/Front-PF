@@ -41,8 +41,6 @@ export default function Compras({ nombreProducto, imagenProducto, fechaCompra, p
     const [error, setError] = useState({});
     const carritoAlmacen = useSelector(state => state.ShoppingAlmacen);
     console.log(carritoAlmacen, "alee")
-    useEffect(() => {
-    }, [dispatch]);
     const [input, setInput] = useState({
         review: "",
         score: "",
@@ -57,17 +55,20 @@ export default function Compras({ nombreProducto, imagenProducto, fechaCompra, p
     const handleSubmit = e => {
         e.preventDefault();
         if (Object.keys(error).length === 0) {
-            console.log({ score: input.score, review: input.review, productId: productId, userId: userId[0].id, cartId: cartId }, "verduraaaaaaaaaa")
-            dispatch(postReview({ score: input.score, review: input.review, productId: productId, userId: userId[0].id, cartId: cartId }));
-            console.log(input);
-            swal("Creacion Exitosa!", "Reseña creada con éxito!", "success");
             openCloseModal();
-            setInput({
-                review: "",
-                score: "",
-            });
-            console.log(input, "actual");
-            history.push(`/detail/${productId}`)
+            setTimeout(() =>{
+                dispatch(postReview({ score: input.score, review: input.review, productId: productId, userId: userId[0].id, cartId: cartId }));
+            }, 100)
+            setTimeout(() =>{
+                setInput({
+                    review: "",
+                    score: "",
+                });
+            }, 4000)
+            setTimeout(() => {
+                history.push(`/detail/${productId}`)
+            }, 6000)
+
         } else {
             swal("Error!", "Por favor, complete todos los campos requeridos!", "error");
         }

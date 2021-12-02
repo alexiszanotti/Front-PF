@@ -18,10 +18,12 @@ export default function Detail(props) {
   const history = useHistory();
   const detail = useSelector(state => state.detail);
 
+
   useEffect(() => {
-    dispatch(detailProducts(props.match.params.id));
+    setTimeout(() =>{
+      dispatch(detailProducts(props.match.params.id));
+    }, 500)
   }, [dispatch, props.match.params.id]);
-  console.log(props.match.params.id, "ale querido")
 
   const cart = useSelector(state => state.shoppingCart);
   let total = 0;
@@ -112,21 +114,39 @@ export default function Detail(props) {
     stock.push(i);
   }
 
-  const primero = detail.map(el => el.ProductsInCarts[0].reviews[0])
-  const segundo = primero.flat()
+  let primero = []
+  let segundo = [{
+    review: null,
+    score: null
+  }]
 
-  if (segundo.length) {
-    const puntuacionGeneral = segundo.map(el => el.score);
-    let cantidadReseñas = puntuacionGeneral.length
-    function promedio() {
-      let suma = puntuacionGeneral.reduce(function (valorAnterior, valorActual) {
-        return valorAnterior + valorActual;
-      });
-      let redondeo = suma / cantidadReseñas
-      return redondeo.toFixed(1)
+  if(detail.length > 0 ){
+    if(detail[0].hasOwnProperty("ProductsInCarts")){
+      if(detail[0].ProductsInCarts.length > 0){
+        if(detail[0].ProductsInCarts[0].hasOwnProperty("reviews")){
+          if(detail[0].ProductsInCarts[0].reviews.length > 0){
+             primero = detail.map(el => el.ProductsInCarts[0].reviews[0])
+             segundo = primero.flat()
+             console.log(segundo)
+          }
+        }
+      }
     }
-    var average1 = promedio();
   }
+
+
+  // if (segundo.length) {
+  //   const puntuacionGeneral = segundo.map(el => el.score);
+  //   let cantidadReseñas = puntuacionGeneral.length
+  //   function promedio() {
+  //     let suma = puntuacionGeneral.reduce(function (valorAnterior, valorActual) {
+  //       return valorAnterior + valorActual;
+  //     });
+  //     let redondeo = suma / cantidadReseñas
+  //     return redondeo.toFixed(1)
+  //   }
+  //   var average1 = promedio();
+  // }
 
   return (
     <div className='container'>
@@ -180,8 +200,8 @@ export default function Detail(props) {
             alignItems: "center",
           }}
         >
-          <Rating name="half-rating-read" value={average1} precision={0.5} readOnly />
-          <h4>{average1}</h4>
+          {/* <Rating name="half-rating-read" value={average1} precision={0.5} readOnly /> */}
+          {/* <h4>{average1}</h4> */}
         </Box>
       </div>
       <button onClick={handleButtonHome} className='btn'>
