@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 //import axios from 'axios'
 
-export default function Comprar({ data }) {
+export default function Comprar({ data, setLoading }) {
     useEffect(() =>{
       setTimeout(() =>{
           const script = document.createElement("script"); //Crea un elemento html script
@@ -14,6 +14,7 @@ export default function Comprar({ data }) {
           script.setAttributeNode(attr_data_preference);
       
           console.log(data);
+          setLoading(true)
       
           //Agrega el script como nodo hijo del elemento form
           document.getElementById("form1").appendChild(script);
