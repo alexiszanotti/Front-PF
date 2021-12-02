@@ -22,7 +22,7 @@ export default function Comprar({ data }) {
           //   document.getElementById("form1").removeChild(script);
           // };
         
-    }, 6000)
+    }, 8000)
     }, [data])
   return (
     <div>
