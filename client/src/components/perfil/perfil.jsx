@@ -66,18 +66,18 @@ export default function Perfil() {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 800,
-    height: 650,
+    width: 700,
+    height: 700,
     bgcolor: "background.paper",
     border: "2px solid #000",
     boxShadow: 24,
-    p: 4,
+    p: 5,
   };
   const editar = (
     <div className='detailContainer'>
       <form onSubmit={e => handleSubmit(e)} className="formulario" >
         <Box sx={style} >
-          <h1>EDITAR DATOS FISCALES</h1>
+          <h1>EDITAR DATOS PERSONALES</h1>
 
           <div className="contenido1">
             <div className="sarasa">
