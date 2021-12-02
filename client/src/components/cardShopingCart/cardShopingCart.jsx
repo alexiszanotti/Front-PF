@@ -12,7 +12,7 @@ import {
   addtotalCompras,
   removetotalCompras,
   checkoutProducts,
-  removeShoppingPersist
+  removeShoppingPersist,
 } from "../../Redux/Actions/index";
 import { Link } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -29,23 +29,10 @@ export default function CardShopingCart(props) {
   const productShopping = dataBaseShopping.map(el => el.product);
   const dispatch = useDispatch();
 
-
   const stock = [];
   for (let i = 1; i <= props.stock; i++) {
     stock.push(i);
   }
-
-  // const errorSubmitCart = () => {
-  //   toast.error('Producto eliminado con éxito', {
-  //     position: "bottom-right",
-  //     autoClose: 2000,
-  //     hideProgressBar: false,
-  //     closeOnClick: true,
-  //     pauseOnHover: false,
-  //     draggable: true,
-  //     progress: undefined,
-  //     });
-  // }
 
   let idUser = logIn.id;
   let usr = users?.filter(user => user.id === logIn.id);
@@ -53,7 +40,7 @@ export default function CardShopingCart(props) {
 
   const eliminarProducto = () => {
     if (idUser) {
-      dispatch(removeShoppingPersist(props.id))
+      dispatch(removeShoppingPersist(props.id));
       dispatch(
         deleteDataBaseShoppingCart({
           cartId: cartId.toString(),
@@ -63,37 +50,32 @@ export default function CardShopingCart(props) {
       setTimeout(() => {
         dispatch(addDataBaseShoppingCart(cartId.toString()));
       }, 300);
-      // errorSubmitCart()
     } else {
       dispatch(removeCard(props.id));
     }
   };
 
   const [cantidad, setCantidad] = useState(1);
-  // const [valor, setValor] = useState({
-  //   checkoutProducts,
-  // });
-  //cantidad es una variable vacia 98
-  //set cantidad es una funcion para modificar la cantidad
- 
-  useEffect(() =>{
-    if(idUser){
-      const auxId = checkoutProducts.map((el) => {
-        if(el.cantidad === 1){
-          return el.productId
-        }
-      } )
-      if(!auxId.includes(props.id))
-        dispatch(addtotalCompras({
-          productId: props.id,
-          cantidad: 1,
-          images: props.images,
-          price: props.price,
-          title: props.title,
-        }))
 
+  useEffect(() => {
+    if (idUser) {
+      const auxId = checkoutProducts.map(el => {
+        if (el.cantidad === 1) {
+          return el.productId;
+        }
+      });
+      if (!auxId.includes(props.id))
+        dispatch(
+          addtotalCompras({
+            productId: props.id,
+            cantidad: 1,
+            images: props.images,
+            price: props.price,
+            title: props.title,
+          })
+        );
     }
-  },[dispatch, addtotalCompras ])
+  }, [dispatch, addtotalCompras]);
   const agregarCantidad = () => {
     if (cantidad === props.stock) {
       setCantidad(cantidad);
@@ -124,8 +106,6 @@ export default function CardShopingCart(props) {
           productId: props.id,
         })
       );
-      // dispatch(checkoutProducts(valor))
-      console.log(checkoutProducts);
     }
   };
 
@@ -150,24 +130,25 @@ export default function CardShopingCart(props) {
                 {props.title}
               </Typography>
               <Typography variant='h4' color='text.secondary'>
-                {
-                  idUser ?  cantidad == 0 || cantidad == undefined ? (
+                {idUser ? (
+                  cantidad == 0 || cantidad == undefined ? (
                     <h5>Seleccione una Cantidad</h5>
                   ) : cantidad === 1 ? (
                     <h5>$ {props.price}</h5>
                   ) : (
                     <h5>$ {props.price * cantidad}</h5>
-                  ) : <h5>{props.price}</h5>
-                }
-               
+                  )
+                ) : (
+                  <h5>{props.price}</h5>
+                )}
               </Typography>
-              {
-                idUser ? <div>
-                <h5>La Cantidad es : {cantidad} </h5>
-                <ArrowBackIosNewIcon onClick={disminuirCantidad} />
-                <ArrowForwardIosIcon onClick={agregarCantidad} />
-              </div> : null
-              }
+              {idUser ? (
+                <div>
+                  <h5>La Cantidad es : {cantidad} </h5>
+                  <ArrowBackIosNewIcon onClick={disminuirCantidad} />
+                  <ArrowForwardIosIcon onClick={agregarCantidad} />
+                </div>
+              ) : null}
             </CardContent>
           </CardActionArea>
         </Card>

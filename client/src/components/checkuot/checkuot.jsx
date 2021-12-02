@@ -32,33 +32,30 @@ export default function Checkuot() {
   for (let i of sumas) s += i;
 
   const setChangeStatusCart = () => {
-    setTimeout(() => {
-      let hoy = new Date();
-      let fecha = hoy.getDate() + "-" + (hoy.getMonth() + 1) + "-" + hoy.getFullYear();
-      let DIA_EN_MILISEGUNDOS = 24 * 60 * 60 * 1000;
-      let manana = new Date(hoy.getTime() + DIA_EN_MILISEGUNDOS * 2);
-      let fechaFutura =
-        manana.getDate() + "-" + (manana.getMonth() + 1) + "-" + manana.getFullYear();
+    let hoy = new Date();
+    let fecha = hoy.getDate() + "-" + (hoy.getMonth() + 1) + "-" + hoy.getFullYear();
+    let DIA_EN_MILISEGUNDOS = 24 * 60 * 60 * 1000;
+    let manana = new Date(hoy.getTime() + DIA_EN_MILISEGUNDOS * 2);
+    let fechaFutura = manana.getDate() + "-" + (manana.getMonth() + 1) + "-" + manana.getFullYear();
 
-      dispatch(
-        changeStatusCart({
-          cartId: cartIdd, // carrito del user logeaddo
-          InfoCart: [
-            {
-              dateOfPurchase: fecha,
-              confirmationDate: fecha,
-              dateCancellation: fechaFutura,
-            },
-          ], // Arreglo con un objeto con info de la fecha en la cual se clickeo (dia de hoy)
-          infoProducts: totalCompra,
-        })
-      );
+    dispatch(
+      changeStatusCart({
+        cartId: cartIdd, // carrito del user logeaddo
+        InfoCart: [
+          {
+            dateOfPurchase: fecha,
+            confirmationDate: fecha,
+            dateCancellation: fechaFutura,
+          },
+        ], // Arreglo con un objeto con info de la fecha en la cual se clickeo (dia de hoy)
+        infoProducts: totalCompra,
+      })
+    );
 
-      setEsperar(true);
-    }, 4000);
+    setEsperar(true);
     setTimeout(() => {
       dispatch(mercadoPago({ cartId: cartIdd }));
-    }, 6000);
+    }, 5000);
   };
 
   return (
