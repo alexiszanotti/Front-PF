@@ -2,9 +2,8 @@ import './compras.css';
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  postReview,
-  getReview,
-  addDataBaseShoppingCart
+    postReview,
+    addDataBaseShoppingCart
 } from "../../../Redux/Actions/index";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -22,59 +21,58 @@ import swal from 'sweetalert';
 const validateForm = input => {
     let error = {};
     if (!input.review) {
-      error.review = "La descripción es requerida";
+        error.review = "La descripción es requerida";
     } else if (input.review.length < 10 || input.review.length > 500) {
-      error.review = "La descripción tiene que tener al menos 10 caracteres";
+        error.review = "La descripción tiene que tener al menos 10 caracteres";
     }
     if (!input.score) {
-      error.score = "La puntuación es requerida";
+        error.score = "La puntuación es requerida";
     } else if (isNaN(input.score) || input.score < 0 || input.score > 10) {
-      error.score = "Tiene que ser un número entre 0 y 10";
+        error.score = "Tiene que ser un número entre 0 y 10";
     }
     return error;
-  };
+};
 
 export default function Compras({ nombreProducto, imagenProducto, fechaCompra, precioProducto, estadoOrden, cantidad, productId, cartId, userId }) {
     console.log(productId, "producto", cartId, "cartId", userId, "userId")
     const dispatch = useDispatch();
     const history = useHistory();
-        const reseña = useSelector(state => state.review);
+    const reseña = useSelector(state => state.review);
     const [error, setError] = useState({});
     const carritoAlmacen = useSelector(state => state.ShoppingAlmacen);
     console.log(carritoAlmacen, "alee")
     useEffect(() => {
-        dispatch(getReview({productId: input.productId}));
-      }, [dispatch]);
+    }, [dispatch]);
     const [input, setInput] = useState({
-      review: "",
-      score: "",
+        review: "",
+        score: "",
     });
 
     const handleInputChange = e => {
         e.preventDefault();
-    
+
         setInput({ ...input, [e.target.name]: e.target.value });
         setError(validateForm({ ...input, [e.target.name]: e.target.value }));
-      };
-      const handleSubmit = e => {
+    };
+    const handleSubmit = e => {
         e.preventDefault();
         if (Object.keys(error).length === 0) {
-            console.log({score: input.score, review: input.review, productId: productId, userId: userId[0].id, cartId: cartId}, "verduraaaaaaaaaa")
-          dispatch(postReview({score: input.score, review: input.review, productId: productId, userId: userId[0].id, cartId: cartId}));
-          console.log(input);
-          swal("Creacion Exitosa!", "Reseña creada con éxito!", "success");
-          openCloseModal();
-          setInput({
-            review: "",
-            score: "",
-          });
-          console.log(input, "actual");
-          history.push(`/detail/${productId}`)
+            console.log({ score: input.score, review: input.review, productId: productId, userId: userId[0].id, cartId: cartId }, "verduraaaaaaaaaa")
+            dispatch(postReview({ score: input.score, review: input.review, productId: productId, userId: userId[0].id, cartId: cartId }));
+            console.log(input);
+            swal("Creacion Exitosa!", "Reseña creada con éxito!", "success");
+            openCloseModal();
+            setInput({
+                review: "",
+                score: "",
+            });
+            console.log(input, "actual");
+            history.push(`/detail/${productId}`)
         } else {
-          swal("Error!", "Por favor, complete todos los campos requeridos!", "error");
+            swal("Error!", "Por favor, complete todos los campos requeridos!", "error");
         }
-      };
-      const [hover] = React.useState(-1);
+    };
+    const [hover] = React.useState(-1);
     const [modal, setModal] = useState(false);
 
     const openCloseModal = () => {
@@ -172,19 +170,19 @@ export default function Compras({ nombreProducto, imagenProducto, fechaCompra, p
                             {cantidad}
                         </Typography>
                         <Stack direction="column" spacing={2}>
-                        <Button variant="contained" onClick={openCloseModal}>Dejar reseña</Button>
-                        <div>
-                            <Modal open={modal} onClose={openCloseModal}>
-                                {reseñas}
-                            </Modal>
-                        </div>
-                        <Link to={`/detail/${productId}`}>
-                            <Button variant="contained"> Volver a comprar</Button>
-                        </Link>
-                    </Stack>
-                </CardContent>
-            </CardActionArea>
-        </Card>
+                            <Button variant="contained" onClick={openCloseModal}>Dejar reseña</Button>
+                            <div>
+                                <Modal open={modal} onClose={openCloseModal}>
+                                    {reseñas}
+                                </Modal>
+                            </div>
+                            <Link to={`/detail/${productId}`}>
+                                <Button variant="contained"> Volver a comprar</Button>
+                            </Link>
+                        </Stack>
+                    </CardContent>
+                </CardActionArea>
+            </Card>
         </div >
     )
 }
