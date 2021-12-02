@@ -18,7 +18,6 @@ export default function Checkuot() {
   let cartId = usuarioLogeado.map(el => el.Cart.id);
   const idMP = useSelector(state => state.mercadoPago);
   const totalCompra = useSelector(state => state.checkoutProducts);
-
   const [esperar, setEsperar] = useState(false);
 
   let cartIdd = cartId.toString();
@@ -116,7 +115,7 @@ export default function Checkuot() {
         <>
           <div className='shoppingGeneral'>
             <img src='https://hvghobbies.com/wp-content/uploads/2019/07/mercadopago-01-e1562863464953.png?w=640' />
-            <MercadoPago />
+            <MercadoPago data={idMP} />
           </div>
         </>
       )}
