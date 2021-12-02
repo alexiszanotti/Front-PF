@@ -53,7 +53,7 @@ const initialState = {
   misCompras: [],
   mercadoPago: [],
   checkoutProducts: [],
-  // checkoutProducts:[],
+  checkoutProducts1: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -188,7 +188,7 @@ export default function rootReducer(state = initialState, action) {
     case CHECKOUT_PRODUCTS:
       return {
         ...state,
-        checkoutProducts: action.payload,
+        checkoutProducts1: action.payload,
       };
     case GET_ALL_ORDERS:
       return {
@@ -236,6 +236,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         checkoutProducts: comprasActuales,
+        checkoutProducts1: comprasActuales,
       };
     case REMOVE_TOTAL_COMPRA:
       let comprasActuales1 = state.checkoutProducts;
@@ -254,24 +255,27 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         checkoutProducts: comprasActuales1,
+        checkoutProducts1: comprasActuales1,
       };
     case CHANGE_STATUS_CART:
       return {
         ...state,
-        // checkoutProducts: [],
         checkoutProducts: [],
-        enzoPrueba: action.payload,
+
       };
-    case DELETE_PERSIST_SHOPPING:
-      return {
-        ...state,
-        checkoutProducts: action.payload,
-      };
-    case DELETE_ID_PERSIST_SHOOPING:
-      return {
-        ...state,
-        checkoutProducts: state.checkoutProducts.filter(el => el.productId !== action.payload),
-      };
+      case DELETE_PERSIST_SHOPPING:
+        return {
+          ...state,
+          checkoutProducts: action.payload,
+          checkoutProducts1: action.payload
+        };
+        case DELETE_ID_PERSIST_SHOOPING:
+          return {
+            ...state,
+            checkoutProducts: state.checkoutProducts.filter(el => el.productId !== action.payload),
+            checkoutProducts1: state.checkoutProducts.filter(el => el.productId !== action.payload),
+          };
+
     default:
       return state;
   }

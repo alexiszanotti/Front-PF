@@ -99,9 +99,9 @@ export default function ShopingCart() {
                 Tené en cuenta que los productos añadidos al carrito no se reservan. Finalizá tu
                 compra ahora para hacerlos tuyos.
               </p>
-              <button onClick={borrarCarrito}>BORRAR TODO</button>
+              <Button onClick={borrarCarrito} variant="contained">BORRAR TODO</Button>
             </div>
-            <div>
+            <div className="contenidoShoppingCart">
               {productShopping?.map(products => {
                 return (
                   <>
@@ -112,10 +112,13 @@ export default function ShopingCart() {
                       title={products.productName}
                       stock={products.stock}
                       price={Number(products.salePrice)}
+                      
                     />
                   </>
                 );
               })}
+            </div>
+            <div className="btnComprar">
               <Comprar />
             </div>
             <Link to='/home'>

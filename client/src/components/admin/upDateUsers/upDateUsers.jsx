@@ -101,7 +101,7 @@ export default function UpDataUsers(){
                     <label>FECHA</label>
                     <input type="text" name="birthDay" onChange={handleInputChange} placeholder={aux?.map((el) => el.birthDay)}/>
                     <label>GENERO</label>
-                    <select onChange={(e) => handleSelect(e)} name="gender" >
+                    <select className='select' onChange={(e) => handleSelect(e)} name="gender" >
                         <option value=""></option>
                         <option value="Male" name="gender">Male</option>
                         <option value="Female" name="gender">Female</option>
