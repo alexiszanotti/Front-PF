@@ -17,7 +17,7 @@ export default function Checkuot() {
   let usuarioLogeado = usr.filter(el => el.id === usuario.id);
   let cartId = usuarioLogeado.map(el => el.Cart.id);
   const idMP = useSelector(state => state.mercadoPago);
-  const totalCompra = useSelector(state => state.checkoutProducts);
+  const totalCompra = useSelector(state => state.checkoutProducts1);
   const [esperar, setEsperar] = useState(false);
 
   let cartIdd = cartId.toString();
@@ -55,7 +55,7 @@ export default function Checkuot() {
     setEsperar(true);
     setTimeout(() => {
       dispatch(mercadoPago({ cartId: cartIdd }));
-    }, 5000);
+    }, 1000);
   };
 
   return (
