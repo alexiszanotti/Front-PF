@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import CardFavorite from "../cardFavorite/cardFavorite";
 import { Link } from "react-router-dom";
-import { emptyFavorites, addDataBaseFavorite } from "../../Redux/Actions/index";
+import { emptyFavorites, addDataBaseFavorite, deleteAllDataBaseeFavorite } from "../../Redux/Actions/index";
 import { useDispatch } from "react-redux";
 import "./favorite.css";
 import { ToastContainer, toast } from 'react-toastify';
@@ -37,6 +37,12 @@ export default function Favorite() {
   }
 
   const handleEmptyFavorites = () => {
+    if(idUser){
+      dispatch(deleteAllDataBaseeFavorite(idUser))
+      setTimeout(() =>{
+        dispatch(addDataBaseFavorite(idUser));
+      }, 300)
+    }
     dispatch(emptyFavorites());
     errorSubmit()
   };

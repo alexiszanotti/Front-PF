@@ -389,3 +389,11 @@ export const removeShoppingPersist = id => {
     payload: id,
   };
 };
+
+export const deleteAllDataBaseeFavorite = payload => {
+  return async () => {
+    let res = await axios.delete(`favorite/all?userId=${payload}`);
+    return res;
+  };
+};
+
