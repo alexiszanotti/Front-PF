@@ -19,7 +19,6 @@ import {
   ADD_DATABASE_SHOPPING_CART,
   ADD_DATABASE_FAVORITE,
   CHECKOUT_PRODUCTS,
-  ESTADO_ORDEN,
   FILTER_STATUS,
   FILTER_BY_CART,
   MERCADO_PAGO,
@@ -28,6 +27,7 @@ import {
   CHANGE_STATUS_CART,
   DELETE_PERSIST_SHOPPING,
   DELETE_ID_PERSIST_SHOOPING,
+  GET_ALL_ORDERS,
 } from "./actionTypes";
 
 export function getAllProducts() {
@@ -59,7 +59,7 @@ export const detailProducts = id => {
         payload: res.data,
       });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 };
@@ -281,10 +281,15 @@ export const checkoutProducts = payload => {
 
 export const getAllOrders = payload => {
   return async dispatch => {
-    let res = await axios(`order`);
-    return dispatch({
-      type: ESTADO_ORDEN,
-    });
+    try {
+      let res = await axios(`order`);
+      return dispatch({
+        type: GET_ALL_ORDERS,
+        payload: res.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 
@@ -298,16 +303,14 @@ export const mercadoPago = cartId => {
         payload: res.data,
       });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-
   };
 };
 
 export const modifyOrders = payload => {
   return async () => {
     try {
-      console.log(payload, "enzooo");
       let res = await axios.patch(`order`, payload);
       return res.data;
     } catch (error) {
@@ -330,7 +333,7 @@ export function filterStatus(payload) {
 export function filterByCart(payload) {
   return async function (dispatch) {
     try {
-      let res = await axios.get(`/order/cart?CartId=${payload}`);
+      let res = await axios.get(`/order/cart?userId=${payload}`);
       return dispatch({ type: FILTER_BY_CART, payload: res.data });
     } catch (error) {
       console.log(error);
@@ -383,7 +386,7 @@ export const emptyShoppingPersist = () => {
 };
 
 export const removeShoppingPersist = id => {
-  console.log(id, "id")
+  console.log(id, "id");
   return {
     type: DELETE_ID_PERSIST_SHOOPING,
     payload: id,

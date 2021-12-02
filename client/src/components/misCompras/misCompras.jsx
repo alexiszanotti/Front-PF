@@ -13,11 +13,17 @@ export default function MisCompras() {
 
   useEffect(() => {
     dispatch(getAllUsers());
-    dispatch(filterByCart(usuariosCarritoFiltrado[0].Cart.id));
+    dispatch(filterByCart(usuariosCarritoFiltrado[0].id));
   }, [dispatch]);
 
-  const productosFiltrados = compras.Cart;
-  const productosFiltros = compras?.Cart?.ProductsInCarts;
+  // const carts = compras.map(el => {
+  //   return {
+  //     status: el.status,
+  //     dateOfPurchase: el.dateOfPurchase,
+  //     productos: el.products.flat(),
+  //   };
+  // });
+  console.log("COMPRAS", compras);
 
   const userLogeado = useSelector(state => state.userLogin);
 
@@ -25,18 +31,16 @@ export default function MisCompras() {
     <div className='misComprasContainer'>
       <h1>Mis compras</h1>
       <p>Total de compras</p>
-      {productosFiltros?.map(el => {
+      {compras[0]?.products?.map(el => {
         return (
           <Compras
-            productId={el.product.id}
-            precioProducto={el.product.salePrice}
-            nombreProducto={el.product.productName}
-            imagenProducto={el.product.images}
-            fechaCompra={productosFiltrados.dateOfPurchase}
-            estadoOrden={productosFiltrados.status}
-            cantidad={el?.quantity}
-            cartId={usuariosCarritoFiltrado[0].Cart.id}
-            userId={usuariosCarritoFiltrado}
+            productId={el.productId}
+            precioProducto={el.price}
+            nombreProducto={el.productName}
+            imagenProducto={el.images}
+            fechaCompra={compras[0].dateOfPurchase}
+            estadoOrden={compras[0].status}
+            cantidad={el.quantity}
           />
         );
       })}
