@@ -55,7 +55,7 @@ export default function Comprar() {
         <>
           <div>
             <Box>
-                <Button onClick={(e) => handleClick(e)}>IR A COMPRAR</Button>
+                <Button onClick={(e) => handleClick(e)} variant="contained" >IR A COMPRAR</Button>
             </Box>
           </div>
 

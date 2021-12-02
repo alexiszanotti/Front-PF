@@ -10,8 +10,7 @@
 }
 .detallecontenedor{
     text-align: left;
-    /* margin-left: 50px; */
-    
+    /* margin-left: 50px; */   
 }
 .contenedorName{
     background-color: white;
@@ -28,11 +27,11 @@
 }
 
 .contenido1{
+    width: 80%;
     display: grid;
     grid-template-columns: 1fr 1fr ;
     grid-auto-columns: minmax(1fr);
     grid-gap: 5px;
-    width: 90%;
     margin-top: 20px;
 }
 
@@ -44,3 +43,36 @@
     float: right;
 }
 
+.formulario{
+
+    margin: auto;
+
+}
+
+.sarasa {
+
+    /* background: linear-gradient(336deg, rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0.5) 70.71%); */
+    background: rgb(236, 235, 235);
+    border: 1px solid black;
+    border-radius: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 600;
+    padding: 5px;
+
+}
+
+.sarasa > input {
+
+    background: rgba(0, 0, 0, 0);
+    color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 600;
+    border-bottom: 1px solid black;
+
+}
+
+.sarasa > input::placeholder {
+
+    color: black;
+
+}
