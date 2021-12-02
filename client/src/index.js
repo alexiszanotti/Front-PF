@@ -18,11 +18,7 @@ const { persistor, store } = Store;
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
-<<<<<<< Updated upstream
 //persistor.purge();
-=======
-// persistor.purge()
->>>>>>> Stashed changes
 
 ReactDOM.render(
   <Provider store={store}>
