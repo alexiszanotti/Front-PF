@@ -12,21 +12,6 @@ import "./goShopping.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const validateForm = input => {
-  let error = {};
-  if (!input.name) error.name = "Este campo es requerido";
-  else if (!input.lastName) error.lastName = "Este campo es requerido";
-  else if (!input.email) error.email = "Este campo es requerido";
-  else if (!input.document) error.document = "Este campo es requerido";
-  else if (!input.address) error.address = "Este campo es requerido";
-  else if (!input.number) error.number = "Este campo es requerido";
-  else if (!input.location) error.location = "Este campo es requerido";
-  else if (!input.cp) error.cp = "Este campo es requerido";
-  else if (!input.province) error.province = "Este campo es requerido";
-  else if (!input.telephone) error.telephone = "Este campo es requerido";
-
-  return error;
-};
 
 export default function GoShopping() {
   const dispatch = useDispatch();
@@ -88,7 +73,7 @@ export default function GoShopping() {
 
   const handleInputChange = e => {
     setInput({ ...input, [e.target.name]: e.target.value });
-    setError(validateForm({ ...input, [e.target.name]: e.target.value }));
+    /* setError(validateForm({ ...input, [e.target.name]: e.target.value })); */
   };
 
   
@@ -111,16 +96,25 @@ export default function GoShopping() {
       }
     };
 
-    function handleSubmit(e) {
+    function handleSubmit() {
+      console.log("hola")
+      console.log(usuario, "usuario")
+      console.log(input, input)
       dispatch(modifyUser(input));
-      if (Object.keys(error).length === 0) {
+      setTimeout(() => {
+        dispatch(getAllUsers());
+      }, 30000);
+           
+        
+     
+      /* if (Object.keys(error).length === 0) {
         setInput({
           id: "",
         });
-      }
+      } */
     }
     
-  if (Object.keys(usuario).length === 0) {
+  if (Object.keys(usuario).length === 0 || !usuario ) {
     loginWithRedirect();
   } else {
     return (
@@ -128,7 +122,7 @@ export default function GoShopping() {
         <div className='title'>
           <h3>Información de entrega</h3>
         </div>
-        <form onSubmit={e => handleSubmit(e)} className='formulario'>
+        <form  onSubmit={handleSubmit} className='formulario'>
           <div className='contenido'>
             <div className='sarasa'>
               <label>NOMBRE</label>
@@ -137,9 +131,10 @@ export default function GoShopping() {
                 name='name'
                 value={input.name}
                 onChange={handleInputChange}
+                required
                 className='inputSarasa'
               />
-              {error.name && <p className='error'>{error.name} </p>}
+          {/*     {error.name && <p className='error'>{error.name} </p>} */}
             </div>
             <div className='sarasa'>
               <label>APELLIDO</label>
@@ -148,8 +143,9 @@ export default function GoShopping() {
                 name='lastName'
                 value={input.lastName}
                 onChange={handleInputChange}
+                required
               />
-              {error.lastName && <p className='error'>{error.lastName} </p>}
+             {/*  {error.lastName && <p className='error'>{error.lastName} </p>} */}
             </div>
             <div className='sarasa'>
               <label>EMAIL</label>
@@ -158,8 +154,9 @@ export default function GoShopping() {
                 name='email'
                 value={input.email}
                 onChange={handleInputChange}
+                required
               />
-              {error.email && <p className='error'>{error.email} </p>}
+            {/*   {error.email && <p className='error'>{error.email} </p>} */}
             </div>
             <div className='sarasa'>
               <label>DOCUMENTO</label>
@@ -168,8 +165,9 @@ export default function GoShopping() {
                 name='document'
                 value={input.document}
                 onChange={handleInputChange}
+                required
               />
-              {error.document && <p className='error'>{error.document} </p>}
+            {/*   {error.document && <p className='error'>{error.document} </p>} */}
             </div>
             <div className='sarasa'>
               <label>DIRECCION</label>
@@ -178,8 +176,9 @@ export default function GoShopping() {
                 name='address'
                 value={input.address}
                 onChange={handleInputChange}
+                required
               />
-              {error.address && <p className='error'>{error.address} </p>}
+              {/* {error.address && <p className='error'>{error.address} </p>} */}
             </div>
             <div className='sarasa'>
               <label>ALTURA</label>
@@ -188,8 +187,9 @@ export default function GoShopping() {
                 name='number'
                 value={input.number}
                 onChange={handleInputChange}
+                required
               />
-              {error.number && <p className='error'>{error.number} </p>}
+              {/* {error.number && <p className='error'>{error.number} </p>} */}
             </div>
             <div className='sarasa'>
               <label>LOCALIDAD</label>
@@ -198,18 +198,20 @@ export default function GoShopping() {
                 name='location'
                 value={input.location}
                 onChange={handleInputChange}
+                required
               />
-              {error.location && <p className='error'>{error.location} </p>}
+             {/*  {error.location && <p className='error'>{error.location} </p>} */}
             </div>
             <div className='sarasa'>
               <label>CODIGO POSTAL</label>
               <input
                 type='number'
                 name='cp'
-                value={input.number}
+                value={input.cp}
                 onChange={handleInputChange}
+                required
               />
-              {error.cp && <p className='error'>{error.cp} </p>}
+              {/* {error.cp && <p className='error'>{error.cp} </p>} */}
             </div>
             <div className='sarasa'>
               <label>PISO</label>
@@ -218,15 +220,17 @@ export default function GoShopping() {
                 name='floor'
                 value={input.floor}
                 onChange={handleInputChange}
+                required
               />
             </div>
             <div className='sarasa'>
               <label>DEPARTAMENTO</label>
               <input
-                type='text'
+                type='number'
                 name='department'
                 value={input.department}
                 onChange={handleInputChange}
+                required
               />
             </div>
             <div className='sarasa'>
@@ -236,8 +240,9 @@ export default function GoShopping() {
                 name='province'
                 value={input.province}
                 onChange={handleInputChange}
+                required
               />
-              {error.province && <p className='error'>{error.province} </p>}
+           {/*    {error.province && <p className='error'>{error.province} </p>} */}
             </div>
             <div className='sarasa'>
               <label>TELEFONO</label>
@@ -246,8 +251,9 @@ export default function GoShopping() {
                 name='telephone'
                 value={input.telephone}
                 onChange={handleInputChange}
+                required
               />
-              {error.telephone && <p className='error'>{error.telephone} </p>}
+            {/*   {error.telephone && <p className='error'>{error.telephone} </p>} */}
             </div>
           </div>
           <div className='verdura'>
@@ -255,9 +261,10 @@ export default function GoShopping() {
               En el caso que algún dato esté mal modifíquelo y presione en "modificar datos" para
               guardar los cambios. Luego podrá continuar con el pago.
             </p>
-            <button className='btn'>Modificar datos</button>
           </div>
+          <button className='btn' >Modificar datos</button>
         </form>
+        
         <div className='continuarPago'>
           <Box
             component='form'

@@ -2,8 +2,10 @@ import { useEffect } from "react";
 //import axios from 'axios'
 
 export default function Comprar({ data }) {
+  useEffect(() => {
     setTimeout(() =>{
-      if(data.length > 0){
+      if(data){
+        console.log(data)
         const script = document.createElement("script"); //Crea un elemento html script
   
         const attr_data_preference = document.createAttribute("data-preference-id"); //Crea un nodo atribute
@@ -26,6 +28,7 @@ export default function Comprar({ data }) {
         console.log("Esto no anda")
       }
     }, 6000)
+  }, [data])
   return (
     <div>
       <form id='form1'></form>

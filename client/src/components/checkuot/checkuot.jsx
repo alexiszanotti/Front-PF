@@ -18,7 +18,7 @@ export default function Checkuot() {
   let cartId = usuarioLogeado.map(el => el.Cart.id);
   const idMP = useSelector(state => state.mercadoPago);
   const totalCompra = useSelector(state => state.checkoutProducts);
-  const [esperar, setEsperar] = useState(false);
+   const [esperar, setEsperar] = useState(false); 
 
   let cartIdd = cartId.toString();
 
@@ -32,7 +32,7 @@ export default function Checkuot() {
   for (let i of sumas) s += i;
 
   const setChangeStatusCart = () => {
-    setTimeout(() => {
+    
       let hoy = new Date();
       let fecha = hoy.getDate() + "-" + (hoy.getMonth() + 1) + "-" + hoy.getFullYear();
       let DIA_EN_MILISEGUNDOS = 24 * 60 * 60 * 1000;
@@ -54,11 +54,15 @@ export default function Checkuot() {
         })
       );
 
-      setEsperar(true);
-    }, 4000);
+       setEsperar(true); 
+    ;
+    console.log("hola")
+    console.log(cartIdd, "hola carty")
     setTimeout(() => {
       dispatch(mercadoPago({ cartId: cartIdd }));
-    }, 6000);
+    }, 5000);
+     
+    
   };
 
   return (

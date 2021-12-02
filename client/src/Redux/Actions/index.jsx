@@ -290,12 +290,17 @@ export const getAllOrders = payload => {
 
 export const mercadoPago = cartId => {
   return async dispatch => {
-    let res = await axios.post(`mercadoPago`, cartId);
-    console.log(res.data);
-    return dispatch({
-      type: MERCADO_PAGO,
-      payload: res.data,
-    });
+    try {
+      let res = await axios.post(`mercadoPago`, cartId);
+      console.log(res.data);
+      return dispatch({
+        type: MERCADO_PAGO,
+        payload: res.data,
+      });
+    } catch (error) {
+      console.log(error)
+    }
+
   };
 };
 
