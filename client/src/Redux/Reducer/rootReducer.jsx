@@ -1,4 +1,3 @@
-import { checkoutProducts } from "../Actions";
 import {
   GET_ALL_PRODUCTS,
   SEARCH_PRODUCTS,
@@ -20,7 +19,6 @@ import {
   ADD_DATABASE_SHOPPING_CART,
   ADD_DATABASE_FAVORITE,
   CHECKOUT_PRODUCTS,
-  ESTADO_ORDEN,
   FILTER_STATUS,
   FILTER_BY_CART,
   MERCADO_PAGO,
@@ -28,7 +26,8 @@ import {
   REMOVE_TOTAL_COMPRA,
   CHANGE_STATUS_CART,
   DELETE_PERSIST_SHOPPING,
-  DELETE_ID_PERSIST_SHOOPING
+  DELETE_ID_PERSIST_SHOOPING,
+  GET_ALL_ORDERS,
 } from "../Actions/actionTypes";
 
 const initialState = {
@@ -191,7 +190,7 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         checkoutProducts1: action.payload,
       };
-    case ESTADO_ORDEN:
+    case GET_ALL_ORDERS:
       return {
         ...state,
         orders: action.payload,
@@ -262,6 +261,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         checkoutProducts: [],
+
       };
       case DELETE_PERSIST_SHOPPING:
         return {
@@ -275,6 +275,7 @@ export default function rootReducer(state = initialState, action) {
             checkoutProducts: state.checkoutProducts.filter(el => el.productId !== action.payload),
             checkoutProducts1: state.checkoutProducts.filter(el => el.productId !== action.payload),
           };
+
     default:
       return state;
   }
