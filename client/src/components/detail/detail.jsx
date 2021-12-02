@@ -2,34 +2,24 @@ import React, { useEffect, useState } from "react";
 import {
   detailProducts,
   shoppingCart,
-  getReview
 } from "../../Redux/Actions/index.jsx";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import InputLabel from "@mui/material/InputLabel";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Modal } from "@material-ui/core";
 import "./detail.css";
 import Rating from "@mui/material/Rating";
+import CreateReview from "../createReview/createReview"
 
 export default function Detail(props) {
   const dispatch = useDispatch();
   const history = useHistory();
   const detail = useSelector(state => state.detail);
-  const reseña = useSelector(state => state.review);
-  console.log(reseña, "RESEÑAAA")
-  console.log(detail, "DETALLEEEE")
 
   useEffect(() => {
     dispatch(detailProducts(props.match.params.id));
-    setTimeout(() => {
-      dispatch(getReview({productId:props.match.params.id}));     
-    }, 1000);
   }, [dispatch, props.match.params.id]);
   console.log(props.match.params.id, "ale querido")
 
@@ -37,19 +27,6 @@ export default function Detail(props) {
   let total = 0;
   let suma = cart.map(el => Number(el.salePrice));
   for (let i of suma) total += i;
-
-  if (reseña.length) {
-    const puntuacionGeneral = reseña.map(el => el.score);
-    let cantidadReseñas = puntuacionGeneral.length
-    function promedio() {
-      let suma = puntuacionGeneral.reduce(function (valorAnterior, valorActual) {
-        return valorAnterior + valorActual;
-      });
-      let redondeo = suma / cantidadReseñas
-      return redondeo.toFixed(1)
-    }
-    var average1 = promedio();
-  }
 
   function handleButtonHome(e) {
     e.preventDefault();
@@ -135,6 +112,22 @@ export default function Detail(props) {
     stock.push(i);
   }
 
+  const primero = detail.map(el => el.ProductsInCarts[0].reviews[0])
+  const segundo = primero.flat()
+
+  if (segundo.length) {
+    const puntuacionGeneral = segundo.map(el => el.score);
+    let cantidadReseñas = puntuacionGeneral.length
+    function promedio() {
+      let suma = puntuacionGeneral.reduce(function (valorAnterior, valorActual) {
+        return valorAnterior + valorActual;
+      });
+      let redondeo = suma / cantidadReseñas
+      return redondeo.toFixed(1)
+    }
+    var average1 = promedio();
+  }
+
   return (
     <div className='container'>
       {detail.map(products => {
@@ -167,21 +160,19 @@ export default function Detail(props) {
         );
       })}
       <div className='detailContainer'>
-        <h1>Valoraciones y reseñas</h1>
-        {reseña === undefined || reseña.length === 0 ? (
-          <h4>No hay reseñas</h4>
-        ) : (
-          reseña.map(product => {
+        {segundo.length === 0 || segundo === undefined ? <h4>No hay reseñas</h4> :
+          segundo.map(el => {
             return (
               <div>
-                <h4>Reseña: {product.review}</h4>
-                <Rating name='score' defaultValue={product.score} precision={1} readOnly />
-                
+                <CreateReview
+                  review={el.review}
+                  score={el.score}
+                />
               </div>
-            );
+            )
           })
-        )}
-        <h3>Puntuacion general</h3>
+        }
+        <h2>Puntuación general</h2>
         <Box
           sx={{
             width: 200,
@@ -192,7 +183,7 @@ export default function Detail(props) {
           <Rating name="half-rating-read" value={average1} precision={0.5} readOnly />
           <h4>{average1}</h4>
         </Box>
-        </div>
+      </div>
       <button onClick={handleButtonHome} className='btn'>
         Home
       </button>

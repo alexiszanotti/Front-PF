@@ -9,7 +9,6 @@ import {
   REMOVE_FAVORITE,
   GET_COLLECTIONS,
   POST_REVIEW,
-  GET_REVIEW,
   GET_ALL_USERS,
   GET_USER_LOGIN,
   FILTER_BY_PARAMS,
@@ -27,6 +26,8 @@ import {
   ADD_TOTAL_COMPRA,
   REMOVE_TOTAL_COMPRA,
   CHANGE_STATUS_CART,
+  DELETE_PERSIST_SHOPPING,
+  DELETE_ID_PERSIST_SHOOPING,
 } from "./actionTypes";
 
 export function getAllProducts() {
@@ -51,11 +52,15 @@ export function searchProducts(name) {
 
 export const detailProducts = id => {
   return async dispatch => {
-    let res = await axios(`products/${id}`);
-    return dispatch({
-      type: DETAIL_PRODUCTS,
-      payload: res.data,
-    });
+    try {
+      let res = await axios(`products/${id}`);
+      return dispatch({
+        type: DETAIL_PRODUCTS,
+        payload: res.data,
+      });
+    } catch (error) {
+      console.log(error)
+    }
   };
 };
 
@@ -128,22 +133,6 @@ export const postReview = payload => {
   };
 };
 
-export const getReview = (payload) => {
-  console.log(payload, "payload getReview")
-  // console.log(id, "cessnaa");
-  return async dispatch => {
-    try {
-      let res = await axios.post(`reviews`, payload);
-      return dispatch({
-        type: GET_REVIEW,
-        payload: res.data,
-      });
-      
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
 export const getAllUsers = payload => {
   return async dispatch => {
     let res = await axios(`users`);
@@ -380,3 +369,18 @@ export function changeStatusCart(payload) {
     }
   };
 }
+
+export const emptyShoppingPersist = () => {
+  return {
+    type: DELETE_PERSIST_SHOPPING,
+    payload: [],
+  };
+};
+
+export const removeShoppingPersist = id => {
+  console.log(id, "id")
+  return {
+    type: DELETE_ID_PERSIST_SHOOPING,
+    payload: id,
+  };
+};

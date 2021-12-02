@@ -11,7 +11,6 @@ import {
   GET_COLLECTIONS,
   GET_USER_LOGIN,
   POST_REVIEW,
-  GET_REVIEW,
   GET_ALL_USERS,
   FILTER_BY_PARAMS,
   RESET_FILTER,
@@ -28,6 +27,8 @@ import {
   ADD_TOTAL_COMPRA,
   REMOVE_TOTAL_COMPRA,
   CHANGE_STATUS_CART,
+  DELETE_PERSIST_SHOPPING,
+  DELETE_ID_PERSIST_SHOOPING
 } from "../Actions/actionTypes";
 
 const initialState = {
@@ -52,9 +53,8 @@ const initialState = {
   filterOrderStatus: [],
   misCompras: [],
   mercadoPago: [],
-  totalCompra: [],
-  checkoutProducts:[],
-  enzoPrueba: {}
+  checkoutProducts: [],
+  // checkoutProducts:[],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -109,11 +109,6 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         // review: action.payload,
-      };
-    case GET_REVIEW:
-      return {
-        ...state,
-        review: action.payload,
       };
     case GET_ALL_USERS:
       return {
@@ -225,7 +220,7 @@ export default function rootReducer(state = initialState, action) {
     case ADD_TOTAL_COMPRA:
       //product id 1
       //cantidad 1
-      let comprasActuales = state.totalCompra; //objeto con id de producto y cantidad que es un numero
+      let comprasActuales = state.checkoutProducts; //objeto con id de producto y cantidad que es un numero
       let aux = comprasActuales.filter(e => e.productId === action.payload.productId); // es un objeto que tine product id y cantidad
       if (aux.length > 0) {
         for (let i = 0; i < comprasActuales.length; i++) {
@@ -241,10 +236,10 @@ export default function rootReducer(state = initialState, action) {
 
       return {
         ...state,
-        totalCompra: comprasActuales,
+        checkoutProducts: comprasActuales,
       };
     case REMOVE_TOTAL_COMPRA:
-      let comprasActuales1 = state.totalCompra;
+      let comprasActuales1 = state.checkoutProducts;
       let aux1 = comprasActuales1.filter(e => e.productId === action.payload.productId);
       if (aux1.length > 0 && aux1[0].cantidad > 0) {
         for (let i = 0; i < comprasActuales1.length; i++) {
@@ -259,16 +254,25 @@ export default function rootReducer(state = initialState, action) {
 
       return {
         ...state,
-        totalCompra: comprasActuales1,
+        checkoutProducts: comprasActuales1,
       };
     case CHANGE_STATUS_CART:
       return {
         ...state,
-        totalCompra: [],
+        // checkoutProducts: [],
         checkoutProducts: [],
         enzoPrueba: action.payload
       };
-
+      case DELETE_PERSIST_SHOPPING:
+        return {
+          ...state,
+          checkoutProducts: action.payload,
+        };
+        case DELETE_ID_PERSIST_SHOOPING:
+          return {
+            ...state,
+            checkoutProducts: state.checkoutProducts.filter(el => el.productId !== action.payload),
+          };
     default:
       return state;
   }
