@@ -140,7 +140,7 @@ export default function ShopingCart() {
               </p>
               <button onClick={vaciar}>BORRAR TODO</button>
             </div>
-            <div>
+            <div className="contenidoShoppingCart">
             {cart?.map(products => {
                 return (
                   <>
