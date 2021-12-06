@@ -69,7 +69,7 @@ export default function Compras({
             score: input.score,
             review: input.review,
             productId: productId,
-            userId: userId[0].id,
+            userId: userId,
             cartId: cartId,
           })
         );

@@ -11,19 +11,11 @@ export default function MisCompras() {
   const usuariosCarritoFiltrado = usuarios.filter(el => el.id === userLogin.id);
   var compras = useSelector(state => state.misCompras);
 
+  console.log("LAPUTA MADRE", usuariosCarritoFiltrado);
   useEffect(() => {
     dispatch(getAllUsers());
     dispatch(filterByCart(usuariosCarritoFiltrado[0].id));
   }, [dispatch]);
-
-  // const carts = compras.map(el => {
-  //   return {
-  //     status: el.status,
-  //     dateOfPurchase: el.dateOfPurchase,
-  //     productos: el.products.flat(),
-  //   };
-  // });
-  console.log("COMPRAS", compras);
 
   const userLogeado = useSelector(state => state.userLogin);
 
@@ -41,6 +33,8 @@ export default function MisCompras() {
             fechaCompra={compras[0].dateOfPurchase}
             estadoOrden={compras[0].status}
             cantidad={el.quantity}
+            userId={compras[0].userId}
+            cartId={usuariosCarritoFiltrado[0].Cart.id}
           />
         );
       })}

@@ -10,44 +10,23 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 export default function Comprar() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const history = useHistory();
-  const total = useSelector((state) => state.checkoutProducts);
-  const shopping = useSelector((state) => state.ShoppingAlmacen);
-  const logIn = useSelector((state) => state.userLogin);
+  const total = useSelector(state => state.checkoutProducts);
+  const shopping = useSelector(state => state.ShoppingAlmacen);
+  const logIn = useSelector(state => state.userLogin);
   let idUser = logIn.id;
-  
-   let checkoutProducts= []
 
-   console.log(total, "totaol")
-   console.log(shopping, "Shopping")
-  
-  // if(idUser){
-  //   let idcheckoutProducts = total.map((el) => el.productId)
-  //   let idShopping = shopping.map((el) => el.productId)
-  //   for(let  i = 0; i < idcheckoutProducts.length ; i++){
-  //     for(let j=0; j < idShopping.length; j++){
-  //       if(idcheckoutProducts[i] === idShopping[j]){
-  //         checkoutProducts.push(total[i])
-          
-
-  //       }
-  //     }
-  //   }
-  // }
-
+  let checkoutProducts = [];
 
   const { loginWithRedirect } = useAuth0();
-  function handleClick (e){
-    e.preventDefault()
+  function handleClick(e) {
+    e.preventDefault();
     setTimeout(() => {
-      // dispatch(checkoutProducts(checkoutProducts))
-      history.push("/pago")
-    }, 1000)
-    console.log(checkoutProducts, "total")
+      history.push("/pago");
+    }, 1000);
+    console.log(checkoutProducts, "total");
   }
-
-
 
   return (
     <div>
@@ -55,13 +34,15 @@ export default function Comprar() {
         <>
           <div>
             <Box>
-                <Button onClick={(e) => handleClick(e)} variant="contained" >IR A COMPRAR</Button>
+              <Button onClick={e => handleClick(e)} variant='contained'>
+                IR A COMPRAR
+              </Button>
             </Box>
           </div>
 
           <div>
-            <Link to="/home">
-              <button className="botonCart1">volver</button>
+            <Link to='/home'>
+              <button className='botonCart1'>volver</button>
             </Link>
           </div>
         </>
@@ -69,12 +50,14 @@ export default function Comprar() {
         <>
           <div>
             <Box>
-              <Button onClick={() => loginWithRedirect()}>Logearte</Button>
+              <Button variant='contained' onClick={() => loginWithRedirect()}>
+                Loguearte
+              </Button>
             </Box>
           </div>
           <div>
-            <Link to="/home">
-              <button className="botonCart1">volver</button>
+            <Link to='/home'>
+              <button className='botonCart1'>volver</button>
             </Link>
           </div>
         </>
