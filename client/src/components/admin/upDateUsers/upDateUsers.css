@@ -2,20 +2,27 @@
     /* border: 5px solid rgba(0, 0, 0, 0.589); */
     width: 50%;
     background: linear-gradient(180deg, rgba(0, 0, 255, 0.7), rgb(230, 230, 230) 70.71%);
-    margin: 0 auto;
-    margin-bottom: 15px;
-    margin-top: 15px;
+    /* background-image: linear-gradient(to right top, #12003d, #150556, #1b0570, #20058c, #2504a8, #2404a9, #2404a9, #2304aa, #1d058f, #170575, #12055c, #0f0144);    margin: 0 auto; */
+    margin: 10px 0 0 34%;
     padding: 10px;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     border-radius: 30px;
+    color: white;
 }
 .CreacionUsuario{
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
+}
+
+.CreacionUsuario > input {
+
+  background: rgba(6, 0, 85, 0.589);
+  color: white;
+
 }
 
 .btn {
