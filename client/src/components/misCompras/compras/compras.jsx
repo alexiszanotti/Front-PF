@@ -41,13 +41,11 @@ export default function Compras({
   cartId,
   userId,
 }) {
-  console.log(productId, "producto", cartId, "cartId", userId, "userId");
   const dispatch = useDispatch();
   const history = useHistory();
   const reseña = useSelector(state => state.review);
   const [error, setError] = useState({});
   const carritoAlmacen = useSelector(state => state.ShoppingAlmacen);
-  console.log(carritoAlmacen, "alee");
   const [input, setInput] = useState({
     review: "",
     score: "",
