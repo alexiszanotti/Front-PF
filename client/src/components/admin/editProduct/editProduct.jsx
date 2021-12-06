@@ -1,7 +1,6 @@
 import "./editProduct.css";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import Box from "@mui/material/Box";
 import { Input } from "@mui/material";
 import { getAllProducts, modifyProduct, getCollection } from "../../../Redux/Actions/index";
@@ -9,7 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function EditProduct() {
-  const history = useHistory();
+
   const dispatch = useDispatch();
   const productsData = useSelector(state => state.products);
   const collections = useSelector(state => state.collections);
@@ -71,7 +70,7 @@ export default function EditProduct() {
     setInput({
       id: "",
     });
-    // history.push("/");
+
   }
 
   let aux = productsData.filter(el => el.id === input.id);
@@ -110,21 +109,19 @@ export default function EditProduct() {
           <form onSubmit={e => handleSubmit(e)} className='CreacionUsuario'>
             <label>Precio:</label>
             <input
-              value={input.salePrice}
               onChange={handleLabelChangeCollection}
               name='salePrice'
               type='number'
-              placeholder={aux?.map(el => el.salePrice)}
+              value={aux?.map(el => el.salePrice)}
             ></input>
             <br></br>
             <label>Descripción:</label>
             <div className='descriptionEditProduct'>
               <textarea
                 onChange={handleInputChange}
-                value={input.description}
                 type='text'
                 name='description'
-                placeholder={aux?.map(el => el.description)}
+                value={aux?.map(el => el.description)}
                 rows='7'
                 cols='70'
               />
@@ -134,8 +131,7 @@ export default function EditProduct() {
               onChange={handleInputChange}
               type='number'
               name='stock'
-              value={input.stock}
-              placeholder={aux?.map(el => el.stock)}
+              value={aux?.map(el => el.stock)}
             />
             <br></br>
             <input type='file' multiple='true' name='images' onChange={handleFiles} />

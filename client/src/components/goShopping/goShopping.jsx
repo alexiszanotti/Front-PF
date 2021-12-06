@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { modifyUser, checkoutProducts, getAllUsers } from "../../Redux/Actions";
+import { modifyUser } from "../../Redux/Actions";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import { Link } from "react-router-dom";
 import "./goShopping.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,7 +16,6 @@ export default function GoShopping() {
   const history = useHistory();
   const usuario = useSelector(state => state.userLogin);
   const usr = useSelector(state => state.users);
-  const dataBaseShopping = useSelector(state => state.ShoppingAlmacen);
 
   let usuarioLogeado = usr.filter(el => el.id === usuario.id);
   let name = usuarioLogeado.map(el => el.name);

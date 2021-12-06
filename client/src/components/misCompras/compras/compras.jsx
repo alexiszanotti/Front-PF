@@ -1,7 +1,7 @@
 import "./compras.css";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { postReview, addDataBaseShoppingCart } from "../../../Redux/Actions/index";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { postReview } from "../../../Redux/Actions/index";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -41,9 +41,9 @@ export default function Compras({
   cartId,
   userId,
 }) {
+
   const dispatch = useDispatch();
   const history = useHistory();
-  const reseña = useSelector(state => state.review);
   const [error, setError] = useState({});
   const carritoAlmacen = useSelector(state => state.ShoppingAlmacen);
   const [input, setInput] = useState({
@@ -170,7 +170,7 @@ export default function Compras({
           />
 
           <CardContent className='misComprasCard'>
-            <img src={imagenProducto} className='imagen' />
+            <img alt="l" src={imagenProducto} className='imagen' />
             <div className='misCompras'>
               <Typography gutterBottom variant='h5' component='div'>
                 {nombreProducto}

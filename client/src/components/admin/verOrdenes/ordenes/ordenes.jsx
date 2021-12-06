@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./ordenes.css"
 import {  modifyOrders, getAllOrders } from "../../../../Redux/Actions/index"
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 export default function Ordenes({estadoOrden, idOrden, fechaCompra}) {
     const dispatch = useDispatch();
@@ -13,7 +13,6 @@ export default function Ordenes({estadoOrden, idOrden, fechaCompra}) {
       };
     const handleSubmit = function (e) {
         e.preventDefault();
-        console.log(input, idOrden, "probando")
         dispatch(modifyOrders({
             cartId: idOrden,
             status: input.status

@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import Rating from "@mui/material/Rating";
 import Box from "@mui/material/Box";
 
 export default function CreateReview({review, score}) {
-  console.log(review, score, "probamd")
   return (
       <div className='detailContainer'>
         <h1>Valoraciones y reseñas</h1>

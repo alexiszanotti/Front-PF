@@ -15,7 +15,7 @@ export default function Favorite() {
   const dataBaseFavorite = useSelector((state) => state.favoriteAlmacen)
   let idUser = logIn.id;
 
-  console.log(dataBaseFavorite)
+
 
   var hash = {};
   let sinLogin = favoritos.filter(function (current) {
@@ -52,7 +52,7 @@ export default function Favorite() {
       dispatch(addDataBaseFavorite(idUser));
 
     }
-  }, [dispatch]);
+  }, [dispatch, idUser]);
 
   return (
     <div>

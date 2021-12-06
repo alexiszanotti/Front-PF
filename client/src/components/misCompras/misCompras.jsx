@@ -11,10 +11,12 @@ export default function MisCompras() {
   const usuariosCarritoFiltrado = usuarios.filter(el => el.id === userLogin.id);
   var compras = useSelector(state => state.misCompras);
 
+
+
   useEffect(() => {
     dispatch(getAllUsers());
     dispatch(filterByCart(usuariosCarritoFiltrado[0].id));
-  }, [dispatch]);
+  }, [dispatch, usuariosCarritoFiltrado]);
 
   return (
     <div className='misComprasContainer'>

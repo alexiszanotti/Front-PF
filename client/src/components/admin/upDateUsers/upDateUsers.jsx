@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {getAllUsers, modifyUser} from "../../../Redux/Actions/index"
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from 'react-router-dom';
 import Box from '@mui/material/Box';
 // import swal from 'sweetalert';
 import "./upDateUsers.css"
@@ -10,7 +9,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function UpDataUsers(){
 
-    const history = useHistory();
     const dispatch = useDispatch();
     const usersData = useSelector(state => state.users);
 
@@ -71,7 +69,7 @@ export default function UpDataUsers(){
       }
   
       let aux = usersData.filter((el) => el.id === input.id)
-      console.log(input)
+
     return(
         <div className="updateUserContainer">
             <h1>ELIJA EL USUARIO A MODIFICAR</h1>
@@ -93,13 +91,13 @@ export default function UpDataUsers(){
                 <h1>MODIFICAR USUARIO</h1>
                 <form onSubmit={(e) => handleSubmit(e)} className="CreacionUsuario">
                     <label>NOMBRE DE USUARIO</label>
-                    <input type="text" name="email" onChange={handleInputChange} placeholder={aux?.map((el) => el.email)} />
+                    <input type="text" name="email" onChange={handleInputChange} value={aux?.map((el) => el.email)} />
                     <label>NOMBRE</label>
-                    <input type="text" name="name" onChange={handleInputChange} placeholder={aux?.map((el) => el.name)}/>
+                    <input type="text" name="name" onChange={handleInputChange} value={aux?.map((el) => el.name)}/>
                     <label>APELLIDO</label> 
-                    <input type="text" name="lastName" onChange={handleInputChange} placeholder={aux?.map((el) => el.lastName)}/>
+                    <input type="text" name="lastName" onChange={handleInputChange} value={aux?.map((el) => el.lastName)}/>
                     <label>FECHA</label>
-                    <input type="text" name="birthDay" onChange={handleInputChange} placeholder={aux?.map((el) => el.birthDay)}/>
+                    <input type="text" name="birthDay" onChange={handleInputChange} value={aux?.map((el) => el.birthDay)}/>
                     <label>GENERO</label>
                     <select className='select' onChange={(e) => handleSelect(e)} name="gender" >
                         <option value=""></option>

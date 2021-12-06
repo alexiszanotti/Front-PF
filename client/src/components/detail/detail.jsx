@@ -7,8 +7,11 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Modal } from "@material-ui/core";
 import "./detail.css";
+
 import Rating from "@mui/material/Rating";
 import CreateReview from "../createReview/createReview";
+
+
 
 export default function Detail(props) {
   const dispatch = useDispatch();
@@ -45,8 +48,6 @@ export default function Detail(props) {
     history.push(`/carrito/` + props.match.params.id);
   }
 
-  const [hover] = React.useState(-1);
-
   const style = {
     position: "absolute",
     top: "50%",
@@ -68,7 +69,7 @@ export default function Detail(props) {
         </Typography>
         <div className='carritoDiv'>
           {detail?.map(products => {
-            console.log(detail);
+
             return (
               <div>
                 <h4>{products.productName}</h4>
@@ -110,6 +111,7 @@ export default function Detail(props) {
     stock.push(i);
   }
 
+
   let primero = [];
   let segundo = [
     {
@@ -124,6 +126,7 @@ export default function Detail(props) {
         if (detail[0].reviews[0].hasOwnProperty("review")) {
           primero = detail.map(el => el.reviews);
           segundo = primero.flat();
+
         }
       }
     }

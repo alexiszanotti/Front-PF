@@ -6,7 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import { Modal } from "@material-ui/core";
-import { modifyUser, userLogout } from "../../Redux/Actions/index";
+import { modifyUser } from "../../Redux/Actions/index";
 import swal from 'sweetalert';
 
 export default function Perfil() {
@@ -15,7 +15,7 @@ export default function Perfil() {
   const userLogeado = useSelector((state) => state.userLogin);
   const users = useSelector((state) => state.users);
 
-  const { user, isAuthenticated, logout } = useAuth0();
+  const { isAuthenticated } = useAuth0();
 
   if (!isAuthenticated && userLogeado.type === undefined) history.push("/home");
 
@@ -28,9 +28,6 @@ export default function Perfil() {
 
   });
 
-  const handleSelectChange = function (e) {
-    setInput({ ...input, gender: e.target.value });
-  };
 
   const handleInputChange = function (e) {
     setInput({
@@ -53,13 +50,9 @@ export default function Perfil() {
     });
   }
 
-  function handleSubmitLogout() {
-    dispatch(userLogout());
-    history.push("/home");
-  }
 
 
-  console.log(input);
+
 
   const style = {
     position: "absolute",
