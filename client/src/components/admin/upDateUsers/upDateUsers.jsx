@@ -91,13 +91,13 @@ export default function UpDataUsers(){
                 <h1>MODIFICAR USUARIO</h1>
                 <form onSubmit={(e) => handleSubmit(e)} className="CreacionUsuario">
                     <label>NOMBRE DE USUARIO</label>
-                    <input type="text" name="email" onChange={handleInputChange} placeholder={aux?.map((el) => el.email)} />
+                    <input type="text" name="email" onChange={handleInputChange} value={aux?.map((el) => el.email)} />
                     <label>NOMBRE</label>
-                    <input type="text" name="name" onChange={handleInputChange} placeholder={aux?.map((el) => el.name)}/>
+                    <input type="text" name="name" onChange={handleInputChange} value={aux?.map((el) => el.name)}/>
                     <label>APELLIDO</label> 
-                    <input type="text" name="lastName" onChange={handleInputChange} placeholder={aux?.map((el) => el.lastName)}/>
+                    <input type="text" name="lastName" onChange={handleInputChange} value={aux?.map((el) => el.lastName)}/>
                     <label>FECHA</label>
-                    <input type="text" name="birthDay" onChange={handleInputChange} placeholder={aux?.map((el) => el.birthDay)}/>
+                    <input type="text" name="birthDay" onChange={handleInputChange} value={aux?.map((el) => el.birthDay)}/>
                     <label>GENERO</label>
                     <select className='select' onChange={(e) => handleSelect(e)} name="gender" >
                         <option value=""></option>

@@ -113,7 +113,7 @@ export default function EditProduct() {
               onChange={handleLabelChangeCollection}
               name='salePrice'
               type='number'
-              placeholder={aux?.map(el => el.salePrice)}
+              value={aux?.map(el => el.salePrice)}
             ></input>
             <br></br>
             <label>Descripción:</label>
@@ -123,7 +123,7 @@ export default function EditProduct() {
                 value={input.description}
                 type='text'
                 name='description'
-                placeholder={aux?.map(el => el.description)}
+                value={aux?.map(el => el.description)}
                 rows='7'
                 cols='70'
               />
@@ -134,7 +134,7 @@ export default function EditProduct() {
               type='number'
               name='stock'
               value={input.stock}
-              placeholder={aux?.map(el => el.stock)}
+              value={aux?.map(el => el.stock)}
             />
             <br></br>
             <input type='file' multiple='true' name='images' onChange={handleFiles} />
