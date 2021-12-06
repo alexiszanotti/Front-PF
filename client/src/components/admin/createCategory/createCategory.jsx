@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { createCollection, getCollection } from "../../../Redux/Actions/index";
-import { useHistory } from 'react-router-dom';
-import swal from 'sweetalert';
 import "./createCategory.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,8 +17,6 @@ const validateForm = input => {
 };
 
 export default function CreateCollection() {
-
-  const history = useHistory();
 
   const dispatch = useDispatch();
 

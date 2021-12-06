@@ -2,11 +2,9 @@ import "./verOrdenes.css";
 import React, { useEffect } from "react";
 import { getAllOrders, filterStatus } from "../../../Redux/Actions/index";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import Ordenes from "./ordenes/ordenes";
 
 export default function VerOrdenes() {
-  const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {

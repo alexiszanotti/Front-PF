@@ -1,5 +1,5 @@
 import "./product.css";
-import React, { useEffect } from "react";
+import React from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -26,7 +26,6 @@ import {
   deleteDataBaseFavorite,
 } from "../../Redux/Actions/index";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { IconButton } from "@mui/material";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -206,7 +205,7 @@ export default function Products(props) {
   };
 
   return (
-    <div className='productContainer'>
+    <div className='productContainer' key={props.id}>
       <Card className='contenedorProduct' sx={{ maxWidth: 400 }}>
         <CardHeader title={props.title} subheader={props.price} />
         <Link to={`/detail/${props.id}`}>
@@ -228,7 +227,6 @@ export default function Products(props) {
                 icon={<ShoppingCartIcon />}
                 checkedIcon={<ShoppingCartIcon />}
                 disabled
-                checked
               />
               <Alert variant='outlined' severity='error'>
                 Stock no disponible

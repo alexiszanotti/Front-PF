@@ -7,14 +7,12 @@ import ListSubheader from "@mui/material/ListSubheader";
 import IconButton from "@mui/material/IconButton";
 import { useDispatch } from "react-redux";
 import { changeStatusCart, mercadoPago } from "../../Redux/Actions/index";
-import MercadoPago from "../mercadoPago/mercadoPago";
 
 export default function Checkuot() {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const usuario = useSelector((state) => state.userLogin);
   const usr = useSelector((state) => state.users);
-  const enzo = useSelector((state) => state.enzoPrueba);
   let usuarioLogeado = usr.filter((el) => el.id === usuario.id);
   let cartId = usuarioLogeado.map((el) => el.Cart.id);
   const idMP = useSelector((state) => state.mercadoPago);
@@ -80,7 +78,6 @@ export default function Checkuot() {
         "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
       script.setAttributeNode(attr_data_preference);
 
-      console.log(idMP);
       setLoading(true);
 
       //Agrega el script como nodo hijo del elemento form
@@ -95,12 +92,12 @@ export default function Checkuot() {
   const render = !loading ? (
     <>
       <h1>Cargando....</h1>
-      <img src="https://media4.giphy.com/media/K0vYRWCj0FlcBGSxK6/giphy.gif?cid=ecf05e47bc2jhce9is24eznj6n9h7ioelcx7vzys02ya3uwn&rid=giphy.gif&ct=s"  width="1000" height="850" />
+      <img alt="l" src="https://media4.giphy.com/media/K0vYRWCj0FlcBGSxK6/giphy.gif?cid=ecf05e47bc2jhce9is24eznj6n9h7ioelcx7vzys02ya3uwn&rid=giphy.gif&ct=s"  width="1000" height="850" />
     </>
   ) : (
     <div>
       <form id="form1"></form>
-      <img src="https://media2.giphy.com/media/8lKyjU3F63hoa7KtOO/giphy.gif?cid=ecf05e47nwshrl1mk3bc1tm4q5m5nohcp5867n5nx5zmpdyy&rid=giphy.gif&ct=s"/>  
+      <img  alt="l" src="https://media2.giphy.com/media/8lKyjU3F63hoa7KtOO/giphy.gif?cid=ecf05e47nwshrl1mk3bc1tm4q5m5nohcp5867n5nx5zmpdyy&rid=giphy.gif&ct=s"/>  
     </div>
   );
 

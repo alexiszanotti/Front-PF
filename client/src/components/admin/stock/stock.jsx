@@ -33,7 +33,6 @@ export default function Stock(){
 
     if(input.id !== '') {
 
-        console.log(input)
         
         dispatch(modifyProduct(input));
     

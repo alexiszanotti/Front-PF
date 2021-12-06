@@ -2,7 +2,6 @@ import "./createProduct.css";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createProduct, getCollection } from "../../../Redux/Actions/index";
-import { useHistory } from "react-router-dom";
 import zapa from "../../../images/ImgaProduct.png";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,7 +17,7 @@ const validateForm = input => {
   return error;
 };
 export default function CreateProduct() {
-  const history = useHistory();
+
 
   const dispatch = useDispatch();
 
@@ -71,7 +70,6 @@ export default function CreateProduct() {
   const handleSubmit = e => {
     e.preventDefault();
     if (Object.keys(error).length === 0) {
-      console.log(input)
       dispatch(createProduct(input));
       successSubmit()
       // history.push("/");

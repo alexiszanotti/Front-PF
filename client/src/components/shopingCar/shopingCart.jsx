@@ -11,7 +11,7 @@ import {
   emptyShoppingPersist,
 } from "../../Redux/Actions/index";
 import { useDispatch } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Comprar from "../shopingCar/Comprar.jsx";
 
@@ -29,16 +29,6 @@ export default function ShopingCart() {
   let usr = users?.filter(user => user.id === logIn.id);
   let cartId = usr?.map(el => el.Cart.id);
 
-  let total = 0;
-  if (idUser) {
-    if (productShopping) {
-      let suma = productShopping.map(el => Number(el.salePrice));
-      for (let i of suma) total += i;
-    }
-  } else {
-    let suma = cart.map(el => Number(el.salePrice));
-    for (let i of suma) total += i;
-  }
   const errorSubmit = () => {
     toast.error("Productos eliminados con éxito", {
       position: "bottom-right",
@@ -61,7 +51,7 @@ export default function ShopingCart() {
     if (idUser) {
       dispatch(addDataBaseShoppingCart(cartId.toString()));
     }
-  }, [dispatch]);
+  }, [dispatch, cartId, idUser]);
 
   const borrarCarrito = () => {
     for (let i = 0; i < dataBaseShopping.length; i++) {
@@ -105,7 +95,7 @@ export default function ShopingCart() {
             <div className='contenidoShoppingCart'>
               {productShopping?.map(products => {
                 return (
-                  <>
+                  <div key={products.id}>
                     <CardShopingCart
                       key={products.id}
                       id={products.id}
@@ -114,7 +104,7 @@ export default function ShopingCart() {
                       stock={products.stock}
                       price={Number(products.salePrice)}
                     />
-                  </>
+                  </div>
                 );
               })}
             </div>
@@ -139,7 +129,7 @@ export default function ShopingCart() {
             <div className='contenidoShoppingCart'>
               {cart?.map(products => {
                 return (
-                  <>
+                  <div key={products.id}>
                     <CardShopingCart
                       key={products.id}
                       id={products.id}
@@ -148,7 +138,7 @@ export default function ShopingCart() {
                       stock={products.stock}
                       price={Number(products.salePrice)}
                     />
-                  </>
+                  </div>
                 );
               })}
               <Comprar />
