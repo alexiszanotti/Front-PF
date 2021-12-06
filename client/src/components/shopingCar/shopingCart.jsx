@@ -1,5 +1,5 @@
 import "./shopingCart.css";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import CardShopingCart from "../cardShopingCart/cardShopingCart";
 import { Button } from "@mui/material";
@@ -136,7 +136,7 @@ export default function ShopingCart() {
               </p>
               <button onClick={vaciar}>BORRAR TODO</button>
             </div>
-            <div>
+            <div className='contenidoShoppingCart'>
               {cart?.map(products => {
                 return (
                   <>
