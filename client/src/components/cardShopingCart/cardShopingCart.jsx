@@ -11,22 +11,17 @@ import {
   addDataBaseShoppingCart,
   addtotalCompras,
   removetotalCompras,
-  checkoutProducts,
   removeShoppingPersist,
 } from "../../Redux/Actions/index";
 import { Link } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Alert from "@mui/material/Alert";
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
 
 export default function CardShopingCart(props) {
   const checkoutProducts = useSelector(state => state.checkoutProducts);
   const logIn = useSelector(state => state.userLogin);
   const users = useSelector(state => state.users);
-  const dataBaseShopping = useSelector(state => state.ShoppingAlmacen);
-  const productShopping = dataBaseShopping.map(el => el.product);
   const dispatch = useDispatch();
 
   const stock = [];
@@ -63,6 +58,7 @@ export default function CardShopingCart(props) {
         if (el.cantidad === 1) {
           return el.productId;
         }
+        return null;
       });
       if (!auxId.includes(props.id))
         dispatch(
@@ -75,7 +71,7 @@ export default function CardShopingCart(props) {
           })
         );
     }
-  }, [dispatch, addtotalCompras]);
+  }, [dispatch, checkoutProducts, idUser, props.id, props.images, props.price, props.title]);
   const agregarCantidad = () => {
     if (cantidad === props.stock) {
       setCantidad(cantidad);
@@ -131,15 +127,15 @@ export default function CardShopingCart(props) {
               </Typography>
               <Typography variant='h4' color='text.secondary'>
                 {idUser ? (
-                  cantidad == 0 || cantidad == undefined ? (
-                    <h5>Seleccione una Cantidad</h5>
+                  cantidad === 0 || cantidad === undefined ? (
+                    <p>Seleccione una Cantidad</p>
                   ) : cantidad === 1 ? (
-                    <h5>$ {props.price}</h5>
+                    <p>$ {props.price}</p>
                   ) : (
-                    <h5>$ {props.price * cantidad}</h5>
+                    <p>$ {props.price * cantidad}</p>
                   )
                 ) : (
-                  <h5>{props.price}</h5>
+                  <p>{props.price}</p>
                 )}
               </Typography>
               {idUser ? (

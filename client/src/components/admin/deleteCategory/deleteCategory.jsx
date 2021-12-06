@@ -23,7 +23,7 @@ export default function DeleteCollection() {
     
     const collections = useSelector((state) => state.collections);
     
-    const [error, setError] = useState({});
+    const [error] = useState({});
     
     const [input, setInput] = useState({
       name: ""

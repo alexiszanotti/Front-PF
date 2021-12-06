@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {getAllUsers, modifyUser} from "../../../Redux/Actions/index"
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from 'react-router-dom';
 import Box from '@mui/material/Box';
 // import swal from 'sweetalert';
 import "./upDateUsers.css"
@@ -10,7 +9,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function UpDataUsers(){
 
-    const history = useHistory();
     const dispatch = useDispatch();
     const usersData = useSelector(state => state.users);
 
@@ -71,7 +69,7 @@ export default function UpDataUsers(){
       }
   
       let aux = usersData.filter((el) => el.id === input.id)
-      console.log(input)
+
     return(
         <div className="updateUserContainer">
             <h1>ELIJA EL USUARIO A MODIFICAR</h1>

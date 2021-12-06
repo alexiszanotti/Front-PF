@@ -5,15 +5,10 @@ import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Box } from "@mui/system";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useDispatch } from "react-redux";
-// import {checkoutProducts} from "../../Redux/Actions/index"
 import { useHistory } from "react-router-dom";
 
 export default function Comprar() {
-  const dispatch = useDispatch();
   const history = useHistory();
-  const total = useSelector(state => state.checkoutProducts);
-  const shopping = useSelector(state => state.ShoppingAlmacen);
   const logIn = useSelector(state => state.userLogin);
   let idUser = logIn.id;
 

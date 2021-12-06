@@ -18,8 +18,6 @@ import Avatar from "@mui/material/Avatar";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import Tooltip from "@mui/material/Tooltip";
-import PersonAdd from "@mui/icons-material/PersonAdd";
-import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { Link } from "react-router-dom";
 import SearchBar from "../searchBar/searchBar";
@@ -27,11 +25,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { userLogout } from "../../Redux/Actions";
 import { styled } from "@mui/material/styles";
 import { deepPurple } from "@mui/material/colors";
-import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function NavBar({ setCurrentPage }) {
-  const { logout, user, isAuthenticated, loginWithRedirect } = useAuth0();
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
 
   let logIn = useSelector(state => state.userLogin);
 

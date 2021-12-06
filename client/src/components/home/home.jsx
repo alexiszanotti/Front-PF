@@ -16,7 +16,6 @@ import { Typography } from "@mui/material";
 export default function Home({setCurrentPage, currentPage}) {
   const dispatch = useDispatch();
 
-  const logIn = useSelector(state => state.userLogin);
   const shoes = useSelector(state => state.productsFilter);
   const orderState = useSelector(state => state.orden);
   const collections = useSelector(state => state.collections);
@@ -24,7 +23,6 @@ export default function Home({setCurrentPage, currentPage}) {
   // let idUser = logIn.id;
 
   const [orden, setOrden] = useState(orderState);
-  const [stateValue, setStateValue] = useState(false)
 
   const [shoesPorPaginaPorPagina] = useState(20);
   const indeceDelUltimoShoes = currentPage * shoesPorPaginaPorPagina; // 10
@@ -53,7 +51,7 @@ export default function Home({setCurrentPage, currentPage}) {
   function nextPage() {
     if (currentPage === pageNumbers.length) {
       setCurrentPage(5);
-      console.log("entro al console");
+
     } else {
       setCurrentPage(currentPage + 1);
     }
@@ -61,7 +59,7 @@ export default function Home({setCurrentPage, currentPage}) {
   function previousPage() {
     if (currentPage === 1) {
       setCurrentPage(1);
-      console.log("entro al console");
+
     } else {
       setCurrentPage(currentPage - 1);
     }
@@ -97,9 +95,11 @@ export default function Home({setCurrentPage, currentPage}) {
                     <MenuItem value='All'>TODOS</MenuItem>
                     {collections?.map(el => {
                       return (
-                        <MenuItem key={el.id} value={el.name}>
+                        <div key={el.id}>
+                        <MenuItem  value={el.name}>
                           {el.name}
                         </MenuItem>
+                        </div>
                       );
                     })}
                   </Select>
@@ -157,14 +157,16 @@ export default function Home({setCurrentPage, currentPage}) {
         {currentShoes.length ? (
           currentShoes?.map(products => {
             return (
-              <Products
-                key={products.id}
-                title={products.productName.toUpperCase()}
-                image={products.images}
-                price={"$ " + Number(products.salePrice)}
-                id={products.id}
-                stock={products.stock}
-              />
+              <div key={products.id}>
+                <Products
+                  title={products.productName.toUpperCase()}
+                  image={products.images}
+                  price={"$ " + Number(products.salePrice)}
+                  id={products.id}
+                  stock={products.stock}
+                  key={products.id}
+                />
+              </div>
             );
           })
         ) : (

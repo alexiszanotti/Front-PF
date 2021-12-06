@@ -60,7 +60,7 @@ function App() {
       dispatch(addDataBaseFavorite(idUser));
       dispatch(addDataBaseShoppingCart(cartId.toString()));
     }
-  }, [dispatch]);
+  }, [dispatch, logIn.id, logIn.type, users]);
 
   if (isAuthenticated) {
     setTimeout(function () {

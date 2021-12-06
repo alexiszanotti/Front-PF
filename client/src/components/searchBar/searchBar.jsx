@@ -16,7 +16,7 @@ export default function SearchBar({setCurrentPage}) {
   useEffect(() => {
     setCurrentPage(1);
     dispatch(searchProducts(name));
-  }, [dispatch, name]);
+  }, [dispatch, name, setCurrentPage]);
 
 
   return (
