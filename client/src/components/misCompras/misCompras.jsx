@@ -9,20 +9,22 @@ export default function MisCompras() {
   const userLogin = useSelector(state => state.userLogin);
   const usuarios = useSelector(state => state.users);
   const usuariosCarritoFiltrado = usuarios.filter(el => el.id === userLogin.id);
-  var compras = useSelector(state => state.misCompras);
-
-
+  const compras = useSelector(state => state.misCompras);
+  const compras2 = compras.map((el) => el.products);
+  const compras3 = compras2.flat();
+  console.log(compras2.flat());
 
   useEffect(() => {
     dispatch(getAllUsers());
     dispatch(filterByCart(usuariosCarritoFiltrado[0].id));
-  }, [dispatch, usuariosCarritoFiltrado]);
+    console.log("hola")
+  }, [dispatch, usuariosCarritoFiltrado[0].id]);
 
   return (
     <div className='misComprasContainer'>
       <h1>Mis compras</h1>
       <p>Total de compras</p>
-      {compras[0]?.products?.map(el => {
+      {compras3.map(el => {
         return (
           <Compras
             productId={el.productId}

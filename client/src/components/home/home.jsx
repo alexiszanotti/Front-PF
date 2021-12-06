@@ -150,6 +150,17 @@ export default function Home({setCurrentPage, currentPage}) {
           </Grid>
         </Box>
       </div>
+      <br>
+      </br>
+      <div className='paginado'>
+        <Paginado
+          shoesPorPaginaPorPagina={shoesPorPaginaPorPagina}
+          shoes={shoes.length}
+          paginado={paginado}
+          previousPage={previousPage}
+          nextPage={nextPage}
+        />
+      </div>
       <button className='botonCart1' onClick={handleClick}>
         Borrar filtros
       </button>
@@ -172,15 +183,6 @@ export default function Home({setCurrentPage, currentPage}) {
         ) : (
           <Typography>No hay productos con esos parametros</Typography>
         )}
-      </div>
-      <div className='paginado'>
-        <Paginado
-          shoesPorPaginaPorPagina={shoesPorPaginaPorPagina}
-          shoes={shoes.length}
-          paginado={paginado}
-          previousPage={previousPage}
-          nextPage={nextPage}
-        />
       </div>
     </div>
   );
