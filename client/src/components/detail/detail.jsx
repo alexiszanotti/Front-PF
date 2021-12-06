@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import { Modal } from "@material-ui/core";
 import "./detail.css";
 
-import Rating from "@mui/material/Rating";
+
 import CreateReview from "../createReview/createReview";
 
 
