@@ -109,7 +109,6 @@ export default function EditProduct() {
           <form onSubmit={e => handleSubmit(e)} className='CreacionUsuario'>
             <label>Precio:</label>
             <input
-              value={input.salePrice}
               onChange={handleLabelChangeCollection}
               name='salePrice'
               type='number'
@@ -120,7 +119,6 @@ export default function EditProduct() {
             <div className='descriptionEditProduct'>
               <textarea
                 onChange={handleInputChange}
-                value={input.description}
                 type='text'
                 name='description'
                 value={aux?.map(el => el.description)}
@@ -133,7 +131,6 @@ export default function EditProduct() {
               onChange={handleInputChange}
               type='number'
               name='stock'
-              value={input.stock}
               value={aux?.map(el => el.stock)}
             />
             <br></br>
