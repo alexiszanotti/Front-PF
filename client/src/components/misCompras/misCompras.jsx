@@ -12,6 +12,7 @@ export default function MisCompras() {
   var compras = useSelector(state => state.misCompras);
 
 
+
   useEffect(() => {
     dispatch(getAllUsers());
     dispatch(filterByCart(usuariosCarritoFiltrado[0].id));

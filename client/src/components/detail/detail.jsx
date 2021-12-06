@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  detailProducts,
-  shoppingCart,
-} from "../../Redux/Actions/index.jsx";
+import { detailProducts, shoppingCart } from "../../Redux/Actions/index.jsx";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -10,18 +7,21 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Modal } from "@material-ui/core";
 import "./detail.css";
-import CreateReview from "../createReview/createReview"
+
+import Rating from "@mui/material/Rating";
+import CreateReview from "../createReview/createReview";
+
+
 
 export default function Detail(props) {
   const dispatch = useDispatch();
   const history = useHistory();
   const detail = useSelector(state => state.detail);
 
-
   useEffect(() => {
-    setTimeout(() =>{
+    setTimeout(() => {
       dispatch(detailProducts(props.match.params.id));
-    }, 500)
+    }, 500);
   }, [dispatch, props.match.params.id]);
 
   const cart = useSelector(state => state.shoppingCart);
@@ -76,7 +76,7 @@ export default function Detail(props) {
                 <ul className='detailUl'>
                   <li>{products.collection.name}</li>
                   <br></br>
-                  <img alt="k" className='img' src={products.images} />
+                  <img alt='k' className='img' src={products.images} />
                   <br></br>
                   <br></br>
                   <li>{"$ " + Number(products.salePrice)}</li>
@@ -105,45 +105,32 @@ export default function Detail(props) {
     </div>
   );
 
-  const stock = []
+  const stock = [];
   let stock1 = detail?.map(products => products.stock);
   for (let i = 1; i <= stock1; i++) {
     stock.push(i);
   }
 
-  let primero = []
-  let segundo = [{
-    review: null,
-    score: null
-  }]
 
-  if(detail.length > 0 ){
-    if(detail[0].hasOwnProperty("ProductsInCarts")){
-      if(detail[0].ProductsInCarts.length > 0){
-        if(detail[0].ProductsInCarts[0].hasOwnProperty("reviews")){
-          if(detail[0].ProductsInCarts[0].reviews.length > 0){
-             primero = detail.map(el => el.ProductsInCarts[0].reviews[0])
-             segundo = primero.flat()
+  let primero = [];
+  let segundo = [
+    {
+      review: null,
+      score: null,
+    },
+  ];
+  console.log("DETALLE", detail);
+  if (detail.length > 0) {
+    if (detail[0].hasOwnProperty("reviews")) {
+      if (detail[0].reviews.length > 0) {
+        if (detail[0].reviews[0].hasOwnProperty("review")) {
+          primero = detail.map(el => el.reviews);
+          segundo = primero.flat();
 
-          }
         }
       }
     }
   }
-
-
-  // if (segundo.length) {
-  //   const puntuacionGeneral = segundo.map(el => el.score);
-  //   let cantidadReseñas = puntuacionGeneral.length
-  //   function promedio() {
-  //     let suma = puntuacionGeneral.reduce(function (valorAnterior, valorActual) {
-  //       return valorAnterior + valorActual;
-  //     });
-  //     let redondeo = suma / cantidadReseñas
-  //     return redondeo.toFixed(1)
-  //   }
-  //   var average1 = promedio();
-  // }
 
   return (
     <div className='container'>
@@ -156,7 +143,7 @@ export default function Detail(props) {
               <br></br>
               <li>{products.gender}</li>
               <br></br>
-              <img alt="k" className='img' src={products.images} />
+              <img alt='k' className='img' src={products.images} />
               <br></br>
               <br></br>
               <li className='detailSummary'>{products.description}</li>
@@ -164,7 +151,11 @@ export default function Detail(props) {
               <li>{Number(products.salePrice) + "$"}</li>
             </ul>
             <div>
-              <button type='button' onClick={() => openCloseModal1(dispatchCart())} className='btn2'>
+              <button
+                type='button'
+                onClick={() => openCloseModal1(dispatchCart())}
+                className='btn2'
+              >
                 Agregar al carrito
               </button>
               <div>
@@ -177,18 +168,17 @@ export default function Detail(props) {
         );
       })}
       <div className='detailContainer'>
-        {segundo.length === 0 || segundo === undefined ? <h4>No hay reseñas</h4> :
+        {segundo.length === 0 || segundo === undefined ? (
+          <h4>No hay reseñas</h4>
+        ) : (
           segundo.map(el => {
             return (
               <div>
-                <CreateReview
-                  review={el.review}
-                  score={el.score}
-                />
+                <CreateReview review={el.review} score={el.score} />
               </div>
-            )
+            );
           })
-        }
+        )}
         <h2>Puntuación general</h2>
         <Box
           sx={{

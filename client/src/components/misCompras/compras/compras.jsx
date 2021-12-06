@@ -45,7 +45,7 @@ export default function Compras({
   const dispatch = useDispatch();
   const history = useHistory();
   const [error, setError] = useState({});
-
+  const carritoAlmacen = useSelector(state => state.ShoppingAlmacen);
   const [input, setInput] = useState({
     review: "",
     score: "",
