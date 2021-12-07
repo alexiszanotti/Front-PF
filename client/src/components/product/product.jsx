@@ -145,6 +145,7 @@ export default function Products(props) {
         successSubmitFavorite()
       } else {
         dispatch(favorite(props.id));
+        successSubmitFavorite()
       }
     } else {
       if (idUser) {
@@ -160,6 +161,7 @@ export default function Products(props) {
         errorSubmitFavorite()
       } else {
         dispatch(removeFavorite(props.id));
+        errorSubmitFavorite()
       }
     }
   };
@@ -180,6 +182,7 @@ export default function Products(props) {
         successSubmitCart()
       } else {
         dispatch(shoppingCart(props.id));
+        successSubmitCart()
       }
     } else {
       if (idUser) {
@@ -196,6 +199,7 @@ export default function Products(props) {
         errorSubmitCart()
       } else {
         dispatch(removeCard(props.id));
+        errorSubmitCart()
       }
     }
   };
