@@ -7,27 +7,23 @@ import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import { Modal } from "@material-ui/core";
 import { modifyUser } from "../../Redux/Actions/index";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 
 export default function Perfil() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const userLogeado = useSelector((state) => state.userLogin);
-  const users = useSelector((state) => state.users);
+  const userLogeado = useSelector(state => state.userLogin);
+  const users = useSelector(state => state.users);
 
   const { isAuthenticated } = useAuth0();
 
   if (!isAuthenticated && userLogeado.type === undefined) history.push("/home");
 
-  let usuario = users.filter((user) => user.id === userLogeado.id);
-
-
+  let usuario = users.filter(user => user.id === userLogeado.id);
 
   const [input, setInput] = useState({
     id: userLogeado.id,
-
   });
-
 
   const handleInputChange = function (e) {
     setInput({
@@ -50,10 +46,6 @@ export default function Perfil() {
     });
   }
 
-
-
-
-
   const style = {
     position: "absolute",
     top: "50%",
@@ -68,63 +60,145 @@ export default function Perfil() {
   };
   const editar = (
     <div className='detailContainer'>
-      <form onSubmit={e => handleSubmit(e)} className="formulario" >
-        <Box sx={style} >
+      <form onSubmit={e => handleSubmit(e)} className='formulario'>
+        <Box sx={style}>
           <h1>EDITAR DATOS PERSONALES</h1>
 
-          <div className="contenido1">
-            <div className="sarasa">
-              <label><strong>NOMBRE</strong></label>
-              <input type='text' name='name' onChange={handleInputChange} placeholder={usuario.map((el) => el.name)} />
+          <div className='contenido1'>
+            <div className='sarasa'>
+              <label>
+                <strong>NOMBRE</strong>
+              </label>
+              <input
+                type='text'
+                name='name'
+                onChange={handleInputChange}
+                placeholder={usuario.map(el => el.name)}
+              />
             </div>
-            <div className="sarasa">
-              <label><strong>APELLIDO</strong></label>
-              <input type='text' name='lastName' onChange={handleInputChange} placeholder={usuario.map((el) => el.lastName)} />
+            <div className='sarasa'>
+              <label>
+                <strong>APELLIDO</strong>
+              </label>
+              <input
+                type='text'
+                name='lastName'
+                onChange={handleInputChange}
+                placeholder={usuario.map(el => el.lastName)}
+              />
             </div>
-            <div className="sarasa">
-              <label><strong>EMAIL</strong></label>
-              <input type='text' name='email' onChange={handleInputChange} placeholder={usuario.map((el) => el.email)} />
+            <div className='sarasa'>
+              <label>
+                <strong>EMAIL</strong>
+              </label>
+              <input
+                type='text'
+                name='email'
+                onChange={handleInputChange}
+                placeholder={usuario.map(el => el.email)}
+              />
             </div>
-            <div className="sarasa">
-              <label><strong>DOCUMENTO</strong></label>
-              <input type='text' name='document' onChange={handleInputChange} placeholder={usuario.map((el) => el.document)} />
+            <div className='sarasa'>
+              <label>
+                <strong>DOCUMENTO</strong>
+              </label>
+              <input
+                type='text'
+                name='document'
+                onChange={handleInputChange}
+                placeholder={usuario.map(el => el.document)}
+              />
             </div>
-            <div className="sarasa">
-              <label><strong>DIRECCION</strong></label>
-              <input type='text' name='address' onChange={handleInputChange} placeholder={usuario.map((el) => el.address)} />
+            <div className='sarasa'>
+              <label>
+                <strong>DIRECCION</strong>
+              </label>
+              <input
+                type='text'
+                name='address'
+                onChange={handleInputChange}
+                placeholder={usuario.map(el => el.address)}
+              />
             </div>
-            <div className="sarasa">
-              <label><strong>ALTURA</strong></label>
-              <input type='text' name='number' onChange={handleInputChange} placeholder={usuario.map((el) => el.number)} />
+            <div className='sarasa'>
+              <label>
+                <strong>ALTURA</strong>
+              </label>
+              <input
+                type='text'
+                name='number'
+                onChange={handleInputChange}
+                placeholder={usuario.map(el => el.number)}
+              />
             </div>
-            <div className="sarasa">
-              <label><strong>LOCALIDAD</strong></label>
-              <input type='text' name='location' onChange={handleInputChange} placeholder={usuario.map((el) => el.location)} />
+            <div className='sarasa'>
+              <label>
+                <strong>LOCALIDAD</strong>
+              </label>
+              <input
+                type='text'
+                name='location'
+                onChange={handleInputChange}
+                placeholder={usuario.map(el => el.location)}
+              />
             </div>
-            <div className="sarasa">
-
-              <label><strong>CODIGO POSTAL</strong> </label>
-              <input type='text' name='cp' onChange={handleInputChange} placeholder={usuario.map((el) => el.cp)} />
+            <div className='sarasa'>
+              <label>
+                <strong>CODIGO POSTAL</strong>{" "}
+              </label>
+              <input
+                type='text'
+                name='cp'
+                onChange={handleInputChange}
+                placeholder={usuario.map(el => el.cp)}
+              />
             </div>
-            <div className="sarasa">
-              <label><strong>PISO</strong></label>
-              <input type='text' name='floor' onChange={handleInputChange} placeholder={usuario.map((el) => el.floor)} />
+            <div className='sarasa'>
+              <label>
+                <strong>PISO</strong>
+              </label>
+              <input
+                type='text'
+                name='floor'
+                onChange={handleInputChange}
+                placeholder={usuario.map(el => el.floor)}
+              />
             </div>
-            <div className="sarasa">
-              <label><strong>DEPARTAMENTO</strong></label>
-              <input type='text' name='department' onChange={handleInputChange} placeholder={usuario.map((el) => el.department)} />
+            <div className='sarasa'>
+              <label>
+                <strong>DEPARTAMENTO</strong>
+              </label>
+              <input
+                type='text'
+                name='department'
+                onChange={handleInputChange}
+                placeholder={usuario.map(el => el.department)}
+              />
             </div>
-            <div className="sarasa">
-
-              <label><strong>PROVINCIA</strong></label>
-              <input type='text' name='province' onChange={handleInputChange} placeholder={usuario.map((el) => el.province)} />
+            <div className='sarasa'>
+              <label>
+                <strong>PROVINCIA</strong>
+              </label>
+              <input
+                type='text'
+                name='province'
+                onChange={handleInputChange}
+                placeholder={usuario.map(el => el.province)}
+              />
             </div>
-            <div className="sarasa">
-              <label><strong>TELEFONO</strong></label>
-              <input type='text' name='telephone' onChange={handleInputChange} placeholder={usuario.map((el) => el.telephone)} />
+            <div className='sarasa'>
+              <label>
+                <strong>TELEFONO</strong>
+              </label>
+              <input
+                type='text'
+                name='telephone'
+                onChange={handleInputChange}
+                placeholder={usuario.map(el => el.telephone)}
+              />
             </div>
           </div>
-          <div className="verdura">
+          <div className='verdura'>
             <button className='btn'>Guardar</button>
           </div>
         </Box>
@@ -132,82 +206,165 @@ export default function Perfil() {
       <br></br>
       <br></br>
       <br></br>
-
     </div>
   );
   return (
     <div>
-      <div className="contenedorName">
-        <br></br>
-        <h1 className="nombrePerfil">Hola {usuario.map((el) => `${el.name} ${el.lastName}`)}</h1>
-      </div>
-      <div className="contenedorPerfil">
-        <div className="detallecontenedor">
-          <h1>MIS DATOS</h1>
-          <h3>
-            En caso de querer actualizar sus datos haga click 
-            <Button onClick={() => openCloseModal1()} >acá</Button>.
-          </h3>
-          <div className="modalPerfil">
-            <Modal open={modal1} onClose={openCloseModal1}>
-              {editar}
-            </Modal>
+      <Modal open={modal1} onClose={openCloseModal1}>
+        {editar}
+      </Modal>
+      <h3 className='titulo-form'>Perfil de usuario</h3>
+      <form onSubmit={e => handleSubmit(e)} className='formulario'>
+        <div className='contenedorPerfil'>
+          <div className='div1'>
+            <label>Nombre: </label>
+            <input
+              className='inputs-form'
+              type='text'
+              name='name'
+              onChange={handleInputChange}
+              value={usuario.map(el => el.name)}
+              readOnly={true}
+            />
+          </div>
+          <div className='div2'>
+            <label>Apellido: </label>
+            <input
+              className='inputs-form'
+              type='text'
+              name='lastName'
+              onChange={handleInputChange}
+              value={usuario.map(el => el.lastName)}
+              readOnly={true}
+            />
+          </div>
+          <div className='div3'>
+            <label>E-mail: </label>
+            <input
+              className='inputs-form'
+              type='text'
+              name='email'
+              onChange={handleInputChange}
+              value={usuario.map(el => el.email)}
+              readOnly={true}
+            />
+          </div>
+          <div className='div4'>
+            <label>Documento: </label>
+            <input
+              className='inputs-form'
+              type='text'
+              name='document'
+              onChange={handleInputChange}
+              value={usuario.map(el => el.document)}
+              readOnly={true}
+            />
+          </div>
+          <div className='div5'>
+            <label>Telefono:</label>
+            <input
+              className='inputs-form'
+              type='text'
+              name='telephone'
+              onChange={handleInputChange}
+              value={usuario.map(el => el.telephone)}
+              readOnly={true}
+            />
+          </div>
+          <div className='div6'>
+            <label>Dirección: </label>
+            <input
+              className='inputs-form'
+              type='text'
+              name='address'
+              onChange={handleInputChange}
+              value={usuario.map(el => el.address)}
+              readOnly={true}
+            />
+          </div>
+          <div className='div7'>
+            <label>Altura: </label>
+            <input
+              className='inputs-form'
+              type='text'
+              name='number'
+              onChange={handleInputChange}
+              value={usuario.map(el => el.number)}
+              readOnly={true}
+            />
+          </div>
+          <div className='div8'>
+            <label>Localidad: </label>
+            <input
+              className='inputs-form'
+              type='text'
+              name='location'
+              onChange={handleInputChange}
+              value={usuario.map(el => el.location)}
+              readOnly={true}
+            />
+          </div>
+          <div className='div9'>
+            <label>CP: </label>
+            <input
+              className='inputs-form'
+              type='text'
+              name='cp'
+              onChange={handleInputChange}
+              value={usuario.map(el => el.cp)}
+              readOnly={true}
+            />
+          </div>
+          <div className='div10'>
+            <label>Piso: </label>
+            <input
+              className='inputs-form'
+              type='text'
+              name='floor'
+              onChange={handleInputChange}
+              value={usuario.map(el => el.floor)}
+              readOnly={true}
+            />
+          </div>
+          <div className='div11'>
+            <label>Depto: </label>
+            <input
+              className='inputs-form'
+              type='text'
+              name='department'
+              onChange={handleInputChange}
+              value={usuario.map(el => el.department)}
+              readOnly={true}
+            />
+          </div>
+          <div className='div12'>
+            <label>Provincia: </label>
+            <input
+              className='inputs-form'
+              type='text'
+              name='province'
+              onChange={handleInputChange}
+              value={usuario.map(el => el.province)}
+              readOnly={true}
+            />
           </div>
         </div>
-        <form onSubmit={e => handleSubmit(e)} className="formulario" >
-          <div className="contenido">
-            <div className="sarasa">
-              <label>NOMBRE</label>
-              <input type='text' name='name' onChange={handleInputChange} value={usuario.map((el) => el.name)} readOnly={true} />
-            </div>
-            <div className="sarasa">
-              <label>APELLIDO</label>
-              <input type='text' name='lastName' onChange={handleInputChange} value={usuario.map((el) => el.lastName)} readOnly={true} />
-            </div>
-            <div className="sarasa">
-              <label>EMAIL</label>
-              <input type='text' name='email' onChange={handleInputChange} value={usuario.map((el) => el.email)} readOnly={true} />
-            </div>
-            <div className="sarasa">
-              <label>DOCUMENTO</label>
-              <input type='text' name='document' onChange={handleInputChange} value={usuario.map((el) => el.document)} readOnly={true} />
-            </div>
-            <div className="sarasa">
-              <label>DIRECCION</label>
-              <input type='text' name='address' onChange={handleInputChange} value={usuario.map((el) => el.address)} readOnly={true} />
-            </div>
-            <div className="sarasa">
-              <label>ALTURA</label>
-              <input type='text' name='number' onChange={handleInputChange} value={usuario.map((el) => el.number)} readOnly={true} />
-            </div>
-            <div className="sarasa">
-              <label>LOCALIDAD</label>
-              <input type='text' name='location' onChange={handleInputChange} value={usuario.map((el) => el.location)} readOnly={true} />
-            </div>
-            <div className="sarasa">
-
-              <label>CODIGO POSTAL</label>
-              <input type='text' name='cp' onChange={handleInputChange} value={usuario.map((el) => el.cp)} readOnly={true} />
-            </div>
-            <div className="sarasa">
-              <label>PISO</label>
-              <input type='text' name='floor' onChange={handleInputChange} value={usuario.map((el) => el.floor)} readOnly={true} />
-            </div>
-            <div className="sarasa">
-              <label>DEPARTAMENTO</label>
-              <input type='text' name='department' onChange={handleInputChange} value={usuario.map((el) => el.department)} readOnly={true} />
-            </div>
-            <div className="sarasa">
-              <label>PROVINCIA</label>
-              <input type='text' name='province' onChange={handleInputChange} value={usuario.map((el) => el.province)} readOnly={true} />
-            </div>
-            <div className="sarasa">
-              <label>TELEFONO</label>
-              <input type='text' name='telephone' onChange={handleInputChange} value={usuario.map((el) => el.telephone)} readOnly={true} />
-            </div>
-          </div>
-        </form>
-      </div>
+        <Box
+          textAlign='center'
+          sx={{
+            width: 300,
+          }}
+        >
+          <Button
+            alignItems='center'
+            size='medium'
+            variant='outlined'
+            onClick={() => openCloseModal1()}
+          >
+            EDITAR
+          </Button>
+        </Box>
+      </form>
     </div>
   );
 }
