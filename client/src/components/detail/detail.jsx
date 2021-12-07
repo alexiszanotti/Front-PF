@@ -4,14 +4,13 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import { Modal } from "@material-ui/core";
 import "./detail.css";
-
-
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
 import CreateReview from "../createReview/createReview";
-
-
 
 export default function Detail(props) {
   const dispatch = useDispatch();
@@ -137,33 +136,42 @@ export default function Detail(props) {
       {detail.map(products => {
         return (
           <div className='detailContainer'>
-            <h1>{products.productName}</h1>
-            <ul className='detailUl'>
-              <li>{products.collection.name}</li>
-              <br></br>
-              <li>{products.gender}</li>
-              <br></br>
-              <img alt='k' className='img' src={products.images} />
-              <br></br>
-              <br></br>
-              <li className='detailSummary'>{products.description}</li>
-              <br></br>
-              <li>{Number(products.salePrice) + "$"}</li>
-            </ul>
-            <div>
-              <button
-                type='button'
-                onClick={() => openCloseModal1(dispatchCart())}
-                className='btn2'
-              >
-                Agregar al carrito
-              </button>
-              <div>
-                <Modal open={modal1} onClose={openCloseModal1}>
-                  {carrito}
-                </Modal>
-              </div>
-            </div>
+            <Card sx={{ maxWidth: 820 }}>
+
+              <CardContent className='misComprasCard'>
+                <div >
+                  <Typography gutterBottom variant="h5" component="div">
+                    <div className="cardTitle">
+                      <h3>{products.productName}</h3>
+                    </div>
+                    <li>{products.collection.name}</li>
+                    <br></br>
+                    <li>{products.gender}</li>
+                    <br></br>
+                    <img alt='k' className='img' src={products.images} />
+                  </Typography>
+                </div>
+                <div className="detailContainerCard">
+                  <Typography variant="body2" color="text.secondary">
+                    <li className='detailSummary'>{products.description}</li>
+                    <br></br>
+                    <li>{"$" + Number(products.salePrice)}</li>
+                    <div>
+                      <button
+                        type='button'
+                        onClick={() => openCloseModal1(dispatchCart())}
+                        className="btn6"
+                      >
+                        Agregar al carrito
+                      </button>
+                      <Modal open={modal1} onClose={openCloseModal1}>
+                        {carrito}
+                      </Modal>
+                    </div>
+                  </Typography>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         );
       })}
