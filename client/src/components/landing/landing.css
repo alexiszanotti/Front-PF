@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital@1&display=swap');
 .containerLanding{
     display: flex;
     justify-content: center;
@@ -26,4 +27,8 @@
 
 .containerTitle{
     font-family: 'Roboto' thin  italic;
+}
+
+.tituloLanding{
+    font-family: 'Fira Sans', sans-serif;
 }

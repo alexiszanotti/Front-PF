@@ -48,48 +48,44 @@ export default function Products(props) {
   const successSubmitFavorite = () => {
     toast.success('Producto guardado con éxito', {
       position: "bottom-right",
-      autoClose: 2000,
-      hideProgressBar: false,
+      autoClose: 1000,
+      hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
-      progress: undefined,
       });
   }
 
   const errorSubmitFavorite = () => {
     toast.error('Producto eliminado éxito', {
       position: "bottom-right",
-      autoClose: 2000,
-      hideProgressBar: false,
+      autoClose: 1000,
+      hideProgressBar: true,
       closeOnClick: true,
-      pauseOnHover: false,
+      pauseOnHover: true,
       draggable: true,
-      progress: undefined,
       });
   }
 
   const successSubmitCart = () => {
     toast.success('Producto agregado con éxito', {
       position: "bottom-right",
-      autoClose: 2000,
-      hideProgressBar: false,
+      autoClose: 1000,
+      hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
-      progress: undefined,
       });
   }
 
   const errorSubmitCart = () => {
     toast.error('Producto eliminado con éxito', {
       position: "bottom-right",
-      autoClose: 2000,
-      hideProgressBar: false,
+      autoClose: 1000,
+      hideProgressBar: true,
       closeOnClick: true,
-      pauseOnHover: false,
+      pauseOnHover: true,
       draggable: true,
-      progress: undefined,
       });
   }
 
