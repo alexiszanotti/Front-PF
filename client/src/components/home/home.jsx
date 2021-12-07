@@ -159,6 +159,7 @@ export default function Home({setCurrentPage, currentPage}) {
           paginado={paginado}
           previousPage={previousPage}
           nextPage={nextPage}
+          currentPage={currentPage}
         />
       </div>
       <button className='botonCart1' onClick={handleClick}>
