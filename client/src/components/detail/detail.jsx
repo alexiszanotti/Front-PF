@@ -11,6 +11,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CreateReview from "../createReview/createReview";
+import Rating from "@mui/material/Rating";
 
 export default function Detail(props) {
   const dispatch = useDispatch();
@@ -137,7 +138,6 @@ export default function Detail(props) {
         return (
           <div className='detailContainer'>
             <Card sx={{ maxWidth: 820 }}>
-
               <CardContent className='misComprasCard'>
                 <div >
                   <Typography gutterBottom variant="h5" component="div">
@@ -176,7 +176,7 @@ export default function Detail(props) {
         );
       })}
       <div className='detailContainer'>
-        {segundo.length === 0 || segundo === undefined ? (
+        {/* {segundo.length === 0 || segundo === undefined ? (
           <h4>No hay reseñas</h4>
         ) : (
           segundo.map(el => {
@@ -194,12 +194,40 @@ export default function Detail(props) {
             display: "flex",
             alignItems: "center",
           }}
-        >
-          {/* <Rating name="half-rating-read" value={average1} precision={0.5} readOnly /> */}
-          {/* <h4>{average1}</h4> */}
-        </Box>
+        > */}
+        {/* <Rating name="half-rating-read" value={average1} precision={0.5} readOnly /> */}
+        {/* <h4>{average1}</h4> */}
+        {/* </Box> */}
+        <Card sx={{ maxWidth: 820 }}>
+          <CardContent className='misComprasCard'>
+            <div >
+              <Typography gutterBottom variant="h5" component="div">
+                {segundo.length === 0 || segundo === undefined ? null : (
+                  segundo.map(el => {
+                    return (
+                      <div>
+                        <CreateReview review={el.review} score={el.score} />
+                      </div>
+                    );
+                  })
+                )}
+                {/* <h4>Puntuación general</h4>
+                <Box
+                  sx={{
+                    width: 200,
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                > 
+              <Rating name="half-rating-read" value={average1} precision={0.5} readOnly /> 
+              <h4>{average1}</h4> 
+              </Box>  */}
+              </Typography>
+            </div>
+          </CardContent>
+        </Card>
       </div>
-      <button onClick={handleButtonHome} className='btn'>
+      <button onClick={handleButtonHome} className='btn5'>
         Home
       </button>
       <br></br>
