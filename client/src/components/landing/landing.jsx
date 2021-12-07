@@ -79,7 +79,7 @@ export default function Landing() {
   );
   return (
     <div className="containerLanding">
-      <h1>Bienvenidos a Adidas Oficial</h1>
+      <h1 className="tituloLanding">BIENVENIDOS A ADIDAS OFICIAL</h1>
 
       <Link to="/home">
         <button className="btn">Entrar al sitio</button>

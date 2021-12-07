@@ -31,6 +31,7 @@ export default function SearchBar({setCurrentPage}) {
           type='text'
           name='text'
           placeholder='Buscar...'
+          color="secondary"
         />
       </form>
     </div>
