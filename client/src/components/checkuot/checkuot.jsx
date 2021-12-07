@@ -1,3 +1,4 @@
+import "./checkout.css";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ImageList from "@mui/material/ImageList";
@@ -7,7 +8,7 @@ import ListSubheader from "@mui/material/ListSubheader";
 import IconButton from "@mui/material/IconButton";
 import { useDispatch } from "react-redux";
 import { changeStatusCart, mercadoPago } from "../../Redux/Actions/index";
-
+import { Button } from "@mui/material";
 export default function Checkuot() {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
@@ -65,7 +66,7 @@ export default function Checkuot() {
     }, 1000);
   };
 
-  useEffect(() => {
+  // if (loading === true) {
     setTimeout(() => {
       const script = document.createElement("script"); //Crea un elemento html script
 
@@ -79,25 +80,39 @@ export default function Checkuot() {
       script.setAttributeNode(attr_data_preference);
 
       setLoading(true);
-
       //Agrega el script como nodo hijo del elemento form
-      document.getElementById("form1").appendChild(script);
-      // return () => {
-      //   //Elimina el script como nodo hijo del elemento form
-      //   document.getElementById("form1").removeChild(script);
-      // };
-    }, 8000);
-  }, [idMP]);
+      if (loading === true) {
+        document.getElementById("form1").appendChild(script);
+        return () => {
+          //Elimina el script como nodo hijo del elemento form
+          document.getElementById("form1").removeChild(script);
+        };
+      }
+    }, 10000);
+  // }
 
   const render = !loading ? (
     <>
-      <h1>Cargando....</h1>
-      <img alt="l" src="https://media4.giphy.com/media/K0vYRWCj0FlcBGSxK6/giphy.gif?cid=ecf05e47bc2jhce9is24eznj6n9h7ioelcx7vzys02ya3uwn&rid=giphy.gif&ct=s"  width="1000" height="850" />
+      <div className="contenedorZapatilla">
+        <h1>Cargando....</h1>
+        <img
+          className="zapatilla"
+          alt="l"
+          src="https://media4.giphy.com/media/K0vYRWCj0FlcBGSxK6/giphy.gif?cid=ecf05e47bc2jhce9is24eznj6n9h7ioelcx7vzys02ya3uwn&rid=giphy.gif&ct=s"
+        />
+      </div>
     </>
   ) : (
     <div>
-      <form id="form1"></form>
-      <img  alt="l" src="https://media2.giphy.com/media/8lKyjU3F63hoa7KtOO/giphy.gif?cid=ecf05e47nwshrl1mk3bc1tm4q5m5nohcp5867n5nx5zmpdyy&rid=giphy.gif&ct=s"/>  
+      <div className="contenedorZapatilla">
+        <h1>ULTIMO PASO</h1>
+        <h3>Espere hasta que aparesca el boton de pagar y listo puedes realizar tu compra !</h3>
+        <form id="form1"></form>
+        <img
+          alt="l"
+          src="https://media2.giphy.com/media/8lKyjU3F63hoa7KtOO/giphy.gif?cid=ecf05e47nwshrl1mk3bc1tm4q5m5nohcp5867n5nx5zmpdyy&rid=giphy.gif&ct=s"
+        />
+      </div>
     </div>
   );
 
@@ -107,6 +122,11 @@ export default function Checkuot() {
         <>
           <div className="shoppingGeneral">
             <h1>RESUMEN DE COMPRA</h1>
+            <div className="btnContinuarConElPago">
+              <Button onClick={setChangeStatusCart} variant="contained">
+                CONTINUAR CON EL PAGO
+              </Button>
+            </div>
             {usuarioLogeado.map((el) => {
               return (
                 <div>
@@ -154,7 +174,6 @@ export default function Checkuot() {
                 </ImageListItem>
               ))}
             </ImageList>
-            <button onClick={setChangeStatusCart}>CONTINUAR CON EL PAGO</button>
           </div>
         </>
       ) : (
