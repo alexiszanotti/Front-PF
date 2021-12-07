@@ -4,6 +4,7 @@ import CardFavorite from "../cardFavorite/cardFavorite";
 import { Link } from "react-router-dom";
 import { emptyFavorites, addDataBaseFavorite, deleteAllDataBaseeFavorite } from "../../Redux/Actions/index";
 import { useDispatch } from "react-redux";
+import { Button } from "@mui/material";
 import "./favorite.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -64,9 +65,9 @@ export default function Favorite() {
               {dataBaseFavorite.products?.length}{" "}
               {dataBaseFavorite.products?.length === 1 ? "Artículo" : "Artículos"}{" "}
             </h2>
-            <button onClick={handleEmptyFavorites}>
+            <Button onClick={handleEmptyFavorites} variant='contained'>
               BORRAR TODOS FAVORITOS
-            </button>
+            </Button>
           </div>
           <br></br>
           <br></br>
@@ -101,9 +102,9 @@ export default function Favorite() {
               {sinLogin.length}{" "}
               {sinLogin.length === 1 ? "Artículo" : "Artículos"}{" "}
             </h2>
-            <button onClick={handleEmptyFavorites}>
+            <Button onClick={handleEmptyFavorites} variant='contained'>
               BORRAR TODOS FAVORITOS
-            </button>
+            </Button>
           </div>
           <br></br>
           <br></br>

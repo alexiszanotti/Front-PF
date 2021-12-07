@@ -124,7 +124,7 @@ export default function ShopingCart() {
                 Tené en cuenta que los productos añadidos al carrito no se reservan. Finalizá tu
                 compra ahora para hacerlos tuyos.
               </p>
-              <button onClick={vaciar}>BORRAR TODO</button>
+              <Button onClick={vaciar} variant='contained'>BORRAR TODO</Button>
             </div>
             <div className='contenidoShoppingCart'>
               {cart?.map(products => {
@@ -141,6 +141,8 @@ export default function ShopingCart() {
                   </div>
                 );
               })}
+            </div>
+            <div className='btnComprar'>
               <Comprar />
             </div>
             <Link to='/home'>
