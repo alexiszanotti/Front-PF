@@ -8,6 +8,13 @@ import Box from "@mui/material/Box";
 import { Modal } from "@material-ui/core";
 import { modifyUser } from "../../Redux/Actions/index";
 import swal from 'sweetalert';
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import TextField from '@mui/material/TextField';
 
 export default function Perfil() {
   const dispatch = useDispatch();
@@ -135,6 +142,33 @@ export default function Perfil() {
 
     </div>
   );
+
+  const Item = styled(Paper)(({ theme }) => ({
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
+
+  // function FormRow() {
+  //   return (
+  //     <React.Fragment>
+  //       <Grid item xs={4}>
+  //         <Item>Item</Item>
+  //       </Grid>
+  //       <Grid item xs={4}>
+  //         <Item>Item</Item>
+  //       </Grid>
+  //       <Grid item xs={4}>
+  //         <Item>Item</Item>
+  //       </Grid>
+  //       <Grid item xs={3}>
+  //         <Item>Item</Item>
+  //       </Grid>
+  //     </React.Fragment>
+  //   );
+  // }
+
   return (
     <div>
       <div className="contenedorName">
@@ -154,7 +188,7 @@ export default function Perfil() {
             </Modal>
           </div>
         </div>
-        <form onSubmit={e => handleSubmit(e)} className="formulario" >
+        {/* <form onSubmit={e => handleSubmit(e)} className="formulario" >
           <div className="contenido">
             <div className="sarasa">
               <label>NOMBRE</label>
@@ -206,8 +240,197 @@ export default function Perfil() {
               <input type='text' name='telephone' onChange={handleInputChange} value={usuario.map((el) => el.telephone)} readOnly={true} />
             </div>
           </div>
-        </form>
+        </form> */}
+        <div className='boxCategories'> 
+    <Box sx={{ flexGrow: 1 }}>
+          <Grid container spacing={2} columns={16}>
+            <Grid item xs={4}>
+              <Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
+                <TextField 
+                  id="outlined-read-only-input"
+                  label="Nombre"
+                  defaultValue={usuario.map((el) => el.name)}
+                  InputProps={{
+                    readOnly: true,
+                  }}/>                   
+                </FormControl>
+              </Box>
+            </Grid>
+            <Grid item xs={4}>
+              <Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
+                <TextField 
+                  id="outlined-read-only-input"
+                  label="Apellido"
+                  defaultValue={usuario.map((el) => el.lastName)}
+                  InputProps={{
+                    readOnly: true,
+                  }}/>                  
+                </FormControl>
+              </Box>
+            </Grid>
+            <Grid item xs={4}>
+              <Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
+                <TextField 
+                  id="outlined-read-only-input"
+                  label="Email"
+                  defaultValue={usuario.map((el) => el.email)}
+                  InputProps={{
+                    readOnly: true,
+                  }}/>                   
+                </FormControl>
+              </Box>
+            </Grid>
+            <Grid item xs={4}>
+              <Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
+                  <TextField 
+                  id="outlined-read-only-input"
+                  label="Documento"
+                  defaultValue={usuario.map((el) => el.document)}
+                  InputProps={{
+                    readOnly: true,
+                  }}/>                  
+                </FormControl>
+              </Box>
+            </Grid>
+          </Grid>
+    </Box>
+    <br></br>
+    <Box sx={{ flexGrow: 1 }}>
+          <Grid container spacing={2} columns={16}>
+            <Grid item xs={4}>
+              <Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
+                <TextField 
+                  id="outlined-read-only-input"
+                  label="Dirección"
+                  defaultValue={usuario.map((el) => el.address)}
+                  InputProps={{
+                    readOnly: true,
+                  }}/>                   
+                </FormControl>
+              </Box>
+            </Grid>
+            <Grid item xs={4}>
+              <Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
+                <TextField 
+                  id="outlined-read-only-input"
+                  label="Altura"
+                  defaultValue={usuario.map((el) => el.number)}
+                  InputProps={{
+                    readOnly: true,
+                  }}/>                  
+                </FormControl>
+              </Box>
+            </Grid>
+            <Grid item xs={4}>
+              <Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
+                <TextField 
+                  id="outlined-read-only-input"
+                  label="Localidad"
+                  defaultValue={usuario.map((el) => el.location)}
+                  InputProps={{
+                    readOnly: true,
+                  }}/>                   
+                </FormControl>
+              </Box>
+            </Grid>
+            <Grid item xs={4}>
+              <Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
+                  <TextField 
+                  id="outlined-read-only-input"
+                  label="Código postal"
+                  defaultValue={usuario.map((el) => el.cp)}
+                  InputProps={{
+                    readOnly: true,
+                  }}/>                  
+                </FormControl>
+              </Box>
+            </Grid>
+          </Grid>
+    </Box>
+    <br></br>
+    <Box sx={{ flexGrow: 1 }}>
+          <Grid container spacing={2} columns={16}>
+            <Grid item xs={4}>
+              <Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
+                <TextField 
+                  id="outlined-read-only-input"
+                  label="Piso"
+                  defaultValue={usuario.map((el) => el.floor)}
+                  InputProps={{
+                    readOnly: true,
+                  }}/>                   
+                </FormControl>
+              </Box>
+            </Grid>
+            <Grid item xs={4}>
+              <Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
+                <TextField 
+                  id="outlined-read-only-input"
+                  label="Departamento"
+                  defaultValue={usuario.map((el) => el.department)}
+                  InputProps={{
+                    readOnly: true,
+                  }}/>                  
+                </FormControl>
+              </Box>
+            </Grid>
+            <Grid item xs={4}>
+              <Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
+                <TextField 
+                  id="outlined-read-only-input"
+                  label="Provincia"
+                  defaultValue={usuario.map((el) => el.province)}
+                  InputProps={{
+                    readOnly: true,
+                  }}/>                   
+                </FormControl>
+              </Box>
+            </Grid>
+            <Grid item xs={4}>
+              <Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
+                  <TextField 
+                  id="outlined-read-only-input"
+                  label="Teléfono"
+                  defaultValue={usuario.map((el) => el.telephone)}
+                  InputProps={{
+                    readOnly: true,
+                  }}/>                  
+                </FormControl>
+              </Box>
+            </Grid>
+          </Grid>
+    </Box>
+    </div>
       </div>
+      {/* <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={2}>
+        <Grid item xs={3} >
+          <Item>xs=8</Item>
+        </Grid>
+        <Grid item xs={3}>
+          <Item>xs=4</Item>
+        </Grid>
+        <Grid item xs={3}>
+          <Item>xs=4</Item>
+        </Grid>
+        <Grid item xs={3}>
+          <Item>xs=8</Item>
+        </Grid>
+      </Grid>
+    </Box> */}
+    
     </div>
   );
 }
