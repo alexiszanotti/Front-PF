@@ -4,7 +4,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { modifyUser } from "../../Redux/Actions";
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import "./goShopping.css";
@@ -105,7 +104,6 @@ export default function GoShopping() {
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(modifyUser(input));
-
     successDate();
   }
 
@@ -248,11 +246,14 @@ export default function GoShopping() {
             </div>
           </div>
 
-          <Button variant='outlined'>Modificar datos</Button>
+          <Button type='submit' variant='outlined'>
+            Modificar datos
+          </Button>
           <Button onClick={handleCheckOut} variant='outlined' startIcon={<AttachMoneyIcon />}>
             Continuar al pago
           </Button>
         </form>
+        <ToastContainer />
       </div>
     );
   }

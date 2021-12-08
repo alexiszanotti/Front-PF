@@ -81,10 +81,19 @@ export default function ShopingCart() {
           </div>
         ) : idUser ? (
           <div>
-            <h1 className='tucarrito'>TU CARRITO</h1>
-            <Button className='btnComprar1' onClick={borrarCarrito} variant='contained'>
-              BORRAR TODO
-            </Button>
+            <div className='titulo-btn-container'>
+              <h1 className='tucarrito'>TU CARRITO</h1>
+
+              <h2 className='ahora'>¡COMPRÁ AHORA! TU CARRITO NO ASEGURA INVENTARIO</h2>
+              <p className='tene'>
+                Tené en cuenta que los productos añadidos al carrito no se reservan. Finalizá tu
+                compra ahora para hacerlos tuyos.
+              </p>
+
+              <Button className='btnComprar1' onClick={borrarCarrito} variant='contained'>
+                BORRAR TODO
+              </Button>
+            </div>
             <div className='contenidoShoppingCart'>
               {productShopping?.map(products => {
                 return (
@@ -101,13 +110,7 @@ export default function ShopingCart() {
                 );
               })}
             </div>
-            <div className='comprarAhora'>
-              <h2 className='ahora'>¡COMPRÁ AHORA! TU CARRITO NO ASEGURA INVENTARIO</h2>
-              <p className='tene'>
-                Tené en cuenta que los productos añadidos al carrito no se reservan. Finalizá tu
-                compra ahora para hacerlos tuyos.
-              </p>
-            </div>
+
             <div className='btnComprar'>
               <Comprar />
             </div>

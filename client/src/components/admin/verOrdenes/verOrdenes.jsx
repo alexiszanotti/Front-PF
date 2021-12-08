@@ -22,7 +22,7 @@ export default function VerOrdenes() {
   return (
     <div>
       <div className='verOrdenesContainer'>
-        <h1>Ordenes</h1>
+        <h1>ORDENES</h1>
 
         <select onChange={e => handleFilterStatus(e)}>
           <option value='TODOS'>Estado de orden</option>

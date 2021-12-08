@@ -41,7 +41,6 @@ export default function Compras({
   cartId,
   userId,
 }) {
-
   const dispatch = useDispatch();
   const history = useHistory();
   const [error, setError] = useState({});
@@ -170,7 +169,7 @@ export default function Compras({
           />
 
           <CardContent className='misComprasCard'>
-            <img alt="l" src={imagenProducto} className='imagen' />
+            <img alt='l' src={imagenProducto} className='imagen' />
             <div className='misCompras'>
               <Typography gutterBottom variant='h5' component='div'>
                 {nombreProducto}
@@ -183,7 +182,7 @@ export default function Compras({
               </Typography>
             </div>
             <Typography variant='body2' color='text.secondary'>
-              {cantidad}
+              <h2>Cantidad: {cantidad}</h2>
             </Typography>
             <Stack direction='column' spacing={2}>
               <Button variant='contained' onClick={openCloseModal}>

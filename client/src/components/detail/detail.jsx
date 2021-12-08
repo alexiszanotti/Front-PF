@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import { Modal } from "@material-ui/core";
 import "./detail.css";
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
 import CreateReview from "../createReview/createReview";
 import Rating from "@mui/material/Rating";
 
@@ -69,7 +69,6 @@ export default function Detail(props) {
         </Typography>
         <div className='carritoDiv'>
           {detail?.map(products => {
-
             return (
               <div>
                 <h4>{products.productName}</h4>
@@ -111,7 +110,6 @@ export default function Detail(props) {
     stock.push(i);
   }
 
-
   let primero = [];
   let segundo = [
     {
@@ -126,7 +124,6 @@ export default function Detail(props) {
         if (detail[0].reviews[0].hasOwnProperty("review")) {
           primero = detail.map(el => el.reviews);
           segundo = primero.flat();
-
         }
       }
     }
@@ -139,9 +136,9 @@ export default function Detail(props) {
           <div className='detailContainer'>
             <Card sx={{ maxWidth: 820 }}>
               <CardContent className='misComprasCard'>
-                <div >
-                  <Typography gutterBottom variant="h5" component="div">
-                    <div className="cardTitle">
+                <div>
+                  <Typography gutterBottom variant='h5' component='div'>
+                    <div className='cardTitle'>
                       <h3>{products.productName}</h3>
                     </div>
                     <li>{products.collection.name}</li>
@@ -151,8 +148,8 @@ export default function Detail(props) {
                     <img alt='k' className='img' src={products.images} />
                   </Typography>
                 </div>
-                <div className="detailContainerCard">
-                  <Typography variant="body2" color="text.secondary">
+                <div className='detailContainerCard'>
+                  <Typography variant='body2' color='text.secondary'>
                     <li className='detailSummary'>{products.description}</li>
                     <br></br>
                     <li>{"$" + Number(products.salePrice)}</li>
@@ -160,7 +157,7 @@ export default function Detail(props) {
                       <button
                         type='button'
                         onClick={() => openCloseModal1(dispatchCart())}
-                        className="btn6"
+                        className='btn6'
                       >
                         Agregar al carrito
                       </button>
@@ -199,18 +196,19 @@ export default function Detail(props) {
         {/* <h4>{average1}</h4> */}
         {/* </Box> */}
         <Card sx={{ maxWidth: 820 }}>
+          <h1 className='title-reneged'>Reseñas</h1>
           <CardContent className='misComprasCard'>
-            <div >
-              <Typography gutterBottom variant="h5" component="div">
-                {segundo.length === 0 || segundo === undefined ? null : (
-                  segundo.map(el => {
-                    return (
-                      <div>
-                        <CreateReview review={el.review} score={el.score} />
-                      </div>
-                    );
-                  })
-                )}
+            <div>
+              <Typography gutterBottom variant='h5' component='div'>
+                {segundo.length === 0 || segundo === undefined
+                  ? null
+                  : segundo.map(el => {
+                      return (
+                        <div>
+                          <CreateReview review={el.review} score={el.score} />
+                        </div>
+                      );
+                    })}
                 {/* <h4>Puntuación general</h4>
                 <Box
                   sx={{

@@ -55,32 +55,39 @@ export default function Checkuot() {
     setEsperar(true);
     setTimeout(() => {
       dispatch(mercadoPago({ cartId: cartIdd }));
-    }, 1000);
+    }, 8000);
   };
 
   // if (loading === true) {
 
   setTimeout(() => {
-    const script = document.createElement("script"); //Crea un elemento html script
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+    const attr_data_preference = document.createAttribute("data-preference-id");
+    if (idMP.length === 0) {
+      console.log("no hay id");
+    } else {
+      //Crea un elemento html script
 
-    const attr_data_preference = document.createAttribute("data-preference-id"); //Crea un nodo atribute
-    attr_data_preference.value = idMP; //Le asigna como valor el id que devuelve MP
-    console.log("GATO", idMP);
-    //Agrega atributos al elemento script
-    script.src = "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
-    script.setAttributeNode(attr_data_preference);
+      attr_data_preference.value = idMP; //Le asigna como valor el id que devuelve MP
 
-    setLoading(true);
+      //Agrega atributos al elemento script
 
-    //Agrega el script como nodo hijo del elemento form
-    if (loading === true) {
-      document.getElementById("form1").appendChild(script);
-      return () => {
-        //Elimina el script como nodo hijo del elemento form
-        document.getElementById("form1").removeChild(script);
-      };
+      script.src = "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
+      script.setAttributeNode(attr_data_preference);
+
+      setLoading(true);
+
+      //Agrega el script como nodo hijo del elemento form
+      if (loading === true) {
+        document.getElementById("form1").appendChild(script);
+        return () => {
+          //Elimina el script como nodo hijo del elemento form
+          document.getElementById("form1").removeChild(script);
+        };
+      }
     }
-  }, 10000);
+  }, 8000);
   // }
 
   const render = !loading ? (

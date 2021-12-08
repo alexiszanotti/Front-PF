@@ -1,7 +1,10 @@
-
-.contentStock{
-
-    width: 70%;
-    margin: 0 0 0 24%;
-
+.contentStock {
+  width: 70%;
+  margin: 0 0 0 24%;
+  border-radius: 44px;
+  background: #e0e0e0;
+  box-shadow: -10px 10px 16px #c3c3c3, 10px -10px 16px #fdfdfd;
+  text-align: center;
+  margin-top: 1%;
+  padding: 10px;
 }
