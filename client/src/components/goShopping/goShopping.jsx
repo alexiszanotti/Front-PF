@@ -31,12 +31,6 @@ export default function GoShopping() {
   let province = usuarioLogeado.map(el => el.province);
   let telephone = usuarioLogeado.map(el => el.telephone);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     dispatch(getAllUsers());
-  //   },000)
-  // }, [dispatch]);
-
   const [input, setInput] = useState({
     id: usuario.id,
     name: name.toString(),
@@ -120,7 +114,7 @@ export default function GoShopping() {
         <form onSubmit={handleSubmit} className='formulario'>
           <div className='contenido'>
             <div className='sarasa'>
-              <label>NOMBRE</label>
+              <label>Nombre:</label>
               <input
                 type='text'
                 name='name'
@@ -132,7 +126,7 @@ export default function GoShopping() {
               {/*     {error.name && <p className='error'>{error.name} </p>} */}
             </div>
             <div className='sarasa'>
-              <label>APELLIDO</label>
+              <label>Apellido:</label>
               <input
                 type='text'
                 name='lastName'
@@ -143,7 +137,7 @@ export default function GoShopping() {
               {/*  {error.lastName && <p className='error'>{error.lastName} </p>} */}
             </div>
             <div className='sarasa'>
-              <label>EMAIL</label>
+              <label>E-mail:</label>
               <input
                 type='text'
                 name='email'
@@ -154,7 +148,7 @@ export default function GoShopping() {
               {/*   {error.email && <p className='error'>{error.email} </p>} */}
             </div>
             <div className='sarasa'>
-              <label>DOCUMENTO</label>
+              <label>Documento:</label>
               <input
                 type='number'
                 name='document'
@@ -165,7 +159,7 @@ export default function GoShopping() {
               {/*   {error.document && <p className='error'>{error.document} </p>} */}
             </div>
             <div className='sarasa'>
-              <label>DIRECCION</label>
+              <label>Dirección:</label>
               <input
                 type='text'
                 name='address'
@@ -176,7 +170,7 @@ export default function GoShopping() {
               {/* {error.address && <p className='error'>{error.address} </p>} */}
             </div>
             <div className='sarasa'>
-              <label>ALTURA</label>
+              <label>Altura:</label>
               <input
                 type='number'
                 name='number'
@@ -187,7 +181,7 @@ export default function GoShopping() {
               {/* {error.number && <p className='error'>{error.number} </p>} */}
             </div>
             <div className='sarasa'>
-              <label>LOCALIDAD</label>
+              <label>Localidad:</label>
               <input
                 type='text'
                 name='location'
@@ -198,7 +192,7 @@ export default function GoShopping() {
               {/*  {error.location && <p className='error'>{error.location} </p>} */}
             </div>
             <div className='sarasa'>
-              <label>CODIGO POSTAL</label>
+              <label>CP:</label>
               <input
                 type='number'
                 name='cp'
@@ -209,7 +203,7 @@ export default function GoShopping() {
               {/* {error.cp && <p className='error'>{error.cp} </p>} */}
             </div>
             <div className='sarasa'>
-              <label>PISO</label>
+              <label>Piso:</label>
               <input
                 type='number'
                 name='floor'
@@ -219,9 +213,9 @@ export default function GoShopping() {
               />
             </div>
             <div className='sarasa'>
-              <label>DEPARTAMENTO</label>
+              <label>Departamento:</label>
               <input
-                type='number'
+                type='text'
                 name='department'
                 value={input.department}
                 onChange={handleInputChange}
@@ -229,7 +223,7 @@ export default function GoShopping() {
               />
             </div>
             <div className='sarasa'>
-              <label>PROVINCIA</label>
+              <label>Provincia:</label>
               <input
                 type='text'
                 name='province'
@@ -240,7 +234,7 @@ export default function GoShopping() {
               {/*    {error.province && <p className='error'>{error.province} </p>} */}
             </div>
             <div className='sarasa'>
-              <label>TELEFONO</label>
+              <label>Teléfono:</label>
               <input
                 type='number'
                 name='telephone'

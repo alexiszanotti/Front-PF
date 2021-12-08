@@ -47,11 +47,11 @@ export default function ShopingCart() {
     errorSubmit();
   };
 
-  useEffect(() => {
-    if (idUser) {
-      dispatch(addDataBaseShoppingCart(cartId.toString()));
-    }
-  }, [dispatch, cartId, idUser]);
+  // useEffect(() => {
+  //   if (idUser) {
+  //     dispatch(addDataBaseShoppingCart(cartId.toString()));
+  //   }
+  // }, [dispatch, cartId, idUser]);
 
   const borrarCarrito = () => {
     for (let i = 0; i < dataBaseShopping.length; i++) {
@@ -82,16 +82,9 @@ export default function ShopingCart() {
         ) : idUser ? (
           <div>
             <h1 className='tucarrito'>TU CARRITO</h1>
-            <div className='comprarAhora'>
-              <h2 className='ahora'>¡COMPRÁ AHORA! TU CARRITO NO ASEGURA INVENTARIO</h2>
-              <p className='tene'>
-                Tené en cuenta que los productos añadidos al carrito no se reservan. Finalizá tu
-                compra ahora para hacerlos tuyos.
-              </p>
-              <Button onClick={borrarCarrito} variant='contained'>
-                BORRAR TODO
-              </Button>
-            </div>
+            <Button className='btnComprar1' onClick={borrarCarrito} variant='contained'>
+              BORRAR TODO
+            </Button>
             <div className='contenidoShoppingCart'>
               {productShopping?.map(products => {
                 return (
@@ -107,6 +100,13 @@ export default function ShopingCart() {
                   </div>
                 );
               })}
+            </div>
+            <div className='comprarAhora'>
+              <h2 className='ahora'>¡COMPRÁ AHORA! TU CARRITO NO ASEGURA INVENTARIO</h2>
+              <p className='tene'>
+                Tené en cuenta que los productos añadidos al carrito no se reservan. Finalizá tu
+                compra ahora para hacerlos tuyos.
+              </p>
             </div>
             <div className='btnComprar'>
               <Comprar />
@@ -124,7 +124,9 @@ export default function ShopingCart() {
                 Tené en cuenta que los productos añadidos al carrito no se reservan. Finalizá tu
                 compra ahora para hacerlos tuyos.
               </p>
-              <Button onClick={vaciar} variant='contained'>BORRAR TODO</Button>
+              <Button onClick={vaciar} variant='contained'>
+                BORRAR TODO
+              </Button>
             </div>
             <div className='contenidoShoppingCart'>
               {cart?.map(products => {

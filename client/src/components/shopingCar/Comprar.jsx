@@ -30,7 +30,7 @@ export default function Comprar() {
           <div>
             <Box>
               <Button onClick={e => handleClick(e)} variant='contained'>
-                IR A COMPRAR
+                PAGAR
               </Button>
             </Box>
           </div>
