@@ -1,256 +1,250 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* background-image: url('http://www.portaldapropaganda.com.br/noticias/wp-content/uploads/2017/02/adidas_Sport17_Womens_PR_Still_00086669_JAN3.jpg'); */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    margin-top: 70px;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background-image: url('http://www.portaldapropaganda.com.br/noticias/wp-content/uploads/2017/02/adidas_Sport17_Womens_PR_Still_00086669_JAN3.jpg'); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin-top: 70px;
 }
 
-.detailContainer{
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   background-color: rgba(236, 236, 236, 0.527);
-   color: rgb(0, 0, 0);
-   width:80%;
-   padding: 10px;
-   margin-top: 20px;
-   margin-bottom: 30px;
-   list-style: none;
-   border-radius: 8px;
+.detailContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(236, 236, 236, 0.527);
+  color: rgb(0, 0, 0);
+  width: 80%;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  list-style: none;
+  border-radius: 8px;
 }
 
-.detailContainer1{
-    display: flex;
-   flex-direction: column;
-   /* align-items: center; */
-   background-color: rgba(0, 0, 0, 0.548);
-   color: white;
-   width:80%;
-   padding: 10px;
-   margin-top: 20px;
-   margin-bottom: 30px;
-   list-style: none;
-   border-radius: 8px;
+.detailContainer1 {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  background-color: rgba(0, 0, 0, 0.548);
+  color: white;
+  width: 80%;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  list-style: none;
+  border-radius: 8px;
 }
 
-
-.detailS{
-    size: 20px;
+.detailS {
+  size: 20px;
 }
 
-.detailContainer.btnUl{
-    display: flex;
-    justify-content: space-between;
+.detailContainer.btnUl {
+  display: flex;
+  justify-content: space-between;
 }
 
-.detailUl{
-    text-decoration: none;
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    justify-content:center;
-    align-items: center;
+.detailUl {
+  text-decoration: none;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.detailSummary{
-        text-align: justify;
+.detailSummary {
+  text-align: justify;
 }
 
-
-.img{
-    width:350px;
-    height:310px;
-    border-radius: 8px;
-
+.img {
+  width: 350px;
+  height: 310px;
+  border-radius: 8px;
 }
 
-.btn1{
-    background-color: rgba(8, 38, 46, 0.644);
-    color: rgb(236, 230, 230);
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 20px;
-    border: none;
-    display: flex;
-    float: left;
+.btn1 {
+  background-color: rgba(8, 38, 46, 0.644);
+  color: rgb(236, 230, 230);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  border: none;
+  display: flex;
+  float: left;
 }
 
 .btn1:hover {
-    background-color: white; 
-    color: rgba(74, 59, 207, 0.644);
-} 
+  background-color: white;
+  color: rgba(74, 59, 207, 0.644);
+}
 
-.btn2{
-    background-color: rgba(8, 38, 46, 0.644);
-    color: rgb(236, 230, 230);
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 20px;
-    border: none;
-    display: flex;
-    float: right;   
+.btn2 {
+  background-color: rgba(8, 38, 46, 0.644);
+  color: rgb(236, 230, 230);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  border: none;
+  display: flex;
+  float: right;
 }
 
 .btn1:hover {
-    background-color: white; 
-    color: rgba(74, 59, 207, 0.644);
-} 
+  background-color: white;
+  color: rgba(74, 59, 207, 0.644);
+}
 
-.btn{
-    background-color: rgba(8, 38, 46, 0.644);
-    color: rgb(236, 230, 230);
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 20px;
-    border: none;
-    
+.btn {
+  background-color: rgba(8, 38, 46, 0.644);
+  color: rgb(236, 230, 230);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  border: none;
 }
 
 .btn:hover {
-    background-color: white; 
-    color: rgba(74, 59, 207, 0.644);
-} 
-
+  background-color: white;
+  color: rgba(74, 59, 207, 0.644);
+}
 
 table {
-    table-layout: fixed;
-    width: 100%;
-  }
-    
-  th, td {
-    padding: 20px;
-  }
+  table-layout: fixed;
+  width: 100%;
+}
 
-  .styleTd{
-      color: black;
-  }
+th,
+td {
+  padding: 20px;
+}
 
-  .detailBox{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+.styleTd {
+  color: black;
+}
 
-  .btn3{
-    background-color: rgba(8, 38, 46, 0.644);
-    color: rgb(236, 230, 230);
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 20px;
-    border: none;
-    
+.detailBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn3 {
+  background-color: rgba(8, 38, 46, 0.644);
+  color: rgb(236, 230, 230);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  border: none;
 }
 
 .btn3:hover {
-    background-color: white; 
-    color: rgba(74, 59, 207, 0.644);
-} 
+  background-color: white;
+  color: rgba(74, 59, 207, 0.644);
+}
 
-.btn4{
-    background-color: rgba(8, 38, 46, 0.644);
-    color: rgb(236, 230, 230);
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 20px;
-    border: none;
-    display: flex;
-    float: center; 
+.btn4 {
+  background-color: rgba(8, 38, 46, 0.644);
+  color: rgb(236, 230, 230);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  border: none;
+  display: flex;
+  float: center;
 }
 
 .btn4:hover {
-    background-color: white; 
-    color: rgba(74, 59, 207, 0.644);
-} 
-
-.btnSucces{
-    color: green;
+  background-color: white;
+  color: rgba(74, 59, 207, 0.644);
 }
 
-.btnClose{
-    color:red;
-    float: right;
+.btnSucces {
+  color: green;
 }
 
-.reviewContainer{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+.btnClose {
+  color: red;
+  float: right;
 }
 
-.carritoTitle{
-    background-color: rgba(8, 38, 46, 0.644);
-    color: rgb(236, 230, 230);
-    border-radius: 5px;
-    display: flex;
-    justify-content:center
+.reviewContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-.carritoDiv{
-    background-color: rgba(8, 38, 46, 0.644);
-    color: rgb(236, 230, 230);
-    border-radius: 5px;
-    text-align: center;
-    
+.carritoTitle {
+  background-color: rgba(8, 38, 46, 0.644);
+  color: rgb(236, 230, 230);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
 }
 
-.carritoTotal{
-    border-radius: 5px;
-    border: 3px solid rgba(0, 0, 0, 0.507);
-    width: 60%;
-    margin: auto;
+.carritoDiv {
+  background-color: rgba(8, 38, 46, 0.644);
+  color: rgb(236, 230, 230);
+  border-radius: 5px;
+  text-align: center;
 }
 
-.detailContainer{
-    display: flex;
-    flex-direction: column;
+.carritoTotal {
+  border-radius: 5px;
+  border: 3px solid rgba(0, 0, 0, 0.507);
+  width: 60%;
+  margin: auto;
 }
 
-.detailContainerCard{
-    display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   background-color: rgba(236, 236, 236, 0.527);
-   color: rgb(0, 0, 0);
-   /* width:80%; */
-   /* padding: 10px; */
-   margin-top: 220px;
-   margin-bottom: 16px;
-   margin-left: 20px;
-   list-style: none;
-   border-radius: 8px;
-   padding-left: 10px;
-   padding-right: 10px;
+.detailContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.detailContainerCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(236, 236, 236, 0.527);
+  color: rgb(0, 0, 0);
+  /* width:80%; */
+  /* padding: 10px; */
+  margin-top: 220px;
+  margin-bottom: 16px;
+  margin-left: 20px;
+  list-style: none;
+  border-radius: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .btn6 {
+  background: rgba(0, 0, 0, 0);
+  color: rgb(0, 140, 255);
+  border-radius: 5px;
+  font-size: 18px;
+  border: 1px solid rgb(0, 140, 255);
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+}
 
-    background: rgba(0, 0, 0, 0);
-    color: rgb(0, 140, 255);
-    border-radius: 5px;
-    font-size: 18px;
-    border: 1px solid rgb(0, 140, 255);
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top:40px;
-  
-  }
-  
-  .btn6:hover {
-  
-    border: 1px solid rgb(2, 81, 146);
-    color: white;
-    background-color: rgb(0, 140, 255);
-  
-  }
-  
-  .cardTitle{
-      display: flex;;
-      align-items: center;
-  }
+.btn6:hover {
+  border: 1px solid rgb(2, 81, 146);
+  color: white;
+  background-color: rgb(0, 140, 255);
+}
+
+.cardTitle {
+  display: flex;
+  align-items: center;
+}
+
+.title-reneged {
+  text-align: center;
+}

@@ -1,32 +1,38 @@
-.editProductContainer{
-
-    width: 50%; background-color: white;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    border: 0;
-    border-radius: 10px;
-    width: 50%;
-    height: 90vh;
-    margin: 0 auto;
-    margin-bottom: 15px;
-    margin-top: 15px;
+.editProductContainer {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border: 0;
+  border-radius: 10px;
+  height: 140vh;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  border-radius: 44px;
+  background: #e0e0e0;
+  box-shadow: -10px 10px 16px #c3c3c3, 10px -10px 16px #fdfdfd;
+  margin-left: 35%;
 }
-.productContainer{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
+.titulo-revelde {
+  text-align: center;
 }
-.descriptionEditProduct{
-    text-align:justify;
-    margin-right: 15px;
-
+.select-renegado {
+  margin-left: 20%;
+}
+.productContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+  padding: 20px;
+}
+.descriptionEditProduct {
+  text-align: justify;
+  margin-right: 15px;
 }
 
 .descriptionEditProduct > textarea {
-
-  background: rgb(0, 140, 255);
+  background: rgb(236, 236, 236);
   color: white;
-
 }

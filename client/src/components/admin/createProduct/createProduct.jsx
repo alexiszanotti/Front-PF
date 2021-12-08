@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createProduct, getCollection } from "../../../Redux/Actions/index";
 import zapa from "../../../images/ImgaProduct.png";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const validateForm = input => {
   let error = {};
@@ -17,8 +17,6 @@ const validateForm = input => {
   return error;
 };
 export default function CreateProduct() {
-
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,7 +37,7 @@ export default function CreateProduct() {
   });
 
   const successSubmit = () => {
-    toast.success('Categoría eliminada con éxito', {
+    toast.success("Categoría eliminada con éxito", {
       position: "bottom-right",
       autoClose: 2000,
       hideProgressBar: false,
@@ -47,11 +45,11 @@ export default function CreateProduct() {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      });
-  }
+    });
+  };
 
   const errorSubmit = () => {
-    toast.error('Complete todos los campos requeridos', {
+    toast.error("Complete todos los campos requeridos", {
       position: "bottom-right",
       autoClose: 2000,
       hideProgressBar: false,
@@ -59,8 +57,8 @@ export default function CreateProduct() {
       pauseOnHover: false,
       draggable: true,
       progress: undefined,
-      });
-  }
+    });
+  };
 
   const handleInputChange = e => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -71,7 +69,7 @@ export default function CreateProduct() {
     e.preventDefault();
     if (Object.keys(error).length === 0) {
       dispatch(createProduct(input));
-      successSubmit()
+      successSubmit();
       // history.push("/");
     } else {
       errorSubmit();
@@ -97,7 +95,7 @@ export default function CreateProduct() {
 
   return (
     <div className='createProduct'>
-      <h1>Crear producto</h1>
+      <h1>CREAR PRODUCTO</h1>
       <div className='formulario-creacion'>
         <form className='form-inputs' onSubmit={e => handleSubmit(e)}>
           <input

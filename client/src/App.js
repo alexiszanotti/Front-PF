@@ -1,4 +1,3 @@
-import "./App.css";
 import React, { useEffect, useState } from "react";
 import Navbar from "./components/navBar/navBar";
 import Home from "./components/home/home";
@@ -65,7 +64,6 @@ function App() {
   if (isAuthenticated) {
     setTimeout(function () {
       if (emailUsersDB.indexOf(user.email) === -1) {
-
         dispatch(
           postCreateUser({
             email: user.email,
@@ -75,7 +73,7 @@ function App() {
             gender: "Other",
           })
         );
-  
+
         setTimeout(function () {
           if (logIn.type === undefined) {
             let email = user.email;
@@ -83,9 +81,7 @@ function App() {
             setEstadoLogeado(true);
           }
         }, 2000);
-  
       } else {
-  
         setTimeout(function () {
           if (logIn.type === undefined) {
             let email = user.email;
@@ -93,16 +89,13 @@ function App() {
             setEstadoLogeado(true);
           }
         }, 1000);
-  
       }
-
     }, 2000);
-    
   }
 
   if (Object.keys(logIn).length === 0) {
     if (estadoLogeado) {
-      console.log("ema trolo ")
+      console.log("ema trolo ");
       setEstadoLogeado(false);
 
       logout({ returnTo: window.location.origin });
@@ -135,8 +128,8 @@ function App() {
           <Switch>
             <Route exact path='/' component={Landing} />
             <Route path='/home'>
-              <Home currentPage={currentPage}  setCurrentPage={setCurrentPage} />
-              </Route>
+              <Home currentPage={currentPage} setCurrentPage={setCurrentPage} />
+            </Route>
             <Route exact path='/detail/:id' component={Detail} />
             <Route path='/carrito/:id' component={ShopingCart} />
             <Route path='/favorites' component={Favorite} />
