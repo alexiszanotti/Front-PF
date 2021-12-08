@@ -31,6 +31,12 @@ export default function GoShopping() {
   let province = usuarioLogeado.map(el => el.province);
   let telephone = usuarioLogeado.map(el => el.telephone);
 
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     dispatch(getAllUsers());
+  //   },000)
+  // }, [dispatch]);
+
   const [input, setInput] = useState({
     id: usuario.id,
     name: name.toString(),
@@ -108,12 +114,9 @@ export default function GoShopping() {
   } else {
     return (
       <div className='shoppingGeneral'>
-        <div className='title'>
-          <h3>Información de entrega</h3>
-        </div>
         <form onSubmit={handleSubmit} className='formulario'>
-          <div className='contenido'>
-            <div className='sarasa'>
+          <div className='contenedorPerfil'>
+            <div className='div1'>
               <label>Nombre:</label>
               <input
                 type='text'
@@ -125,7 +128,7 @@ export default function GoShopping() {
               />
               {/*     {error.name && <p className='error'>{error.name} </p>} */}
             </div>
-            <div className='sarasa'>
+            <div className='div2'>
               <label>Apellido:</label>
               <input
                 type='text'
@@ -136,7 +139,7 @@ export default function GoShopping() {
               />
               {/*  {error.lastName && <p className='error'>{error.lastName} </p>} */}
             </div>
-            <div className='sarasa'>
+            <div className='div3'>
               <label>E-mail:</label>
               <input
                 type='text'
@@ -147,7 +150,7 @@ export default function GoShopping() {
               />
               {/*   {error.email && <p className='error'>{error.email} </p>} */}
             </div>
-            <div className='sarasa'>
+            <div className='div4'>
               <label>Documento:</label>
               <input
                 type='number'
@@ -158,7 +161,7 @@ export default function GoShopping() {
               />
               {/*   {error.document && <p className='error'>{error.document} </p>} */}
             </div>
-            <div className='sarasa'>
+            <div className='div5'>
               <label>Dirección:</label>
               <input
                 type='text'
@@ -169,7 +172,7 @@ export default function GoShopping() {
               />
               {/* {error.address && <p className='error'>{error.address} </p>} */}
             </div>
-            <div className='sarasa'>
+            <div className='div6'>
               <label>Altura:</label>
               <input
                 type='number'
@@ -180,7 +183,7 @@ export default function GoShopping() {
               />
               {/* {error.number && <p className='error'>{error.number} </p>} */}
             </div>
-            <div className='sarasa'>
+            <div className='div7'>
               <label>Localidad:</label>
               <input
                 type='text'
@@ -191,7 +194,7 @@ export default function GoShopping() {
               />
               {/*  {error.location && <p className='error'>{error.location} </p>} */}
             </div>
-            <div className='sarasa'>
+            <div className='div8'>
               <label>CP:</label>
               <input
                 type='number'
@@ -202,7 +205,7 @@ export default function GoShopping() {
               />
               {/* {error.cp && <p className='error'>{error.cp} </p>} */}
             </div>
-            <div className='sarasa'>
+            <div className='div9'>
               <label>Piso:</label>
               <input
                 type='number'
@@ -212,17 +215,17 @@ export default function GoShopping() {
                 required
               />
             </div>
-            <div className='sarasa'>
+            <div className='div10'>
               <label>Departamento:</label>
               <input
-                type='text'
+                type='number'
                 name='department'
                 value={input.department}
                 onChange={handleInputChange}
                 required
               />
             </div>
-            <div className='sarasa'>
+            <div className='div11'>
               <label>Provincia:</label>
               <input
                 type='text'
@@ -233,7 +236,7 @@ export default function GoShopping() {
               />
               {/*    {error.province && <p className='error'>{error.province} </p>} */}
             </div>
-            <div className='sarasa'>
+            <div className='div12'>
               <label>Teléfono:</label>
               <input
                 type='number'
@@ -242,33 +245,14 @@ export default function GoShopping() {
                 onChange={handleInputChange}
                 required
               />
-              {/*   {error.telephone && <p className='error'>{error.telephone} </p>} */}
             </div>
           </div>
-          <div className='verdura'>
-            <p>
-              En el caso que algún dato esté mal, modifíquelo y presione en "modificar datos" para
-              guardar los cambios. Luego podrá continuar con el pago.
-            </p>
-          </div>
-          <button className='btn'>Modificar datos</button>
-        </form>
 
-        <div className='continuarPago'>
-          <Box
-            component='form'
-            sx={{
-              "& .MuiTextField-root": { m: 1, width: "52ch" },
-            }}
-            noValidate
-            autoComplete='off'
-          >
-            <Button onClick={handleCheckOut} variant='outlined' startIcon={<AttachMoneyIcon />}>
-              Continuar al pago
-            </Button>
-          </Box>
-        </div>
-        <ToastContainer />
+          <Button variant='outlined'>Modificar datos</Button>
+          <Button onClick={handleCheckOut} variant='outlined' startIcon={<AttachMoneyIcon />}>
+            Continuar al pago
+          </Button>
+        </form>
       </div>
     );
   }

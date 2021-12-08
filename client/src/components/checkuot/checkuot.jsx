@@ -70,6 +70,7 @@ export default function Checkuot() {
     script.setAttributeNode(attr_data_preference);
 
     setLoading(true);
+
     //Agrega el script como nodo hijo del elemento form
     if (loading === true) {
       document.getElementById("form1").appendChild(script);
@@ -84,7 +85,7 @@ export default function Checkuot() {
   const render = !loading ? (
     <>
       <div className='contenedorZapatilla'>
-        <h1>Cargando...</h1>
+        <h1>Cargando....</h1>
         <img
           className='zapatilla'
           alt='l'
@@ -112,6 +113,7 @@ export default function Checkuot() {
         <>
           <div className='shoppingGeneral'>
             <h1>RESUMEN DE COMPRA</h1>
+
             <div className='btnContinuarConElPago'>
               <Button onClick={setChangeStatusCart} variant='contained'>
                 CONTINUAR CON EL PAGO
