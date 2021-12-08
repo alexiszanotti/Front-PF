@@ -7,7 +7,14 @@ import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import { Modal } from "@material-ui/core";
 import { modifyUser } from "../../Redux/Actions/index";
-import swal from "sweetalert";
+import swal from 'sweetalert';
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import TextField from '@mui/material/TextField';
 
 export default function Perfil() {
   const dispatch = useDispatch();
@@ -220,6 +227,7 @@ export default function Perfil() {
               readOnly={true}
             />
           </div>
+
           <div className='div3'>
             <label>E-mail: </label>
             <input

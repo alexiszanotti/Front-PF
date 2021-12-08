@@ -1,7 +1,16 @@
-.btnMp {
-  float: right;
+
+.btnContinuarConElPago{
+    display: flex;
+    /* margin-bottom: 3%; */
+
+}
+.zapatilla{
+    width: 800px;
+    height: 800px;
+
+
 }
 
-.shoppingGeneral {
-  text-align: center;
+.contenedorZapatilla{
+    text-align: center;
 }

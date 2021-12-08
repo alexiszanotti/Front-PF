@@ -4,14 +4,14 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import { Modal } from "@material-ui/core";
 import "./detail.css";
-
-
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
 import CreateReview from "../createReview/createReview";
-
-
+import Rating from "@mui/material/Rating";
 
 export default function Detail(props) {
   const dispatch = useDispatch();
@@ -137,38 +137,46 @@ export default function Detail(props) {
       {detail.map(products => {
         return (
           <div className='detailContainer'>
-            <h1>{products.productName}</h1>
-            <ul className='detailUl'>
-              <li>{products.collection.name}</li>
-              <br></br>
-              <li>{products.gender}</li>
-              <br></br>
-              <img alt='k' className='img' src={products.images} />
-              <br></br>
-              <br></br>
-              <li className='detailSummary'>{products.description}</li>
-              <br></br>
-              <li>{Number(products.salePrice) + "$"}</li>
-            </ul>
-            <div>
-              <button
-                type='button'
-                onClick={() => openCloseModal1(dispatchCart())}
-                className='btn2'
-              >
-                Agregar al carrito
-              </button>
-              <div>
-                <Modal open={modal1} onClose={openCloseModal1}>
-                  {carrito}
-                </Modal>
-              </div>
-            </div>
+            <Card sx={{ maxWidth: 820 }}>
+              <CardContent className='misComprasCard'>
+                <div >
+                  <Typography gutterBottom variant="h5" component="div">
+                    <div className="cardTitle">
+                      <h3>{products.productName}</h3>
+                    </div>
+                    <li>{products.collection.name}</li>
+                    <br></br>
+                    <li>{products.gender}</li>
+                    <br></br>
+                    <img alt='k' className='img' src={products.images} />
+                  </Typography>
+                </div>
+                <div className="detailContainerCard">
+                  <Typography variant="body2" color="text.secondary">
+                    <li className='detailSummary'>{products.description}</li>
+                    <br></br>
+                    <li>{"$" + Number(products.salePrice)}</li>
+                    <div>
+                      <button
+                        type='button'
+                        onClick={() => openCloseModal1(dispatchCart())}
+                        className="btn6"
+                      >
+                        Agregar al carrito
+                      </button>
+                      <Modal open={modal1} onClose={openCloseModal1}>
+                        {carrito}
+                      </Modal>
+                    </div>
+                  </Typography>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         );
       })}
       <div className='detailContainer'>
-        {segundo.length === 0 || segundo === undefined ? (
+        {/* {segundo.length === 0 || segundo === undefined ? (
           <h4>No hay reseñas</h4>
         ) : (
           segundo.map(el => {
@@ -186,12 +194,40 @@ export default function Detail(props) {
             display: "flex",
             alignItems: "center",
           }}
-        >
-          {/* <Rating name="half-rating-read" value={average1} precision={0.5} readOnly /> */}
-          {/* <h4>{average1}</h4> */}
-        </Box>
+        > */}
+        {/* <Rating name="half-rating-read" value={average1} precision={0.5} readOnly /> */}
+        {/* <h4>{average1}</h4> */}
+        {/* </Box> */}
+        <Card sx={{ maxWidth: 820 }}>
+          <CardContent className='misComprasCard'>
+            <div >
+              <Typography gutterBottom variant="h5" component="div">
+                {segundo.length === 0 || segundo === undefined ? null : (
+                  segundo.map(el => {
+                    return (
+                      <div>
+                        <CreateReview review={el.review} score={el.score} />
+                      </div>
+                    );
+                  })
+                )}
+                {/* <h4>Puntuación general</h4>
+                <Box
+                  sx={{
+                    width: 200,
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                > 
+              <Rating name="half-rating-read" value={average1} precision={0.5} readOnly /> 
+              <h4>{average1}</h4> 
+              </Box>  */}
+              </Typography>
+            </div>
+          </CardContent>
+        </Card>
       </div>
-      <button onClick={handleButtonHome} className='btn'>
+      <button onClick={handleButtonHome} className='btn5'>
         Home
       </button>
       <br></br>

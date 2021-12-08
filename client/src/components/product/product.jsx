@@ -48,48 +48,44 @@ export default function Products(props) {
   const successSubmitFavorite = () => {
     toast.success('Producto guardado con éxito', {
       position: "bottom-right",
-      autoClose: 2000,
-      hideProgressBar: false,
+      autoClose: 1000,
+      hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
-      progress: undefined,
       });
   }
 
   const errorSubmitFavorite = () => {
     toast.error('Producto eliminado éxito', {
       position: "bottom-right",
-      autoClose: 2000,
-      hideProgressBar: false,
+      autoClose: 1000,
+      hideProgressBar: true,
       closeOnClick: true,
-      pauseOnHover: false,
+      pauseOnHover: true,
       draggable: true,
-      progress: undefined,
       });
   }
 
   const successSubmitCart = () => {
     toast.success('Producto agregado con éxito', {
       position: "bottom-right",
-      autoClose: 2000,
-      hideProgressBar: false,
+      autoClose: 1000,
+      hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
-      progress: undefined,
       });
   }
 
   const errorSubmitCart = () => {
     toast.error('Producto eliminado con éxito', {
       position: "bottom-right",
-      autoClose: 2000,
-      hideProgressBar: false,
+      autoClose: 1000,
+      hideProgressBar: true,
       closeOnClick: true,
-      pauseOnHover: false,
+      pauseOnHover: true,
       draggable: true,
-      progress: undefined,
       });
   }
 
@@ -149,6 +145,7 @@ export default function Products(props) {
         successSubmitFavorite()
       } else {
         dispatch(favorite(props.id));
+        successSubmitFavorite()
       }
     } else {
       if (idUser) {
@@ -164,6 +161,7 @@ export default function Products(props) {
         errorSubmitFavorite()
       } else {
         dispatch(removeFavorite(props.id));
+        errorSubmitFavorite()
       }
     }
   };
@@ -184,6 +182,7 @@ export default function Products(props) {
         successSubmitCart()
       } else {
         dispatch(shoppingCart(props.id));
+        successSubmitCart()
       }
     } else {
       if (idUser) {
@@ -200,6 +199,7 @@ export default function Products(props) {
         errorSubmitCart()
       } else {
         dispatch(removeCard(props.id));
+        errorSubmitCart()
       }
     }
   };

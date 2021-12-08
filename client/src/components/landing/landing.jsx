@@ -79,10 +79,10 @@ export default function Landing() {
   );
   return (
     <div className="containerLanding">
-      <h1>Bienvenidos a Adidas Oficial</h1>
+      <h1 className="tituloLanding">BIENVENIDOS A ADIDAS OFICIAL</h1>
 
       <Link to="/home">
-        <button className="btn">Entrar al sitio</button>
+        <button className="btn5">Entrar al sitio</button>
       </Link>
       <div style={{ textAlign: "center" }}>
         {/* <p>Easy to use, responsive and customizable carousel component for React Projects.</p> */}
