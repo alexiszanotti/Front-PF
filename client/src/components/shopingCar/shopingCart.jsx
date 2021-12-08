@@ -47,11 +47,11 @@ export default function ShopingCart() {
     errorSubmit();
   };
 
-  useEffect(() => {
-    if (idUser) {
-      dispatch(addDataBaseShoppingCart(cartId.toString()));
-    }
-  }, [dispatch, cartId, idUser]);
+  // useEffect(() => {
+  //   if (idUser) {
+  //     dispatch(addDataBaseShoppingCart(cartId.toString()));
+  //   }
+  // }, [dispatch, cartId, idUser]);
 
   const borrarCarrito = () => {
     for (let i = 0; i < dataBaseShopping.length; i++) {
