@@ -59,12 +59,13 @@ export default function Checkuot() {
   };
 
   // if (loading === true) {
+
   setTimeout(() => {
     const script = document.createElement("script"); //Crea un elemento html script
 
     const attr_data_preference = document.createAttribute("data-preference-id"); //Crea un nodo atribute
     attr_data_preference.value = idMP; //Le asigna como valor el id que devuelve MP
-
+    console.log("GATO", idMP);
     //Agrega atributos al elemento script
     script.src = "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
     script.setAttributeNode(attr_data_preference);
@@ -84,8 +85,7 @@ export default function Checkuot() {
 
   const render = !loading ? (
     <>
-      <div className='contenedorZapatilla'>
-        <h1>Cargando....</h1>
+      <div className='pepe'>
         <img
           className='zapatilla'
           alt='l'
@@ -95,7 +95,7 @@ export default function Checkuot() {
     </>
   ) : (
     <div>
-      <div className='contenedorZapatilla'>
+      <div className='pepe'>
         <h1>ULTIMO PASO</h1>
         <h3>Espere hasta que aparesca el boton de pagar y listo puedes realizar tu compra !</h3>
         <form id='form1'></form>
@@ -111,55 +111,73 @@ export default function Checkuot() {
     <div>
       {esperar === false ? (
         <>
-          <div className='shoppingGeneral'>
+          <div className='title-checkout'>
             <h1>RESUMEN DE COMPRA</h1>
-
-            <div className='btnContinuarConElPago'>
-              <Button onClick={setChangeStatusCart} variant='contained'>
-                CONTINUAR CON EL PAGO
-              </Button>
+            <Button onClick={setChangeStatusCart} variant='contained'>
+              CONTINUAR CON EL PAGO
+            </Button>
+          </div>
+          <div className='checkout'>
+            <div className='datos-chekout'>
+              <div className='btnContinuarConElPago'></div>
+              {usuarioLogeado.map(el => {
+                return (
+                  <div>
+                    <p>
+                      <strong> Nombre:</strong> <br /> {el.name} {el.lastName}
+                    </p>
+                    <p>
+                      <strong>Mail:</strong> {el.email}
+                    </p>
+                    <p>
+                      <strong>Telefono:</strong> <br /> {el.telephone}
+                    </p>
+                    <p>
+                      <strong>Direccion:</strong>{" "}
+                    </p>
+                    <p>
+                      Calle: {el.address}
+                      <br />
+                      Numero: {el.number}
+                      <br />
+                      CP: {el.cp}
+                      <br />
+                      Localidad: {el.location}
+                      <br />
+                      Provincia: {el.province}
+                      <br />
+                    </p>
+                  </div>
+                );
+              })}
             </div>
-            {usuarioLogeado.map(el => {
-              return (
-                <div>
-                  <p>
-                    Nombre: {el.name} {el.lastName}
-                  </p>
-                  <p>Mail: {el.email}</p>
-                  <p>Telefono: {el.telephone}</p>
-                  <p>Direccion: </p>
-                  <li>Calle: {el.address}</li>
-                  <li>Numero: {el.number}</li>
-                  <li>CP: {el.cp}</li>
-                  <li>Localidad: {el.location}</li>
-                  <li>Provincia: {el.province}</li>
-                </div>
-              );
-            })}
-            <ImageList sx={{ width: 500, height: 450 }}>
-              <ImageListItem key='Subheader' cols={2}>
-                <ListSubheader component='div'>
-                  CARRITO - TOTAL A PAGAR: {"$ " + total} - TOTAL DE PRODUCTOS: {s}{" "}
-                </ListSubheader>
-              </ImageListItem>
-              {totalCompra?.map(item => (
-                <ImageListItem key={item.images}>
-                  <img src={item.images} srcSet={item.images} alt={item.title} loading='lazy' />
-                  <ImageListItemBar
-                    title={item.title}
-                    subtitle={"$ " + item.price * item.cantidad}
-                    actionIcon={
-                      <IconButton
-                        sx={{ color: "rgba(255, 255, 255, 0.54)" }}
-                        aria-label={`info about ${item.title}`}
-                      >
-                        {item.cantidad}
-                      </IconButton>
-                    }
-                  />
+            <div className='zapatillas-checkout'>
+              <ImageList sx={{ width: 500, height: 450 }}>
+                <ImageListItem key='Subheader' cols={2}>
+                  <ListSubheader component='div'>
+                    <strong>TOTAL A PAGAR:</strong> {"$ " + total}{" "}
+                    <strong> - TOTAL DE PRODUCTOS:</strong> {s}{" "}
+                  </ListSubheader>
                 </ImageListItem>
-              ))}
-            </ImageList>
+                {totalCompra?.map(item => (
+                  <ImageListItem key={item.images}>
+                    <img src={item.images} srcSet={item.images} alt={item.title} loading='lazy' />
+                    <ImageListItemBar
+                      title={item.title}
+                      subtitle={"$ " + item.price * item.cantidad}
+                      actionIcon={
+                        <IconButton
+                          sx={{ color: "rgba(255, 255, 255, 0.54)" }}
+                          aria-label={`info about ${item.title}`}
+                        >
+                          {item.cantidad}
+                        </IconButton>
+                      }
+                    />
+                  </ImageListItem>
+                ))}
+              </ImageList>
+            </div>
           </div>
         </>
       ) : (
