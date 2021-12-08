@@ -46,174 +46,156 @@ export default function Perfil() {
     });
   }
 
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 700,
-    height: 700,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 5,
-  };
   const editar = (
-    <div className='detailContainer'>
-      <form onSubmit={e => handleSubmit(e)} className='formulario'>
-        <Box sx={style}>
-          <h1>EDITAR DATOS PERSONALES</h1>
-
-          <div className='contenido1'>
-            <div className='sarasa'>
-              <label>
-                <strong>NOMBRE</strong>
-              </label>
-              <input
-                type='text'
-                name='name'
-                onChange={handleInputChange}
-                placeholder={usuario.map(el => el.name)}
-              />
-            </div>
-            <div className='sarasa'>
-              <label>
-                <strong>APELLIDO</strong>
-              </label>
-              <input
-                type='text'
-                name='lastName'
-                onChange={handleInputChange}
-                placeholder={usuario.map(el => el.lastName)}
-              />
-            </div>
-            <div className='sarasa'>
-              <label>
-                <strong>EMAIL</strong>
-              </label>
-              <input
-                type='text'
-                name='email'
-                onChange={handleInputChange}
-                placeholder={usuario.map(el => el.email)}
-              />
-            </div>
-            <div className='sarasa'>
-              <label>
-                <strong>DOCUMENTO</strong>
-              </label>
-              <input
-                type='text'
-                name='document'
-                onChange={handleInputChange}
-                placeholder={usuario.map(el => el.document)}
-              />
-            </div>
-            <div className='sarasa'>
-              <label>
-                <strong>DIRECCION</strong>
-              </label>
-              <input
-                type='text'
-                name='address'
-                onChange={handleInputChange}
-                placeholder={usuario.map(el => el.address)}
-              />
-            </div>
-            <div className='sarasa'>
-              <label>
-                <strong>ALTURA</strong>
-              </label>
-              <input
-                type='text'
-                name='number'
-                onChange={handleInputChange}
-                placeholder={usuario.map(el => el.number)}
-              />
-            </div>
-            <div className='sarasa'>
-              <label>
-                <strong>LOCALIDAD</strong>
-              </label>
-              <input
-                type='text'
-                name='location'
-                onChange={handleInputChange}
-                placeholder={usuario.map(el => el.location)}
-              />
-            </div>
-            <div className='sarasa'>
-              <label>
-                <strong>CODIGO POSTAL</strong>{" "}
-              </label>
-              <input
-                type='text'
-                name='cp'
-                onChange={handleInputChange}
-                placeholder={usuario.map(el => el.cp)}
-              />
-            </div>
-            <div className='sarasa'>
-              <label>
-                <strong>PISO</strong>
-              </label>
-              <input
-                type='text'
-                name='floor'
-                onChange={handleInputChange}
-                placeholder={usuario.map(el => el.floor)}
-              />
-            </div>
-            <div className='sarasa'>
-              <label>
-                <strong>DEPARTAMENTO</strong>
-              </label>
-              <input
-                type='text'
-                name='department'
-                onChange={handleInputChange}
-                placeholder={usuario.map(el => el.department)}
-              />
-            </div>
-            <div className='sarasa'>
-              <label>
-                <strong>PROVINCIA</strong>
-              </label>
-              <input
-                type='text'
-                name='province'
-                onChange={handleInputChange}
-                placeholder={usuario.map(el => el.province)}
-              />
-            </div>
-            <div className='sarasa'>
-              <label>
-                <strong>TELEFONO</strong>
-              </label>
-              <input
-                type='text'
-                name='telephone'
-                onChange={handleInputChange}
-                placeholder={usuario.map(el => el.telephone)}
-              />
-            </div>
-          </div>
-          <div className='verdura'>
-            <button className='btn'>Guardar</button>
-          </div>
-        </Box>
-      </form>
-      <br></br>
-      <br></br>
-      <br></br>
-    </div>
+    <form onSubmit={e => handleSubmit(e)} className='formulario1'>
+      <div className='contenedorPerfil1'>
+        <div className='div1'>
+          <label>
+            <strong>Nombre:</strong>
+          </label>
+          <input
+            type='text'
+            name='name'
+            onChange={handleInputChange}
+            placeholder={usuario.map(el => el.name)}
+          />
+        </div>
+        <div className='div2'>
+          <label>
+            <strong>Apellido:</strong>
+          </label>
+          <input
+            type='text'
+            name='lastName'
+            onChange={handleInputChange}
+            placeholder={usuario.map(el => el.lastName)}
+          />
+        </div>
+        <div className='div3'>
+          <label>
+            <strong>E-mail:</strong>
+          </label>
+          <input
+            type='text'
+            name='email'
+            onChange={handleInputChange}
+            placeholder={usuario.map(el => el.email)}
+          />
+        </div>
+        <div className='div4'>
+          <label>
+            <strong>Documento</strong>
+          </label>
+          <input
+            type='text'
+            name='document'
+            onChange={handleInputChange}
+            placeholder={usuario.map(el => el.document)}
+          />
+        </div>
+        <div className='div5'>
+          <label>
+            <strong>Dirección:</strong>
+          </label>
+          <input
+            type='text'
+            name='address'
+            onChange={handleInputChange}
+            placeholder={usuario.map(el => el.address)}
+          />
+        </div>
+        <div className='div6'>
+          <label>
+            <strong>Altura</strong>
+          </label>
+          <input
+            type='text'
+            name='number'
+            onChange={handleInputChange}
+            placeholder={usuario.map(el => el.number)}
+          />
+        </div>
+        <div className='div7'>
+          <label>
+            <strong>Localidad:</strong>
+          </label>
+          <input
+            type='text'
+            name='location'
+            onChange={handleInputChange}
+            placeholder={usuario.map(el => el.location)}
+          />
+        </div>
+        <div className='div8'>
+          <label>
+            <strong>CP:</strong>{" "}
+          </label>
+          <input
+            type='text'
+            name='cp'
+            onChange={handleInputChange}
+            placeholder={usuario.map(el => el.cp)}
+          />
+        </div>
+        <div className='div9'>
+          <label>
+            <strong>Piso:</strong>
+          </label>
+          <input
+            type='text'
+            name='floor'
+            onChange={handleInputChange}
+            placeholder={usuario.map(el => el.floor)}
+          />
+        </div>
+        <div className='div10'>
+          <label>
+            <strong>Departamento:</strong>
+          </label>
+          <input
+            type='text'
+            name='department'
+            onChange={handleInputChange}
+            placeholder={usuario.map(el => el.department)}
+          />
+        </div>
+        <div className='div11'>
+          <label>
+            <strong>Provincia:</strong>
+          </label>
+          <input
+            type='text'
+            name='province'
+            onChange={handleInputChange}
+            placeholder={usuario.map(el => el.province)}
+          />
+        </div>
+        <div className='div12'>
+          <label>
+            <strong>Teléfono:</strong>
+          </label>
+          <input
+            type='text'
+            name='telephone'
+            onChange={handleInputChange}
+            placeholder={usuario.map(el => el.telephone)}
+          />
+        </div>
+      </div>
+      <Button type='submit' alignItems='center' size='large' variant='contained'>
+        GUARDAR
+      </Button>
+    </form>
   );
   return (
     <div>
       <Modal open={modal1} onClose={openCloseModal1}>
         {editar}
       </Modal>
+      <div className='fondo'></div>
+
       <h3 className='titulo-form'>Perfil de usuario</h3>
+
       <form onSubmit={e => handleSubmit(e)} className='formulario'>
         <div className='contenedorPerfil'>
           <div className='div1'>
@@ -352,12 +334,12 @@ export default function Perfil() {
         <Box
           textAlign='center'
           sx={{
-            width: 300,
+            width: 600,
           }}
         >
           <Button
             alignItems='center'
-            size='medium'
+            size='large'
             variant='outlined'
             onClick={() => openCloseModal1()}
           >
