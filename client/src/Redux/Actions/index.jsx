@@ -32,6 +32,7 @@ import {
 
 export function getAllProducts() {
   return async function (dispatch) {
+
     try {
       let res = await axios("products");
 
@@ -45,8 +46,14 @@ export function getAllProducts() {
 export function searchProducts(name) {
   console.log(name);
   return async function (dispatch) {
-    let res = await axios(`products/?name=${name}`);
-    return dispatch({ type: SEARCH_PRODUCTS, payload: res.data });
+    try {
+      let res = await axios(`products/?name=${name}`);
+      return dispatch({ type: SEARCH_PRODUCTS, payload: res.data });
+      
+    } catch (error) {
+      console.log(error)
+    }
+  
   };
 }
 
@@ -66,11 +73,16 @@ export const detailProducts = id => {
 
 export const shoppingCart = id => {
   return async dispatch => {
-    let res = await axios(`products/${id}`);
+    try {
+      let res = await axios(`products/${id}`);
     return dispatch({
       type: SHOPPING_CART,
       payload: res.data,
     });
+    } catch (error) {
+      console.log(error)
+    }
+    
   };
 };
 
@@ -83,11 +95,16 @@ export const removeCard = id => {
 
 export const favorite = id => {
   return async dispatch => {
-    let res = await axios(`products/${id}`);
+    try {
+      let res = await axios(`products/${id}`);
     return dispatch({
       type: FAVORITE,
       payload: res.data,
     });
+    } catch (error) {
+      console.log(error)
+    }
+    
   };
 };
 
@@ -111,43 +128,68 @@ export const postCreateUser = payload => {
 
 export const createProduct = payload => {
   return async () => {
-    let res = await axios.post(`products/`, payload);
+    try {
+      let res = await axios.post(`products/`, payload);
     return res;
+    } catch (error) {
+      console.log(error)
+    }
+    
   };
 };
 
 export const getCollection = payload => {
   return async dispatch => {
-    let res = await axios(`categories`);
-    return dispatch({
-      type: GET_COLLECTIONS,
-      payload: res.data,
-    });
+    try {
+      let res = await axios(`categories`);
+      return dispatch({
+        type: GET_COLLECTIONS,
+        payload: res.data,
+      });
+    } catch (error) {
+      console.log(error)
+    }
+   
   };
 };
 
 export const postReview = payload => {
   return async dispatch => {
-    let res = await axios.post(`reviews/create`, payload);
-    return dispatch({ type: POST_REVIEW, payload: res.data });
+    try {
+      let res = await axios.post(`reviews/create`, payload);
+      return dispatch({ type: POST_REVIEW, payload: res.data });
+    } catch (error) {
+      console.log(error)
+    }
+  
   };
 };
 
 export const getAllUsers = payload => {
   return async dispatch => {
-    let res = await axios(`users`);
-    return dispatch({
-      type: GET_ALL_USERS,
-
-      payload: res.data,
-    });
+    try {
+      let res = await axios(`users`);
+      return dispatch({
+        type: GET_ALL_USERS,
+  
+        payload: res.data,
+      });
+    } catch (error) {
+      console.log(error)
+    }
+  
   };
 };
 export const modifyUser = payload => {
   console.log(payload);
   return async () => {
-    let res = await axios.patch(`users/`, payload);
-    return res.data;
+    try {
+      let res = await axios.patch(`users/`, payload);
+      return res.data;
+    } catch (error) {
+      console.log(error)
+    }
+   
   };
 };
 
@@ -188,8 +230,13 @@ export const resetFilter = () => {
 
 export const modifyProduct = payload => {
   return async () => {
-    let res = await axios.patch(`products`, payload);
-    return res;
+    try {
+      let res = await axios.patch(`products`, payload);
+      return res;
+    } catch (error) {
+      console.log(error)
+    }
+  
   };
 };
 
@@ -202,8 +249,13 @@ export const userLogout = () => {
 
 export const createCollection = payload => {
   return async () => {
-    let res = await axios.post(`categories`, payload);
+    try {
+      let res = await axios.post(`categories`, payload);
     return res;
+    } catch (error) {
+      console.log(error)
+    }
+    
   };
 };
 
@@ -222,42 +274,67 @@ export const emptyFavorites = () => {
 
 export const postFavorite = payload => {
   return async () => {
-    let res = await axios.post(`favorite`, payload);
-    return res.data;
+    try {
+      let res = await axios.post(`favorite`, payload);
+      return res.data;
+    } catch (error) {
+      console.log(error)
+    }
+   
   };
 };
 
 export const deleteCollection = payload => {
   return async () => {
-    let res = await axios.delete("categories", { data: payload });
-    return res;
+    try {
+      let res = await axios.delete("categories", { data: payload });
+      return res;
+    } catch (error) {
+      console.log(error)
+    }
+  
   };
 };
 
 export const postShoppingCart = payload => {
   return async () => {
-    let res = await axios.post("cart", payload);
-    return res;
+    try {
+      let res = await axios.post("cart", payload);
+      return res;
+    } catch (error) {
+      console.log(error)
+    }
+   
   };
 };
-
+//trae todo lo del carrito 
 export const addDataBaseShoppingCart = userId => {
   return async dispatch => {
-    let res = await axios(`cart?cartId=${userId}`);
-    return dispatch({
-      type: ADD_DATABASE_SHOPPING_CART,
-      payload: res.data.ProductsInCarts,
-    });
+    try {
+      let res = await axios(`cart?cartId=${userId}`);
+      return dispatch({
+        type: ADD_DATABASE_SHOPPING_CART,
+        payload: res.data.ProductsInCarts,
+      });
+    } catch (error) {
+      console.log(error)
+    }
+   
   };
 };
 
 export const addDataBaseFavorite = userId => {
   return async dispatch => {
-    let res = await axios(`favorite?userId=${userId}`);
+    try {
+      let res = await axios(`favorite?userId=${userId}`);
     return dispatch({
       type: ADD_DATABASE_FAVORITE,
       payload: res.data,
     });
+    } catch (error) {
+      console.log(error)
+    }
+    
   };
 };
 
@@ -343,8 +420,13 @@ export function filterByCart(payload) {
 
 export const deleteDataBaseFavorite = payload => {
   return async () => {
-    let res = await axios.delete("favorite", { data: payload });
-    return res;
+    try {
+      let res = await axios.delete("favorite", { data: payload });
+      return res;
+    } catch (error) {
+      console.log(error)
+    }
+   
   };
 };
 
@@ -394,9 +476,14 @@ export const removeShoppingPersist = id => {
 };
 
 export const deleteAllDataBaseeFavorite = payload => {
-  return async () => {
-    let res = await axios.delete(`favorite/all?userId=${payload}`);
-    return res;
+  return async () => { 
+    try {
+      let res = await axios.delete(`favorite/all?userId=${payload}`);
+      return res;
+    } catch (error) {
+      console.log(error)
+    }
+   
   };
 };
 
