@@ -55,37 +55,39 @@
 }
 
 .btn1 {
-  background-color: rgba(8, 38, 46, 0.644);
-  color: rgb(236, 230, 230);
+  background: rgba(0, 0, 0, 0);
+  color: rgb(0, 140, 255);
   border-radius: 5px;
   cursor: pointer;
   font-size: 20px;
   border: none;
   display: flex;
   float: left;
+  border: 1px solid rgb(0, 140, 255);
 }
 
 .btn1:hover {
-  background-color: white;
-  color: rgba(74, 59, 207, 0.644);
-  border: 1px solid rgba(74, 59, 207, 0.644);
+  border: 1px solid rgb(0, 140, 255);
+  color: white;
+  background-color: rgb(0, 140, 255);
 }
 
 .btn2:hover {
-  background-color: white;
-  color: rgba(74, 59, 207, 0.644);
-  border: 1px solid rgba(74, 59, 207, 0.644);
+  border: 1px solid rgb(0, 140, 255);
+  color: white;
+  background-color: rgb(0, 140, 255);
 }
 
 .btn2 {
-  background-color: rgba(8, 38, 46, 0.644);
-  color: rgb(236, 230, 230);
+  background: rgba(0, 0, 0, 0);
+  color: rgb(0, 140, 255);
   border-radius: 5px;
   cursor: pointer;
   font-size: 20px;
   border: none;
   display: flex;
   float: right;
+  border: 1px solid rgb(0, 140, 255);
 }
 
 .btn {
@@ -191,7 +193,7 @@ td {
   border-radius: 5px;
   text-align: center;
   padding: 10px;
-  height: 62vh;
+  height: 70vh;
 }
 
 .carritoTotal {

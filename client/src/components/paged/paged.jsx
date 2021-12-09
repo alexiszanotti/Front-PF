@@ -1,6 +1,8 @@
-import React from "react";
 import "./paged.css";
-function Paginado({ shoesPorPaginaPorPagina, shoes, paginado, previousPage, nextPage }) {
+import React from "react";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+function Paginado({ shoesPorPaginaPorPagina, shoes, paginado, previousPage, nextPage, currentPage }) {
   const pageNumber = [];
   //el Math.ceil redondea para arriba
   for (let i = 1; i <= Math.ceil(shoes / shoesPorPaginaPorPagina); i++) {
@@ -10,23 +12,21 @@ function Paginado({ shoesPorPaginaPorPagina, shoes, paginado, previousPage, next
   return (
     <>
       <footer>
-        <nav>
-          <ul className='paginado'>
-            <button onClick={previousPage} className='btn5'>
-              Anterior
-            </button>          
-            {pageNumber &&
+        <nav className='paginado'>
+          {/* <ul className='paginado'> */}
+            
+            <h4>Página: {currentPage} de 6.</h4> 
+            {/* {pageNumber &&
               pageNumber.map(number => {
                 return (
                   <li key={number} value={number} className='pag' onClick={() => paginado(number)}>
                     {number}
                   </li>
                 );
-              })}
-            <button onClick={nextPage} className='btn5'>
-              Siguiente
-            </button>
-          </ul>
+              })} */}
+              
+             
+          {/* </ul> */}
         </nav>
       </footer>
     </>
