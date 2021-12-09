@@ -99,7 +99,10 @@ export default function Products(props) {
           })
         );
         setTimeout(() => {
-          dispatch(addDataBaseShoppingCart(cartId.toString()));
+          if(cartId){
+            dispatch(addDataBaseShoppingCart(cartId.toString()));
+          }
+         
         }, 200);
       }
       dispatch(emptyCart());
@@ -177,7 +180,10 @@ export default function Products(props) {
           })
         );
         setTimeout(() => {
-          dispatch(addDataBaseShoppingCart(cartId.toString()));
+          if(cartId){
+            dispatch(addDataBaseShoppingCart(cartId.toString()));
+          }
+          
         }, 200);
         successSubmitCart()
       } else {
@@ -194,7 +200,10 @@ export default function Products(props) {
         );
 
         setTimeout(() => {
-          dispatch(addDataBaseShoppingCart(cartId.toString()));
+          if(cartId){
+            dispatch(addDataBaseShoppingCart(cartId.toString()));
+          }
+          
         }, 200);
         errorSubmitCart()
       } else {
