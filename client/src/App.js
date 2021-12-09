@@ -20,12 +20,8 @@ import Pago from "./components/pago/pago";
 import DefaultError from "./components/error/error";
 import Checkuot from "./components/checkuot/checkuot";
 import MisCompras from "./components/misCompras/misCompras";
-<<<<<<< HEAD
-import aboutUs from "./components/aboutUs/aboutUs";
-=======
 import Realizado from "./components/realizado/realizado";
-import About from "./components/about/about";
->>>>>>> 84faab70fb123dd6718ae31acbccfeb5203a46a9
+import aboutUs from "./components/aboutUs/aboutUs";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -64,6 +60,7 @@ function App() {
       let usr = users?.filter(user => user.id === logIn.id);
       let cartId = usr?.map(el => el.Cart.id);
       dispatch(addDataBaseFavorite(idUser));
+      dispatch(addDataBaseShoppingCart(cartId.toString()));
      
      
     }
@@ -146,12 +143,8 @@ function App() {
             <Route path='/tarjeta' component={Pago} />
             <Route path='/checkout' component={Checkuot} />
             <Route path='/misCompras' component={MisCompras} />
-<<<<<<< HEAD
-            <Route path='/aboutUs' component={aboutUs} />
-=======
             <Route path='/realizado' component={Realizado} />
-            <Route path='/about' component={About} />
->>>>>>> 84faab70fb123dd6718ae31acbccfeb5203a46a9
+            <Route path='/aboutUs' component={aboutUs} />
             <Route path='*' component={DefaultError} />
           </Switch>
         </div>

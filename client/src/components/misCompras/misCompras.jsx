@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { getAllUsers, filterByCart } from "../../Redux/Actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import Compras from "./compras/compras";
+import Footer from "../footer/footer";
 
 export default function MisCompras() {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ export default function MisCompras() {
   }, [dispatch, usuariosCarritoFiltrado[0].id]);
 
   return (
+    <div>
     <div className='misComprasContainer'>
       <h1>Mis compras</h1>
       <p>Total de compras</p>
@@ -38,6 +40,11 @@ export default function MisCompras() {
           />
         );
       })}
+    </div>
+    {
+      compras3.length === 0 ? null : <Footer />
+    }
+
     </div>
   );
 }

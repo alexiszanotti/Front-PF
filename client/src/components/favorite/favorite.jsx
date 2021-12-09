@@ -8,6 +8,7 @@ import { Button } from "@mui/material";
 import "./favorite.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from "../footer/footer";
 
 export default function Favorite() {
   const dispatch = useDispatch();
@@ -88,6 +89,14 @@ export default function Favorite() {
               })
             )}
           </div>
+          {
+            dataBaseFavorite.products === undefined || dataBaseFavorite.products?.length === 0 ?(
+              null 
+            ) : (
+              <Footer/>
+            )
+            
+          }
           <div>
             <Link to="/home">
               <button className="botonCart1">volver</button>
@@ -126,6 +135,14 @@ export default function Favorite() {
               })
             )}
           </div>
+          {
+            sinLogin === undefined || sinLogin.length === 0 ?(
+              null 
+            ) : (
+              <Footer/>
+            )
+            
+          }
           <div>
             <Link to="/home">
               <button className="botonCart1">volver</button>
@@ -134,6 +151,7 @@ export default function Favorite() {
         </>
       )}
       <ToastContainer />
+    
     </div>
   );
 }

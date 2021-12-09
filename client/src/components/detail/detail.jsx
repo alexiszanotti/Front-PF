@@ -12,11 +12,12 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import CreateReview from "../createReview/createReview";
 import Rating from "@mui/material/Rating";
+import Footer from "../footer/footer.jsx";
 
 export default function Detail(props) {
   const dispatch = useDispatch();
   const history = useHistory();
-  const detail = useSelector(state => state.detail);
+  const detail = useSelector((state) => state.detail);
 
   useEffect(() => {
     setTimeout(() => {
@@ -24,9 +25,9 @@ export default function Detail(props) {
     }, 500);
   }, [dispatch, props.match.params.id]);
 
-  const cart = useSelector(state => state.shoppingCart);
+  const cart = useSelector((state) => state.shoppingCart);
   let total = 0;
-  let suma = cart.map(el => Number(el.salePrice));
+  let suma = cart.map((el) => Number(el.salePrice));
   for (let i of suma) total += i;
 
   function handleButtonHome(e) {
@@ -63,36 +64,37 @@ export default function Detail(props) {
 
   const carrito = (
     <Box sx={style}>
-      <div className='carritoDiv'>
-        {detail?.map(products => {
+      <div className="carritoDiv">
+        {detail?.map((products) => {
           return (
-            <div className='container-detail'>
-              <div className='detail-products'>
+            <div className="container-detail">
+              <div className="detail-products">
                 <h4>{products.productName}</h4>
-                <ul className='detailUl'>
+                <ul className="detailUl">
                   <li>{products.collection.name}</li>
                   <li>{"$ " + Number(products.salePrice)}</li>
                 </ul>
               </div>
-              <div className='detail-img'>
-                <img alt='k' className='img' src={products.images} />
+              <div className="detail-img">
+                <img alt="k" className="img" src={products.images} />
               </div>
             </div>
           );
         })}
-        <div className='carritoTotal'>
+        <div className="carritoTotal">
           <h4>TU CARRITO</h4>
           <h4>
-            TOTAL ({cart.length} {cart.length === 1 ? "PRODUCTO" : "PRODUCTOS"} ): $ {total}
+            TOTAL ({cart.length} {cart.length === 1 ? "PRODUCTO" : "PRODUCTOS"}{" "}
+            ): $ {total}
           </h4>
         </div>
-        <Typography id='modal-modal-description' sx={{ mt: 2 }}>
+        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
           <Link to={"/home"}>
-            <button className='btn1'>Seguir comprando</button>
+            <button className="btn1">Seguir comprando</button>
           </Link>
         </Typography>
-        <Typography id='modal-modal-description' sx={{ mt: 2 }}>
-          <button className='btn2' onClick={handleButtonCart}>
+        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          <button className="btn2" onClick={handleButtonCart}>
             Ver carrito
           </button>
         </Typography>
@@ -101,7 +103,7 @@ export default function Detail(props) {
   );
 
   const stock = [];
-  let stock1 = detail?.map(products => products.stock);
+  let stock1 = detail?.map((products) => products.stock);
   for (let i = 1; i <= stock1; i++) {
     stock.push(i);
   }
@@ -118,7 +120,7 @@ export default function Detail(props) {
     if (detail[0].hasOwnProperty("reviews")) {
       if (detail[0].reviews.length > 0) {
         if (detail[0].reviews[0].hasOwnProperty("review")) {
-          primero = detail.map(el => el.reviews);
+          primero = detail.map((el) => el.reviews);
           segundo = primero.flat();
         }
       }
@@ -126,27 +128,28 @@ export default function Detail(props) {
   }
 
   return (
-    <div className='container'>
-      {detail.map(products => {
-        return (
-          <div className='detailContainer'>
-            <Card sx={{ maxWidth: 820 }}>
-              <CardContent className='misComprasCard'>
-                <div>
-                  <Typography gutterBottom variant='h5' component='div'>
-                    <div className='cardTitle'>
-                      <h3>{products.productName}</h3>
-                    </div>
-                    <p>{products.collection.name}</p>
+    <>
+      <div className="container">
+        {detail.map((products) => {
+          return (
+            <div className="detailContainer">
+              <Card sx={{ maxWidth: 820 }}>
+                <CardContent className="misComprasCard">
+                  <div>
+                    <Typography gutterBottom variant="h5" component="div">
+                      <div className="cardTitle">
+                        <h3>{products.productName}</h3>
+                      </div>
+                      <p>{products.collection.name}</p>
 
-                    <p>{products.gender}</p>
+                      <p>{products.gender}</p>
 
-                    <img alt='k' className='img' src={products.images} />
-                  </Typography>
-                </div>
-                <div className='detailContainerCard'>
-                  <Typography variant='body2' color='text.secondary'>
-                    <li className='detailSummary'>{products.description}</li>
+                      <img alt="k" className="img" src={products.images} />
+                    </Typography>
+                  </div>
+                  <div className="detailContainerCard">
+                    <Typography variant="body2" color="text.secondary">
+                      <li className="detailSummary">{products.description}</li>
 
                     <li className='detailSummary'>{"$" + Number(products.salePrice)}</li>
                     <div>
@@ -188,24 +191,24 @@ export default function Detail(props) {
             alignItems: "center",
           }}
         > */}
-        {/* <Rating name="half-rating-read" value={average1} precision={0.5} readOnly /> */}
-        {/* <h4>{average1}</h4> */}
-        {/* </Box> */}
-        <Card sx={{ maxWidth: 820 }}>
-          <h1 className='title-reneged'>Reseñas</h1>
-          <CardContent className='misComprasCard'>
-            <div>
-              <Typography gutterBottom variant='h5' component='div'>
-                {segundo.length === 0 || segundo === undefined
-                  ? null
-                  : segundo.map(el => {
-                      return (
-                        <div>
-                          <CreateReview review={el.review} score={el.score} />
-                        </div>
-                      );
-                    })}
-                {/* <h4>Puntuación general</h4>
+          {/* <Rating name="half-rating-read" value={average1} precision={0.5} readOnly /> */}
+          {/* <h4>{average1}</h4> */}
+          {/* </Box> */}
+          <Card sx={{ maxWidth: 820 }}>
+            <h1 className="title-reneged">Reseñas</h1>
+            <CardContent className="misComprasCard">
+              <div>
+                <Typography gutterBottom variant="h5" component="div">
+                  {segundo.length === 0 || segundo === undefined
+                    ? null
+                    : segundo.map((el) => {
+                        return (
+                          <div>
+                            <CreateReview review={el.review} score={el.score} />
+                          </div>
+                        );
+                      })}
+                  {/* <h4>Puntuación general</h4>
                 <Box
                   sx={{
                     width: 200,
@@ -216,15 +219,17 @@ export default function Detail(props) {
               <Rating name="half-rating-read" value={average1} precision={0.5} readOnly /> 
               <h4>{average1}</h4> 
               </Box>  */}
-              </Typography>
-            </div>
-          </CardContent>
-        </Card>
+                </Typography>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+        <button onClick={handleButtonHome} className="btn6">
+          Home
+        </button>
+        <br></br>
       </div>
-      <button onClick={handleButtonHome} className='btn6'>
-        Home
-      </button>
-      <br></br>
-    </div>
+      <Footer />
+    </>
   );
 }

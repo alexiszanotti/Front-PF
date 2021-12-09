@@ -9,6 +9,7 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import "./goShopping.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "../footer/footer";
 
 export default function GoShopping() {
   const dispatch = useDispatch();
@@ -111,6 +112,7 @@ export default function GoShopping() {
     loginWithRedirect();
   } else {
     return (
+      <>
       <div className='shoppingGeneral'>
         <form onSubmit={handleSubmit} className='formulario'>
           <div className='contenedorPerfil'>
@@ -249,12 +251,18 @@ export default function GoShopping() {
           <Button type='submit' variant='outlined'>
             Modificar datos
           </Button>
+          <br />
           <Button onClick={handleCheckOut} variant='outlined' startIcon={<AttachMoneyIcon />}>
             Continuar al pago
           </Button>
         </form>
         <ToastContainer />
       </div>
+      <div className="footerGoShopping">
+        <Footer />
+
+      </div>
+      </>
     );
   }
 }

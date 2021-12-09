@@ -9,6 +9,7 @@ import IconButton from "@mui/material/IconButton";
 import { useDispatch } from "react-redux";
 import { changeStatusCart, mercadoPago } from "../../Redux/Actions/index";
 import { Button } from "@mui/material";
+import Footer from "../footer/footer";
 export default function Checkuot() {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
@@ -104,7 +105,7 @@ export default function Checkuot() {
     <div>
       <div className='pepe'>
         <h1>ULTIMO PASO</h1>
-        <h3>Espere hasta que aparesca el boton de pagar y listo puedes realizar tu compra !</h3>
+        <h3>Espere hasta que aparezca el boton de pagar y listo puedes realizar tu compra !</h3>
         <form id='form1'></form>
         <img
           alt='l'
@@ -186,6 +187,9 @@ export default function Checkuot() {
               </ImageList>
             </div>
           </div>
+            <div className="footerCheckout">
+            <Footer />
+            </div>
         </>
       ) : (
         <>
