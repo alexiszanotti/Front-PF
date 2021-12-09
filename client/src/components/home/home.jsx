@@ -13,8 +13,10 @@ import { filterByParams, resetFilter, getCollection } from "../../Redux/Actions/
 import { useDispatch } from "react-redux";
 import { Typography } from "@mui/material";
 import Footer from "../footer/footer";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
-export default function Home({setCurrentPage, currentPage}) {
+export default function Home({ setCurrentPage, currentPage }) {
   const dispatch = useDispatch();
 
   const shoes = useSelector(state => state.productsFilter);
@@ -32,11 +34,11 @@ export default function Home({setCurrentPage, currentPage}) {
   const paginado = pageNumber => {
     setCurrentPage(pageNumber);
   };
-  
+
   function handleClick(e) {
     dispatch(resetFilter());
 
-    setOrden({collection: 'All', gender: 'All', price: 'default'});
+    setOrden({ collection: 'All', gender: 'All', price: 'default' });
   }
 
   function handleChange(e) {
@@ -51,7 +53,7 @@ export default function Home({setCurrentPage, currentPage}) {
   }
   function nextPage() {
     if (currentPage === pageNumbers.length) {
-      setCurrentPage(5);
+      setCurrentPage(6);
 
     } else {
       setCurrentPage(currentPage + 1);
@@ -68,14 +70,14 @@ export default function Home({setCurrentPage, currentPage}) {
 
   useEffect(() => {
     dispatch(filterByParams(orden));
-    return () => {};
+    return () => { };
   }, [dispatch, orden]);
 
   useEffect(() => {
     dispatch(getCollection());
   }, [dispatch]);
 
-  
+
   return (
     <div>
       <div className='boxCategories'>
@@ -157,13 +159,20 @@ export default function Home({setCurrentPage, currentPage}) {
       </div>
       <br>
       </br>
-      <div className='paginado'>
+        <div className='paginationFoward'>
+          <ArrowForwardIosIcon onClick={nextPage} />
+        </div>
+        <div className='paginationBack'>
+          <ArrowBackIosNewIcon onClick={previousPage} />
+        </div>
+        <div >
         <Paginado
           shoesPorPaginaPorPagina={shoesPorPaginaPorPagina}
           shoes={shoes.length}
           paginado={paginado}
-          previousPage={previousPage}
-          nextPage={nextPage}
+          currentPage={currentPage}
+          // previousPage={previousPage}
+          // nextPage={nextPage}
         />
       </div>
       <button className='botonCart1' onClick={handleClick}>

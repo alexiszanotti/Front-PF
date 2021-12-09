@@ -168,7 +168,7 @@ export default function Detail(props) {
           </div>
         );
       })}
-      <div className='detailContainer'>
+      <div className='container'>
         {/* {segundo.length === 0 || segundo === undefined ? (
           <h4>No hay reseñas</h4>
         ) : (
