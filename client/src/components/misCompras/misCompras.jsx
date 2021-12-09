@@ -12,10 +12,11 @@ export default function MisCompras() {
   const compras = useSelector(state => state.misCompras);
   const compras2 = compras.map(el => el.products);
   const compras3 = compras2.flat();
-
+  console.log(compras);
   useEffect(() => {
     dispatch(getAllUsers());
     dispatch(filterByCart(usuariosCarritoFiltrado[0].id));
+
   }, [dispatch, usuariosCarritoFiltrado[0].id]);
 
   return (
