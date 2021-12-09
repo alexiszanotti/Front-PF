@@ -1,6 +1,6 @@
 .shoppingGeneral {
   width: 90%;
-  margin-top: 275px;
+  margin-top: 20%;
   display: flex;
   flex-direction: column;
 }
@@ -12,4 +12,7 @@
   grid-gap: 5px;
   width: 90%;
   margin-top: 20px;
+}
+.footerGoShopping{
+  margin-top: 20%;
 }

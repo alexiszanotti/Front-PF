@@ -8,14 +8,7 @@ import Box from "@mui/material/Box";
 import { Modal } from "@material-ui/core";
 import { modifyUser } from "../../Redux/Actions/index";
 import swal from "sweetalert";
-import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import TextField from "@mui/material/TextField";
-
+import Footer from "../footer/footer";
 export default function Perfil() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -200,9 +193,9 @@ export default function Perfil() {
         {editar}
       </Modal>
       <div className='fondo'></div>
-
-      <h3 className='titulo-form'>Perfil de usuario</h3>
-
+      
+      <h3 className='titulo-form'>PERFIL DE USUARIO</h3>
+      
       <form onSubmit={e => handleSubmit(e)} className='formulario'>
         <div className='contenedorPerfil'>
           <div className='div1'>
@@ -355,6 +348,9 @@ export default function Perfil() {
           </Button>
         </Box>
       </form>
+      <div className="footerPerfil">
+      <Footer />
+      </div>
     </div>
   );
 }

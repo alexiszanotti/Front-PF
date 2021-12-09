@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Comprar from "../shopingCar/Comprar.jsx";
+import Footer from "../footer/footer";
 
 export default function ShopingCart() {
   const dispatch = useDispatch();
@@ -47,11 +48,11 @@ export default function ShopingCart() {
     errorSubmit();
   };
 
-  // useEffect(() => {
-  //   if (idUser) {
-  //     dispatch(addDataBaseShoppingCart(cartId.toString()));
-  //   }
-  // }, [dispatch, cartId, idUser]);
+  useEffect(() => {
+    if (idUser) {
+      dispatch(addDataBaseShoppingCart(cartId.toString()));
+    }
+  }, [dispatch, cartId, idUser]);
 
   const borrarCarrito = () => {
     for (let i = 0; i < dataBaseShopping.length; i++) {
@@ -119,6 +120,7 @@ export default function ShopingCart() {
             <Link to='/home'>
               <button className='botonCart1'>volver</button>
             </Link>
+            <Footer />
           </div>
         ) : (
           <div>
@@ -155,6 +157,7 @@ export default function ShopingCart() {
             <Link to='/home'>
               <button className='botonCart1'>volver</button>
             </Link>
+            <Footer />
           </div>
         )}
       </div>
