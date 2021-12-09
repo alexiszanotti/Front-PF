@@ -43,7 +43,10 @@ export default function CardShopingCart(props) {
         })
       );
       setTimeout(() => {
-        dispatch(addDataBaseShoppingCart(cartId.toString()));
+        if(cartId){
+          dispatch(addDataBaseShoppingCart(cartId.toString()));
+        }
+       
       }, 300);
     } else {
       dispatch(removeCard(props.id));

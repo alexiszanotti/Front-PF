@@ -64,7 +64,9 @@ export default function ShopingCart() {
     }
     dispatch(emptyShoppingPersist());
     setTimeout(() => {
-      dispatch(addDataBaseShoppingCart(cartId.toString()));
+      if(cartId){
+        dispatch(addDataBaseShoppingCart(cartId.toString()));
+      }
     }, 200);
   };
 

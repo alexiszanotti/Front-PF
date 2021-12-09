@@ -31,6 +31,7 @@ import {
   addDataBaseShoppingCart,
 } from "./Redux/Actions/index";
 import { useAuth0 } from "@auth0/auth0-react";
+import useIsFocusVisible from "@material-ui/utils/useIsFocusVisible";
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -57,7 +58,8 @@ function App() {
       let usr = users?.filter(user => user.id === logIn.id);
       let cartId = usr?.map(el => el.Cart.id);
       dispatch(addDataBaseFavorite(idUser));
-      dispatch(addDataBaseShoppingCart(cartId.toString()));
+     
+     
     }
   }, [dispatch, logIn.id, logIn.type, users]);
 
