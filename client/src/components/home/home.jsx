@@ -12,6 +12,7 @@ import Select from "@mui/material/Select";
 import { filterByParams, resetFilter, getCollection } from "../../Redux/Actions/index";
 import { useDispatch } from "react-redux";
 import { Typography } from "@mui/material";
+import Footer from "../footer/footer";
 
 export default function Home({setCurrentPage, currentPage}) {
   const dispatch = useDispatch();
@@ -74,6 +75,7 @@ export default function Home({setCurrentPage, currentPage}) {
     dispatch(getCollection());
   }, [dispatch]);
 
+  
   return (
     <div>
       <div className='boxCategories'>
@@ -93,7 +95,10 @@ export default function Home({setCurrentPage, currentPage}) {
                     onChange={handleChange}
                   >
                     <MenuItem value='All'>TODOS</MenuItem>
-                    {collections?.map(el => {
+                    <MenuItem value={"ORIGINALS"}>ORIGINALS</MenuItem>
+                    <MenuItem value={"CORE / NEO"}>CORE / NEO</MenuItem>
+                    <MenuItem value={"SPORT PERFORMANCE"}>SPORT PERFORMANCE</MenuItem>
+                    {/* {collections?.map(el => {
                       return (
                         <div key={el.id}>
                         <MenuItem  value={el.name}>
@@ -101,7 +106,7 @@ export default function Home({setCurrentPage, currentPage}) {
                         </MenuItem>
                         </div>
                       );
-                    })}
+                    })} */}
                   </Select>
                 </FormControl>
               </Box>
@@ -184,6 +189,7 @@ export default function Home({setCurrentPage, currentPage}) {
           <Typography>No hay productos con esos parametros</Typography>
         )}
       </div>
+      <Footer />
     </div>
   );
 }

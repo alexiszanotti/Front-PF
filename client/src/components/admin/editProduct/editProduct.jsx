@@ -22,7 +22,6 @@ export default function EditProduct() {
 
   const [input, setInput] = useState({
     id: "",
-    images: "",
   });
 
   const successSubmit = () => {
@@ -114,7 +113,7 @@ export default function EditProduct() {
               onChange={handleLabelChangeCollection}
               name='salePrice'
               type='number'
-              value={aux?.map(el => el.salePrice)}
+              placeholder={aux?.map(el => el.salePrice)}
             ></input>
             <br></br>
             <label>Descripción:</label>
@@ -123,7 +122,7 @@ export default function EditProduct() {
                 onChange={handleInputChange}
                 type='text'
                 name='description'
-                value={aux?.map(el => el.description)}
+                placeholder={aux?.map(el => el.description)}
                 rows='7'
                 cols='70'
               />
@@ -133,7 +132,7 @@ export default function EditProduct() {
               onChange={handleInputChange}
               type='number'
               name='stock'
-              value={aux?.map(el => el.stock)}
+              placeholder={aux?.map(el => el.stock)}
             />
             <br></br>
             <input type='file' multiple='true' name='images' onChange={handleFiles} />

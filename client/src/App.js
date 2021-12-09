@@ -20,6 +20,8 @@ import Pago from "./components/pago/pago";
 import DefaultError from "./components/error/error";
 import Checkuot from "./components/checkuot/checkuot";
 import MisCompras from "./components/misCompras/misCompras";
+import Realizado from "./components/realizado/realizado";
+import About from "./components/about/about";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -140,6 +142,8 @@ function App() {
             <Route path='/tarjeta' component={Pago} />
             <Route path='/checkout' component={Checkuot} />
             <Route path='/misCompras' component={MisCompras} />
+            <Route path='/realizado' component={Realizado} />
+            <Route path='/about' component={About} />
             <Route path='*' component={DefaultError} />
           </Switch>
         </div>

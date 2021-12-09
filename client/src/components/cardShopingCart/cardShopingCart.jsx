@@ -138,7 +138,7 @@ export default function CardShopingCart(props) {
                     <p>$ {props.price * cantidad}</p>
                   )
                 ) : (
-                  <p>{props.price}</p>
+                  <p>$ {props.price}</p>
                 )}
               </Typography>
               {idUser ? (

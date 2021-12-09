@@ -11,14 +11,17 @@ export default function UpDataUsers() {
   const dispatch = useDispatch();
   const usersData = useSelector(state => state.users);
 
+  console.log(usersData)
+
   useEffect(() => {
     dispatch(getAllUsers());
   }, [dispatch]);
 
+  
   const [input, setInput] = useState({
     id: "",
   });
-
+  
   const successSubmit = () => {
     toast.success("Usuario modificado con éxito", {
       position: "bottom-right",
@@ -67,7 +70,7 @@ export default function UpDataUsers() {
   }
 
   let aux = usersData.filter(el => el.id === input.id);
-
+  console.log(aux)
   return (
     <div className='updateUserContainer'>
       <h1>ELIJA EL USUARIO A MODIFICAR</h1>
@@ -92,28 +95,28 @@ export default function UpDataUsers() {
             type='text'
             name='email'
             onChange={handleInputChange}
-            value={aux?.map(el => el.email)}
+            placeholder={aux?.map(el => el.email)}
           />
           <label>NOMBRE</label>
           <input
             type='text'
             name='name'
             onChange={handleInputChange}
-            value={aux?.map(el => el.name)}
+            placeholder={aux?.map(el => el.name)}
           />
           <label>APELLIDO</label>
           <input
             type='text'
             name='lastName'
             onChange={handleInputChange}
-            value={aux?.map(el => el.lastName)}
+            placeholder={aux?.map(el => el.lastName)}
           />
           <label>FECHA</label>
           <input
             type='text'
             name='birthDay'
             onChange={handleInputChange}
-            value={aux?.map(el => el.birthDay)}
+            placeholder={aux?.map(el => el.birthDay)}
           />
           <label>GENERO</label>
           <select className='select' onChange={e => handleSelect(e)} name='gender'>
