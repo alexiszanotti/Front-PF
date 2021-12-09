@@ -1,4 +1,3 @@
-
 import "./misCompras.css";
 import React, { useEffect } from "react";
 import { getAllUsers, filterByCart } from "../../Redux/Actions/index";
@@ -11,14 +10,12 @@ export default function MisCompras() {
   const usuarios = useSelector(state => state.users);
   const usuariosCarritoFiltrado = usuarios.filter(el => el.id === userLogin.id);
   const compras = useSelector(state => state.misCompras);
-  const compras2 = compras.map((el) => el.products);
+  const compras2 = compras.map(el => el.products);
   const compras3 = compras2.flat();
-
 
   useEffect(() => {
     dispatch(getAllUsers());
     dispatch(filterByCart(usuariosCarritoFiltrado[0].id));
-    console.log("hola")
   }, [dispatch, usuariosCarritoFiltrado[0].id]);
 
   return (

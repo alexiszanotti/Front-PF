@@ -55,40 +55,36 @@ export default function Detail(props) {
     transform: "translate(-50%, -50%)",
     width: 800,
     height: 700,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
+    //bgcolor: "background.paper",
+    //
+    //boxShadow: 24,
     p: 4,
   };
 
   const carrito = (
-    <div className='detailContainer'>
-      <Box sx={style}>
-        <Typography id='modal-modal-title' variant='h6' component='h2'>
-          <h3 className='carritoTitle'>Añadido al carrito correctamente</h3>
-        </Typography>
-        <div className='carritoDiv'>
-          {detail?.map(products => {
-            return (
-              <div>
+    <Box sx={style}>
+      <div className='carritoDiv'>
+        {detail?.map(products => {
+          return (
+            <div className='container-detail'>
+              <div className='detail-products'>
                 <h4>{products.productName}</h4>
                 <ul className='detailUl'>
                   <li>{products.collection.name}</li>
-                  <br></br>
-                  <img alt='k' className='img' src={products.images} />
-                  <br></br>
-                  <br></br>
                   <li>{"$ " + Number(products.salePrice)}</li>
                 </ul>
               </div>
-            );
-          })}
-          <div className='carritoTotal'>
-            <h4>TU CARRITO</h4>
-            <h4>
-              TOTAL ({cart.length} {cart.length === 1 ? "PRODUCTO" : "PRODUCTOS"} ): $ {total}
-            </h4>
-          </div>
+              <div className='detail-img'>
+                <img alt='k' className='img' src={products.images} />
+              </div>
+            </div>
+          );
+        })}
+        <div className='carritoTotal'>
+          <h4>TU CARRITO</h4>
+          <h4>
+            TOTAL ({cart.length} {cart.length === 1 ? "PRODUCTO" : "PRODUCTOS"} ): $ {total}
+          </h4>
         </div>
         <Typography id='modal-modal-description' sx={{ mt: 2 }}>
           <Link to={"/home"}>
@@ -100,8 +96,8 @@ export default function Detail(props) {
             Ver carrito
           </button>
         </Typography>
-      </Box>
-    </div>
+      </div>
+    </Box>
   );
 
   const stock = [];
@@ -141,18 +137,18 @@ export default function Detail(props) {
                     <div className='cardTitle'>
                       <h3>{products.productName}</h3>
                     </div>
-                    <li>{products.collection.name}</li>
-                    <br></br>
-                    <li>{products.gender}</li>
-                    <br></br>
+                    <p>{products.collection.name}</p>
+
+                    <p>{products.gender}</p>
+
                     <img alt='k' className='img' src={products.images} />
                   </Typography>
                 </div>
                 <div className='detailContainerCard'>
                   <Typography variant='body2' color='text.secondary'>
                     <li className='detailSummary'>{products.description}</li>
-                    <br></br>
-                    <li>{"$" + Number(products.salePrice)}</li>
+
+                    <li className='detailSummary'>{"$" + Number(products.salePrice)}</li>
                     <div>
                       <button
                         type='button'
@@ -225,7 +221,7 @@ export default function Detail(props) {
           </CardContent>
         </Card>
       </div>
-      <button onClick={handleButtonHome} className='btn5'>
+      <button onClick={handleButtonHome} className='btn6'>
         Home
       </button>
       <br></br>

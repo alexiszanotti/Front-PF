@@ -98,9 +98,9 @@ export default function Compras({
     transform: "translate(-50%, -50%)",
     width: 1000,
     height: 350,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
+    //bgcolor: "rgb(236,236,236)",
+    // border: "2px solid #000",
+    //boxShadow: 24,
     p: 4,
   };
 
@@ -143,7 +143,7 @@ export default function Compras({
               <button type='submit' onClick={handleSubmit} className='btn1'>
                 Publicar
               </button>
-              <button type='submit' onClick={() => openCloseModal()} className='btn2'>
+              <button onClick={() => openCloseModal()} className='btn2'>
                 Cerrar
               </button>
             </div>
