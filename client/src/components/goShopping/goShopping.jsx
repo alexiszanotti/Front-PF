@@ -210,7 +210,7 @@ export default function GoShopping() {
                 name='floor'
                 value={input.floor}
                 onChange={handleInputChange}
-                required
+        
               />
             </div>
             <div className='div10'>
@@ -220,7 +220,7 @@ export default function GoShopping() {
                 name='department'
                 value={input.department}
                 onChange={handleInputChange}
-                required
+             
               />
             </div>
             <div className='div11'>

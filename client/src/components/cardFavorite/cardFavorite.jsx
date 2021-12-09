@@ -66,7 +66,7 @@ export default function CardFavorite(props) {
               {props.title}
             </Typography>
             <Typography variant="h4" color="text.secondary">
-              {props.price + "$"}
+              { "$" + props.price}
             </Typography>
           </CardContent>
         </CardActionArea>
