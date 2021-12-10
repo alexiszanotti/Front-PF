@@ -8,14 +8,15 @@ export default function CreateReview({ review, score }) {
       <div className='detailContainer'>
         <Box
           sx={{
-            width: 930,
+            width: 750,
             display: "flex",
             alignItems: "center",
-            justifyContent: "center",
+            justifyContent: "space-around",
+            flexDirection: "row",
           }}
         >
           <h3>{review}</h3>
-          <Rating name='half-rating-read' value={score} precision={0.5} readOnly />
+          <Rating className="reseñas_estrellas" name='half-rating-read' value={score} precision={0.5} readOnly />
         </Box>
       </div>
     </div>

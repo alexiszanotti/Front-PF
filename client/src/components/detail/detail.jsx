@@ -207,17 +207,7 @@ export default function Detail(props) {
                         </div>
                       );
                     })}
-                {/* <h4>Puntuación general</h4>
-                <Box
-                  sx={{
-                    width: 200,
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                > 
-              <Rating name="half-rating-read" value={average1} precision={0.5} readOnly /> 
-              <h4>{average1}</h4> 
-              </Box>  */}
+             
               </Typography>
             </div>
           </CardContent>

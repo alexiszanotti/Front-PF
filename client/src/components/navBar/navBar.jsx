@@ -291,7 +291,7 @@ export default function NavBar({ setCurrentPage }) {
               component="div"
               sx={{ display: { xs: "none", sm: "block" } }}
             >
-              <Link to="/">
+              <Link to="/home">
                 <img src={Logo} width="50" height="40" alt="k" />
               </Link>
             </Typography>
