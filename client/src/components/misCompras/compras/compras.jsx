@@ -14,7 +14,7 @@ import { Modal } from "@material-ui/core";
 import Rating from "@mui/material/Rating";
 import Box from "@mui/material/Box";
 import swal from "sweetalert";
-
+import { ToastContainer, toast } from 'react-toastify';
 const validateForm = input => {
   let error = {};
   if (!input.review) {
@@ -76,10 +76,11 @@ export default function Compras({
           review: "",
           score: "",
         });
-      }, 4000);
+      }, 500);
       setTimeout(() => {
+        successSubmitFavorite()
         history.push(`/detail/${productId}`);
-      }, 6000);
+      }, 300);
     } else {
       swal("Error!", "Por favor, complete todos los campos requeridos!", "error");
     }
@@ -96,11 +97,9 @@ export default function Compras({
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 1000,
-    height: 350,
-    //bgcolor: "rgb(236,236,236)",
-    // border: "2px solid #000",
-    //boxShadow: 24,
+    width: 400,
+    height: 250,
+    bgcolor: "rgb(236,236,236)",
     p: 4,
   };
 
@@ -111,6 +110,16 @@ export default function Compras({
     4: "Muy bueno",
     5: "Excelente",
   };
+  const successSubmitFavorite = () => {
+    toast.success('Producto guardado con éxito', {
+      position: "bottom-right",
+      autoClose: 1000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      });
+  }
 
   const reseñas = (
     <div>
@@ -143,6 +152,7 @@ export default function Compras({
               <button type='submit' onClick={handleSubmit} className='btn1'>
                 Publicar
               </button>
+              
               <button onClick={() => openCloseModal()} className='btn2'>
                 Cerrar
               </button>
@@ -203,6 +213,7 @@ export default function Compras({
           </CardContent>
         </CardActionArea>
       </Card>
+      <ToastContainer />
     </div>
   );
 }
