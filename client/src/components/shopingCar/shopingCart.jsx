@@ -52,7 +52,7 @@ export default function ShopingCart() {
     if (idUser) {
       dispatch(addDataBaseShoppingCart(cartId.toString()));
     }
-  }, [dispatch, cartId, idUser]);
+  }, [dispatch]);
 
   const borrarCarrito = () => {
     for (let i = 0; i < dataBaseShopping.length; i++) {
