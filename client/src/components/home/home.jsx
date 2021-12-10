@@ -38,7 +38,7 @@ export default function Home({ setCurrentPage, currentPage }) {
   function handleClick(e) {
     dispatch(resetFilter());
 
-    setOrden({ collection: 'All', gender: 'All', price: 'default' });
+    setOrden({ collection: "All", gender: "All", price: "default" });
   }
 
   function handleChange(e) {
@@ -54,7 +54,6 @@ export default function Home({ setCurrentPage, currentPage }) {
   function nextPage() {
     if (currentPage === pageNumbers.length) {
       setCurrentPage(6);
-
     } else {
       setCurrentPage(currentPage + 1);
     }
@@ -62,7 +61,6 @@ export default function Home({ setCurrentPage, currentPage }) {
   function previousPage() {
     if (currentPage === 1) {
       setCurrentPage(1);
-
     } else {
       setCurrentPage(currentPage - 1);
     }
@@ -70,13 +68,12 @@ export default function Home({ setCurrentPage, currentPage }) {
 
   useEffect(() => {
     dispatch(filterByParams(orden));
-    return () => { };
+    return () => {};
   }, [dispatch, orden]);
 
   useEffect(() => {
     dispatch(getCollection());
   }, [dispatch]);
-
 
   return (
     <div>
@@ -100,15 +97,6 @@ export default function Home({ setCurrentPage, currentPage }) {
                     <MenuItem value={"ORIGINALS"}>ORIGINALS</MenuItem>
                     <MenuItem value={"CORE / NEO"}>CORE / NEO</MenuItem>
                     <MenuItem value={"SPORT PERFORMANCE"}>SPORT PERFORMANCE</MenuItem>
-                    {/* {collections?.map(el => {
-                      return (
-                        <div key={el.id}>
-                        <MenuItem  value={el.name}>
-                          {el.name}
-                        </MenuItem>
-                        </div>
-                      );
-                    })} */}
                   </Select>
                 </FormControl>
               </Box>
@@ -157,22 +145,19 @@ export default function Home({ setCurrentPage, currentPage }) {
           </Grid>
         </Box>
       </div>
-      <br>
-      </br>
-        <div className='paginationFoward'>
-          <ArrowForwardIosIcon onClick={nextPage} />
-        </div>
-        <div className='paginationBack'>
-          <ArrowBackIosNewIcon onClick={previousPage} />
-        </div>
-        <div >
+      <br></br>
+      <div className='paginationFoward'>
+        <ArrowForwardIosIcon className='svg_icons' onClick={nextPage} />
+      </div>
+      <div className='paginationBack'>
+        <ArrowBackIosNewIcon className='svg_icons' onClick={previousPage} />
+      </div>
+      <div>
         <Paginado
           shoesPorPaginaPorPagina={shoesPorPaginaPorPagina}
           shoes={shoes.length}
           paginado={paginado}
           currentPage={currentPage}
-          // previousPage={previousPage}
-          // nextPage={nextPage}
         />
       </div>
       <button className='botonCart1' onClick={handleClick}>
