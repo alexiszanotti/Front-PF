@@ -1,12 +1,19 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./aboutUs.css";
 import Foto1 from "../../images/Alexis.jpg";
 import Foto2 from "../../images/Teo.jpg";
 import Foto3 from "../../images/Gaston.jpg";
 import Foto4 from "../../images/Ema.jpg";
 import Foto5 from "../../images/Enzo.jpg";
+import {gsap} from "gsap";
 
-export default function aboutUs() {
+export default function AboutUs() {
+ 
+  useEffect(() => {
+    const Card = document.querySelector(".container")
+    
+    gsap.from(Card,{opacity : 0, y:50, duration : 3})
+  },[])
   return (
     <div>
       <div className='container'>
