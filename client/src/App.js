@@ -1,4 +1,3 @@
-import "./App.css";
 import React, { useEffect, useState } from "react";
 import Navbar from "./components/navBar/navBar";
 import Home from "./components/home/home";
@@ -21,6 +20,8 @@ import Pago from "./components/pago/pago";
 import DefaultError from "./components/error/error";
 import Checkuot from "./components/checkuot/checkuot";
 import MisCompras from "./components/misCompras/misCompras";
+import Realizado from "./components/realizado/realizado";
+import aboutUs from "./components/aboutUs/aboutUs";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -32,6 +33,7 @@ import {
   addDataBaseShoppingCart,
 } from "./Redux/Actions/index";
 import { useAuth0 } from "@auth0/auth0-react";
+import useIsFocusVisible from "@material-ui/utils/useIsFocusVisible";
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -59,13 +61,14 @@ function App() {
       let cartId = usr?.map(el => el.Cart.id);
       dispatch(addDataBaseFavorite(idUser));
       dispatch(addDataBaseShoppingCart(cartId.toString()));
+     
+     
     }
-  }, [dispatch]);
+  }, [dispatch, logIn.id, logIn.type, users]);
 
   if (isAuthenticated) {
     setTimeout(function () {
       if (emailUsersDB.indexOf(user.email) === -1) {
-
         dispatch(
           postCreateUser({
             email: user.email,
@@ -75,7 +78,7 @@ function App() {
             gender: "Other",
           })
         );
-  
+
         setTimeout(function () {
           if (logIn.type === undefined) {
             let email = user.email;
@@ -83,9 +86,7 @@ function App() {
             setEstadoLogeado(true);
           }
         }, 2000);
-  
       } else {
-  
         setTimeout(function () {
           if (logIn.type === undefined) {
             let email = user.email;
@@ -93,16 +94,13 @@ function App() {
             setEstadoLogeado(true);
           }
         }, 1000);
-  
       }
-
     }, 2000);
-    
   }
 
   if (Object.keys(logIn).length === 0) {
     if (estadoLogeado) {
-      console.log("ema trolo ")
+      console.log("ema trolo ");
       setEstadoLogeado(false);
 
       logout({ returnTo: window.location.origin });
@@ -135,8 +133,8 @@ function App() {
           <Switch>
             <Route exact path='/' component={Landing} />
             <Route path='/home'>
-              <Home currentPage={currentPage}  setCurrentPage={setCurrentPage} />
-              </Route>
+              <Home currentPage={currentPage} setCurrentPage={setCurrentPage} />
+            </Route>
             <Route exact path='/detail/:id' component={Detail} />
             <Route path='/carrito/:id' component={ShopingCart} />
             <Route path='/favorites' component={Favorite} />
@@ -145,6 +143,8 @@ function App() {
             <Route path='/tarjeta' component={Pago} />
             <Route path='/checkout' component={Checkuot} />
             <Route path='/misCompras' component={MisCompras} />
+            <Route path='/realizado' component={Realizado} />
+            <Route path='/aboutUs' component={aboutUs} />
             <Route path='*' component={DefaultError} />
           </Switch>
         </div>

@@ -1,16 +1,19 @@
 .createProduct {
-  background: linear-gradient(180deg, rgba(0, 0, 255, 0.7), rgb(230, 230, 230) 70.71%);
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   border: 0;
-  border-radius: 30px;
+  border-radius: 10px;
   width: 50%;
-  height: 102vh;
+  height: 100vh;
   margin: 0 auto;
   margin-bottom: 15px;
   margin-top: 15px;
+  border-radius: 44px;
+  background: #e0e0e0;
+  box-shadow: -10px 10px 16px #c3c3c3, 10px -10px 16px #fdfdfd;
+  margin-left: 35%;
 }
 
 .form-inputs {
@@ -20,6 +23,8 @@
 }
 
 .form-inputs input {
+  background: rgb(236, 236, 236);
+  color: black;
   width: 90%;
   height: 20px;
   border: 1px solid #ccc;
@@ -29,6 +34,8 @@
 }
 
 .form-inputs textarea {
+  background: rgb(236, 236, 236);
+  color: white;
   width: 90%;
   height: 40px;
   border: 1px solid rgb(248, 237, 237);

@@ -13,7 +13,7 @@ export default function Comprar({ data, setLoading }) {
           script.src = "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
           script.setAttributeNode(attr_data_preference);
       
-          console.log(data);
+    
           setLoading(true)
       
           //Agrega el script como nodo hijo del elemento form

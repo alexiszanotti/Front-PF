@@ -1,15 +1,13 @@
 import "./editProduct.css";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import Box from "@mui/material/Box";
 import { Input } from "@mui/material";
 import { getAllProducts, modifyProduct, getCollection } from "../../../Redux/Actions/index";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function EditProduct() {
-  const history = useHistory();
   const dispatch = useDispatch();
   const productsData = useSelector(state => state.products);
   const collections = useSelector(state => state.collections);
@@ -24,11 +22,10 @@ export default function EditProduct() {
 
   const [input, setInput] = useState({
     id: "",
-    images: "",
   });
 
   const successSubmit = () => {
-    toast.success('Producto modificado con éxito', {
+    toast.success("Producto modificado con éxito", {
       position: "bottom-right",
       autoClose: 2000,
       hideProgressBar: false,
@@ -36,14 +33,14 @@ export default function EditProduct() {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      });
-  }
+    });
+  };
 
   const handleButton = () => {
     setTimeout(() => {
-      window.location.replace('');
-    }, 2000)
-}
+      window.location.replace("");
+    }, 2000);
+  };
 
   const handleSelectChange = function (e) {
     setInput({ ...input, id: e.target.value });
@@ -67,11 +64,10 @@ export default function EditProduct() {
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(modifyProduct(input));
-    successSubmit(handleButton())
+    successSubmit(handleButton());
     setInput({
       id: "",
     });
-    // history.push("/");
   }
 
   let aux = productsData.filter(el => el.id === input.id);
@@ -92,25 +88,28 @@ export default function EditProduct() {
   return (
     <div className='editProductContainer'>
       <div className='productContainer'>
-        <h1>Seleccione el producto a modificar</h1>
-        <Box sx={{ minWidth: 120 }}>
-          <select onChange={e => handleSelectChange(e)} className='select' required='required'>
-            <option value=''>Seleccione un producto</option>
-            {productsData.map(el => {
-              return (
-                <option key={el.id} name='id' value={el.id}>
-                  {el.productName}
-                </option>
-              );
-            })}
-          </select>
-        </Box>
+        <h1 className='titulo-revelde'>SELECCIONE EL PRODUCTO </h1>
+
+        <select
+          onChange={e => handleSelectChange(e)}
+          className='select-renegado'
+          required='required'
+        >
+          <option value=''>Seleccione un producto</option>
+          {productsData.map(el => {
+            return (
+              <option key={el.id} name='id' value={el.id}>
+                {el.productName}
+              </option>
+            );
+          })}
+        </select>
+
         <br></br>
         <Box sx={{ minWidth: 120 }}>
           <form onSubmit={e => handleSubmit(e)} className='CreacionUsuario'>
             <label>Precio:</label>
             <input
-              value={input.salePrice}
               onChange={handleLabelChangeCollection}
               name='salePrice'
               type='number'
@@ -121,7 +120,6 @@ export default function EditProduct() {
             <div className='descriptionEditProduct'>
               <textarea
                 onChange={handleInputChange}
-                value={input.description}
                 type='text'
                 name='description'
                 placeholder={aux?.map(el => el.description)}
@@ -129,12 +127,11 @@ export default function EditProduct() {
                 cols='70'
               />
             </div>
-            <label>STOCK:</label>
+            <label>Stock:</label>
             <Input
               onChange={handleInputChange}
               type='number'
               name='stock'
-              value={input.stock}
               placeholder={aux?.map(el => el.stock)}
             />
             <br></br>

@@ -1,3 +1,42 @@
-.btnMp{
-    float: right;
+.btnContinuarConElPago {
+  display: flex;
+  /* margin-bottom: 3%; */
+}
+.zapatilla {
+  width: 800px;
+  height: 800px;
+}
+
+.contenedorZapatilla {
+  text-align: center;
+}
+
+.title-checkout {
+  margin-top: 5%;
+  text-align: center;
+}
+.checkout {
+  margin-top: 2%;
+  width: 70%;
+  display: flex;
+  margin-left: 17%;
+  border-radius: 44px;
+  background: #e0e0e0;
+  box-shadow: -10px 10px 16px #c3c3c3, 10px -10px 16px #fdfdfd;
+}
+.datos-chekout {
+  margin: 5%;
+}
+
+.zapatillas-checkout {
+  margin: 5%;
+}
+
+.pepe {
+  margin-left: 13%;
+  text-align: center;
+  margin-top: -15%;
+}
+.footerCheckout{
+  margin-top: 5%;
 }

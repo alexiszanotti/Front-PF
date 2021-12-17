@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital@1&display=swap');
 .containerLanding{
     display: flex;
     justify-content: center;
@@ -5,25 +6,12 @@
     align-items: center;
     margin-top: 75px;
 }
-.btn{
-    background-color: rgba(0, 0, 0, 0.644);
-    color: rgb(236, 230, 230);
-    border-radius: 5px;
-    cursor: pointer;
-    /* padding:10px; */
-    font-size: 25px;
-    font-family: 'Roboto' thin  italic;
-    /* margin-left: 210px; */
-    border: none;
-    
-}
 
-
-.btn:hover {
-    background-color: white; 
-    color: rgba(74, 59, 207, 0.644);
-} 
 
 .containerTitle{
     font-family: 'Roboto' thin  italic;
+}
+
+.tituloLanding{
+    font-family: 'Fira Sans', sans-serif;
 }

@@ -1,7 +1,7 @@
 import "./compras.css";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { postReview, addDataBaseShoppingCart } from "../../../Redux/Actions/index";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { postReview } from "../../../Redux/Actions/index";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -14,7 +14,7 @@ import { Modal } from "@material-ui/core";
 import Rating from "@mui/material/Rating";
 import Box from "@mui/material/Box";
 import swal from "sweetalert";
-
+import { ToastContainer, toast } from 'react-toastify';
 const validateForm = input => {
   let error = {};
   if (!input.review) {
@@ -41,13 +41,10 @@ export default function Compras({
   cartId,
   userId,
 }) {
-  console.log(productId, "producto", cartId, "cartId", userId, "userId");
   const dispatch = useDispatch();
   const history = useHistory();
-  const reseña = useSelector(state => state.review);
   const [error, setError] = useState({});
-  const carritoAlmacen = useSelector(state => state.ShoppingAlmacen);
-  console.log(carritoAlmacen, "alee");
+
   const [input, setInput] = useState({
     review: "",
     score: "",
@@ -69,7 +66,7 @@ export default function Compras({
             score: input.score,
             review: input.review,
             productId: productId,
-            userId: userId[0].id,
+            userId: userId,
             cartId: cartId,
           })
         );
@@ -79,10 +76,11 @@ export default function Compras({
           review: "",
           score: "",
         });
-      }, 4000);
+      }, 500);
       setTimeout(() => {
+        successSubmitFavorite()
         history.push(`/detail/${productId}`);
-      }, 6000);
+      }, 300);
     } else {
       swal("Error!", "Por favor, complete todos los campos requeridos!", "error");
     }
@@ -99,11 +97,9 @@ export default function Compras({
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 1000,
-    height: 350,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
+    width: 400,
+    height: 250,
+    bgcolor: "rgb(236,236,236)",
     p: 4,
   };
 
@@ -114,6 +110,16 @@ export default function Compras({
     4: "Muy bueno",
     5: "Excelente",
   };
+  const successSubmitFavorite = () => {
+    toast.success('Producto guardado con éxito', {
+      position: "bottom-right",
+      autoClose: 1000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      });
+  }
 
   const reseñas = (
     <div>
@@ -146,7 +152,8 @@ export default function Compras({
               <button type='submit' onClick={handleSubmit} className='btn1'>
                 Publicar
               </button>
-              <button type='submit' onClick={() => openCloseModal()} className='btn2'>
+              
+              <button onClick={() => openCloseModal()} className='btn2'>
                 Cerrar
               </button>
             </div>
@@ -172,7 +179,7 @@ export default function Compras({
           />
 
           <CardContent className='misComprasCard'>
-            <img src={imagenProducto} className='imagen' />
+            <img alt='l' src={imagenProducto} className='imagen' />
             <div className='misCompras'>
               <Typography gutterBottom variant='h5' component='div'>
                 {nombreProducto}
@@ -185,7 +192,7 @@ export default function Compras({
               </Typography>
             </div>
             <Typography variant='body2' color='text.secondary'>
-              {cantidad}
+              <h2>Cantidad: {cantidad}</h2>
             </Typography>
             <Stack direction='column' spacing={2}>
               <Button variant='contained' onClick={openCloseModal}>
@@ -206,6 +213,7 @@ export default function Compras({
           </CardContent>
         </CardActionArea>
       </Card>
+      <ToastContainer />
     </div>
   );
 }

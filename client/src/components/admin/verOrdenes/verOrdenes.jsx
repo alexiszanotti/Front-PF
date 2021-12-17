@@ -2,11 +2,9 @@ import "./verOrdenes.css";
 import React, { useEffect } from "react";
 import { getAllOrders, filterStatus } from "../../../Redux/Actions/index";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import Ordenes from "./ordenes/ordenes";
 
 export default function VerOrdenes() {
-  const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,7 +22,7 @@ export default function VerOrdenes() {
   return (
     <div>
       <div className='verOrdenesContainer'>
-        <h1>Ordenes</h1>
+        <h1>ORDENES</h1>
 
         <select onChange={e => handleFilterStatus(e)}>
           <option value='TODOS'>Estado de orden</option>

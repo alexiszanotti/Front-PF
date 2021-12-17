@@ -12,11 +12,13 @@ import Select from "@mui/material/Select";
 import { filterByParams, resetFilter, getCollection } from "../../Redux/Actions/index";
 import { useDispatch } from "react-redux";
 import { Typography } from "@mui/material";
+import Footer from "../footer/footer";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
-export default function Home({setCurrentPage, currentPage}) {
+export default function Home({ setCurrentPage, currentPage }) {
   const dispatch = useDispatch();
 
-  const logIn = useSelector(state => state.userLogin);
   const shoes = useSelector(state => state.productsFilter);
   const orderState = useSelector(state => state.orden);
   const collections = useSelector(state => state.collections);
@@ -24,7 +26,6 @@ export default function Home({setCurrentPage, currentPage}) {
   // let idUser = logIn.id;
 
   const [orden, setOrden] = useState(orderState);
-  const [stateValue, setStateValue] = useState(false)
 
   const [shoesPorPaginaPorPagina] = useState(20);
   const indeceDelUltimoShoes = currentPage * shoesPorPaginaPorPagina; // 10
@@ -33,11 +34,11 @@ export default function Home({setCurrentPage, currentPage}) {
   const paginado = pageNumber => {
     setCurrentPage(pageNumber);
   };
-  
+
   function handleClick(e) {
     dispatch(resetFilter());
 
-    setOrden({collection: 'All', gender: 'All', price: 'default'});
+    setOrden({ collection: "All", gender: "All", price: "default" });
   }
 
   function handleChange(e) {
@@ -52,8 +53,7 @@ export default function Home({setCurrentPage, currentPage}) {
   }
   function nextPage() {
     if (currentPage === pageNumbers.length) {
-      setCurrentPage(5);
-      console.log("entro al console");
+      setCurrentPage(6);
     } else {
       setCurrentPage(currentPage + 1);
     }
@@ -61,7 +61,6 @@ export default function Home({setCurrentPage, currentPage}) {
   function previousPage() {
     if (currentPage === 1) {
       setCurrentPage(1);
-      console.log("entro al console");
     } else {
       setCurrentPage(currentPage - 1);
     }
@@ -95,13 +94,9 @@ export default function Home({setCurrentPage, currentPage}) {
                     onChange={handleChange}
                   >
                     <MenuItem value='All'>TODOS</MenuItem>
-                    {collections?.map(el => {
-                      return (
-                        <MenuItem key={el.id} value={el.name}>
-                          {el.name}
-                        </MenuItem>
-                      );
-                    })}
+                    <MenuItem value={"ORIGINALS"}>ORIGINALS</MenuItem>
+                    <MenuItem value={"CORE / NEO"}>CORE / NEO</MenuItem>
+                    <MenuItem value={"SPORT PERFORMANCE"}>SPORT PERFORMANCE</MenuItem>
                   </Select>
                 </FormControl>
               </Box>
@@ -150,6 +145,21 @@ export default function Home({setCurrentPage, currentPage}) {
           </Grid>
         </Box>
       </div>
+      <br></br>
+      <div className='paginationFoward'>
+        <ArrowForwardIosIcon className='svg_icons' onClick={nextPage} />
+      </div>
+      <div className='paginationBack'>
+        <ArrowBackIosNewIcon className='svg_icons' onClick={previousPage} />
+      </div>
+      <div>
+        <Paginado
+          shoesPorPaginaPorPagina={shoesPorPaginaPorPagina}
+          shoes={shoes.length}
+          paginado={paginado}
+          currentPage={currentPage}
+        />
+      </div>
       <button className='botonCart1' onClick={handleClick}>
         Borrar filtros
       </button>
@@ -157,29 +167,23 @@ export default function Home({setCurrentPage, currentPage}) {
         {currentShoes.length ? (
           currentShoes?.map(products => {
             return (
-              <Products
-                key={products.id}
-                title={products.productName.toUpperCase()}
-                image={products.images}
-                price={"$ " + Number(products.salePrice)}
-                id={products.id}
-                stock={products.stock}
-              />
+              <div key={products.id}>
+                <Products
+                  title={products.productName.toUpperCase()}
+                  image={products.images}
+                  price={"$ " + Number(products.salePrice)}
+                  id={products.id}
+                  stock={products.stock}
+                  key={products.id}
+                />
+              </div>
             );
           })
         ) : (
           <Typography>No hay productos con esos parametros</Typography>
         )}
       </div>
-      <div className='paginado'>
-        <Paginado
-          shoesPorPaginaPorPagina={shoesPorPaginaPorPagina}
-          shoes={shoes.length}
-          paginado={paginado}
-          previousPage={previousPage}
-          nextPage={nextPage}
-        />
-      </div>
+      <Footer />
     </div>
   );
 }

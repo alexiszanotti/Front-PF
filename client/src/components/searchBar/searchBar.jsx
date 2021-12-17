@@ -16,7 +16,7 @@ export default function SearchBar({setCurrentPage}) {
   useEffect(() => {
     setCurrentPage(1);
     dispatch(searchProducts(name));
-  }, [dispatch, name]);
+  }, [dispatch, name, setCurrentPage]);
 
 
   return (
@@ -31,6 +31,7 @@ export default function SearchBar({setCurrentPage}) {
           type='text'
           name='text'
           placeholder='Buscar...'
+          color="secondary"
         />
       </form>
     </div>

@@ -1,20 +1,20 @@
-.verOrdenesContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.verOrdenesContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin-left: 18%;
 }
 
-.misOrdenesCard{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    /* border: 1px solid black; */
-    margin-left: 25%;
-
+.misOrdenesCard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 25%;
 }
 
-.misOrdenes{
-    display: flex;
-    flex-direction: column;
+.misOrdenes {
+  display: flex;
+  flex-direction: column;
 }

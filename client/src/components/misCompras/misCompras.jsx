@@ -3,35 +3,29 @@ import React, { useEffect } from "react";
 import { getAllUsers, filterByCart } from "../../Redux/Actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import Compras from "./compras/compras";
+import Footer from "../footer/footer";
 
 export default function MisCompras() {
   const dispatch = useDispatch();
   const userLogin = useSelector(state => state.userLogin);
   const usuarios = useSelector(state => state.users);
   const usuariosCarritoFiltrado = usuarios.filter(el => el.id === userLogin.id);
-  var compras = useSelector(state => state.misCompras);
-
+  const compras = useSelector(state => state.misCompras);
+  const compras2 = compras.map(el => el.products);
+  const compras3 = compras2.flat();
+  console.log(compras);
   useEffect(() => {
     dispatch(getAllUsers());
     dispatch(filterByCart(usuariosCarritoFiltrado[0].id));
-  }, [dispatch]);
 
-  // const carts = compras.map(el => {
-  //   return {
-  //     status: el.status,
-  //     dateOfPurchase: el.dateOfPurchase,
-  //     productos: el.products.flat(),
-  //   };
-  // });
-  console.log("COMPRAS", compras);
-
-  const userLogeado = useSelector(state => state.userLogin);
+  }, [dispatch, usuariosCarritoFiltrado[0].id]);
 
   return (
+    <div>
     <div className='misComprasContainer'>
       <h1>Mis compras</h1>
       <p>Total de compras</p>
-      {compras[0]?.products?.map(el => {
+      {compras3.map(el => {
         return (
           <Compras
             productId={el.productId}
@@ -41,9 +35,16 @@ export default function MisCompras() {
             fechaCompra={compras[0].dateOfPurchase}
             estadoOrden={compras[0].status}
             cantidad={el.quantity}
+            userId={compras[0].userId}
+            cartId={usuariosCarritoFiltrado[0].Cart.id}
           />
         );
       })}
+    </div>
+    {
+      compras3.length === 0 ? null : <Footer />
+    }
+
     </div>
   );
 }

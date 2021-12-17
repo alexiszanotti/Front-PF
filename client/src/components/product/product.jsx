@@ -1,5 +1,5 @@
 import "./product.css";
-import React, { useEffect } from "react";
+import React from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -26,7 +26,6 @@ import {
   deleteDataBaseFavorite,
 } from "../../Redux/Actions/index";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { IconButton } from "@mui/material";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -49,48 +48,44 @@ export default function Products(props) {
   const successSubmitFavorite = () => {
     toast.success('Producto guardado con éxito', {
       position: "bottom-right",
-      autoClose: 2000,
-      hideProgressBar: false,
+      autoClose: 1000,
+      hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
-      progress: undefined,
       });
   }
 
   const errorSubmitFavorite = () => {
     toast.error('Producto eliminado éxito', {
       position: "bottom-right",
-      autoClose: 2000,
-      hideProgressBar: false,
+      autoClose: 1000,
+      hideProgressBar: true,
       closeOnClick: true,
-      pauseOnHover: false,
+      pauseOnHover: true,
       draggable: true,
-      progress: undefined,
       });
   }
 
   const successSubmitCart = () => {
     toast.success('Producto agregado con éxito', {
       position: "bottom-right",
-      autoClose: 2000,
-      hideProgressBar: false,
+      autoClose: 1000,
+      hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
-      progress: undefined,
       });
   }
 
   const errorSubmitCart = () => {
     toast.error('Producto eliminado con éxito', {
       position: "bottom-right",
-      autoClose: 2000,
-      hideProgressBar: false,
+      autoClose: 1000,
+      hideProgressBar: true,
       closeOnClick: true,
-      pauseOnHover: false,
+      pauseOnHover: true,
       draggable: true,
-      progress: undefined,
       });
   }
 
@@ -104,7 +99,10 @@ export default function Products(props) {
           })
         );
         setTimeout(() => {
-          dispatch(addDataBaseShoppingCart(cartId.toString()));
+          if(cartId){
+            dispatch(addDataBaseShoppingCart(cartId.toString()));
+          }
+         
         }, 200);
       }
       dispatch(emptyCart());
@@ -150,6 +148,7 @@ export default function Products(props) {
         successSubmitFavorite()
       } else {
         dispatch(favorite(props.id));
+        successSubmitFavorite()
       }
     } else {
       if (idUser) {
@@ -165,6 +164,7 @@ export default function Products(props) {
         errorSubmitFavorite()
       } else {
         dispatch(removeFavorite(props.id));
+        errorSubmitFavorite()
       }
     }
   };
@@ -180,11 +180,15 @@ export default function Products(props) {
           })
         );
         setTimeout(() => {
-          dispatch(addDataBaseShoppingCart(cartId.toString()));
+          if(cartId){
+            dispatch(addDataBaseShoppingCart(cartId.toString()));
+          }
+          
         }, 200);
         successSubmitCart()
       } else {
         dispatch(shoppingCart(props.id));
+        successSubmitCart()
       }
     } else {
       if (idUser) {
@@ -196,17 +200,21 @@ export default function Products(props) {
         );
 
         setTimeout(() => {
-          dispatch(addDataBaseShoppingCart(cartId.toString()));
+          if(cartId){
+            dispatch(addDataBaseShoppingCart(cartId.toString()));
+          }
+          
         }, 200);
         errorSubmitCart()
       } else {
         dispatch(removeCard(props.id));
+        errorSubmitCart()
       }
     }
   };
 
   return (
-    <div className='productContainer'>
+    <div className='productContainer' key={props.id}>
       <Card className='contenedorProduct' sx={{ maxWidth: 400 }}>
         <CardHeader title={props.title} subheader={props.price} />
         <Link to={`/detail/${props.id}`}>
@@ -228,7 +236,6 @@ export default function Products(props) {
                 icon={<ShoppingCartIcon />}
                 checkedIcon={<ShoppingCartIcon />}
                 disabled
-                checked
               />
               <Alert variant='outlined' severity='error'>
                 Stock no disponible

@@ -34,7 +34,7 @@ export default function Landing() {
       caption: el.productName,
     };
   });
-  console.log(data);
+
 
   const captionStyle = {
     fontSize: "2em",
@@ -73,16 +73,16 @@ export default function Landing() {
     />
   ) : (
     <>
-    <img src="https://media4.giphy.com/media/4wp3eYvjcq5i7Agxg5/giphy.gif?cid=ecf05e47sat0w6fbe73jrdj2syy6otovc7koep32fz9w44i0&rid=giphy.gif&ct=s" />
+    <img alt="l" src="https://media4.giphy.com/media/4wp3eYvjcq5i7Agxg5/giphy.gif?cid=ecf05e47sat0w6fbe73jrdj2syy6otovc7koep32fz9w44i0&rid=giphy.gif&ct=s" />
     <h1>...Cargando</h1>
     </>
   );
   return (
     <div className="containerLanding">
-      <h1>Bienvenidos a Adidas Oficial</h1>
+      <h1 className="tituloLanding">BIENVENIDOS A ADIDAS OFICIAL</h1>
 
       <Link to="/home">
-        <button className="btn">Entrar al sitio</button>
+        <button className="btn5">Entrar al sitio</button>
       </Link>
       <div style={{ textAlign: "center" }}>
         {/* <p>Easy to use, responsive and customizable carousel component for React Projects.</p> */}

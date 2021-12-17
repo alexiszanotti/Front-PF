@@ -4,9 +4,11 @@ import CardFavorite from "../cardFavorite/cardFavorite";
 import { Link } from "react-router-dom";
 import { emptyFavorites, addDataBaseFavorite, deleteAllDataBaseeFavorite } from "../../Redux/Actions/index";
 import { useDispatch } from "react-redux";
+import { Button } from "@mui/material";
 import "./favorite.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from "../footer/footer";
 
 export default function Favorite() {
   const dispatch = useDispatch();
@@ -15,7 +17,7 @@ export default function Favorite() {
   const dataBaseFavorite = useSelector((state) => state.favoriteAlmacen)
   let idUser = logIn.id;
 
-  console.log(dataBaseFavorite)
+
 
   var hash = {};
   let sinLogin = favoritos.filter(function (current) {
@@ -52,7 +54,7 @@ export default function Favorite() {
       dispatch(addDataBaseFavorite(idUser));
 
     }
-  }, [dispatch]);
+  }, [dispatch, idUser]);
 
   return (
     <div>
@@ -64,9 +66,9 @@ export default function Favorite() {
               {dataBaseFavorite.products?.length}{" "}
               {dataBaseFavorite.products?.length === 1 ? "Artículo" : "Artículos"}{" "}
             </h2>
-            <button onClick={handleEmptyFavorites}>
+            <Button onClick={handleEmptyFavorites} variant='contained'>
               BORRAR TODOS FAVORITOS
-            </button>
+            </Button>
           </div>
           <br></br>
           <br></br>
@@ -87,6 +89,14 @@ export default function Favorite() {
               })
             )}
           </div>
+          {
+            dataBaseFavorite.products === undefined || dataBaseFavorite.products?.length === 0 ?(
+              null 
+            ) : (
+              <Footer/>
+            )
+            
+          }
           <div>
             <Link to="/home">
               <button className="botonCart1">volver</button>
@@ -101,9 +111,9 @@ export default function Favorite() {
               {sinLogin.length}{" "}
               {sinLogin.length === 1 ? "Artículo" : "Artículos"}{" "}
             </h2>
-            <button onClick={handleEmptyFavorites}>
+            <Button onClick={handleEmptyFavorites} variant='contained'>
               BORRAR TODOS FAVORITOS
-            </button>
+            </Button>
           </div>
           <br></br>
           <br></br>
@@ -125,6 +135,14 @@ export default function Favorite() {
               })
             )}
           </div>
+          {
+            sinLogin === undefined || sinLogin.length === 0 ?(
+              null 
+            ) : (
+              <Footer/>
+            )
+            
+          }
           <div>
             <Link to="/home">
               <button className="botonCart1">volver</button>
@@ -133,6 +151,7 @@ export default function Favorite() {
         </>
       )}
       <ToastContainer />
+    
     </div>
   );
 }
