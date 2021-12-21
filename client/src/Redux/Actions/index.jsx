@@ -55,10 +55,10 @@ export function searchProducts(name) {
 }
 
 export const detailProducts = id => {
+  console.log(id);
   return async dispatch => {
     try {
       let res = await axios(`products/${id}`);
-
       return dispatch({
         type: DETAIL_PRODUCTS,
         payload: res.data,

@@ -20,6 +20,7 @@ export default function Detail(props) {
   const detail = useSelector(state => state.detail);
 
   useEffect(() => {
+    console.log(props.match.params.id)
     setTimeout(() => {
       dispatch(detailProducts(props.match.params.id));
     }, 500);
