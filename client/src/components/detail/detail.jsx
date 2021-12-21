@@ -128,50 +128,50 @@ export default function Detail(props) {
 
   return (
     <>
-    <div className='container1'>
-      {detail.map(products => {
-        return (
-          <div className='detailContainer2'>
-            <Card sx={{ maxWidth: 820 }}>
-              <CardContent className='misComprasCard1'>
-                <div>
-                  <Typography gutterBottom variant='h5' component='div'>
-                    <div className='cardTitle'>
-                      <h3>{products.productName}</h3>
-                    </div>
-                    <p>{products.collection.name}</p>
+      <div className='container1'>
+        {detail.map(products => {
+          return (
+            <div className='detailContainer2'>
+              <Card sx={{ maxWidth: 820 }}>
+                <CardContent className='misComprasCard1'>
+                  <div>
+                    <Typography gutterBottom variant='h5' component='div'>
+                      <div className='cardTitle'>
+                        <h3>{products.productName}</h3>
+                      </div>
+                      <p>{products.collection.name}</p>
 
-                    <p>{products.gender}</p>
+                      <p>{products.gender}</p>
 
-                    <img alt='k' className='img' src={products.images} />
-                  </Typography>
-                </div>
-                <div className='detailContainerCard2'>
-                  <Typography variant='body2' color='text.secondary'>
-                    <li className='detailSummary'>{products.description}</li>
+                      <img alt='k' className='img' src={products.images} />
+                    </Typography>
+                  </div>
+                  <div className='detailContainerCard2'>
+                    <Typography variant='body2' color='text.secondary'>
+                      <li className='detailSummary'>{products.description}</li>
 
-                    <li className='detailSummary'>{"$" + Number(products.salePrice)}</li>
-                    <div>
-                      <button
-                        type='button'
-                        onClick={() => openCloseModal1(dispatchCart())}
-                        className='btn6'
-                      >
-                        Agregar al carrito
-                      </button>
-                      <Modal open={modal1} onClose={openCloseModal1}>
-                        {carrito}
-                      </Modal>
-                    </div>
-                  </Typography>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        );
-      })}
-      <div className='detailContainer2'>
-        {/* {segundo.length === 0 || segundo === undefined ? (
+                      <li className='detailSummary'>{"$" + Number(products.salePrice)}</li>
+                      <div>
+                        <button
+                          type='button'
+                          onClick={() => openCloseModal1(dispatchCart())}
+                          className='btn6'
+                        >
+                          Agregar al carrito
+                        </button>
+                        <Modal open={modal1} onClose={openCloseModal1}>
+                          {carrito}
+                        </Modal>
+                      </div>
+                    </Typography>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          );
+        })}
+        <div className='detailContainer2'>
+          {/* {segundo.length === 0 || segundo === undefined ? (
           <h4>No hay reseñas</h4>
         ) : (
           segundo.map(el => {
@@ -190,37 +190,36 @@ export default function Detail(props) {
             alignItems: "center",
           }}
         > */}
-        {/* <Rating name="half-rating-read" value={average1} precision={0.5} readOnly /> */}
-        {/* <h4>{average1}</h4> */}
-        {/* </Box> */}
-        <Card sx={{ maxWidth: 820 }}>
-          <h1 className='title-reneged'>Reseñas</h1>
-          <CardContent className='misComprasCard1'>
-            <div>
-              <Typography gutterBottom variant='h5' component='div'>
-                {segundo.length === 0 || segundo === undefined
-                  ? null
-                  : segundo.map(el => {
-                      return (
-                        <div>
-                          <CreateReview review={el.review} score={el.score} />
-                        </div>
-                      );
-                    })}
-             
-              </Typography>
-            </div>
-          </CardContent>
-        </Card>
+          {/* <Rating name="half-rating-read" value={average1} precision={0.5} readOnly /> */}
+          {/* <h4>{average1}</h4> */}
+          {/* </Box> */}
+          <Card sx={{ maxWidth: 820 }}>
+            <h1 className='title-reneged'>Reseñas</h1>
+            <CardContent className='misComprasCard1'>
+              <div>
+                <Typography gutterBottom variant='h5' component='div'>
+                  {segundo.length === 0 || segundo === undefined
+                    ? null
+                    : segundo.map(el => {
+                        return (
+                          <div>
+                            <CreateReview review={el.review} score={el.score} />
+                          </div>
+                        );
+                      })}
+                </Typography>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+        <button onClick={handleButtonHome} className='btn6'>
+          Home
+        </button>
+        <br></br>
       </div>
-      <button onClick={handleButtonHome} className='btn6'>
-        Home
-      </button>
-      <br></br>
-    </div>
-    <div>
-      <Footer />
-    </div>
+      <div>
+        <Footer />
+      </div>
     </>
   );
 }
