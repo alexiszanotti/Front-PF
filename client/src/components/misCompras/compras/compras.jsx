@@ -98,7 +98,7 @@ export default function Compras({
     left: "50%",
     transform: "translate(-50%, -50%)",
     width: 400,
-    height: 250,
+    height: 380,
     bgcolor: "rgb(236,236,236)",
     p: 4,
   };
@@ -123,16 +123,17 @@ export default function Compras({
 
   const reseñas = (
     <div>
-      <Box sx={style1}>
-        <form onSubmit={e => e}>
-          <div className='detailContainer1'>
+      {/* <Box sx={style1}> */}
+        <form onSubmit={e => e} className="formulario2">
+          <div className='contenedorPerfil2'>
             <h3>Escriba su reseña</h3>
-            <input
+            <textarea
               onChange={handleInputChange}
               value={input.review}
               type='text'
               name='review'
               placeholder='Escriba su reseña aquí'
+              className='textareaReseña'
             />
             {error.review && <p className='error'>{error.review} </p>}
             <Box
@@ -148,18 +149,17 @@ export default function Compras({
               )}
             </Box>
             <br></br>
-            <div>
-              <button type='submit' onClick={handleSubmit} className='btn1'>
+            <div className="botonesCompras">
+              <button type='submit' onClick={handleSubmit} className='btn7'>
                 Publicar
               </button>
-              
-              <button onClick={() => openCloseModal()} className='btn2'>
+              <button onClick={() => openCloseModal()} className='btn8'>
                 Cerrar
               </button>
             </div>
           </div>
         </form>
-      </Box>
+      {/* </Box> */}
     </div>
   );
 

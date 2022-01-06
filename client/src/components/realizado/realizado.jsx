@@ -11,13 +11,12 @@ export default function Realizado() {
         <img src="https://media3.giphy.com/media/wsTyMcJnYxnSyaGleS/giphy.gif?cid=790b76119c39e25e110e144278ca96b1036c37343d31ea78&rid=giphy.gif&ct=s" />
       </div>
       <div className="btn7">
-            <Link to="/">
-              <Button size='large'variant='contained'>
-                HOME
-              </Button>
-            </Link>
-           
-          </div>
+        <Link to="/">
+          <Button size='large' variant='contained'>
+            HOME
+          </Button>
+        </Link>
+      </div>
     </>
   );
 }

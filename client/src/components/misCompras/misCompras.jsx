@@ -41,10 +41,11 @@ export default function MisCompras() {
         );
       })}
     </div>
+    <div className="footerCompras">
     {
       compras3.length === 0 ? null : <Footer />
     }
-
+    </div>
     </div>
   );
 }

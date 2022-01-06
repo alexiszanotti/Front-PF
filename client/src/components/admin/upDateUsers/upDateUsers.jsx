@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getAllUsers, modifyUser } from "../../../Redux/Actions/index";
 import { useDispatch, useSelector } from "react-redux";
+import {Link} from "react-router-dom";
 import Box from "@mui/material/Box";
 // import swal from 'sweetalert';
 import "./upDateUsers.css";
@@ -17,11 +18,11 @@ export default function UpDataUsers() {
     dispatch(getAllUsers());
   }, [dispatch]);
 
-  
+
   const [input, setInput] = useState({
     id: "",
   });
-  
+
   const successSubmit = () => {
     toast.success("Usuario modificado con éxito", {
       position: "bottom-right",
@@ -148,6 +149,11 @@ export default function UpDataUsers() {
           <button className='btn'>Cargar datos</button>
         </form>
       </Box>
+      <Link to='/'>
+        <button className='botonAdmin'>
+          Volver
+        </button>
+      </Link>
       <ToastContainer />
     </div>
   );

@@ -53,7 +53,7 @@ export default function Home({ setCurrentPage, currentPage }) {
   }
   function nextPage() {
     if (currentPage === pageNumbers.length) {
-      setCurrentPage(6);
+      setCurrentPage(pageNumbers.length);
     } else {
       setCurrentPage(currentPage + 1);
     }

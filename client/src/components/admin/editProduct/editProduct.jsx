@@ -1,6 +1,7 @@
 import "./editProduct.css";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {Link} from "react-router-dom";
 import Box from "@mui/material/Box";
 import { Input } from "@mui/material";
 import { getAllProducts, modifyProduct, getCollection } from "../../../Redux/Actions/index";
@@ -164,6 +165,11 @@ export default function EditProduct() {
           </form>
         </Box>
       </div>
+      <Link to='/'>
+        <button className='botonAdmin'>
+          Volver
+        </button>
+        </Link>
       <ToastContainer />
     </div>
   );

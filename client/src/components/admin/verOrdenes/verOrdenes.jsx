@@ -2,6 +2,7 @@ import "./verOrdenes.css";
 import React, { useEffect } from "react";
 import { getAllOrders, filterStatus } from "../../../Redux/Actions/index";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import Ordenes from "./ordenes/ordenes";
 
 export default function VerOrdenes() {
@@ -20,8 +21,8 @@ export default function VerOrdenes() {
   }
 
   return (
-    <div>
-      <div className='verOrdenesContainer'>
+    <div className='verOrdenesContainer'>
+      <div >
         <h1>ORDENES</h1>
 
         <select onChange={e => handleFilterStatus(e)}>
@@ -42,7 +43,7 @@ export default function VerOrdenes() {
       </div>
       {allOrders?.map(e => {
         return (
-          <div key={e.id}>
+          <div key={e.id} classname='verOrdenes'>
             <Ordenes
               key={"222"}
               estadoOrden={e.status}
@@ -52,6 +53,11 @@ export default function VerOrdenes() {
           </div>
         );
       })}
+      <Link to='/'>
+        <button className='botonCart1'>
+          Volver
+        </button>
+      </Link>
     </div>
   );
 }

@@ -38,8 +38,8 @@ export default function Perfil() {
     setModal1(!modal1);
   };
 
-  function handleSubmit(e) {
-    dispatch(modifyUser(input));
+  function handleSubmit(e) {  
+      dispatch(modifyUser(input));
     swal("Modificacion Exitosa!", "El usuario se modifico con éxito!", "success");
     setInput({
       id: "",
@@ -187,15 +187,14 @@ export default function Perfil() {
       </Button>
     </form>
   );
+
   return (
     <div>
       <Modal open={modal1} onClose={openCloseModal1}>
         {editar}
       </Modal>
       <div className='fondo'></div>
-      
-      <h3 className='titulo-form'>PERFIL DE USUARIO</h3>
-      
+      <h3 className='titulo-form'>Hola {usuario.map((el) => el.name)} {usuario.map((el) => el.lastName)}</h3>      
       <form onSubmit={e => handleSubmit(e)} className='formulario'>
         <div className='contenedorPerfil'>
           <div className='div1'>

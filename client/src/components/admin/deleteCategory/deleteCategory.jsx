@@ -1,6 +1,7 @@
 import "./deleteCategory.css";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { deleteCollection, getCollection } from "../../../Redux/Actions/index";
 // import swal from 'sweetalert';
 import { ToastContainer, toast } from "react-toastify";
@@ -101,6 +102,11 @@ export default function DeleteCollection() {
           <button className='btn'>Eliminar categoría</button>
         </form>
       </div>
+      <Link to='/'>
+        <button className='botonAdmin'>
+          Volver
+        </button>
+      </Link>
       <ToastContainer />
     </div>
   );
