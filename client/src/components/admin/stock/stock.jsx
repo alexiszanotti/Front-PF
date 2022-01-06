@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
@@ -59,59 +60,46 @@ export default function Stock() {
     <div className='contentStock'>
       <h1>MODIFICAR STOCK</h1>
 
-      <Paper
-        sx={{ bgcolor: "rgb(223, 223, 223)", p: 2, margin: "auto", maxWidth: 700, flexGrow: 10 }}
-      >
-        {products.map(e => {
-          return (
-            <>
-              <Grid container spacing={4} sx={{ bgcolor: "rgb(223, 223, 223)" }}>
-                <Grid item>
-                  <ButtonBase sx={{ width: 128, height: 128 }}>
+      {products.map(e => {
+        return (
+          // <div className="gridContainer">
+              <div className="elementStock">
+                <div className="imagen1">
                     <Img alt='complex' src={e.images} />
-                  </ButtonBase>
-                </Grid>
-                <Grid item xs={12} sm container sx={{ bgcolor: "rgb(223, 223, 223)" }}>
-                  <Grid
-                    item
-                    xs
-                    container
-                    direction='column'
-                    spacing={2}
-                    sx={{ bgcolor: "rgb(223, 223, 223)" }}
-                  >
-                    <Grid item xs sx={{ bgcolor: "rgb(223, 223, 223)" }}>
-                      <Typography gutterBottom variant='subtitle1' component='div'>
-                        {e.productName}
-                      </Typography>
-                    </Grid>
-                    <Grid item xs sx={{ bgcolor: "rgb(223, 223, 223)" }}>
-                      <Button
-                        onClick={() => {
-                          setInput({ ...input, id: e.id });
-                          successSubmit();
-                          handleButton();
-                        }}
-                        variant='outlined'
-                      >
-                        Modificar Stock
-                      </Button>
-                    </Grid>
-                  </Grid>
-                  <Grid item sx={{ bgcolor: "rgb(223, 223, 223)" }}>
-                    <TextField
+                    </div>
+                <Typography >
+                  {e.productName}
+                </Typography>
+                <div class="zapallo">
+                    <Button
+                      onClick={() => {
+                        setInput({ ...input, id: e.id });
+                        successSubmit();
+                        handleButton();
+                      }}
+                      variant='outlined'
+                    >
+                      Modificar Stock
+                    </Button>
+                    <br></br>
+                    <input
                       id='outlined-number'
+                      required
+                      placeholder={e.stock}
                       label={e.stock}
                       type='number'
                       onChange={e => handleStock(e)}
                     />
-                  </Grid>
-                </Grid>
-              </Grid>
-            </>
-          );
-        })}
-      </Paper>
+                </div>
+              {/* </div> */}
+          </div>
+        );
+      })}
+      <Link to='/'>
+        <button className='botonAdmin'>
+          Volver
+        </button>
+      </Link>
       <ToastContainer />
     </div>
   );

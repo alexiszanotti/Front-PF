@@ -8,7 +8,7 @@ import Favorite from "./components/favorite/favorite";
 import createProduct from "./components/admin/createProduct/createProduct";
 import UpDataUsers from "./components/admin/upDateUsers/upDateUsers";
 import GoShopping from "./components/goShopping/goShopping";
-import NavBarAdmin from "./components/admin/navBarAdmin/navBarAdmin";
+// import NavBarAdmin from "./components/admin/navBarAdmin/navBarAdmin";
 import EstadisticasA from "./components/admin/estadisticasA/estadisticasA";
 import EditProduct from "./components/admin/editProduct/editProduct";
 import CreateCollection from "./components/admin/createCategory/createCategory";
@@ -111,7 +111,7 @@ function App() {
     return (
       <BrowserRouter>
         <div className='App'>
-          <NavBarAdmin />
+          {/* <NavBarAdmin /> */}
           <Switch>
             <Route exact path='/' component={EstadisticasA} />
             <Route path='/createProduct' component={createProduct} />

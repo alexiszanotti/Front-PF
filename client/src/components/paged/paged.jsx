@@ -15,7 +15,7 @@ function Paginado({ shoesPorPaginaPorPagina, shoes, paginado, previousPage, next
         <nav className='paginado'>
           {/* <ul className='paginado'> */}
             
-            <h4>Página: {currentPage} de 6.</h4> 
+            <h4>Página: {currentPage} de {pageNumber.length}.</h4> 
             {/* {pageNumber &&
               pageNumber.map(number => {
                 return (

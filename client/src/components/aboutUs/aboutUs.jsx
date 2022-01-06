@@ -6,6 +6,7 @@ import Foto3 from "../../images/Gaston.jpg";
 import Foto4 from "../../images/Ema.jpg";
 import Foto5 from "../../images/Enzo.jpg";
 import {gsap} from "gsap";
+import { useHistory } from "react-router-dom";
 
 export default function AboutUs() {
  
@@ -14,6 +15,12 @@ export default function AboutUs() {
     
     gsap.from(Card,{opacity : 0, y:50, duration : 3})
   },[])
+  const history = useHistory()
+
+  function handleButtonHome(e) {
+    e.preventDefault();
+    history.push("/home");
+  }
   return (
     <div>
       <div className='container'>
@@ -167,6 +174,9 @@ export default function AboutUs() {
           </button>
         </div>
       </div>
+      <button onClick={handleButtonHome} className='btn6'>
+        Home
+      </button>
     </div>
   );
 }

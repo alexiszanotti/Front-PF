@@ -1,6 +1,7 @@
 import "./createProduct.css";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {Link} from "react-router-dom";
 import { createProduct, getCollection } from "../../../Redux/Actions/index";
 import zapa from "../../../images/ImgaProduct.png";
 import { ToastContainer, toast } from "react-toastify";
@@ -170,6 +171,11 @@ export default function CreateProduct() {
           <button className='btn'>Crear Producto</button>
         </form>
       </div>
+      <Link to='/'>
+        <button className='botonAdmin'>
+          Volver
+        </button>
+        </Link>
       <ToastContainer />
     </div>
   );

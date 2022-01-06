@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import {Link} from "react-router-dom";
 import { createCollection, getCollection } from "../../../Redux/Actions/index";
 import "./createCategory.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -96,6 +97,11 @@ export default function CreateCollection() {
           {/* <button onClick={notify}>Crear categoría</button> */}
           <button className='btn'>Crear categoría</button>
         </form>
+        <Link to='/'>
+        <button className='botonAdmin'>
+          Volver
+        </button>
+        </Link>
         <ToastContainer />
       </div>
     </div>

@@ -8,12 +8,12 @@
   border-radius: 10px;
   height: 100%;
   margin: 0 auto;
-  margin-bottom: 15px;
-  margin-top: 15px;
+  margin-bottom: 50px;
+  margin-top: 50px;
   border-radius: 44px;
   background: #e0e0e0;
   box-shadow: -10px 10px 16px #c3c3c3, 10px -10px 16px #fdfdfd;
-  margin-left: 35%;
+  border: 2px solid rgb(53, 134, 226);
 }
 .titulo-revelde {
   text-align: center;

@@ -15,7 +15,7 @@ label {
 
 .fondo {
   width: 100%;
-  height: 50vh;
+  height: 60vh;
   background-color: rgb(236, 236, 236);
   position: relative;
 }
@@ -24,9 +24,10 @@ label {
   font-weight: bold;
   text-align: center;
   position: absolute;
-  top: 90px;
+  top: 75px;
   left: 45%;
   z-index: 1;
+  margin-bottom: 10%;
 }
 
 .formulario {
@@ -121,5 +122,5 @@ label {
   grid-area: 4 / 3 / 5 / 4;
 }
 .footerPerfil{
-  margin-top: 14%;
+  margin-top: 15%;
 }
